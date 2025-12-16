@@ -1,37 +1,43 @@
 # 캐릭터 시스템
 
-> 구현 기능 문서입니다.  
+> 구현 기능 문서입니다.
 > 상세 정보는 `03_CharacterSystem_Details.md`를 참고하세요.
 
 ## 1. 기능별 고정적인 데이터
 
 ### 1.1 스탯 정의
-- [ ] 스탯 종류 정의
-  - [ ] 공격력
-  - [ ] 체력
-  - [ ] 체력회복
-  - [ ] 치명타 확률
-  - [ ] 치명타 피해
-  - [ ] 마나
-  - [ ] 마나회복
-  - [ ] 명중
-  - [ ] 회피
-  - [ ] 추가 골드 획득량
-  - [ ] 추가 경험치
-- [ ] 각 스탯의 초기값 정의
-- [ ] 각 스탯의 레벨별 성장값 정의
+- [x] 스탯 종류 정의
+  - [x] 공격력
+  - [x] 체력
+  - [x] 체력회복
+  - [x] 치명타 확률
+  - [x] 치명타 피해
+  - [x] 마나
+  - [x] 마나회복
+  - [x] 명중
+  - [x] 회피
+  - [x] 추가 골드 획득량
+  - [x] 추가 경험치
+- [x] 각 스탯의 초기값 정의 (EnhancementData, GrowthData에 포함)
+- [x] 각 스탯의 레벨별 성장값 정의 (EnhancementData, GrowthData에 포함)
 
 ### 1.2 강화 시스템 데이터
-- [ ] 골드로 구매하는 강화 능력치 정의
-  - [ ] 공격력 (MAX LV: 1,900,000)
-  - [ ] 체력 (MAX LV: 1,900,000)
-  - [ ] 체력 회복량 (MAX LV: 1,900,000)
-  - [ ] 치명타 공격력 (MAX LV: 10,000)
-  - [ ] 치명타 확률 (MAX LV: 1,000)
-  - [ ] 회심의 일격 (MAX LV: 4,000)
-  - [ ] 회심의 일격 확률 (MAX LV: 1,000)
-- [ ] 업그레이드 비용 계산 공식 참조
-- [ ] 레벨 제한 시스템 (MAX LV 체크 로직)
+- [x] 골드로 구매하는 강화 능력치 정의
+  - [x] 공격력 (MAX LV: 1,900,000)
+  - [x] 체력 (MAX LV: 1,900,000)
+  - [x] 체력 회복량 (MAX LV: 1,900,000)
+  - [x] 치명타 공격력 (MAX LV: 10,000)
+  - [x] 치명타 확률 (MAX LV: 1,000)
+  - [x] 회심의 일격 (MAX LV: 4,000)
+  - [x] 회심의 일격 확률 (MAX LV: 1,000)
+- [x] 업그레이드 비용 계산 공식 참조 (EnhancementData에 InitialCost, CostGrowthRate 포함)
+- [x] 레벨 제한 시스템 (MAX LV 체크 로직) (EnhancementData에 MaxLevel 포함)
+- [x] 요구 능력치 및 요구 레벨 시스템 (EnhancementData에 RequiredStatName, RequiredStatLevel 포함)
+- [x] ScriptableObject 데이터 구조 구현
+  - [x] EnhancementDataAsset: 단일 에셋으로 모든 강화 능력치 데이터 관리
+  - [x] EnhancementData: 개별 강화 능력치 데이터 (초기값, 성장값, 비용 등)
+  - [x] ScriptableDataManager 통합
+  - [x] Editor 자동 생성 기능 (CharacterSystemAssetCreator)
 
 ### 1.3 성장 지식 시스템 데이터
 - [ ] 성장 지식 종류 정의
@@ -46,55 +52,53 @@
   - [ ] 초인의 힘 전투를 통한 추가 확장
 
 ### 1.4 성장 시스템 데이터
-- [ ] 능력치 포인트로 구매 가능한 능력치 정의
-  - [ ] STR (MAX LV: 1,000)
-  - [ ] HP (MAX LV: 1,000)
-  - [ ] VIT (MAX LV: 1,000)
-  - [ ] CRI (MAX LV: 200)
-  - [ ] LUK (MAX LV: 1,000)
-  - [ ] ACC (MAX LV: 200)
-  - [ ] DODGE (MAX LV: 200)
-- [ ] 레벨업 시 능력치 포인트 3개 획득 규칙
-- [ ] 레벨 제한 시스템 (MAX LV 체크 로직)
+- [x] 능력치 포인트로 구매 가능한 능력치 정의
+  - [x] STR (MAX LV: 1,000)
+  - [x] HP (MAX LV: 1,000)
+  - [x] VIT (MAX LV: 1,000)
+  - [x] CRI (MAX LV: 200)
+  - [x] LUK (MAX LV: 1,000)
+  - [x] ACC (MAX LV: 200)
+  - [x] DODGE (MAX LV: 200)
+- [x] 레벨업 시 능력치 포인트 3개 획득 규칙 (ExperienceConfigAsset에 StatPointPerLevel 포함)
+- [x] 레벨 제한 시스템 (MAX LV 체크 로직) (GrowthData에 MaxLevel 포함)
+- [x] ScriptableObject 데이터 구조 구현
+  - [x] GrowthDataAsset: 단일 에셋으로 모든 성장 능력치 데이터 관리
+  - [x] GrowthData: 개별 성장 능력치 데이터 (레벨당 증가량, 비용 등)
+  - [x] ScriptableDataManager 통합
+  - [x] Editor 자동 생성 기능 (CharacterSystemAssetCreator)
 
 ### 1.5 경험치 필요량 계산 데이터
-- [ ] 초기 경험치 필요량: 120
-- [ ] 경험치 증가 배율: 1.01 (레벨마다 1.01배씩 증가)
-- [ ] 레벨 n 필요 경험치: 120 × 1.01^(n-1)
-- [ ] 레벨 n 총 경험치: 12000 × (1.01^n - 1)
+- [x] 초기 경험치 필요량: 120 (ExperienceConfigAsset에 InitialExperienceRequired 포함)
+- [x] 경험치 증가 배율: 1.01 (레벨마다 1.01배씩 증가) (ExperienceConfigAsset에 ExperienceGrowthRate 포함)
+- [x] 레벨 n 필요 경험치: 120 × 1.01^(n-1) (ExperienceConfigAsset.GetExperienceRequiredForNextLevel() 메서드)
+- [x] 레벨 n 총 경험치: 12000 × (1.01^n - 1) (ExperienceConfigAsset.GetTotalExperienceRequired() 메서드)
+- [x] 레벨업 시 능력치 포인트 3개 획득 (ExperienceConfigAsset에 StatPointPerLevel 포함)
+- [x] ScriptableObject 데이터 구조 구현
+  - [x] ExperienceConfigAsset: 경험치 필요량 계산 설정 관리
+  - [x] ScriptableDataManager 통합
+  - [x] Editor 자동 생성 기능 (CharacterSystemAssetCreator)
 
 ### 1.6 계산 공식 참조
-- [ ] 스탯 증가 계산 공식 참조
-- [ ] 경험치 필요량 계산 공식 참조
-- [ ] 능력치 효과 적용 계산 공식 참조
+- [x] 스탯 증가 계산 공식 참조 (EnhancementData, GrowthData에 구현)
+- [x] 경험치 필요량 계산 공식 참조 (ExperienceConfigAsset에 구현)
+- [ ] 능력치 효과 적용 계산 공식 참조 (향후 구현)
 
 ## 2. 세이브하는 데이터
 
 ### 2.1 캐릭터 기본 정보
-- [ ] 캐릭터 레벨 저장
-- [ ] 현재 경험치 저장
-- [ ] 각 스탯의 레벨 저장
-  - [ ] 공격력 레벨
-  - [ ] 체력 레벨
-  - [ ] 체력회복 레벨
-  - [ ] 치명타 확률 레벨
-  - [ ] 치명타 피해 레벨
-  - [ ] 마나 레벨
-  - [ ] 마나회복 레벨
-  - [ ] 명중 레벨
-  - [ ] 회피 레벨
-  - [ ] 추가 골드 획득량 레벨
-  - [ ] 추가 경험치 레벨
+- [x] 캐릭터 레벨 저장 (VCharacterLevel.Level)
+- [x] 현재 경험치 저장 (VCharacterLevel.Experience)
 
 ### 2.2 강화 시스템 데이터
-- [ ] 강화 능력치 레벨 저장
-  - [ ] 공격력 레벨
-  - [ ] 체력 레벨
-  - [ ] 체력 회복량 레벨
-  - [ ] 치명타 공격력 레벨
-  - [ ] 치명타 확률 레벨
-  - [ ] 회심의 일격 레벨
-  - [ ] 회심의 일격 확률 레벨
+- [x] 강화 능력치 레벨 저장 (VCharacterEnhancement.EnhancementLevels Dictionary<string, int>)
+  - [x] 공격력 레벨
+  - [x] 체력 레벨
+  - [x] 체력 회복량 레벨
+  - [x] 치명타 공격력 레벨
+  - [x] 치명타 확률 레벨
+  - [x] 회심의 일격 레벨
+  - [x] 회심의 일격 확률 레벨
 
 ### 2.3 성장 지식 시스템 데이터
 - [ ] 성장 지식 단계 저장
@@ -105,15 +109,15 @@
 - [ ] 성장 지식 도전 진행 상태 저장
 
 ### 2.4 성장 시스템 데이터
-- [ ] 능력치 포인트 저장
-- [ ] 능력치 레벨 저장
-  - [ ] STR 레벨
-  - [ ] HP 레벨
-  - [ ] VIT 레벨
-  - [ ] CRI 레벨
-  - [ ] LUK 레벨
-  - [ ] ACC 레벨
-  - [ ] DODGE 레벨
+- [x] 능력치 포인트 저장 (VCharacterGrowth.StatPoint)
+- [x] 능력치 레벨 저장 (VCharacterGrowth.GrowthLevels Dictionary<string, int>)
+  - [x] STR 레벨
+  - [x] HP 레벨
+  - [x] VIT 레벨
+  - [x] CRI 레벨
+  - [x] LUK 레벨
+  - [x] ACC 레벨
+  - [x] DODGE 레벨
 
 ## 3. UI
 

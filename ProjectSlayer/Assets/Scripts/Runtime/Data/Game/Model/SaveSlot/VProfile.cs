@@ -5,9 +5,9 @@ namespace TeamSuneat.Data.Game
     {
         /// <summary> 할당한 아이템의 고유 번호</summary>
         public int IssuedItemSID;
-        public VCharacter Character;
         public VCharacterLevel Level;
-        public VCharacterStat Stat;
+        public VCharacterEnhancement Enhancement;
+        public VCharacterGrowth Growth;
 
         public VCharacterWeapon Weapon;
         public VCharacterPotion Potion;
@@ -22,7 +22,6 @@ namespace TeamSuneat.Data.Game
         {
             CreateEmptyData();
 
-            Character.OnLoadGameData();
             Weapon.OnLoadGameData();
             Potion.OnLoadGameData();
             Item.OnLoadGameData();
@@ -30,13 +29,13 @@ namespace TeamSuneat.Data.Game
 
             Stage.OnLoadGameData();
             Slot.OnLoadGameData();
-            Stat.OnLoadGameData();
+            Enhancement.OnLoadGameData();
+            Growth.OnLoadGameData();
             Statistics.OnLoadGameData();
         }
 
         public void CreateEmptyData()
         {
-            Character ??= VCharacter.CreateDefault();
             Level ??= VCharacterLevel.CreateDefault();
             Weapon ??= VCharacterWeapon.CreateDefault();
             Potion ??= VCharacterPotion.CreateDefault();
@@ -44,7 +43,8 @@ namespace TeamSuneat.Data.Game
             Currency ??= VCurrency.CreateDefault();
             Stage ??= VCharacterStage.CreateDefault();
             Slot ??= VCharacterSlot.CreateDefault();
-            Stat ??= VCharacterStat.CreateDefault();
+            Enhancement ??= VCharacterEnhancement.CreateDefault();
+            Growth ??= VCharacterGrowth.CreateDefault();
             Statistics ??= VStatistics.CreateDefault();
         }
 
@@ -65,8 +65,11 @@ namespace TeamSuneat.Data.Game
             // 인게임 재화를 초기화합니다.
             Currency.ClearIngameCurrencies();
 
-            // 인게임 능력치 정보를 초기화합니다.
-            Stat.ClearIngameData();
+            // 강화 능력치 정보를 초기화합니다.
+            Enhancement.ClearIngameData();
+
+            // 성장 능력치 정보를 초기화합니다.
+            Growth.ClearIngameData();
 
             // 인게임 통계 정보를 초기화합니다.
             Statistics.ClearIngameData();

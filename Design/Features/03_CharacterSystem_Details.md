@@ -1,6 +1,6 @@
 # 캐릭터 시스템 상세 정보
 
-> 이 문서는 캐릭터 시스템의 상세 정보를 담고 있습니다.  
+> 이 문서는 캐릭터 시스템의 상세 정보를 담고 있습니다.
 > 구현 기능은 `03_CharacterSystem.md`를 참고하세요.
 
 ## 1. 스탯 상세 정보
@@ -95,6 +95,25 @@
 ### 2.2 업그레이드 비용 계산 공식
 - (상세 계산 공식은 게임 밸런스에 따라 결정)
 - 레벨이 올라갈수록 비용이 증가하는 구조
+- EnhancementData에 InitialCost, CostGrowthRate 필드로 관리
+- 비용 계산: InitialCost × CostGrowthRate^(레벨-1)
+
+### 2.3 강화 시스템 데이터 구조
+- **EnhancementDataAsset**: 단일 ScriptableObject로 모든 강화 능력치 데이터 관리
+  - XScriptableObject를 상속받아 ScriptableDataManager에서 관리
+  - DataArray: EnhancementData 배열로 모든 강화 능력치 데이터 포함
+  - FindEnhancementData(StatNames): 스탯 이름으로 데이터 검색
+  - Editor 기능: "모든 강화 능력치 데이터 자동 생성" 버튼 제공
+- **EnhancementData**: 개별 강화 능력치 데이터
+  - StatName: 능력치 종류
+  - MaxLevel: 최대 레벨
+  - InitialValue: 능력치 초기값
+  - GrowthValue: 레벨당 능력치 증가량
+  - InitialCost: 초기 비용
+  - CostGrowthRate: 비용 성장률
+  - RequiredStatName: 요구 능력치 (None이면 요구사항 없음)
+  - RequiredStatLevel: 요구 능력치 레벨 (0이면 요구사항 없음)
+  - HasRequirement: 요구사항이 설정되어 있는지 확인하는 프로퍼티
 
 ## 3. 성장 지식 시스템 상세 정보
 
@@ -171,6 +190,20 @@
 - 레벨업 시 능력치 포인트 3개 획득
 - 능력치 포인트는 능력치 레벨업에 사용
 
+### 4.3 성장 시스템 데이터 구조
+- **GrowthDataAsset**: 단일 ScriptableObject로 모든 성장 능력치 데이터 관리
+  - XScriptableObject를 상속받아 ScriptableDataManager에서 관리
+  - DataArray: GrowthData 배열로 모든 성장 능력치 데이터 포함
+  - FindGrowthData(StatNames): 스탯 이름으로 데이터 검색
+  - Editor 기능: "모든 성장 능력치 데이터 자동 생성" 버튼 제공
+  - 성장 시스템 능력치만 자동 생성 (Strength, HealthPoint, Vitality, Critical, Luck, AccuracyStat, Dodge)
+- **GrowthData**: 개별 성장 능력치 데이터
+  - StatName: 능력치 종류
+  - MaxLevel: 최대 레벨
+  - InitialCost: 능력치 포인트 초기 비용
+  - CostGrowthRate: 비용 성장률
+  - StatIncreasePerLevel: 레벨당 스탯 증가량
+
 ## 5. 계산 공식 상세
 
 ### 5.1 스탯 증가 계산 공식
@@ -198,6 +231,16 @@
 - 레벨 33 총 경험치: 14,441
 - 레벨 69 총 경험치: 40,959
 - 레벨 801 총 경험치: 34,869,958,568
+
+### 5.2.1 경험치 설정 데이터 구조
+- **ExperienceConfigAsset**: 경험치 필요량 계산 설정을 관리하는 ScriptableObject
+  - XScriptableObject를 상속받아 ScriptableDataManager에서 관리
+  - InitialExperienceRequired: 초기 경험치 필요량 (120)
+  - ExperienceGrowthRate: 경험치 증가 배율 (1.01)
+  - StatPointPerLevel: 레벨업 시 획득하는 능력치 포인트 (3)
+  - GetTotalExperienceRequired(int level): 레벨 n에 도달하기 위한 총 경험치 계산
+  - GetExperienceRequiredForNextLevel(int level): 다음 레벨로 올라가기 위해 필요한 경험치 계산
+  - Editor 기능: "검증 데이터 출력" 버튼으로 계산 공식 검증
 
 ### 5.3 능력치 효과 적용 계산 공식
 - (상세 계산 공식은 게임 밸런스에 따라 결정)
@@ -234,4 +277,52 @@
 ### 5.7 명중 및 회피 계산 공식
 - 명중 판정: (명중률 - 적 회피율)에 따른 판정
 - 회피 판정: (회피율 - 적 명중률)에 따른 판정
+
+## 6. 데이터 저장 구조
+
+### 6.1 저장 데이터 클래스
+
+**VCharacterLevel**
+- Level: 캐릭터 레벨
+- Experience: 현재 경험치
+- ResetValues(): 레벨과 경험치 초기화
+- AddExperience(int): 경험치 추가 및 레벨업 처리
+- LevelUp(): 레벨 증가
+
+**VCharacterEnhancement**
+- EnhancementLevels: 강화 능력치별 레벨 저장 (Dictionary<string, int>)
+- GetLevel(StatNames): 특정 강화 능력치의 레벨 가져오기
+- SetLevel(StatNames, int): 특정 강화 능력치의 레벨 설정
+- AddLevel(StatNames, int): 특정 강화 능력치의 레벨 증가
+- ClearIngameData(): 인게임 데이터 초기화
+
+**VCharacterGrowth**
+- StatPoint: 능력치 포인트
+- GrowthLevels: 성장 능력치별 레벨 저장 (Dictionary<string, int>)
+- GetLevel(StatNames): 특정 성장 능력치의 레벨 가져오기
+- SetLevel(StatNames, int): 특정 성장 능력치의 레벨 설정
+- AddLevel(StatNames, int): 특정 성장 능력치의 레벨 증가
+- AddStatPoint(int): 능력치 포인트 추가
+- ConsumeStatPoint(int): 능력치 포인트 소비
+- ClearIngameData(): 인게임 데이터 초기화
+
+### 6.2 데이터 안정성
+- Dictionary 키를 string으로 저장하여 enum 순서 변경에 영향받지 않도록 구현
+- StatNames enum을 ToString()으로 변환하여 저장
+- VCharacterEnhancement, VCharacterGrowth의 메서드는 StatNames를 받아 내부에서 string으로 변환
+
+### 6.3 ScriptableObject 관리
+- **ScriptableDataManager**: 모든 ScriptableObject 에셋을 중앙에서 관리
+  - EnhancementDataAsset: 단일 에셋으로 강화 시스템 데이터 관리
+  - GrowthDataAsset: 단일 에셋으로 성장 시스템 데이터 관리
+  - ExperienceConfigAsset: 단일 에셋으로 경험치 설정 관리
+  - GetEnhancementDataAsset(): 강화 데이터 에셋 가져오기
+  - GetEnhancementData(StatNames): 스탯 이름으로 강화 데이터 가져오기
+  - GetGrowthDataAsset(): 성장 데이터 에셋 가져오기
+  - GetGrowthData(StatNames): 스탯 이름으로 성장 데이터 가져오기
+  - GetExperienceConfigAsset(): 경험치 설정 에셋 가져오기
+- **CharacterSystemAssetCreator**: Editor 스크립트로 기본값이 적용된 에셋 자동 생성
+  - Unity 메뉴: TeamSuneat → Create Character System Assets
+  - 생성 경로: Assets/Addressables/Scriptable/Character
+  - EnhancementData.asset, GrowthData.asset, ExperienceConfig.asset 자동 생성
 

@@ -6,7 +6,7 @@ namespace TeamSuneat.Data
     public partial class ScriptableDataManager : Singleton<ScriptableDataManager>
     {
         private GameDefineAsset _gameDefine;
-        private LogSettingAsset _logSetting;        
+        private LogSettingAsset _logSetting;
 
         private readonly Dictionary<int, HitmarkAsset> _hitmarkAssets = new();
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();
@@ -16,6 +16,9 @@ namespace TeamSuneat.Data
         private readonly Dictionary<int, FloatyAsset> _floatyAssets = new();
         private readonly Dictionary<int, FlickerAsset> _flickerAssets = new();
         private readonly Dictionary<int, SoundAsset> _soundAssets = new();
+        private EnhancementDataAsset _enhancementDataAsset;
+        private GrowthDataAsset _growthDataAsset;
+        private ExperienceConfigAsset _experienceConfigAsset;
 
         public void Clear()
         {
@@ -30,6 +33,9 @@ namespace TeamSuneat.Data
             _fontAssets.Clear();
             _floatyAssets.Clear();
             _flickerAssets.Clear();
+            _enhancementDataAsset = null;
+            _growthDataAsset = null;
+            _experienceConfigAsset = null;
         }
 
         public void RefreshAll()
@@ -41,6 +47,9 @@ namespace TeamSuneat.Data
             RefreshAllFlicker();
             RefreshAllFloaty();
             RefreshAllSounds();
+            RefreshAllEnhancement();
+            RefreshAllGrowth();
+            RefreshAllExperienceConfig();
         }
     }
 }
