@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: 8ae69caa87d75de4a951c5e9b4709838
+  m_SerializeEntries:
+  - m_GUID: 0def859c93a7e544b9cd032135847f67
+    m_Address: Assets/Addressables/Prefab/Stage/Stage3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c1e4f8ff7df8e74393c498e345a13bd
+    m_Address: Assets/Addressables/Prefab/Stage/Stage4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f0e4cc0d3ed0f84898df6a1e211f469
+    m_Address: Assets/Addressables/Prefab/Stage/Stage7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 517f4a79e3aa91442ac3dd635d561375
+    m_Address: Assets/Addressables/Prefab/UI/Notice/UIStageTitleNotice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 577e02325167be74b8eb99ec2a3eae09
+    m_Address: Assets/Addressables/Atlas/atlas_ui.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bf0b25f873534042a43d8c1a779f93a
+    m_Address: Assets/Addressables/Prefab/Stage/Stage6.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6260e59fad323a944b16b300f37a5aa4
+    m_Address: Assets/Addressables/Prefab/UI/Popup/UIGameStartSelectionPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a10b5cf9a5d42346b2d7f8146343699
+    m_Address: Assets/Addressables/Prefab/PlayerCharacter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ea9e6f359d93f64dafbde024ea380ad
+    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIGauge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89de9629f2e1f3a43b46dab49f9a571d
+    m_Address: Assets/Addressables/Prefab/Stage/Stage5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b327578e2bfff645ab591cdd0c24dea
+    m_Address: Assets/Addressables/Atlas/atlas_item.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62d2783b89c00340bacd9bd1728114e
+    m_Address: Assets/Addressables/Prefab/Stage/Stage8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae6ae2529c719ce49bd627568abc1c78
+    m_Address: Assets/Addressables/Prefab/UI/UISlotItem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b28b1b959ac99b847ac38b1d32bc2ec4
+    m_Address: Assets/Addressables/Atlas/atlas_character.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c09305cba701e2a42bd514b7cf397ff4
+    m_Address: Assets/Addressables/Prefab/UI/Notice/UITurnNotice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7125cbb71e3107449098bdcc3818625
+    m_Address: Assets/Addressables/Prefab/UI/Follow/UIFloatyText.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb83e90e152fbe94298410d1c81f901f
+    m_Address: Assets/Addressables/Prefab/Stage/Stage9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0e914d5f9f147b47abcacd3abec69b4
+    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIMonsterGauge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9d084fd7e3a5b843acd2ae79a1c4734
+    m_Address: Assets/Addressables/Prefab/Stage/Stage2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc7856f7b9692a4439c2e311d582079c
+    m_Address: Assets/Addressables/Prefab/Stage/Stage10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0bfdb79b140772546ac483b0ad9449ba, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ad9f79755341e0542831109420a7a191, type: 2}
+    - {fileID: 11400000, guid: 21ff8c20e7f0d7443a35c0da228baa2e, type: 2}
