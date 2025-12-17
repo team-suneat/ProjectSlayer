@@ -26,14 +26,8 @@
         /// <summary> 캐릭터 능력 </summary>
         Ability,
 
-        /// <summary> 탐지 </summary>
-        Detect,
-
         /// <summary> 캐릭터 생성 </summary>
         CharacterSpawn,
-
-        /// <summary> 캐릭터 웨이브 </summary>
-        CharacterWave,
 
         #endregion Character
 
@@ -41,9 +35,6 @@
 
         /// <summary> 공격 </summary>
         Attack,
-
-        /// <summary> 목표 공격 </summary>
-        Attack_Target,
 
         /// <summary> 전투 자원(생명력/자원/보호막) </summary>
         BattleResource,
@@ -59,12 +50,6 @@
 
         /// <summary> 패시브 </summary>
         Passive,
-
-        /// <summary> 패시브 발동 </summary>
-        PassiveTrigger,
-
-        /// <summary> 상태 </summary>
-        State,
 
         /// <summary> 능력치 </summary>
         Stat,
@@ -104,9 +89,6 @@
         /// <summary> 게임 데이터 : 캐릭터 </summary>
         GameData_Character,
 
-        /// <summary> 게임 데이터 : 전투 자원 </summary>
-        GameData_BattleResource,
-
         /// <summary> 게임 데이터 : 기술 </summary>
         GameData_Skill,
 
@@ -122,20 +104,8 @@
         /// <summary> 퀘스트 </summary>
         Quest,
 
-        /// <summary> 퀘스트 조건 </summary>
-        QuestCondition,
-
         /// <summary> 튜토리얼 </summary>
         Tutorial,
-
-        /// <summary> 소지품 </summary>
-        Inventory,
-
-        /// <summary> 창고 </summary>
-        Storage,
-
-        /// <summary> 난이도 </summary>
-        Difficulty,
 
         #endregion Game-Data
 
@@ -156,9 +126,6 @@
 
         /// <summary> 무기 </summary>
         Weapon,
-
-        /// <summary> 물약 </summary>
-        Potion,
 
         /// <summary> 드랍 오브젝트 </summary>
         DropObject,
@@ -193,13 +160,9 @@
         /// <summary> 음향 </summary>
         Audio,
 
-        Video,
-
         /// <summary> 카메라 </summary>
         Camera,
 
-        /// <summary> 커서 </summary>
-        Cursor,
 
         /// <summary> 글로벌 이벤트 </summary>
         Global,
@@ -207,19 +170,14 @@
         /// <summary> 입력 </summary>
         Input,
 
-        /// <summary> 입력 - 버튼 상태 </summary>
-        Input_ButtonState,
 
         #endregion Setting
 
         #region Stage
 
         Stage,
-        Stage_Monster,
-        Tile,
 
-        /// <summary> 턴 관리 </summary>
-        Turn,
+        Stage_Monster,
 
         #endregion Stage
 
@@ -247,16 +205,6 @@
 
         #endregion Time
 
-        #region Steam
-
-        /// <summary> 스팀 </summary>
-        Steam,
-
-        /// <summary> 스팀 리더보드 </summary>
-        Steam_Leaderboard,
-
-        #endregion Steam
-
         #region Scene
 
         /// <summary> 씬 </summary>
@@ -274,6 +222,12 @@
 
         /// <summary> UI 게이지 </summary>
         UI_Gauge,
+
+        /// <summary> UI 토글 </summary>
+        UI_Toggle,
+
+        /// <summary> UI 페이지 </summary>
+        UI_Page,
 
         /// <summary> UI 인벤토리 </summary>
         UI_Inventory,
@@ -295,14 +249,6 @@
 
         /// <summary> UI 탭 </summary>
         UI_Tab,
-
-        /// <summary> UI 단축키 </summary>
-        UI_Shortcut,
-
-        /// <summary> 슬롯머신 </summary>
-        UI_SlotMachine,
-
-        Battle,
 
         #endregion UI
     }
