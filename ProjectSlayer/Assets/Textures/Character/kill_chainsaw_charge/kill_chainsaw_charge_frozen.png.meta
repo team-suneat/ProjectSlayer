@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 5de568c41ae6e2b4d8c289c9cc61133a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3169637032322371721
+    second: kill_chainsaw_charge_frozen_0
+  - first:
+      213: -988806052239283805
+    second: kill_chainsaw_charge_frozen_1
+  - first:
+      213: -506166803447966921
+    second: kill_chainsaw_charge_frozen_2
+  - first:
+      213: -5037725506223017471
+    second: kill_chainsaw_charge_frozen_3
+  - first:
+      213: -2114180038432159055
+    second: kill_chainsaw_charge_frozen_4
+  - first:
+      213: 7386243541467964818
+    second: kill_chainsaw_charge_frozen_5
+  - first:
+      213: -8415692517258853358
+    second: kill_chainsaw_charge_frozen_6
+  - first:
+      213: -787472097617172184
+    second: kill_chainsaw_charge_frozen_7
+  - first:
+      213: 8996150974697242949
+    second: kill_chainsaw_charge_frozen_8
+  - first:
+      213: -5746849212996952462
+    second: kill_chainsaw_charge_frozen_9
+  - first:
+      213: -500618498336494777
+    second: kill_chainsaw_charge_frozen_10
+  - first:
+      213: 8653329837321380494
+    second: kill_chainsaw_charge_frozen_11
+  - first:
+      213: -3371595652747208297
+    second: kill_chainsaw_charge_frozen_12
+  - first:
+      213: 383202486320687361
+    second: kill_chainsaw_charge_frozen_13
+  - first:
+      213: -734774184591567280
+    second: kill_chainsaw_charge_frozen_14
+  - first:
+      213: -6987535151925391149
+    second: kill_chainsaw_charge_frozen_15
+  - first:
+      213: 8706246669433262068
+    second: kill_chainsaw_charge_frozen_16
+  - first:
+      213: 5072018343866657666
+    second: kill_chainsaw_charge_frozen_17
+  - first:
+      213: -2397320346157525824
+    second: kill_chainsaw_charge_frozen_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f608d99ef2304d0800000000000000
+      internalID: -3169637032322371721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a96588622e0742f0800000000000000
+      internalID: -988806052239283805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 733936b59fbb9f8f0800000000000000
+      internalID: -506166803447966921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102f6a5d757661ab0800000000000000
+      internalID: -5037725506223017471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba870ad47ce8a2e0800000000000000
+      internalID: -2114180038432159055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_5
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295a8b1fd55318660800000000000000
+      internalID: 7386243541467964818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_6
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2148fd96e34753b80800000000000000
+      internalID: -8415692517258853358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_7
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8292ff6ac465215f0800000000000000
+      internalID: -787472097617172184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5410d98d5afb8dc70800000000000000
+      internalID: 8996150974697242949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_9
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e5591c6171f30b0800000000000000
+      internalID: -5746849212996952462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_10
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74be9aec0227d09f0800000000000000
+      internalID: -500618498336494777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_11
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8264d5c3adc61870800000000000000
+      internalID: 8653329837321380494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79950c70e9fa531d0800000000000000
+      internalID: -3371595652747208297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_13
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109e03a81a8615500800000000000000
+      internalID: 383202486320687361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_14
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056da49a5ce8dc5f0800000000000000
+      internalID: -734774184591567280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_15
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d09ee50dc9470f90800000000000000
+      internalID: -6987535151925391149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff4f7ad73dc2d870800000000000000
+      internalID: 8706246669433262068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_17
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28bef60afcd636640800000000000000
+      internalID: 5072018343866657666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_frozen_18
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4d672c8d10bbed0800000000000000
+      internalID: -2397320346157525824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 09bcff7e78a8f55449abb890cbaee96f, type: 3}
+      name: _Emission
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kill_chainsaw_charge_frozen_0: -3169637032322371721
+      kill_chainsaw_charge_frozen_1: -988806052239283805
+      kill_chainsaw_charge_frozen_10: -500618498336494777
+      kill_chainsaw_charge_frozen_11: 8653329837321380494
+      kill_chainsaw_charge_frozen_12: -3371595652747208297
+      kill_chainsaw_charge_frozen_13: 383202486320687361
+      kill_chainsaw_charge_frozen_14: -734774184591567280
+      kill_chainsaw_charge_frozen_15: -6987535151925391149
+      kill_chainsaw_charge_frozen_16: 8706246669433262068
+      kill_chainsaw_charge_frozen_17: 5072018343866657666
+      kill_chainsaw_charge_frozen_18: -2397320346157525824
+      kill_chainsaw_charge_frozen_2: -506166803447966921
+      kill_chainsaw_charge_frozen_3: -5037725506223017471
+      kill_chainsaw_charge_frozen_4: -2114180038432159055
+      kill_chainsaw_charge_frozen_5: 7386243541467964818
+      kill_chainsaw_charge_frozen_6: -8415692517258853358
+      kill_chainsaw_charge_frozen_7: -787472097617172184
+      kill_chainsaw_charge_frozen_8: 8996150974697242949
+      kill_chainsaw_charge_frozen_9: -5746849212996952462
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,7 +11,6 @@ namespace TeamSuneat.Data
             Passive,
             Stat,
             Weapon,
-            WeaponLevel,
             Potion,
             Stage,
             Wave,

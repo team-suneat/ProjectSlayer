@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9005944901832808877}
   - component: {fileID: 1403945235702094363}
-  - component: {fileID: 4765458872486299392}
+  - component: {fileID: 5104632646544054406}
   m_Layer: 5
   m_Name: Rect
   m_TagString: Untagged
@@ -51,7 +51,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4765458872486299392
+--- !u!114 &5104632646544054406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,14 +60,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5160007578305479238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1855912144c634246b617e948da49b1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f79f293cb194e845874a48b98551945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 1403945235702094363}
-  FadeInDuration: 0.5
-  FadeOutDuration: 0.5
-  FadeInDelayTime: 0.5
-  FadeOutDelayTime: 0.5
+  FadeInDuration: 1
+  FadeOutDuration: 1
+  FadeInDelayTime: 0
+  FadeOutDelayTime: 1
 --- !u!1 &6626968615522767231
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.101960786, g: 0.101960786, b: 0.101960786, a: 0.5019608}
+  m_Color: {r: 0.101960786, g: 0.101960786, b: 0.101960786, a: 0.7529412}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 9020760294905623877}
   - component: {fileID: 4755645299680997202}
   - component: {fileID: 7033519675538305930}
-  - component: {fileID: 1151454521974579227}
+  - component: {fileID: 7409610500573730411}
   m_Layer: 5
   m_Name: StageTitle Text
   m_TagString: Untagged
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uC774\uB984"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
   m_sharedMaterial: {fileID: 6911550201042835066, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1151454521974579227
+--- !u!114 &7409610500573730411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,14 +289,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6914545358827985746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e949f8a2a74f4fbca5d3170f314a6, type: 3}
+  m_Script: {fileID: 11500000, guid: a18671cfec38e2b4d997de4111fb2b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StringKey: 
-  FontType: 2
-  FontTypeString: Title_GrayShadow
+  FontType: 0
+  FontTypeString: 
   TextPro: {fileID: 7033519675538305930}
-  CustomAddtionalFontSize: 0
+  CustomAdditionalFontSize: 0
   UseCustomLanguage: 0
   CustomLanguage: 0
   _fontController: {fileID: 0}
@@ -347,8 +347,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8144290836902770559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae4516dead1b8041ad504b5fe1ddb84, type: 3}
+  m_Script: {fileID: 11500000, guid: 20d1577e65b6e724f9294d17c621057c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _titleText: {fileID: 7033519675538305930}
-  _fader: {fileID: 4765458872486299392}
+  _fader: {fileID: 5104632646544054406}

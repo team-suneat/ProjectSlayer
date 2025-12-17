@@ -15,24 +15,6 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 8ae69caa87d75de4a951c5e9b4709838
   m_SerializeEntries:
-  - m_GUID: 0def859c93a7e544b9cd032135847f67
-    m_Address: Assets/Addressables/Prefab/Stage/Stage3.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c1e4f8ff7df8e74393c498e345a13bd
-    m_Address: Assets/Addressables/Prefab/Stage/Stage4.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4f0e4cc0d3ed0f84898df6a1e211f469
-    m_Address: Assets/Addressables/Prefab/Stage/Stage7.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 517f4a79e3aa91442ac3dd635d561375
     m_Address: Assets/Addressables/Prefab/UI/Notice/UIStageTitleNotice.prefab
     m_ReadOnly: 0
@@ -45,32 +27,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5bf0b25f873534042a43d8c1a779f93a
-    m_Address: Assets/Addressables/Prefab/Stage/Stage6.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a10b5cf9a5d42346b2d7f8146343699
     m_Address: Assets/Addressables/Prefab/PlayerCharacter.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 89de9629f2e1f3a43b46dab49f9a571d
-    m_Address: Assets/Addressables/Prefab/Stage/Stage5.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b327578e2bfff645ab591cdd0c24dea
     m_Address: Assets/Addressables/Atlas/atlas_item.spriteatlasv2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a62d2783b89c00340bacd9bd1728114e
-    m_Address: Assets/Addressables/Prefab/Stage/Stage8.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame
@@ -87,26 +51,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cb83e90e152fbe94298410d1c81f901f
-    m_Address: Assets/Addressables/Prefab/Stage/Stage9.prefab
+  - m_GUID: cf65f72866f858649aede54d0db5eed5
+    m_Address: Assets/Addressables/Prefab/UI/Popup/UICharacterInfoPopup.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0e914d5f9f147b47abcacd3abec69b4
     m_Address: Assets/Addressables/Prefab/UI/Gauge/UIPlayerGauge.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d9d084fd7e3a5b843acd2ae79a1c4734
-    m_Address: Assets/Addressables/Prefab/Stage/Stage2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dc7856f7b9692a4439c2e311d582079c
-    m_Address: Assets/Addressables/Prefab/Stage/Stage10.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame

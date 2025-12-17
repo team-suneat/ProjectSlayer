@@ -105,7 +105,7 @@ MonoBehaviour:
     - default
     - JSON
     - Scriptable
-    - Stage1
+    - Area01
     - Ingame
   m_SchemaTemplates: []
   m_GroupTemplateObjects:

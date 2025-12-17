@@ -5,5 +5,6 @@ namespace TeamSuneat
         public const string Scriptable = "Scriptable";
         public const string Json = "JSON";
         public const string Ingame = "Ingame";
+        public const string AreaFormat = "Area{0:D2}";
     }
 }

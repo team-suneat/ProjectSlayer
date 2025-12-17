@@ -95,7 +95,8 @@ namespace TeamSuneat
 
                 UIFloatyMoveNames moveName = UIFloatyMoveNames.Content;
                 if (currencyName == CurrencyNames.Gold) moveName = UIFloatyMoveNames.Gold;
-                else if (currencyName == CurrencyNames.Gem) moveName = UIFloatyMoveNames.Gem;
+                else if (currencyName == CurrencyNames.Diamond) moveName = UIFloatyMoveNames.Diamond;
+                else if (currencyName == CurrencyNames.Emerald) moveName = UIFloatyMoveNames.Emerald;
 
                 component.Setup(content, moveName);
                 component.StartMove();
@@ -156,7 +157,7 @@ namespace TeamSuneat
                 return null;
             }
 
-            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
+            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Ingame);
             if (canvasOrder == null)
             {
                 return null;
@@ -183,7 +184,7 @@ namespace TeamSuneat
                 return null;
             }
 
-            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
+            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Ingame);
             if (canvasOrder == null)
             {
                 return null;

@@ -14,7 +14,6 @@ namespace TeamSuneat
         Passive,
         Stat,
         Weapon,
-        WeaponLevel,
         Potion,
         Stage,
         Wave,
@@ -36,7 +35,6 @@ namespace TeamSuneat
         public const string Passive = "1242859680";
         public const string Stat = "135446725";
         public const string Weapon = "700832083";
-        public const string WeaponLevel = "1159863095";
         public const string Potion = "1558675697";
         public const string Stage = "1085377210";
         public const string Wave = "500721965";
@@ -50,8 +48,7 @@ namespace TeamSuneat
         { GoogleSheetDatasetId.MonsterCharacter, MonsterCharacter },
         { GoogleSheetDatasetId.Passive, Passive},
         { GoogleSheetDatasetId.Stat, Stat },
-        { GoogleSheetDatasetId.Weapon, Weapon },
-        { GoogleSheetDatasetId.WeaponLevel, WeaponLevel },
+        { GoogleSheetDatasetId.Weapon, Weapon },        
         { GoogleSheetDatasetId.Potion, Potion },
         { GoogleSheetDatasetId.Stage, Stage },
         { GoogleSheetDatasetId.Wave, Wave },

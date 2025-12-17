@@ -126,7 +126,7 @@ namespace TeamSuneat
         public static readonly Color Navy = new Color32(0, 0, 128, 255);
         public static readonly Color OldLace = new Color32(253, 245, 230, 255);
         public static readonly Color Olive = new Color32(128, 128, 0, 255);
-        public static readonly Color Olivedrab = new Color32(107, 142, 35, 255);
+        public static readonly Color OliveDrab = new Color32(107, 142, 35, 255);
         public static readonly Color Orange = new Color32(255, 165, 0, 255);
         public static readonly Color Orangered = new Color32(255, 69, 0, 255);
         public static readonly Color Orchid = new Color32(218, 112, 214, 255);
@@ -169,15 +169,11 @@ namespace TeamSuneat
 
         public static Color Dev => IndianRed;
 
-        public static Color Detect => LightGoldenodYellow;
-
         public static Color Physical => new Color32(255, 165, 0, 255); // Orange
 
         public static Color Thorns => Red;
 
-        public static Color Magical => new Color32(106, 90, 205, 255); // SlateBlue
-
-        // (Elements)
+        // Elements Colors
 
         public static Color Fire => new Color32(230, 60, 0, 255); //E63E00
 
@@ -199,25 +195,25 @@ namespace TeamSuneat
 
         public static Color Paralysis => new Color32(237, 0, 252, 255); //ED00FC
 
-        //
+        // Grade Colors
+        public static Color Common => DarkSlateGray;
+        public static Color Grand => OliveDrab;
+        public static Color Rare => Chocolate;
+        public static Color Epic => Indigo;
+        public static Color Legendary => DarkRed;
+        public static Color Mythic => RoyalBlue;
+        public static Color Immortal => Olive;
+        public static Color Ancient => DarkTurquoise;
 
-        public static Color Normal => new Color32(159, 159, 159, 255); // 9F9F9F
-        public static Color Uncommon => new Color32(0, 113, 219, 255); // 0071DB
-        public static Color Rare => new Color32(213, 219, 15, 255); // D5DB0F
-        public static Color Legendary => new Color32(233, 139, 30, 255); // FF4F00
-
-        public static string NormalHex => "#9F9F9F";
-        public static string MagicHex => "#0071DB";
-        public static string RareHex => "#D5DB0F";
-        public static string LegendaryHex => "#FF4F00";
-
-        //
+        // Currency Colors
 
         public static Color MagicStone => new Color32(226, 0, 91, 255); //E2005B
         public static Color RubyKey => new Color32(254, 26, 0, 255); //FE1A00
         public static Color SoulShard => new Color32(156, 16, 44, 255); //9C102C
         public static Color OblivionCrystal => new Color32(115, 2, 221, 255); //7302DD
         public static Color RiftShard => new Color32(68, 0, 255, 255); //4500FF
+
+        //  Value Colors
 
         public static Color Value => new Color32(171, 106, 22, 255); //AB6A16
         public static Color MaxValue => BlueViolet;
@@ -226,6 +222,9 @@ namespace TeamSuneat
         public static Color SubDescription => new Color32(128, 128, 128, 255);
         public static Color Disable => new Color32(108, 108, 108, 255);
         public static Color AdditionalLevel => SteelBlue;
+
+        // Log Colors
+
         public static Color EquipmentCategory => new Color32(0, 70, 131, 255);
         public static Color Stat => ReunoYellow;
         public static Color Buff => Aquamarine;

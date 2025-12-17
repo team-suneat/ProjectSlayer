@@ -25,8 +25,8 @@ namespace TeamSuneat
         StateEffect,
 
         Gold,
-        Gem,
-        RubyKey,
+        Diamond,
+        Emerald,
         Potion,
 
         Warning,

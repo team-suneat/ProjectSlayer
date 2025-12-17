@@ -22,8 +22,7 @@ namespace TeamSuneat
         // 직접 컴포넌트 참조 (Controller 대체)
         public CinemachineBrain BrainCamera;
 
-        [Title("카메라 컨트롤러들")]
-        [InfoBox("턴제 게임용 카메라 컨트롤러들입니다.")]
+        [Title("카메라 컨트롤러들")]        
         public CameraBoundingController BoundingController;
         public CameraShakeController ShakeController;
         public CameraZoomController ZoomController;
@@ -81,31 +80,31 @@ namespace TeamSuneat
         // 팔로우 기능 래퍼 함수들
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
         /// </summary>
         public void SetFollowTarget(Transform target)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
         /// </summary>
         public void SetFollowPlayer()
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 팔로우 기능을 비활성화합니다.
         /// </summary>
         public void StopFollow()
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 팔로우를 사용하지 않습니다.
+        /// 팔로우를 사용하지 않습니다.
         /// </summary>
         public bool CheckFollowing()
         {
@@ -113,7 +112,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 턴제 게임에서는 팔로우 타겟이 없습니다.
+        /// 팔로우 타겟이 없습니다.
         /// </summary>
         public Transform GetCurrentFollowTarget()
         {
@@ -263,55 +262,55 @@ namespace TeamSuneat
         #region Camera Look (위임 패턴)
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void SetCameraLookEnabled(bool enabled)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void SetCameraLookInputThreshold(float threshold)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void SetCameraLookUpOffset(Vector3 offset)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void SetCameraLookDownOffset(Vector3 offset)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void SetCameraLookTransitionSpeed(float speed)
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
+        /// 고정 카메라를 사용하므로 시점 조절을 비활성화합니다.
         /// </summary>
         public void ResetCameraLookToDefault()
         {
-            Log.Info(LogTags.Camera, "턴제 게임에서는 고정 카메라를 사용합니다.");
+            Log.Info(LogTags.Camera, "고정 카메라를 사용합니다.");
         }
 
         /// <summary>
-        /// 턴제 게임에서는 시점 조절을 사용하지 않습니다.
+        /// 시점 조절을 사용하지 않습니다.
         /// </summary>
         public bool CheckCameraLookEnabled()
         {
@@ -372,7 +371,7 @@ namespace TeamSuneat
 
         #endregion Camera Bounding
 
-        #region 턴제 게임용 카메라 기능
+        #region 게임용 카메라 기능
 
         /// <summary>
         /// 웨이브 시작 시 카메라 효과
@@ -422,6 +421,6 @@ namespace TeamSuneat
             TurnBasedController?.TransitionToPosition(position, duration);
         }
 
-        #endregion 턴제 게임용 카메라 기능
+        #endregion 게임용 카메라 기능
     }
 }

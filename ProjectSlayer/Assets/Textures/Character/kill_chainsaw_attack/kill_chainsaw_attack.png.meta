@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 293f208c724b8ab4b8d5c77d71c4073f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4947700592698387355
+    second: kill_chainsaw_atk_0
+  - first:
+      213: 3611823627592881475
+    second: kill_chainsaw_atk_1
+  - first:
+      213: -1794795172982812637
+    second: kill_chainsaw_atk_2
+  - first:
+      213: 7807791895559308146
+    second: kill_chainsaw_atk_3
+  - first:
+      213: -6536225983191353562
+    second: kill_chainsaw_atk_4
+  - first:
+      213: -4040541308654650485
+    second: kill_chainsaw_atk_5
+  - first:
+      213: 5719688444303495025
+    second: kill_chainsaw_atk_6
+  - first:
+      213: -3837877542089671567
+    second: kill_chainsaw_atk_7
+  - first:
+      213: -256009758026452797
+    second: kill_chainsaw_atk_8
+  - first:
+      213: 919428501370079522
+    second: kill_chainsaw_atk_9
+  - first:
+      213: -3139945764303300906
+    second: kill_chainsaw_atk_10
+  - first:
+      213: 5798256124495822341
+    second: kill_chainsaw_atk_11
+  - first:
+      213: 2563413700238833021
+    second: kill_chainsaw_atk_12
+  - first:
+      213: 603514539572869054
+    second: kill_chainsaw_attack_0
+  - first:
+      213: -6084889991472905203
+    second: kill_chainsaw_attack_1
+  - first:
+      213: 7595608612169187688
+    second: kill_chainsaw_attack_2
+  - first:
+      213: 4280473562481720657
+    second: kill_chainsaw_attack_3
+  - first:
+      213: 4106433056002279409
+    second: kill_chainsaw_attack_4
+  - first:
+      213: -605277237070671038
+    second: kill_chainsaw_attack_5
+  - first:
+      213: -5256265465764049457
+    second: kill_chainsaw_attack_6
+  - first:
+      213: -4019622809030070492
+    second: kill_chainsaw_attack_7
+  - first:
+      213: -948380527013609222
+    second: kill_chainsaw_attack_8
+  - first:
+      213: -4222151493693664511
+    second: kill_chainsaw_attack_9
+  - first:
+      213: -3897115076874901269
+    second: kill_chainsaw_attack_10
+  - first:
+      213: 3009489217364578784
+    second: kill_chainsaw_attack_11
+  - first:
+      213: 8625450261442385173
+    second: kill_chainsaw_attack_12
+  - first:
+      213: 2758814794899910988
+    second: kill_chainsaw_attack_0
+  - first:
+      213: 4580722050327891147
+    second: kill_chainsaw_attack_1
+  - first:
+      213: 4677949856323554077
+    second: kill_chainsaw_attack_2
+  - first:
+      213: 1817383993543903952
+    second: kill_chainsaw_attack_3
+  - first:
+      213: 1521719289112011868
+    second: kill_chainsaw_attack_4
+  - first:
+      213: 872458926494119151
+    second: kill_chainsaw_attack_5
+  - first:
+      213: 6865164858467765302
+    second: kill_chainsaw_attack_6
+  - first:
+      213: 589637708626565148
+    second: kill_chainsaw_attack_7
+  - first:
+      213: 6793272892003151417
+    second: kill_chainsaw_attack_8
+  - first:
+      213: -3659902878970293605
+    second: kill_chainsaw_attack_9
+  - first:
+      213: 3210654304204244906
+    second: kill_chainsaw_attack_10
+  - first:
+      213: -2252995217143538356
+    second: kill_chainsaw_attack_11
+  - first:
+      213: -8169651112379293971
+    second: kill_chainsaw_attack_12
+  - first:
+      213: 2933316765763698868
+    second: kill_chainsaw_attack_13
+  - first:
+      213: 690862480214804784
+    second: kill_chainsaw_attack_14
+  - first:
+      213: -7856363504174386567
+    second: kill_chainsaw_attack_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 33
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 47
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c41f91b6077494620800000000000000
+      internalID: 603514539572869054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bccc7906f6ef19f30800000000000000
+      internalID: -6084889991472905203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1b41470c9a6be040800000000000000
+      internalID: 7595608612169187688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da4aabfc15a83910800000000000000
+      internalID: 4280473562481720657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54a16b81ab3e1510800000000000000
+      internalID: 4106433056002279409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4fcca65c89b1c00800000000000000
+      internalID: -605277237070671038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c4779c017f54f50800000000000000
+      internalID: -5256265465764049457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c189cd83f50de2800800000000000000
+      internalID: -4019622809030070492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e6326f3bd864e50800000000000000
+      internalID: -948380527013609222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92db8af8b9653dc0800000000000000
+      internalID: -4222151493693664511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa74ca234198e8c20800000000000000
+      internalID: -3897115076874901269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d518179c0cbb0e0800000000000000
+      internalID: 3009489217364578784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deed1c319919f9e80800000000000000
+      internalID: 8625450261442385173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b00b0d9e0c35b820800000000000000
+      internalID: 2933316765763698868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03949d1f3cf669900800000000000000
+      internalID: 690862480214804784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_attack_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972b75b840798f290800000000000000
+      internalID: -7856363504174386567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 3f0df3ca4fea0c643952029500d73d7c, type: 3}
+      name: _Emission
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kill_chainsaw_attack_0: 603514539572869054
+      kill_chainsaw_attack_1: -6084889991472905203
+      kill_chainsaw_attack_10: -3897115076874901269
+      kill_chainsaw_attack_11: 3009489217364578784
+      kill_chainsaw_attack_12: 8625450261442385173
+      kill_chainsaw_attack_13: 2933316765763698868
+      kill_chainsaw_attack_14: 690862480214804784
+      kill_chainsaw_attack_15: -7856363504174386567
+      kill_chainsaw_attack_2: 7595608612169187688
+      kill_chainsaw_attack_3: 4280473562481720657
+      kill_chainsaw_attack_4: 4106433056002279409
+      kill_chainsaw_attack_5: -605277237070671038
+      kill_chainsaw_attack_6: -5256265465764049457
+      kill_chainsaw_attack_7: -4019622809030070492
+      kill_chainsaw_attack_8: -948380527013609222
+      kill_chainsaw_attack_9: -4222151493693664511
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

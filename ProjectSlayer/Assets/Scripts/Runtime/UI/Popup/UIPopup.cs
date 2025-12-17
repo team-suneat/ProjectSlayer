@@ -204,7 +204,7 @@ namespace TeamSuneat.UserInterface
             OnClose(false);
             Despawn();
 
-            _ = GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_CLOSE, Name);
+            GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_CLOSE, Name);
         }
 
         /// <summary>

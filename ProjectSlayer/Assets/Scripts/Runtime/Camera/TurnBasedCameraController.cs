@@ -6,13 +6,13 @@ using UnityEngine;
 namespace TeamSuneat
 {
     /// <summary>
-    /// 턴제 게임용 카메라 컨트롤러
+    /// 게임용 카메라 컨트롤러
     /// 고정된 카메라 위치와 간단한 전환 효과를 제공합니다.
     /// </summary>
     public class TurnBasedCameraController : XBehaviour
     {
         [Title("카메라 설정")]
-        [InfoBox("턴제 게임용 고정 카메라 설정입니다.")]
+        [InfoBox("게임용 고정 카메라 설정입니다.")]
         [SerializeField] private CinemachineCamera _mainVirtualCamera;
         [SerializeField] private Transform _defaultCameraPosition;
 

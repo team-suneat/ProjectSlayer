@@ -10,6 +10,8 @@ namespace TeamSuneat
 
         private void Awake()
         {
+            IsActive = true;
+
             if (_startActive)
             {
                 Show();
@@ -46,11 +48,12 @@ namespace TeamSuneat
 
         protected virtual void OnShow()
         {
+            Log.Progress(LogTags.UI_Page, $"{this.GetHierarchyName()} 페이지를 엽니다.");
         }
 
         protected virtual void OnHide()
         {
+            Log.Progress(LogTags.UI_Page, $"{this.GetHierarchyName()} 페이지를 닫습니다.");
         }
     }
 }
-

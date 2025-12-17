@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,8 +13,7 @@ namespace TeamSuneat
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
-
-            _pages = GetComponentsInChildren<UIPage>();
+            _pages = this.GetComponentsInDirectChildren<UIPage>();
         }
 
         private void Awake()

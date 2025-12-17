@@ -87,5 +87,21 @@ namespace TeamSuneat
 
             return ResourcesManager.LoadSprite(spriteName, ITEM_ATLAS_NAME);
         }
+
+        public static Sprite LoadSprite(this CurrencyNames currencyName)
+        {
+            if (currencyName == CurrencyNames.None)
+            {
+                return null;
+            }
+
+            string spriteName = GetSpriteName(currencyName);
+            if (string.IsNullOrEmpty(spriteName))
+            {
+                return null;
+            }
+
+            return ResourcesManager.LoadSprite(spriteName, ITEM_ATLAS_NAME);
+        }
     }
 }

@@ -88,9 +88,6 @@ namespace TeamSuneat
                 case GoogleSheetDatasetId.Weapon:
                     return ProcessDatasetInternal<WeaponData>(datasetId, gid, rows, datasetName, JsonDataManager.SetWeaponData);
 
-                case GoogleSheetDatasetId.WeaponLevel:
-                    return ProcessDatasetInternal<WeaponLevelData>(datasetId, gid, rows, datasetName, JsonDataManager.SetWeaponLevelData);
-
                 case GoogleSheetDatasetId.Potion:
                     return ProcessDatasetInternal<PotionData>(datasetId, gid, rows, datasetName, JsonDataManager.SetPotionData);
 
@@ -130,7 +127,6 @@ namespace TeamSuneat
                 Debug.LogError($"[GoogleSheetRuntimeSync] {datasetName} 변환 실패");
                 return false;
             }
-
 
             setDataAction(list);
             return true;

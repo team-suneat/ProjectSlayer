@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 8e5a72e03bb92cf4cb29ff78ca5b9619
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7251995704772200035
+    second: kill_chainsaw_charge_ignition_0
+  - first:
+      213: -9054696645623045567
+    second: kill_chainsaw_charge_ignition_1
+  - first:
+      213: -496183487639674423
+    second: kill_chainsaw_charge_ignition_2
+  - first:
+      213: 6232188363925822024
+    second: kill_chainsaw_charge_ignition_3
+  - first:
+      213: -1867050593933967437
+    second: kill_chainsaw_charge_ignition_4
+  - first:
+      213: 5498487516365811375
+    second: kill_chainsaw_charge_ignition_5
+  - first:
+      213: 6348859140294895336
+    second: kill_chainsaw_charge_ignition_6
+  - first:
+      213: -6382412791563821419
+    second: kill_chainsaw_charge_ignition_7
+  - first:
+      213: -8879764050773662820
+    second: kill_chainsaw_charge_ignition_8
+  - first:
+      213: 7991702681245081890
+    second: kill_chainsaw_charge_ignition_9
+  - first:
+      213: -7546120113421825845
+    second: kill_chainsaw_charge_ignition_10
+  - first:
+      213: -1010523809560721646
+    second: kill_chainsaw_charge_ignition_11
+  - first:
+      213: 5798276584412895529
+    second: kill_chainsaw_charge_ignition_12
+  - first:
+      213: 352516651418593559
+    second: kill_chainsaw_charge_ignition_13
+  - first:
+      213: 5686162445151773350
+    second: kill_chainsaw_charge_ignition_14
+  - first:
+      213: -8821413952891895610
+    second: kill_chainsaw_charge_ignition_15
+  - first:
+      213: -4197973052782381007
+    second: kill_chainsaw_charge_ignition_16
+  - first:
+      213: -731980444321235905
+    second: kill_chainsaw_charge_ignition_17
+  - first:
+      213: -7150969712548684083
+    second: kill_chainsaw_charge_ignition_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3660b97bba344a460800000000000000
+      internalID: 7251995704772200035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142a7b8ef51475280800000000000000
+      internalID: -9054696645623045567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1a2d33fb33d19f0800000000000000
+      internalID: -496183487639674423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 400
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a1f152c4e2d7650800000000000000
+      internalID: 6232188363925822024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf32ea7067e616e0800000000000000
+      internalID: -1867050593933967437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_5
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae67ee834d8e4c40800000000000000
+      internalID: 5498487516365811375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_6
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6e44a10cdab1850800000000000000
+      internalID: 6348859140294895336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_7
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 300
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59eddeca16d1d67a0800000000000000
+      internalID: -6382412791563821419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c932a5094adb4c480800000000000000
+      internalID: -8879764050773662820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_9
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221662a2f3b38ee60800000000000000
+      internalID: 7991702681245081890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_10
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8cf07ecbbc64790800000000000000
+      internalID: -7546120113421825845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_11
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 200
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2170f0ef2f5e9f1f0800000000000000
+      internalID: -1010523809560721646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929556b35dd977050800000000000000
+      internalID: 5798276584412895529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_13
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7192739d60464e400800000000000000
+      internalID: 352516651418593559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_14
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a220760e9e49ee40800000000000000
+      internalID: 5686162445151773350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_15
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 100
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c044396fba049580800000000000000
+      internalID: -8821413952891895610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1387e3410cdcdb5c0800000000000000
+      internalID: -4197973052782381007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_17
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c33b10aab77d5f0800000000000000
+      internalID: -731980444321235905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_ignition_18
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 0
+        width: 134
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce55f31fe6a2cc90800000000000000
+      internalID: -7150969712548684083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 09bcff7e78a8f55449abb890cbaee96f, type: 3}
+      name: _Emission
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kill_chainsaw_charge_ignition_0: 7251995704772200035
+      kill_chainsaw_charge_ignition_1: -9054696645623045567
+      kill_chainsaw_charge_ignition_10: -7546120113421825845
+      kill_chainsaw_charge_ignition_11: -1010523809560721646
+      kill_chainsaw_charge_ignition_12: 5798276584412895529
+      kill_chainsaw_charge_ignition_13: 352516651418593559
+      kill_chainsaw_charge_ignition_14: 5686162445151773350
+      kill_chainsaw_charge_ignition_15: -8821413952891895610
+      kill_chainsaw_charge_ignition_16: -4197973052782381007
+      kill_chainsaw_charge_ignition_17: -731980444321235905
+      kill_chainsaw_charge_ignition_18: -7150969712548684083
+      kill_chainsaw_charge_ignition_2: -496183487639674423
+      kill_chainsaw_charge_ignition_3: 6232188363925822024
+      kill_chainsaw_charge_ignition_4: -1867050593933967437
+      kill_chainsaw_charge_ignition_5: 5498487516365811375
+      kill_chainsaw_charge_ignition_6: 6348859140294895336
+      kill_chainsaw_charge_ignition_7: -6382412791563821419
+      kill_chainsaw_charge_ignition_8: -8879764050773662820
+      kill_chainsaw_charge_ignition_9: 7991702681245081890
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

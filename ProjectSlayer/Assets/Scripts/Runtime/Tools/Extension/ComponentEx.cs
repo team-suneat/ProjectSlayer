@@ -262,6 +262,21 @@ namespace TeamSuneat
             return default;
         }
 
+        public static T[] GetComponentsInDirectChildren<T>(this Component self) where T : Component
+        {
+            List<T> result = new List<T>();
+            for (int i = 0; i < self.transform.childCount; i++)
+            {
+                Transform child = self.transform.GetChild(i);
+                T component = child.GetComponent<T>();
+                if (component != null)
+                {
+                    result.Add(component);
+                }
+            }
+            return result.ToArray();
+        }
+
         public static T FindComponent<T>(this Component self, string path)
         {
             Transform child = self.transform.Find(path);

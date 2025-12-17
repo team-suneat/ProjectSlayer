@@ -1,19 +1,14 @@
+using TeamSuneat.Assets.Scripts.Runtime.Stage;
 using TeamSuneat.Data;
 using UnityEngine;
 
 namespace TeamSuneat
 {
-    public class StageLoader : XBehaviour
+    public class StageLoader : MonoBehaviour
     {
         private StageSystem _currentStageSystem;
-        private XScene _parentScene;
 
         public StageSystem CurrentStageSystem => _currentStageSystem;
-
-        public void Initialize(XScene parentScene)
-        {
-            _parentScene = parentScene;
-        }
 
         public void CleanupStage()
         {
@@ -31,6 +26,7 @@ namespace TeamSuneat
             {
                 await WaitForGameAppInitialized();
 
+                // 프로필 정보 유효성 체크
                 Data.Game.VProfile profileInfo = GameApp.GetSelectedProfile();
                 if (profileInfo == null)
                 {
@@ -43,6 +39,13 @@ namespace TeamSuneat
                     return;
                 }
 
+                // 지역 리소스 로드
+                AreaNames currentArea = profileInfo.Stage.CurrentArea;
+                int areaIndex = (int)currentArea;
+                string label = string.Format(AddressableLabels.AreaFormat, areaIndex);
+                await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(label);
+
+                // 스테이지 시스템 생성 전 데이터 체크
                 StageNames currentStageName = profileInfo.Stage.CurrentStage;
                 Log.Info(LogTags.Stage, "스테이지 로드 시작: {0}", currentStageName);
 
@@ -53,46 +56,12 @@ namespace TeamSuneat
                     return;
                 }
 
-                await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(currentStageName.ToString());
-
+                // 스테이지 시스템 생성
                 CreateStageSystem(currentStageName);
             }
             catch (System.Exception ex)
             {
                 Log.Error(LogTags.Stage, "스테이지 로드 중 오류 발생: {0}", ex.Message);
-            }
-        }
-
-        protected override void RegisterGlobalEvent()
-        {
-            GlobalEvent.Register(GlobalEventType.MOVE_TO_STAGE, OnMoveToStage);
-            GlobalEvent.Register(GlobalEventType.MOVE_TO_TITLE, OnMoveToTitle);
-        }
-
-        protected override void UnregisterGlobalEvent()
-        {
-            GlobalEvent.Unregister(GlobalEventType.MOVE_TO_STAGE, OnMoveToStage);
-            GlobalEvent.Unregister(GlobalEventType.MOVE_TO_TITLE, OnMoveToTitle);
-        }
-
-        private void OnMoveToTitle()
-        {
-            if (_parentScene != null && _parentScene.DetermineChangeScene("GameTitle"))
-            {
-                CharacterManager.Instance.UnregisterPlayer();
-                GameApp.Instance.gameManager.ResetStage();
-
-                _parentScene.ChangeScene("GameTitle");
-            }
-        }
-
-        private void OnMoveToStage()
-        {
-            if (_parentScene != null && _parentScene.DetermineChangeScene("GameMain"))
-            {
-                GameApp.Instance.gameManager.ResetStage();
-
-                _parentScene.ChangeScene("GameMain");
             }
         }
 
@@ -115,13 +84,13 @@ namespace TeamSuneat
 
                 Log.Info(LogTags.Stage, "스테이지 시스템 초기화 완료: {0}", stageName.ToLogString());
 
-                _currentStageSystem.StartStage();
+                // _currentStageSystem.StartStage();
 
                 Log.Info(LogTags.Stage, "스테이지 시스템 생성 완료: {0}", stageName.ToLogString());
             }
             else
             {
-                Log.Error($"{stageName.ToLogString()} 스테이지를 생성할 수 없습니다. 플레이어 턴이 시작되지 않습니다.");
+                Log.Error($"{stageName.ToLogString()} 스테이지를 생성할 수 없습니다.");
             }
         }
     }

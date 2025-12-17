@@ -18,8 +18,7 @@ namespace TeamSuneat.Data
         private static readonly Dictionary<int, MonsterCharacterData> _monsterCharacterSheetData = new();
         private static readonly Dictionary<int, PassiveData> _passiveSheetData = new();
         private static readonly Dictionary<int, StatData> _statSheetData = new();
-        private static readonly Dictionary<int, WeaponData> _weaponSheetData = new();
-        private static readonly ListMultiMap<int, WeaponLevelData> _weaponLevelSheetData = new();
+        private static readonly Dictionary<int, WeaponData> _weaponSheetData = new();        
         private static readonly Dictionary<int, PotionData> _potionSheetData = new();
         private static readonly Dictionary<int, StageData> _stageSheetData = new();
         private static readonly ListMultiMap<int, WaveData> _waveSheetData = new();
@@ -35,8 +34,7 @@ namespace TeamSuneat.Data
             _monsterCharacterSheetData.Clear();
             _passiveSheetData.Clear();
             _statSheetData.Clear();
-            _weaponSheetData.Clear();
-            _weaponLevelSheetData.Clear();
+            _weaponSheetData.Clear();            
             _potionSheetData.Clear();
             _stageSheetData.Clear();
             _waveSheetData.Clear();
@@ -197,26 +195,6 @@ namespace TeamSuneat.Data
                     continue;
                 }
                 _weaponSheetData.Add(key, item);
-            }
-        }
-
-        public static void SetWeaponLevelData(IEnumerable<WeaponLevelData> list)
-        {
-            _weaponLevelSheetData.Clear();
-            if (list == null)
-            {
-                return;
-            }
-
-            foreach (WeaponLevelData item in list)
-            {
-                if (item == null)
-                {
-                    continue;
-                }
-
-                int key = item.GetKey();
-                _weaponLevelSheetData.Add(key, item);
             }
         }
 

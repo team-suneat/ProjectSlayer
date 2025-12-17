@@ -1,0 +1,557 @@
+fileFormatVersion: 2
+guid: 949c4456b0963f6449808ea7c8422a2e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2444675097120565709
+    second: projectile_kill_chainsaw_spinblade_electric_0
+  - first:
+      213: -1603050345602575755
+    second: projectile_kill_chainsaw_spinblade_electric_1
+  - first:
+      213: 6109320418798697289
+    second: projectile_kill_chainsaw_spinblade_electric_2
+  - first:
+      213: -4076709144364562695
+    second: projectile_kill_chainsaw_spinblade_electric_3
+  - first:
+      213: 7627131483227147283
+    second: projectile_kill_chainsaw_spinblade_electric_4
+  - first:
+      213: 2557212008882202088
+    second: projectile_kill_chainsaw_spinblade_electric_5
+  - first:
+      213: 5367435342775492746
+    second: projectile_kill_chainsaw_spinblade_electric_6
+  - first:
+      213: -9042218530986253464
+    second: projectile_kill_chainsaw_spinblade_electric_7
+  - first:
+      213: 8483839187531082523
+    second: projectile_kill_chainsaw_spinblade_electric_0
+  - first:
+      213: -5924506520087250248
+    second: projectile_kill_chainsaw_spinblade_electric_1
+  - first:
+      213: 105651069462831629
+    second: projectile_kill_chainsaw_spinblade_electric_2
+  - first:
+      213: 7794298556161315362
+    second: projectile_kill_chainsaw_spinblade_electric_3
+  - first:
+      213: 7804382773965763232
+    second: projectile_kill_chainsaw_spinblade_electric_4
+  - first:
+      213: 3899845055199732882
+    second: projectile_kill_chainsaw_spinblade_electric_5
+  - first:
+      213: 5246231592530971436
+    second: projectile_kill_chainsaw_spinblade_electric_6
+  - first:
+      213: 3073726168297922332
+    second: projectile_kill_chainsaw_spinblade_electric_7
+  - first:
+      213: 1155563411633461956
+    second: projectile_kill_chainsaw_spinblade_electric_8
+  - first:
+      213: 3597448925450716991
+    second: projectile_kill_chainsaw_spinblade_electric_9
+  - first:
+      213: -3661750798949032576
+    second: projectile_kill_chainsaw_spinblade_electric_10
+  - first:
+      213: -5455457569485741342
+    second: projectile_kill_chainsaw_spinblade_electric_11
+  - first:
+      213: -2836519532921740062
+    second: projectile_kill_chainsaw_spinblade_electric_12
+  - first:
+      213: -2563428620935110733
+    second: projectile_kill_chainsaw_spinblade_electric_13
+  - first:
+      213: 3055258449648144881
+    second: projectile_kill_chainsaw_spinblade_electric_14
+  - first:
+      213: 4553545785864212350
+    second: projectile_kill_chainsaw_spinblade_electric_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b2450bac6acb570800000000000000
+      internalID: 2444675097120565709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bab6b895bce7cda0800000000000000
+      internalID: -1603050345602575755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02e8718619577100800000000000000
+      internalID: 6109320418798697289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222d559ad39ea2c60800000000000000
+      internalID: -4076709144364562695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2386598ccbe4c60800000000000000
+      internalID: 7627131483227147283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2946e3a5a680f1630800000000000000
+      internalID: 2557212008882202088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b8d3276db5ec840800000000000000
+      internalID: 5367435342775492746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f583e2aa118aa20800000000000000
+      internalID: -9042218530986253464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cad9d9ecc2690010800000000000000
+      internalID: 1155563411633461956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f37c913dcb4bce130800000000000000
+      internalID: 3597448925450716991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08dd3a49c09de2dc0800000000000000
+      internalID: -3661750798949032576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e2269bae325a44b0800000000000000
+      internalID: -5455457569485741342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e42eb96388a2a8d0800000000000000
+      internalID: -2836519532921740062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bfd71a304fdc6cd0800000000000000
+      internalID: -2563428620935110733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1d94c5f55766a20800000000000000
+      internalID: 3055258449648144881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectile_kill_chainsaw_spinblade_electric_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7fc9ea34c1713f30800000000000000
+      internalID: 4553545785864212350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      projectile_kill_chainsaw_spinblade_electric_0: 2444675097120565709
+      projectile_kill_chainsaw_spinblade_electric_1: -1603050345602575755
+      projectile_kill_chainsaw_spinblade_electric_10: -3661750798949032576
+      projectile_kill_chainsaw_spinblade_electric_11: -5455457569485741342
+      projectile_kill_chainsaw_spinblade_electric_12: -2836519532921740062
+      projectile_kill_chainsaw_spinblade_electric_13: -2563428620935110733
+      projectile_kill_chainsaw_spinblade_electric_14: 3055258449648144881
+      projectile_kill_chainsaw_spinblade_electric_15: 4553545785864212350
+      projectile_kill_chainsaw_spinblade_electric_2: 6109320418798697289
+      projectile_kill_chainsaw_spinblade_electric_3: -4076709144364562695
+      projectile_kill_chainsaw_spinblade_electric_4: 7627131483227147283
+      projectile_kill_chainsaw_spinblade_electric_5: 2557212008882202088
+      projectile_kill_chainsaw_spinblade_electric_6: 5367435342775492746
+      projectile_kill_chainsaw_spinblade_electric_7: -9042218530986253464
+      projectile_kill_chainsaw_spinblade_electric_8: 1155563411633461956
+      projectile_kill_chainsaw_spinblade_electric_9: 3597448925450716991
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

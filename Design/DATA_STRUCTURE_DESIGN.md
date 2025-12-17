@@ -1,16 +1,19 @@
 # 데이터 구조 설계 문서
 
 ## 개요
+
 현재 저장되는 데이터 구조는 이전 게임(다중 캐릭터 시스템)에서 가져온 것으로, 현재 게임(단일 플레이어 + 동료 시스템)에 맞게 재설계가 필요합니다.
 
 ## 현재 구조의 문제점
 
 ### VCharacter 구조
+
 - **이전 게임**: 여러 캐릭터를 가질 수 있었음 (`Dictionary<string, VCharacterInfo>`)
 - **현재 게임**: 플레이어는 하나만 존재
 - **문제**: 불필요한 다중 캐릭터 관리 로직이 포함되어 있음
 
 ### 동료 시스템 부재
+
 - **현재 게임 요구사항**: 동료 시스템 필요
   - 총 4명의 동료 (엘리, 지크, 미호, 루나)
   - 각 동료별 해금 상태
@@ -22,6 +25,7 @@
 ## 재설계된 데이터 구조
 
 ### 1. VCharacter (플레이어 데이터)
+
 단일 플레이어 데이터만 저장하도록 단순화
 
 ```csharp
@@ -31,15 +35,15 @@ public partial class VCharacter
     // 플레이어 기본 정보
     public int PlayerLevel;  // 플레이어 레벨 (VCharacterLevel과 통합 가능)
     public int PlayerExperience;
-    
+
     // 스킬 슬롯 해금 상태
     public int UnlockedSkillSlotCount;  // 최대 10개, 처음 1개 해금
-    
+
     public void OnLoadGameData()
     {
         // 초기화 로직
     }
-    
+
     public static VCharacter CreateDefault()
     {
         return new VCharacter()
@@ -53,6 +57,7 @@ public partial class VCharacter
 ```
 
 ### 1-1. VCharacterEnhancement (캐릭터 강화 데이터)
+
 골드로 구매하는 강화 능력치와 성장 지식 데이터
 
 ```csharp
@@ -67,18 +72,18 @@ public class VCharacterEnhancement
     public int CriticalChanceLevel;  // 치명타 확률 MAX LV: 1,000
     public int CriticalHitLevel;      // 회심의 일격 MAX LV: 4,000 (성장 지식으로 확장 가능)
     public int CriticalHitChanceLevel; // 회심의 일격 확률 MAX LV: 1,000
-    
+
     // 성장 지식 (강화 레벨 특정 수치 이상 달성 시 도전 가능)
     public int PowerKnowledgeLevel;      // 괴력 MAX LV: 75단계
     public int SteelBodyKnowledgeLevel;  // 강철의 육체 MAX LV: 75단계
     public int StrongHeartKnowledgeLevel; // 강인한 심장 MAX LV: 75단계
     public int SuperHumanPowerLevel;     // 초인의 힘 MAX LV: 75단계
-    
+
     public void OnLoadGameData()
     {
         // 초기화 로직
     }
-    
+
     public static VCharacterEnhancement CreateDefault()
     {
         return new VCharacterEnhancement()
@@ -100,6 +105,7 @@ public class VCharacterEnhancement
 ```
 
 ### 1-2. VCharacterGrowth (캐릭터 성장 데이터)
+
 레벨업 시 획득하는 SP(능력치 포인트)로 구매하는 능력치 데이터
 
 ```csharp
@@ -108,7 +114,7 @@ public class VCharacterGrowth
 {
     // 능력치 포인트 (레벨업 시 3개씩 획득, SP로 표시)
     public int AbilityPoints;  // SP
-    
+
     // SP로 구매하는 능력치
     public int StrLevel;       // STR MAX LV: 1,000
     public int HpLevel;         // HP MAX LV: 1,000
@@ -117,15 +123,15 @@ public class VCharacterGrowth
     public int LukLevel;       // LUK MAX LV: 1,000
     public int AccLevel;       // ACC MAX LV: 200
     public int DodgeLevel;     // DODGE MAX LV: 200
-    
+
     // 훈련 일지로 맥스 레벨 확장 가능
     // (각 능력치별 최대 레벨 확장 정보는 별도 관리)
-    
+
     public void OnLoadGameData()
     {
         // 초기화 로직
     }
-    
+
     public static VCharacterGrowth CreateDefault()
     {
         return new VCharacterGrowth()
@@ -144,6 +150,7 @@ public class VCharacterGrowth
 ```
 
 ### 2. VCompanion (동료 시스템)
+
 동료 데이터를 관리하는 새로운 클래스
 
 ```csharp
@@ -151,7 +158,7 @@ public class VCharacterGrowth
 public partial class VCompanion
 {
     public Dictionary<string, VCompanionInfo> Companions = new();
-    
+
     public void OnLoadGameData()
     {
         foreach (VCompanionInfo companionInfo in Companions.Values)
@@ -159,20 +166,20 @@ public partial class VCompanion
             companionInfo.OnLoadGameData();
         }
     }
-    
+
     public bool IsUnlocked(CompanionNames companionName)
     {
         VCompanionInfo companionInfo = GetCompanionInfo(companionName);
         return companionInfo != null && companionInfo.IsUnlocked;
     }
-    
+
     public VCompanionInfo GetCompanionInfo(CompanionNames companionName)
     {
         string key = companionName.ToString();
         Companions.TryGetValue(key, out VCompanionInfo companionInfo);
         return companionInfo;
     }
-    
+
     public void Unlock(CompanionNames companionName)
     {
         VCompanionInfo companionInfo = GetOrCreateCompanionInfo(companionName);
@@ -182,7 +189,7 @@ public partial class VCompanion
             Log.Info(LogTags.GameData_Companion, "{0} 동료를 해금합니다.", companionName);
         }
     }
-    
+
     public static VCompanion CreateDefault()
     {
         return new VCompanion()
@@ -190,7 +197,7 @@ public partial class VCompanion
             Companions = new Dictionary<string, VCompanionInfo>()
         };
     }
-    
+
     private VCompanionInfo GetOrCreateCompanionInfo(CompanionNames companionName)
     {
         string key = companionName.ToString();
@@ -205,6 +212,7 @@ public partial class VCompanion
 ```
 
 ### 3. VCompanionInfo (개별 동료 정보)
+
 각 동료의 상세 정보를 저장
 
 ```csharp
@@ -214,14 +222,14 @@ public class VCompanionInfo
     [NonSerialized]
     public CompanionNames CompanionName;
     public string CompanionNameString;
-    
+
     // 해금 상태
     public bool IsUnlocked;
-    
+
     // 동료 레벨 (플레이어와 별개)
     public int Level;
     public int Experience;
-    
+
     // 강화패시브 레벨
     // 강화패시브 1
     public Dictionary<string, int> Passive1Levels = new();  // 각 패시브별 레벨 (최대 100)
@@ -229,30 +237,30 @@ public class VCompanionInfo
     public Dictionary<string, int> Passive2Levels = new();  // 각 패시브별 레벨 (최대 100)
     // 강화패시브 3
     public Dictionary<string, int> Passive3Levels = new();  // 속성 데미지 (최대 1500), 나머지 (최대 100)
-    
+
     // 전직 정보
     public int PromotionLevel;  // 0 = 전직 안함, 1~7 = 1차~7차 전직
-    
+
     // 승급 옵션 (전직마다 별도 저장)
     public Dictionary<int, List<VCompanionPromotionOption>> PromotionOptions = new();  // Key: 전직 레벨 (1~7)
-    
+
     public void OnLoadGameData()
     {
         _ = EnumEx.ConvertTo(ref CompanionName, CompanionNameString);
     }
-    
+
     public VCompanionInfo()
     {
         InitializeDefaults();
     }
-    
+
     public VCompanionInfo(CompanionNames companionName)
     {
         CompanionName = companionName;
         CompanionNameString = companionName.ToString();
         InitializeDefaults();
     }
-    
+
     private void InitializeDefaults()
     {
         IsUnlocked = false;
@@ -268,6 +276,7 @@ public class VCompanionInfo
 ```
 
 ### 4. VCompanionPromotionOption (승급 옵션)
+
 동료 전직 시 해금되는 승급 옵션
 
 ```csharp
@@ -279,7 +288,7 @@ public class VCompanionPromotionOption
     public PromotionOptionGrade OptionGrade;  // 옵션 등급 (회색, 초록, 주황, 보라, 빨강, 민트)
     public float OptionValue;  // 옵션 수치
     public bool IsLocked;  // 잠금 상태 (잠금 해제 시 가격 증가)
-    
+
     public VCompanionPromotionOption()
     {
         OptionIndex = 0;
@@ -292,6 +301,7 @@ public class VCompanionPromotionOption
 ```
 
 ### 5. VCharacterAccessory (악세사리 데이터)
+
 악세사리 장비 데이터
 
 ```csharp
@@ -300,7 +310,7 @@ public class VCharacterAccessory
 {
     public Dictionary<string, VAccessory> Accessories = new();
     public List<string> EquippedAccessories = new();  // 장착된 악세사리 목록
-    
+
     public void OnLoadGameData()
     {
         if (Accessories.IsValid())
@@ -311,7 +321,7 @@ public class VCharacterAccessory
             }
         }
     }
-    
+
     public static VCharacterAccessory CreateDefault()
     {
         return new VCharacterAccessory()
@@ -324,6 +334,7 @@ public class VCharacterAccessory
 ```
 
 ### 6. VRelic (유물 데이터)
+
 유물 데이터
 
 ```csharp
@@ -332,7 +343,7 @@ public class VRelic
 {
     public Dictionary<string, VRelicInfo> Relics = new();
     public List<string> UnlockedRelics = new();
-    
+
     public void OnLoadGameData()
     {
         if (Relics.IsValid())
@@ -343,7 +354,7 @@ public class VRelic
             }
         }
     }
-    
+
     public static VRelic CreateDefault()
     {
         return new VRelic()
@@ -356,6 +367,7 @@ public class VRelic
 ```
 
 ### 7. VSpirit (정령 데이터)
+
 정령 데이터
 
 ```csharp
@@ -364,7 +376,7 @@ public class VSpirit
 {
     public Dictionary<string, VSpiritInfo> Spirits = new();
     public List<string> UnlockedSpirits = new();
-    
+
     public void OnLoadGameData()
     {
         if (Spirits.IsValid())
@@ -375,7 +387,7 @@ public class VSpirit
             }
         }
     }
-    
+
     public static VSpirit CreateDefault()
     {
         return new VSpirit()
@@ -388,6 +400,7 @@ public class VSpirit
 ```
 
 ### 8. VProfile 업데이트
+
 VProfile에 새로운 데이터 구조 반영
 
 ```csharp
@@ -397,34 +410,34 @@ public partial class VProfile
     public int IssuedItemSID;
     public VCharacter Character;  // 단일 플레이어 데이터
     public VCharacterLevel Level;  // 플레이어 레벨 (VCharacter와 통합 검토 필요)
-    
+
     // 캐릭터 강화/성장 데이터 (VCharacterStat 분리)
     public VCharacterEnhancement Enhancement;  // 골드로 구매하는 강화 능력치 + 성장 지식
     public VCharacterGrowth Growth;  // SP로 구매하는 성장 능력치
-    
+
     public VCompanion Companion;  // 동료 시스템
-    
+
     // 장비 데이터
     public VCharacterWeapon Weapon;  // 무기
     public VCharacterAccessory Accessory;  // 악세사리 (신규)
-    
+
     // 유물/정령 데이터 (신규)
     public VRelic Relic;  // 유물
     public VSpirit Spirit;  // 정령
-    
+
     public VCurrency Currency;
     public VCharacterStage Stage;
     public VStatistics Statistics;
-    
+
     // 삭제된 데이터:
     // - VCharacterPotion (물약)
     // - VCharacterItem (아이템)
     // - VCharacterSlot (슬롯 - 스킬 슬롯은 VCharacter에 포함)
-    
+
     public void OnLoadGameData()
     {
         CreateEmptyData();
-        
+
         Character.OnLoadGameData();
         Level.OnLoadGameData();
         Enhancement.OnLoadGameData();
@@ -438,7 +451,7 @@ public partial class VProfile
         Stage.OnLoadGameData();
         Statistics.OnLoadGameData();
     }
-    
+
     public void CreateEmptyData()
     {
         Character ??= VCharacter.CreateDefault();
@@ -460,9 +473,11 @@ public partial class VProfile
 ## 캐릭터 강화/성장 시스템 상세 설계
 
 ### 강화 시스템 (골드 구매)
+
 골드를 사용하여 구매하는 강화 능력치입니다.
 
 #### 기본 강화 능력치
+
 - **공격력**: MAX LV: 1,900,000
 - **체력**: MAX LV: 1,900,000
 - **체력 회복량**: MAX LV: 1,900,000
@@ -472,6 +487,7 @@ public partial class VProfile
 - **회심의 일격 확률**: MAX LV: 1,000
 
 #### 성장 지식
+
 공격력/체력/체력 회복량을 특정 레벨 이상 올리면 도전 가능한 시스템입니다.
 전투를 통해 획득할 수 있으며, 성장 지식을 깰 때마다 회심의 일격의 최대 레벨이 확장됩니다.
 
@@ -482,10 +498,12 @@ public partial class VProfile
   - 성장 지식 한 줄을 깨고 도전할 수 있는 초인의 힘 전투를 통해 추가로 확장 가능
 
 ### 성장 시스템 (SP 구매)
+
 레벨업 시 획득하는 SP(능력치 포인트)를 투자하여 강화할 수 있는 능력치입니다.
 훈련 일지를 통해 최대 레벨 확장이 가능합니다.
 
 #### SP로 구매하는 능력치
+
 - **STR**: MAX LV: 1,000
 - **HP**: MAX LV: 1,000
 - **VIT**: MAX LV: 1,000
@@ -497,19 +515,23 @@ public partial class VProfile
 ## 동료 시스템 상세 설계
 
 ### 동료 종류
+
 1. **엘리** (Elly)
+
    - 클래스: 궁수
    - 속성: 바람
    - 종족: 엘프
    - 해금 조건: 시작의 숲 클리어
 
 2. **지크** (Zeke)
+
    - 클래스: 전사
    - 속성: 땅
    - 종족: 인간
    - 해금 조건: 탐욕의 언덕 클리어
 
 3. **미호** (Miho)
+
    - 클래스: 도적
    - 속성: 불
    - 종족: 인간
@@ -526,6 +548,7 @@ public partial class VProfile
 각 동료별로 3개의 강화패시브 카테고리가 있으며, 각 카테고리마다 여러 패시브가 있습니다.
 
 #### 강화패시브 1 (기본 패시브)
+
 - 각 패시브 최대 레벨: 100
 - 엘리: 집중 사격, 숲의 도움, 요정의 노래
 - 지크: 투지, 광기, 검무
@@ -533,6 +556,7 @@ public partial class VProfile
 - 루나: 마나 도프, 마나 증폭, 전쟁의 지혜
 
 #### 강화패시브 2 (해금 필요)
+
 - 각 패시브 최대 레벨: 100
 - 해금 조건: n-2-1, n-2-2, n-2-3 (동료 레벨 기반)
 - 엘리: 바람의 노래, 요정의 찬가, 바람의 이해
@@ -541,6 +565,7 @@ public partial class VProfile
 - 루나: 심해의 노래, 심연의 찬가, 바다의 이해
 
 #### 강화패시브 3 (고급 패시브)
+
 - 속성 데미지 패시브: 최대 레벨 1500
 - 기타 패시브: 최대 레벨 100
 - 해금 조건: n-3-1, n-3-2, n-3-3 (동료 레벨 기반)
@@ -579,16 +604,19 @@ public partial class VProfile
 ## 데이터 구조 변경 사항
 
 ### 삭제된 데이터
+
 1. **VCharacterPotion** (물약 데이터) - 삭제
 2. **VCharacterItem** (아이템 데이터) - 삭제
 3. **VCharacterSlot** (슬롯 데이터) - 삭제 (스킬 슬롯은 VCharacter에 포함)
 
 ### 추가된 데이터
+
 1. **VCharacterAccessory** (악세사리 데이터) - 신규
 2. **VRelic** (유물 데이터) - 신규
 3. **VSpirit** (정령 데이터) - 신규
 
 ### 분리된 데이터
+
 1. **VCharacterStat** → **VCharacterEnhancement** + **VCharacterGrowth**로 분리
    - **VCharacterEnhancement**: 골드로 구매하는 강화 능력치 + 성장 지식
    - **VCharacterGrowth**: SP(능력치 포인트)로 구매하는 성장 능력치
@@ -596,6 +624,7 @@ public partial class VProfile
 ## 마이그레이션 계획
 
 ### 기존 데이터 호환성
+
 1. 기존 `VCharacter.UnlockedCharacters` 데이터를 플레이어 데이터로 변환
 2. 기존 `VCharacterInfo`의 Rank, RankExperience 등을 플레이어 레벨로 변환
 3. 기존 `VCharacterStat` 데이터를 `VCharacterEnhancement`와 `VCharacterGrowth`로 분리
@@ -603,6 +632,7 @@ public partial class VProfile
 5. 악세사리, 유물, 정령 데이터는 새로 생성 (기본값)
 
 ### 마이그레이션 코드 예시
+
 ```csharp
 public void MigrateFromOldCharacterSystem(VCharacter oldCharacter, VCharacterStat oldStat)
 {
@@ -614,13 +644,13 @@ public void MigrateFromOldCharacterSystem(VCharacter oldCharacter, VCharacterSta
         Character.PlayerLevel = firstChar.Rank;
         Character.PlayerExperience = firstChar.RankExperience;
     }
-    
+
     // 기존 Stat 데이터를 Enhancement와 Growth로 분리
     // (기존 Stat 구조에 따라 적절히 분리)
-    
+
     // 동료 데이터는 기본값으로 초기화
     Companion = VCompanion.CreateDefault();
-    
+
     // 신규 데이터 초기화
     Accessory = VCharacterAccessory.CreateDefault();
     Relic = VRelic.CreateDefault();
@@ -643,4 +673,3 @@ public void MigrateFromOldCharacterSystem(VCharacter oldCharacter, VCharacterSta
 - 각 동료의 강화패시브는 Dictionary로 관리하여 확장성 확보
 - 전직 정보는 전직 레벨로만 저장하고, 상세 정보는 데이터 테이블에서 조회
 - 승급 옵션은 전직 레벨별로 별도 저장하여 전직마다 독립적인 옵션 관리
-

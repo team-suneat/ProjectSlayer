@@ -14,6 +14,10 @@ namespace TeamSuneat
         [SerializeField]
         private UIToggle[] _toggles;
 
+        [SerializeField]
+        [Tooltip("false일 경우 항상 하나의 토글이 켜져있어야 합니다.")]
+        private bool _allowSwitchOff = true;
+
         public int ToggleCount => _toggles.Length;
         public ToggleGroup ToggleGroup => _toggleGroup;
 
@@ -33,7 +37,7 @@ namespace TeamSuneat
             base.AutoGetComponents();
 
             _toggleGroup = GetComponentInParent<ToggleGroup>();
-            _toggles = GetComponentsInChildren<UIToggle>();
+            _toggles = this.GetComponentsInDirectChildren<UIToggle>();
         }
 
         private void Initialize()
@@ -46,8 +50,7 @@ namespace TeamSuneat
                 return;
             }
 
-            // 같은 토글을 다시 눌러서 닫을 수 있도록 Allow Switch Off 활성화
-            _toggleGroup.allowSwitchOff = true;
+            _toggleGroup.allowSwitchOff = _allowSwitchOff;
 
             for (int i = 0; i < _toggles.Length; i++)
             {
@@ -63,15 +66,22 @@ namespace TeamSuneat
                 int index = i;
                 _toggles[i].AddListener((isOn) => OnToggleValueChanged(index, isOn));
             }
+
+            // allowSwitchOff가 false일 경우 첫 번째 토글을 기본으로 켜기
+            if (!_allowSwitchOff && _toggles.Length > 0 && _toggles[0] != null)
+            {
+                _toggles[0].SetIsOn(true);
+                _currentActiveIndex = 0;
+            }
         }
 
         private void OnToggleValueChanged(int index, bool isOn)
         {
             if (isOn)
             {
-                if (_currentActiveIndex == index)
+                if (_allowSwitchOff && _currentActiveIndex == index)
                 {
-                    // 같은 토글을 다시 누른 경우 - 토글 닫기
+                    // 같은 토글을 다시 누른 경우 - 토글 닫기 (allowSwitchOff가 true일 때만)
                     _toggles[index].SetIsOn(false);
                     _currentActiveIndex = -1;
                     OnToggleChanged?.Invoke(-1);
@@ -88,6 +98,13 @@ namespace TeamSuneat
                 // 토글이 꺼진 경우
                 if (_currentActiveIndex == index)
                 {
+                    // allowSwitchOff가 false면 다시 켜기
+                    if (!_allowSwitchOff)
+                    {
+                        _toggles[index].SetIsOn(true);
+                        return;
+                    }
+
                     _currentActiveIndex = -1;
                     OnToggleChanged?.Invoke(-1);
                 }

@@ -15,8 +15,7 @@ namespace TeamSuneat.Data
             OnLoadJsonData(_weaponSheetData.Values);
             OnLoadJsonData(_potionSheetData.Values);
             OnLoadJsonData(_stageSheetData.Values);
-            OnLoadJsonData(_stringSheetData.Values);
-            OnLoadJsonData(_weaponLevelSheetData);
+            OnLoadJsonData(_stringSheetData.Values);            
             OnLoadJsonData(_waveSheetData);
             OnLoadJsonData(_characterLevelExpSheetData.Values);
             OnLoadJsonData(_characterRankExpSheetData.Values);

@@ -14,23 +14,31 @@ namespace TeamSuneat
         {
             switch (gradeName)
             {
-                case GradeNames.Common: return GameColors.Normal;
-                case GradeNames.Uncommon: return GameColors.Uncommon;
+                case GradeNames.Common: return GameColors.Common;
+                case GradeNames.Grand: return GameColors.Grand;
                 case GradeNames.Rare: return GameColors.Rare;
+                case GradeNames.Epic: return GameColors.Epic;
                 case GradeNames.Legendary: return GameColors.Legendary;
+                case GradeNames.Mythic: return GameColors.Mythic;
+                case GradeNames.Immortal: return GameColors.Immortal;
+                case GradeNames.Ancient: return GameColors.Ancient;
             }
 
             return Color.white;
         }
 
-        public static string GetGradeColorHex(GradeNames gradeName)
+        public static string GetGradeColorHex(this GradeNames gradeName)
         {
             switch (gradeName)
             {
-                case GradeNames.Common: return GameColors.NormalHex;
-                case GradeNames.Uncommon: return GameColors.MagicHex;
-                case GradeNames.Rare: return GameColors.RareHex;
-                case GradeNames.Legendary: return GameColors.LegendaryHex;
+                case GradeNames.Common: return "#2F4F4F"; // DarkSlateGray
+                case GradeNames.Grand: return "#6B8E23"; // OliveDrab
+                case GradeNames.Rare: return "#D2691E"; // Chocolate
+                case GradeNames.Epic: return "#4B0082"; // Indigo
+                case GradeNames.Legendary: return "#8B0000"; // DarkRed
+                case GradeNames.Mythic: return "#4169E1"; // RoyalBlue
+                case GradeNames.Immortal: return "#808000"; // Olive
+                case GradeNames.Ancient: return "#00CED1"; // DarkTurquoise
             }
 
             return "#FFFFFF";

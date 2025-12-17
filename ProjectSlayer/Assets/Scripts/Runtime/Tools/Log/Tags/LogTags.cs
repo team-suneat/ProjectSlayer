@@ -101,6 +101,9 @@
         /// <summary> 게임 데이터 : 무기 </summary>
         GameData_Weapon,
 
+        /// <summary> 게임 데이터 : 악세사리 </summary>
+        GameData_Accessory,
+
         /// <summary> 퀘스트 </summary>
         Quest,
 

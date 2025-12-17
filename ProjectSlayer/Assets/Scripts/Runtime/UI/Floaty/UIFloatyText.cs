@@ -20,8 +20,8 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("Sprite-Damage")] public Sprite PhysicalCritialSprite;
         [FoldoutGroup("Sprite-Damage")] public Sprite MagicalCriticalSprite;
         [FoldoutGroup("Sprite-Currency")] public Sprite GoldSprite;
-        [FoldoutGroup("Sprite-Currency")] public Sprite MagicStoneSprite;
-        [FoldoutGroup("Sprite-Currency")] public Sprite RubyKeySprite;
+        [FoldoutGroup("Sprite-Currency")] public Sprite DiamondSprite;
+        [FoldoutGroup("Sprite-Currency")] public Sprite EmeraldSprite;
 
         private Tweener _moveTweener;
         private Tweener _scaleTweener;
@@ -238,16 +238,16 @@ namespace TeamSuneat.UserInterface
                         }
                         break;
 
-                    case UIFloatyMoveNames.Gem:
+                    case UIFloatyMoveNames.Diamond:
                         {
-                            TextImage.SetSprite(MagicStoneSprite, true);
+                            TextImage.SetSprite(DiamondSprite, true);
                             TextImage.gameObject.SetActive(true);
                         }
                         break;
 
-                    case UIFloatyMoveNames.RubyKey:
+                    case UIFloatyMoveNames.Emerald:
                         {
-                            TextImage.SetSprite(RubyKeySprite, true);
+                            TextImage.SetSprite(EmeraldSprite, true);
                             TextImage.gameObject.SetActive(true);
                         }
                         break;

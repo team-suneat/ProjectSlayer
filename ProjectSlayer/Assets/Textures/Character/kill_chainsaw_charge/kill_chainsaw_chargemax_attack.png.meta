@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: 9962bcd9cdb85bb45ae9c8ddf2382dd4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5589571407865639789
+    second: Kill_ChainSaw_charge_attack_spining_blade_0
+  - first:
+      213: -1892937482204573439
+    second: Kill_ChainSaw_charge_attack_spining_blade_1
+  - first:
+      213: 1002469223245412488
+    second: Kill_ChainSaw_charge_attack_spining_blade_2
+  - first:
+      213: 7605610292339466486
+    second: Kill_ChainSaw_charge_attack_spining_blade_3
+  - first:
+      213: -3939291565866327607
+    second: Kill_ChainSaw_charge_attack_spining_blade_4
+  - first:
+      213: -5782819810802682342
+    second: Kill_ChainSaw_charge_attack_spining_blade_5
+  - first:
+      213: -5306943457155355979
+    second: Kill_ChainSaw_charge_attack_spining_blade_6
+  - first:
+      213: 6907737515726060369
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_0
+  - first:
+      213: -3932473419028578405
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_1
+  - first:
+      213: -8465051655537999724
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_2
+  - first:
+      213: -1617956170690398023
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_3
+  - first:
+      213: 6040402374676050478
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_4
+  - first:
+      213: 3085243837100033811
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_5
+  - first:
+      213: 526748507903263960
+    second: kill_chainsaw_charge_attack_chaingrinderfinish_6
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bbd7afba63ddf50800000000000000
+      internalID: 6907737515726060369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9fb222b24c0d69c0800000000000000
+      internalID: -3932473419028578405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490435a7e58168a80800000000000000
+      internalID: -8465051655537999724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8f8df5f6ddb89e0800000000000000
+      internalID: -1617956170690398023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22fdf2d4f1d3d350800000000000000
+      internalID: 6040402374676050478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3178fcb6cecf0da20800000000000000
+      internalID: 3085243837100033811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kill_chainsaw_charge_attack_chaingrinderfinish_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d48a832af26f4700800000000000000
+      internalID: 526748507903263960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 0e1ab17319492c74680b91c7827ef717, type: 3}
+      name: _Emission
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kill_chainsaw_charge_attack_chaingrinderfinish_0: 6907737515726060369
+      kill_chainsaw_charge_attack_chaingrinderfinish_1: -3932473419028578405
+      kill_chainsaw_charge_attack_chaingrinderfinish_2: -8465051655537999724
+      kill_chainsaw_charge_attack_chaingrinderfinish_3: -1617956170690398023
+      kill_chainsaw_charge_attack_chaingrinderfinish_4: 6040402374676050478
+      kill_chainsaw_charge_attack_chaingrinderfinish_5: 3085243837100033811
+      kill_chainsaw_charge_attack_chaingrinderfinish_6: 526748507903263960
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

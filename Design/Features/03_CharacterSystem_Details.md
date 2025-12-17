@@ -326,3 +326,119 @@
   - 생성 경로: Assets/Addressables/Scriptable/Character
   - EnhancementData.asset, GrowthData.asset, ExperienceConfig.asset 자동 생성
 
+## 7. 캐릭터 페이지 UI 구조
+
+### 7.1 캐릭터 페이지 개요
+- **UITogglePageController**를 통해 캐릭터 토글을 눌러 캐릭터 페이지를 표시
+- 캐릭터 페이지 내부에 또 하나의 **UITogglePageController**를 가짐
+- 3개의 하위 토글: 강화 / 성장 / 승급
+
+### 7.2 캐릭터 정보 영역 (Character Level Group)
+
+**표시 조건**
+- 강화 페이지: 표시
+- 성장 페이지: 표시
+- 승급 페이지: 숨김
+
+**구성 요소**
+- **캐릭터 아이콘 이미지**: 현재 캐릭터의 아이콘 표시
+- **레벨 텍스트**: "Lv.{레벨}" 형식으로 현재 레벨 표시
+- **경험치 비율 텍스트**: "{현재 경험치 비율}%" 형식으로 표시
+- **경험치 게이지**: UIGauge 컴포넌트를 사용하여 경험치 바 표시
+  - FrontSlider: 현재 경험치 비율 표시
+  - BackSlider: 이전 경험치 비율에서 부드럽게 감소 (선택적)
+  - ValueText: 경험치 비율 텍스트 (선택적)
+- **레벨업 버튼**:
+  - 활성화 조건: 경험치 비율이 100%일 때
+  - 비활성화 조건: 경험치 비율이 100% 미만일 때
+  - 클릭 시 동작:
+    - 캐릭터 레벨 1 증가
+    - 현재 레벨의 필요 경험치만큼 차감
+    - 레벨업 시 능력치 포인트 3개 획득
+    - UI 갱신
+  - 다중 레벨업 지원: 경험치가 충분할 경우 여러 번 클릭하여 연속 레벨업 가능
+
+### 7.3 강화 페이지 (Enhancement Page)
+
+**페이지 구조**
+- **UITogglePageController**의 첫 번째 페이지 (인덱스 0)
+- 강화 토글 클릭 시 표시
+
+**강화 아이템 스크롤 뷰 (Character Enhancement Group)**
+- Scroll View 컴포넌트를 사용하여 스크롤 가능한 목록 표시
+- 강화할 수 있는 모든 타입(공격력, 체력, 체력 회복량, 치명타 공격력, 치명타 확률, 회심의 일격, 회심의 일격 확률)에 대해 하나씩 아이템 생성
+
+**강화 아이템 (UIEnhancementItem) 구성 요소**
+- **배경 이미지**: 아이템의 배경
+- **프레임 이미지**: 아이템의 테두리
+- **강화 아이콘 이미지**: 해당 강화 타입의 아이콘
+- **강화 이름 텍스트**: 강화 타입 이름 (예: "공격력", "체력")
+- **강화 레벨 텍스트**: "Lv.{현재 레벨}" 형식으로 현재 강화 레벨 표시
+- **능력치 값 텍스트**: "{현재값} → {레벨업 후 값}" 형식으로 강화 시 능력치 변화 표시
+  - 현재값: 현재 레벨의 능력치 값
+  - 레벨업 후 값: 다음 레벨의 능력치 값
+- **레벨업 버튼**:
+  - 재화 아이콘 이미지: 강화에 필요한 재화 아이콘 (골드)
+  - 비용 텍스트: 강화에 필요한 비용 표시
+  - 클릭 시 동작:
+    - 재화 충분 여부 확인
+    - 최대 레벨 도달 여부 확인
+    - 요구 능력치 레벨 충족 여부 확인
+    - 조건 충족 시 강화 레벨 1 증가 및 재화 차감
+    - UI 갱신
+
+### 7.4 강화 아이템 데이터 바인딩
+
+**데이터 소스**
+- EnhancementDataAsset: 강화 능력치의 고정 데이터 (최대 레벨, 초기값, 성장값, 비용 등)
+- VCharacterEnhancement: 저장된 강화 레벨 데이터
+
+**표시 데이터 계산**
+- 현재 능력치 값: InitialValue + (현재 레벨 × GrowthValue)
+- 다음 능력치 값: InitialValue + ((현재 레벨 + 1) × GrowthValue)
+- 강화 비용: InitialCost × CostGrowthRate^(현재 레벨 - 1)
+
+**UI 갱신 시점**
+- 페이지 열릴 때
+- 강화 레벨업 성공 시
+- 재화 변경 시
+
+### 7.5 UI 계층 구조
+
+```
+UIPageGroup
+├── Page(Character)
+│   ├── Background Image
+│   ├── UITogglePageController
+│   │   ├── UIToggleGroup
+│   │   │   ├── Toggle (Enhancement) - 강화
+│   │   │   ├── Toggle (Growth) - 성장
+│   │   │   └── Toggle (Promotion) - 승급
+│   │   └── UIPageGroup
+│   │       ├── Page (Enhancement)
+│   │       ├── Page (Growth)
+│   │       └── Page (Promotion)
+│   ├── Character Level Group (강화/성장 페이지에서만 표시)
+│   │   ├── Character Icon Image
+│   │   ├── Level Name Text
+│   │   ├── Exp Name Text
+│   │   ├── UIGauge
+│   │   │   ├── Slider (Front)
+│   │   │   ├── Slider (Back)
+│   │   │   └── Value Text
+│   │   └── LevelUp Button
+│   └── Character Enhancement Group (강화 페이지 내용)
+│       └── Scroll View
+│           └── Viewport
+│               └── Content
+│                   └── UIEnhancementItem (강화 타입별 생성)
+│                       ├── Background Image
+│                       ├── Frame Image
+│                       ├── Stat Icon Image
+│                       ├── Stat Name Text
+│                       ├── Level Text
+│                       ├── StatValue Text
+│                       └── LevelUp Button
+│                           ├── Currency Icon Image
+│                           └── Text (TMP)
+```

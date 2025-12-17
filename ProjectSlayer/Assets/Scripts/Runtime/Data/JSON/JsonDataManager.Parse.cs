@@ -85,12 +85,6 @@ namespace TeamSuneat.Data
                     }
                     break;
 
-                case _Sheet.WeaponLevel:
-                    {
-                        ParseWeaponLevelJsonData(sheet, jsonData);
-                    }
-                    break;
-
                 case _Sheet.Potion:
                     {
                         ParsePotionDataJsonData(sheet, jsonData);
@@ -198,20 +192,6 @@ namespace TeamSuneat.Data
                 {
                     LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
                 }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseWeaponLevelJsonData(_Sheet sheet, string jsonData)
-        {
-            List<WeaponLevelData> dataList = DeserializeJsonData<WeaponLevelData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                _weaponLevelSheetData.Add(dataList[i].GetKey(), dataList[i]);
             }
 
             Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");

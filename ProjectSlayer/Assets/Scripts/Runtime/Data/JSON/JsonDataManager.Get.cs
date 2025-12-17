@@ -47,21 +47,6 @@ namespace TeamSuneat.Data
             return result;
         }
 
-        public static List<WeaponLevelData> GetWeaponLevelDataClone(ItemNames weaponName)
-        {
-            int weaponTID = weaponName.ToInt();
-            if (_weaponLevelSheetData.ContainsKey(weaponTID))
-            {
-                _ = new List<WeaponLevelData>();
-                if (_weaponLevelSheetData.TryGetValue(weaponTID, out List<WeaponLevelData> result))
-                {
-                    return result;
-                }
-            }
-
-            return null;
-        }
-
         public static StringData[] GetLoadingStringData()
         {
             List<StringData> result = new();

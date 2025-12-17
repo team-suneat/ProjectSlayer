@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TeamSuneat.Data.Game
 {
@@ -7,61 +6,75 @@ namespace TeamSuneat.Data.Game
     public class VCharacterStage
     {
         [NonSerialized]
-        public List<StageNames> Stages = new();
-        public List<string> StageStrings = new();
-
-        [NonSerialized]
         public StageNames CurrentStage;
         public string CurrentStageString;
 
+        [NonSerialized]
+        public AreaNames CurrentArea;
+        public string CurrentAreaString;
+
+        [NonSerialized]
+        public StageNames MaxReachedStage;
+        public string MaxReachedStageString;
+
+        [NonSerialized]
+        public AreaNames MaxReachedArea;
+        public string MaxReachedAreaString;
+
         public void OnLoadGameData()
         {
-            EnumEx.ConvertTo(ref Stages, StageStrings);
             EnumEx.ConvertTo(ref CurrentStage, CurrentStageString);
+            EnumEx.ConvertTo(ref CurrentArea, CurrentAreaString);
+            EnumEx.ConvertTo(ref MaxReachedStage, MaxReachedStageString);
+            EnumEx.ConvertTo(ref MaxReachedArea, MaxReachedAreaString);
         }
 
         public void ClearIngameData()
         {
         }
 
-        public void Register(StageNames stageName)
-        {
-            if (!Stages.Contains(stageName))
-            {
-                Stages.Add(stageName);
-                string stageString = stageName.ToString();
-                if (!StageStrings.Contains(stageString))
-                {
-                    StageStrings.Add(stageString);
-                }
-            }
-        }
-
-        public void Unregister(StageNames stageName)
-        {
-            if (Stages.Contains(stageName))
-            {
-                Stages.Remove(stageName);
-                string stageString = stageName.ToString();
-                if (StageStrings.Contains(stageString))
-                {
-                    StageStrings.Remove(stageString);
-                }
-            }
-        }
-
-        public void Select(StageNames stageName)
+        public void SelectStage(StageNames stageName)
         {
             CurrentStage = stageName;
             CurrentStageString = stageName.ToString();
+        }
+
+        public void SelectArea(AreaNames areaName)
+        {
+            CurrentArea = areaName;
+            CurrentAreaString = areaName.ToString();
+        }
+
+        public void UpdateMaxReachedStage(StageNames stageName)
+        {
+            if (stageName > MaxReachedStage)
+            {
+                MaxReachedStage = stageName;
+                MaxReachedStageString = stageName.ToString();
+            }
+        }
+
+        public void UpdateMaxReachedArea(AreaNames areaName)
+        {
+            if (areaName > MaxReachedArea)
+            {
+                MaxReachedArea = areaName;
+                MaxReachedAreaString = areaName.ToString();
+            }
         }
 
         public static VCharacterStage CreateDefault()
         {
             return new VCharacterStage()
             {
-                CurrentStage = StageNames.Stage1,
-                CurrentStageString = StageNames.Stage1.ToString(),
+                CurrentStage = StageNames.Area01_StartForest1,
+                CurrentStageString = StageNames.Area01_StartForest1.ToString(),
+                CurrentArea = AreaNames.StartForest,
+                CurrentAreaString = AreaNames.StartForest.ToString(),
+                MaxReachedStage = StageNames.Area01_StartForest1,
+                MaxReachedStageString = StageNames.Area01_StartForest1.ToString(),
+                MaxReachedArea = AreaNames.StartForest,
+                MaxReachedAreaString = AreaNames.StartForest.ToString(),
             };
         }
     }

@@ -16,40 +16,16 @@ MonoBehaviour:
   m_GUID: d0e7fbd0ef4941940b45ee4142728c8c
   m_SerializeEntries:
   - m_GUID: 14f43b0aef23b8b44a18ffb79dd0f75e
-    m_Address: Assets/Addressables/Prefab/Monster/AshGrayInfantry.prefab
+    m_Address: Assets/Addressables/Prefab/Monster/Area01_Mushroom.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Stage1
+    - Area01
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1d7323f6903884443beed58f09db3210
-    m_Address: Assets/Addressables/Prefab/Monster/AshBeast.prefab
+  - m_GUID: 68e2bd2dc60dd6d45be8ec85a7fb199c
+    m_Address: Assets/Addressables/Prefab/Stage/Area01_StartForest1.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Stage1
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2e3a3da85c580a3418661110052e5258
-    m_Address: Assets/Addressables/Prefab/Monster/BoneGeneral.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Stage1
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 502d601a57ebfcf42813a0ed7f245227
-    m_Address: Assets/Addressables/Prefab/Monster/MaceWraith.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Stage1
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5c6cf87aca9f3634da199cb19ac6d700
-    m_Address: Assets/Addressables/Prefab/Monster/HeartoftheLegion.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Stage1
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cc608e5a77d37834b822930aac2aa09d
-    m_Address: Assets/Addressables/Prefab/Stage/Stage1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Stage1
+    - Area01
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0bfdb79b140772546ac483b0ad9449ba, type: 2}
