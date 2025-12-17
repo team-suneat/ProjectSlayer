@@ -34,11 +34,11 @@ namespace TeamSuneat
 
         private void RefreshHealth(StatSystem StatSystem)
         {
-            if (StatSystem.Owner.MyVital.Life != null)
+            if (StatSystem.Owner.MyVital.Health != null)
             {
                 LogRefresh("Health");
-                StatSystem.Owner.MyVital.Life.RefreshMaxValue();
-                StatSystem.Owner.MyVital.RefreshLifeGauge();
+                StatSystem.Owner.MyVital.Health.RefreshMaxValue();
+                StatSystem.Owner.MyVital.RefreshHealthGauge();
             }
         }
     }

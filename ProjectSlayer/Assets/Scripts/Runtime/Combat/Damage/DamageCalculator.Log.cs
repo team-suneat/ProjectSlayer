@@ -218,13 +218,13 @@ namespace TeamSuneat
             }
         }
 
-        private void LogExecutionApplied(float targetLifeRate, float executionConditionalTargetLifeRate)
+        private void LogExecutionApplied(float targetHealthRate, float executionConditionalTargetHealthRate)
         {
             if (Log.LevelInfo)
             {
                 LogInfo("처형이 적용되었습니다. 목표 생명력 비율: {0}, 처형 조건: {1}",
-                    ValueStringEx.GetPercentString(targetLifeRate, 0),
-                    ValueStringEx.GetPercentString(executionConditionalTargetLifeRate, 0));
+                    ValueStringEx.GetPercentString(targetHealthRate, 0),
+                    ValueStringEx.GetPercentString(executionConditionalTargetHealthRate, 0));
             }
         }
 

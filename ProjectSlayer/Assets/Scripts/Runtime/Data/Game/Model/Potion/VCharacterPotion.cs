@@ -153,10 +153,7 @@ namespace TeamSuneat.Data.Game
 
         public static VCharacterPotion CreateDefault()
         {
-            return new VCharacterPotion()
-            {
-                UnlockedSlotCount = GameDefine.POTION_SLOT_DEFAULT_UNLOCK_COUNT,
-            };
+            return new VCharacterPotion();
         }
 
         private void SyncSlotPotionNameStrings()

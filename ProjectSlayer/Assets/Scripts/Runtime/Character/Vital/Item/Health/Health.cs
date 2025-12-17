@@ -10,11 +10,11 @@ using UnityEngine;
 namespace TeamSuneat
 {
     /// <summary> 캐릭터의 생명력을 관리하는 클래스입니다. </summary>
-    public partial class Life : VitalResource
+    public partial class Health : VitalResource
     {
         #region Field
 
-        [Title("#Life")]
+        [Title("#Health")]
         [FoldoutGroup("#Toggle")]
         [SuffixLabel("피해를 입은 후 피해를 입지 않는 시간")]
         public float InvincibilityDurationOnDamage;
@@ -159,11 +159,11 @@ namespace TeamSuneat
             }
 
             float statValue = Vital.Owner.Stat.FindValueOrDefault(StatNames.Health);
-            int maxLifeByStat = Mathf.RoundToInt(statValue);
-            if (maxLifeByStat > 0)
+            int maxHealthByStat = Mathf.RoundToInt(statValue);
+            if (maxHealthByStat > 0)
             {
                 int previousMax = Max;
-                Max = Mathf.RoundToInt(maxLifeByStat);
+                Max = Mathf.RoundToInt(maxHealthByStat);
 
                 LogInfo("캐릭터의 능력치에 따라 최대 생명력을 갱신합니다. {0}/{1}", Current, Max);
 
@@ -378,9 +378,9 @@ namespace TeamSuneat
                 }
 
                 EnablePostDamageInvulnerability(InvincibilityDurationOnDamage);
-                if (Vital.EnemyGauge == null)
+                if (Vital.EnemyGauge == null && Vital.PlayerGauge == null)
                 {
-                    Vital.SpawnEnemyGauge();
+                    Vital.SpawnCharacterGauge();
                 }
             }
 
@@ -392,8 +392,6 @@ namespace TeamSuneat
             }
 
             SendGlobalEventValueChanged();
-
-            ApplyHitStop();
 
             SpawnDamageFloatyText(damageResult, Type);
             PlayDamageSFX(damageResult);
@@ -453,7 +451,7 @@ namespace TeamSuneat
 
         public void SpawnHealFloatyText(int healValue)
         {
-            _ = SpawnFloatyText(healValue.ToString(), DamageTextPoint, UIFloatyMoveNames.HealLife);
+            _ = SpawnFloatyText(healValue.ToString(), DamageTextPoint, UIFloatyMoveNames.HealHealth);
         }
 
         private void SpawnUseFloatyText(int useValue)
@@ -498,7 +496,7 @@ namespace TeamSuneat
 
         public void Killed(Character attacker)
         {
-            Vital.Life.ResetTemporarilyInvulnerable(this);
+            Vital.Health.ResetTemporarilyInvulnerable(this);
 
             PlayDeathFeedback();
             PlayKilledFeedbacks();
@@ -529,7 +527,7 @@ namespace TeamSuneat
 
         public void Killed(DamageResult damageResult)
         {
-            Vital.Life.ResetTemporarilyInvulnerable(this);
+            Vital.Health.ResetTemporarilyInvulnerable(this);
 
             PlayDeathFeedback();
             PlayKilledFeedbacks();
@@ -561,7 +559,7 @@ namespace TeamSuneat
         {
             LogInfo("캐릭터가 스스로 죽음에 이릅니다.");
             Current = 0;
-            Vital.Life.ResetTemporarilyInvulnerable(this);
+            Vital.Health.ResetTemporarilyInvulnerable(this);
 
             PlayDeathFeedback();
             PlaySuicideFeedbacks();
@@ -822,7 +820,7 @@ namespace TeamSuneat
 
         protected void RefreshGauge()
         {
-            Vital.RefreshLifeGauge();
+            Vital.RefreshHealthGauge();
 
             SendGlobalEventOfRefresh();
         }

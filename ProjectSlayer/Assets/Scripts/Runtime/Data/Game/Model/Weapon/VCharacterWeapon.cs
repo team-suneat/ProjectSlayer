@@ -186,14 +186,6 @@ namespace TeamSuneat.Data.Game
         {
             VCharacterWeapon defaultWeapons = new();
 
-            for (int i = 0; i < GameDefine.DEFAULT_UNLOCKED_WEAPONS.Length; i++)
-            {
-                ItemNames weaponName = GameDefine.DEFAULT_UNLOCKED_WEAPONS[i];
-                defaultWeapons.Unlock(weaponName);
-            }
-
-            // 최초 슬롯 해금
-            defaultWeapons.UnlockedSlotCount = GameDefine.WEAPON_SLOT_DEFAULT_UNLOCK_COUNT;
             return defaultWeapons;
         }
 

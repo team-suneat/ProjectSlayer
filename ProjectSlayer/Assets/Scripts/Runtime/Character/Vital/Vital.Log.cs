@@ -311,13 +311,13 @@ namespace TeamSuneat
             }
         }
 
-        private void LogInfoLifeRegeneration()
+        private void LogInfoHealthRegeneration()
         {
             if (Log.LevelInfo)
             {
                 LogInfo("{0}, 생명력 재생력을 설정합니다. 재생량: {1}",
                     Owner.Name.ToLogString(),
-                    ValueStringEx.GetValueString(LifeRegeneratePoint, true));
+                    ValueStringEx.GetValueString(HealthRegeneratePoint, true));
             }
         }
     }

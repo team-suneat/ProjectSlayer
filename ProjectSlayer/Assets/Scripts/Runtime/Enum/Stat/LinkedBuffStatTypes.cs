@@ -5,12 +5,12 @@ namespace TeamSuneat
         None,
 
         /// <summary> 시전자의 현재 생명력 </summary>
-        CurrentLifeOfAttacker,
+        CurrentHealthOfAttacker,
 
         /// <summary> 시전자의 잃은 생명력 </summary>
-        MissingLifeOfAttacker,
+        MissingHealthOfAttacker,
 
         /// <summary> 시전자의 최대 생명력 </summary>
-        MaxLifeOfAttacker,
+        MaxHealthOfAttacker,
     }
 }

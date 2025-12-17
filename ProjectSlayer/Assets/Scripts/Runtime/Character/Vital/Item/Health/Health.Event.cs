@@ -6,7 +6,7 @@ namespace TeamSuneat
     /// <summary>
     /// 캐릭터의 생명력을 관리하는 클래스입니다.
     /// </summary>
-    public partial class Life : VitalResource
+    public partial class Health : VitalResource
     {
         #region Delegate
 
@@ -23,7 +23,7 @@ namespace TeamSuneat
         public OnDamageDelegate OnDamage;
         public OnDamageZeroDelegate OnDamageZero;
         public OnReviveDelegate OnRevive;
-        public OnDeathDelegate OnDeath;        
+        public OnDeathDelegate OnDeath;
         public OnKilledDelegate OnKilled;
 
         #endregion Delegate

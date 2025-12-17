@@ -4,13 +4,13 @@ namespace TeamSuneat
     {
         None = 0,
 
-        FixedLife,
+        FixedHealth,
         FixedShield,
 
-        MaxLifePercent,
+        MaxHealthPercent,
         MaxShieldPercent,
 
-        CurrentLifePercent,
+        CurrentHealthPercent,
         CurrentShieldPercent,
     }
 }

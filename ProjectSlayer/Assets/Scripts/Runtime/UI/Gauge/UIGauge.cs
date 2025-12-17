@@ -99,7 +99,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        // 생명력 텍스트 (Life Text)
+        // 생명력 텍스트 (Health Text)
         public void ResetValueText()
         {
             if (ValueText != null)
@@ -142,7 +142,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        // 생명력의 앞 레이어 게이지 설정 (Life Front Value)
+        // 생명력의 앞 레이어 게이지 설정 (Health Front Value)
 
         public void SetFrontValue(float currentValue)
         {

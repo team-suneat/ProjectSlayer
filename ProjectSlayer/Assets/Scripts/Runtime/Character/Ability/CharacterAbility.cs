@@ -117,9 +117,9 @@ namespace TeamSuneat
 
             if (Vital != null)
             {
-                Vital.Life.RegisterOnDamageEvent(OnDamage);
-                Vital.Life.RegisterOnDeathEvent(OnDeath);
-                Vital.Life.RegisterOnReviveEvent(OnRespawn);
+                Vital.Health.RegisterOnDamageEvent(OnDamage);
+                Vital.Health.RegisterOnDeathEvent(OnDeath);
+                Vital.Health.RegisterOnReviveEvent(OnRespawn);
             }
         }
 
@@ -129,9 +129,9 @@ namespace TeamSuneat
 
             if (Vital != null)
             {
-                Vital.Life.UnregisterOnDamageEvent(OnDamage);
-                Vital.Life.UnregisterOnDeathEvent(OnDeath);
-                Vital.Life.UnregisterOnReviveEvent(OnRespawn);
+                Vital.Health.UnregisterOnDamageEvent(OnDamage);
+                Vital.Health.UnregisterOnDeathEvent(OnDeath);
+                Vital.Health.UnregisterOnReviveEvent(OnRespawn);
             }
         }
 

@@ -120,7 +120,7 @@
         CoinofGreed,
 
         /// 생명의 결정체
-        CrystalofLife,
+        CrystalofHealth,
 
         /// 가시 껍질
         ThornedShell,

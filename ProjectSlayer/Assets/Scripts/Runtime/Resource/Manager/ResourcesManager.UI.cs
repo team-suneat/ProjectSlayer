@@ -253,6 +253,27 @@ namespace TeamSuneat
             return spawnedObject.GetComponent<UIEnemyGauge>();
         }
 
+        public static UIPlayerGauge SpawnPlayerGauge(Vital vital)
+        {
+            if (GameSetting.Instance.Play.HideUserInterface)
+            {
+                return null;
+            }
+            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.IngameWorldSpace);
+            if (canvasOrder == null)
+            {
+                return null;
+            }
+
+            GameObject spawnedObject = SpawnPrefab("UIPlayerGauge", canvasOrder.transform);
+            if (spawnedObject == null)
+            {
+                return null;
+            }
+
+            return spawnedObject.GetComponent<UIPlayerGauge>();
+        }
+
         internal static UIDetails SpawnDetails(UIDetailsNames detailsName, Transform parent)
         {
             return null;

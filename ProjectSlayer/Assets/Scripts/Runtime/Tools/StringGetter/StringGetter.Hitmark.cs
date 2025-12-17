@@ -223,17 +223,17 @@ namespace TeamSuneat
                         {
                             switch (assetData.ResourceConsumeType)
                             {
-                                case VitalConsumeTypes.MaxLifePercent:
+                                case VitalConsumeTypes.MaxHealthPercent:
                                 case VitalConsumeTypes.MaxShieldPercent:
 
-                                case VitalConsumeTypes.CurrentLifePercent:
+                                case VitalConsumeTypes.CurrentHealthPercent:
                                 case VitalConsumeTypes.CurrentShieldPercent:
                                     {
                                         replacement = ValueStringEx.GetPercentString(fieldValue * multiplier);
                                     }
                                     break;
 
-                                case VitalConsumeTypes.FixedLife:
+                                case VitalConsumeTypes.FixedHealth:
                                 case VitalConsumeTypes.FixedShield:
                                 default:
                                     {

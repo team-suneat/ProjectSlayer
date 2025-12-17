@@ -12,8 +12,6 @@ namespace TeamSuneat.UserInterface
 
         public bool BlockSpawnPopup { get; set; }
 
-        public bool IsLockPopupWhileOpen { get; set; }
-
         public void LogicUpdate()
         {
         }
@@ -22,7 +20,6 @@ namespace TeamSuneat.UserInterface
         {
             BlockSpawnPopup = false;
             IsLockPopup = false;
-            IsLockPopupWhileOpen = false;
         }
 
         public void LockPopup()
@@ -49,25 +46,6 @@ namespace TeamSuneat.UserInterface
             else
             {
                 Log.Progress(LogTags.UI_Popup, "팝업이 이미 닫혔습니다. 중복 해제는 허용되지 않습니다.");
-            }
-        }
-
-        public void StartLockPopupWhileOpening(float waitTime)
-        {
-            if (!IsLockPopupWhileOpen)
-            {
-                IsLockPopupWhileOpen = true;
-                Log.Info(LogTags.UI_Popup, "팝업 오픈 중 잠금 상태입니다.");
-
-                _ = CoroutineNextRealTimer(waitTime, () =>
-                {
-                    IsLockPopupWhileOpen = false;
-                    Log.Info(LogTags.UI_Popup, "팝업 오픈 중 잠금이 해제되었습니다.");
-                });
-            }
-            else
-            {
-                Log.Progress(LogTags.UI_Popup, "팝업 오픈 중 이미 잠금 상태입니다. 중복 실행은 허용되지 않습니다.");
             }
         }
 

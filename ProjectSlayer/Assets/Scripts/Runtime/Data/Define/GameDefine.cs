@@ -57,40 +57,11 @@
 
         #endregion 기본 설정
 
-        #region UI 설정
+        #region 게임 설정
 
-        public const float INPUT_WAIT_TIME = 0.3f;
+        public const int CHARACTER_MAX_LEVEL = 1000;
 
-        #endregion UI 설정
-
-        #region 게임 옵션 설정
-
-        public const bool DEFAULT_GAME_OPTION_VIDEO_FULL_SCREEN = true;
-        public const bool DEFAULT_GAME_OPTION_VIDEO_BORDERLESS = false;
-        public const bool DEFAULT_GAME_OPTION_VIDEO_V_SYNC = true;
-
-        #endregion 게임 옵션 설정
-
-        #region 게임플레이 설정
-
-        public const int CHARACTER_MAX_LEVEL = 99;
-        public const int WEAPON_SLOT_DEFAULT_UNLOCK_COUNT = 3; // 초기 무기 슬롯 개수
-        public const int POTION_SLOT_DEFAULT_UNLOCK_COUNT = 2; // 초기 포션 슬롯 개수
-
-        public static readonly CharacterNames[] DEFAULT_UNLOCKED_CHARACTERS =
-        {
-            CharacterNames.IronWarden, CharacterNames.ShadowAssassin, CharacterNames.ThunderSeer
-        };
-
-        public static readonly ItemNames[] DEFAULT_UNLOCKED_WEAPONS =
-        {
-            ItemNames.WarriorSword, ItemNames.ExecutionerDagger, ItemNames.LightningSpear,
-            ItemNames.Pineapple,ItemNames.PaladinShield, ItemNames.CoinPurse, ItemNames.GemPurse, ItemNames.Stone, ItemNames.Shovel
-        };
-
-        public const bool USE_PLAYER_DAMAGE_HIT_STOP = true; // 플레이어 피격시 프레임 멈춤 기능 사용
-
-        #endregion 게임플레이 설정
+        #endregion 게임 설정
 
         #region 개발자 설정
 

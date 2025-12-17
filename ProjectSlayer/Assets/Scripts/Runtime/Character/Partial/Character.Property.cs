@@ -22,9 +22,9 @@ namespace TeamSuneat
 
         // Vital
 
-        public int CurrentLife => MyVital.CurrentLife;
+        public int CurrentHealth => MyVital.CurrentHealth;
 
-        public int MaxLife => MyVital.MaxLife;
+        public int MaxHealth => MyVital.MaxHealth;
 
         public int CurrentShield => MyVital.CurrentShield;
 

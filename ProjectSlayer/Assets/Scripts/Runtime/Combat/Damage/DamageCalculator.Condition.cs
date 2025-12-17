@@ -120,9 +120,9 @@ namespace TeamSuneat
         {
             if (damageResult.TargetVital != null)
             {
-                if (damageResult.TargetVital.LifeRate <= damageResult.Asset.ExecutionConditionalTargetLifeRate)
+                if (damageResult.TargetVital.HealthRate <= damageResult.Asset.ExecutionConditionalTargetHealthRate)
                 {
-                    LogExecutionApplied(damageResult.TargetVital.LifeRate, damageResult.Asset.ExecutionConditionalTargetLifeRate);
+                    LogExecutionApplied(damageResult.TargetVital.HealthRate, damageResult.Asset.ExecutionConditionalTargetHealthRate);
                     return true;
                 }
             }

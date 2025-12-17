@@ -67,7 +67,7 @@ namespace TeamSuneat.UserInterface
                 case DamageTypes.Heal:
                 case DamageTypes.HealOverTime:
                     {
-                        return UIFloatyMoveNames.HealLife;
+                        return UIFloatyMoveNames.HealHealth;
                     }
 
                 case DamageTypes.RestoreMana:

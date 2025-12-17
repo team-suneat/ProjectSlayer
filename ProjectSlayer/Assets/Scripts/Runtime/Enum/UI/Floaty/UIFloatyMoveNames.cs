@@ -13,7 +13,7 @@ namespace TeamSuneat
         Burning,
         Poisoning,
 
-        HealLife,
+        HealHealth,
         RestoreMana,
         RestoreBerserk,
         RestoreEnery,

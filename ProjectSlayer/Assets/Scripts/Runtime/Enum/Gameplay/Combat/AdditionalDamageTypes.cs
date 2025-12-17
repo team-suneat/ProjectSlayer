@@ -12,12 +12,12 @@ namespace TeamSuneat
         /// <summary>
         /// 공격자의 현재 생명력
         /// </summary>
-        CurrentLifeOfAttacker,
+        CurrentHealthOfAttacker,
 
         /// <summary>
         /// 공격자의 현재 생명력
         /// </summary>
-        MaxLifeOfAttacker,
+        MaxHealthOfAttacker,
 
         /// <summary>
         /// 공격자의 현재 자원

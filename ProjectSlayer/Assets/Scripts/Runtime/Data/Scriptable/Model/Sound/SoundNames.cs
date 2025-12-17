@@ -128,7 +128,7 @@ namespace TeamSuneat
 
         DragonClawStalker_Attack,
         DragonClawStalker_Skill,
-        DragonClawStalker_LifeStealToTarget,
+        DragonClawStalker_HealthStealToTarget,
         CrimsonLeeches_Attack,
         CrimsonLeeches_Dash,
 

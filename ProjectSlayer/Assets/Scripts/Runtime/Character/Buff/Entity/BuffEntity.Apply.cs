@@ -56,7 +56,7 @@ namespace TeamSuneat
             }
         }
 
-        private void ApplyHealLife()
+        private void ApplyHealHealth()
         {
             if (Caster == null || Owner == null) return;
 
@@ -153,12 +153,12 @@ namespace TeamSuneat
 
         public void ApplyInvulnerable()
         {
-            Owner.MyVital.Life.SetTemporarilyInvulnerable(this);
+            Owner.MyVital.Health.SetTemporarilyInvulnerable(this);
         }
 
         public void ReleaseInvulnerable()
         {
-            Owner.MyVital.Life.ResetTemporarilyInvulnerable(this);
+            Owner.MyVital.Health.ResetTemporarilyInvulnerable(this);
         }
 
         //────────────────────────────────────────────────────────────────────────────────

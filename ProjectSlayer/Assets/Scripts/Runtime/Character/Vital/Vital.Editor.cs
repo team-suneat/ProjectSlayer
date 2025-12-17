@@ -10,7 +10,7 @@ namespace TeamSuneat
 
             Owner = this.FindFirstParentComponent<Character>();
 
-            Life = GetComponent<Life>();
+            Health = GetComponent<Health>();
             Shield = GetComponent<Shield>();
             Mana = GetComponent<Mana>();
             GaugePoint = this.FindTransform("Point-Gauge");

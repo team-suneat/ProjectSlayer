@@ -52,7 +52,7 @@ namespace TeamSuneat
             SetupLevel();
             if (Stat != null)
             {
-                int previousLife = MyVital.CurrentLife;
+                int previousHealth = MyVital.CurrentHealth;
 
                 PlayerCharacterData characterData = JsonDataManager.FindPlayerCharacterDataClone(Name);
                 if (characterData != null)
@@ -62,7 +62,7 @@ namespace TeamSuneat
                 }
 
                 Stat.OnLevelUp();
-                MyVital?.OnLevelUp(Stat, previousLife);
+                MyVital?.OnLevelUp(Stat, previousHealth);
             }
             if (OnLevelUpFeedbacks != null)
             {

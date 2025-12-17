@@ -7,63 +7,85 @@ namespace TeamSuneat
     {
         public virtual void SetHUD()
         {
-            RefreshLifeGauge();
+            RefreshHealthGauge();
             RefreshResourceGauge();
+            RefreshShieldGauge();
         }
 
         /// <summary> 생명력 게이지가 할당되어있다면 갱신합니다. </summary>
-        public virtual void RefreshLifeGauge()
+        public virtual void RefreshHealthGauge()
         {
-            if (Life != null)
+            if (Health == null)
             {
-                if (EnemyGauge != null)
-                {
-                    EnemyGauge.SetHealth(Life.Current, Life.Max);
-                }
+                return;
+            }
+
+            if (EnemyGauge != null)
+            {
+                EnemyGauge.SetHealth(Health);
+            }
+            else if (PlayerGauge != null)
+            {
+                PlayerGauge.SetHealth(Health);
             }
         }
 
         public virtual void RefreshResourceGauge()
         {
-            if (Mana != null)
+            if (PlayerGauge != null)
             {
-                if (EnemyGauge != null)
-                {
-                    EnemyGauge.SetResource(Mana.Current, Mana.Max);
-                }
+                PlayerGauge.SetResource(Mana);
             }
         }
 
         public virtual void RefreshShieldGauge()
         {
-            if (Shield != null)
+            if (PlayerGauge != null)
             {
-                if (EnemyGauge != null)
-                {
-                    EnemyGauge.SetShield(Shield.Current, Shield.Max);
-                }
+                PlayerGauge.SetShield(Shield);
             }
         }
 
         //
 
-        public void SpawnEnemyGauge()
+        public void SpawnCharacterGauge()
         {
-            if (!GameSetting.Instance.Play.UseMonsterGauge) { return; }
             if (!UseGauge) { return; }
             if (!IsAlive) { return; }
             if (Owner == null) { return; }
 
-            MonsterCharacter monster = Owner as MonsterCharacter;
-            if (monster == null) { return; }
-
             if (UIManager.Instance == null || UIManager.Instance.GaugeManager == null) { return; }
-            if (UIManager.Instance.GaugeManager.FindEnemy(this) != null) { return; }
+            if (UIManager.Instance.GaugeManager.FindCharacter(this) != null) { return; }
+
+            if (Owner.IsPlayer)
+            {
+                SpawnPlayerGauge();
+            }
+            else
+            {
+                SpawnEnemyGauge();
+            }
+        }
+
+        private void SpawnPlayerGauge()
+        {
+            UIPlayerGauge view = UIManager.Instance.GaugeManager.SpawnPlayerGauge(Owner);
+            if (view != null)
+            {
+                view.Bind(Owner);
+                Log.Info(LogTags.UI_Gauge, "플레이어 게이지를 생성하여 바이탈에 바인드합니다. {0}, {1}",
+                    view.GetHierarchyName(), this.GetHierarchyPath());
+            }
+        }
+
+        private void SpawnEnemyGauge()
+        {
+            if (!GameSetting.Instance.Play.UseMonsterGauge) { return; }
 
             UIEnemyGauge view = UIManager.Instance.GaugeManager.SpawnEnemyGauge(Owner);
             if (view != null)
             {
-                view.Bind(monster);
+                view.Bind(Owner);
                 Log.Info(LogTags.UI_Gauge, "몬스터 게이지를 생성하여 바이탈에 바인드합니다. {0}, {1}",
                     view.GetHierarchyName(), this.GetHierarchyPath());
             }
@@ -71,7 +93,7 @@ namespace TeamSuneat
 
         //
 
-        public virtual void ConsumeLifePotion(int healValue, int healValueOverTime, float duration)
+        public virtual void ConsumeHealthPotion(int healValue, int healValueOverTime, float duration)
         { }
     }
 }

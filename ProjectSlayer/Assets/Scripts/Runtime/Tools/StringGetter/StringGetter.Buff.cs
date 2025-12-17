@@ -837,7 +837,7 @@ namespace TeamSuneat
                 {
                     Log.Error("버프의 연결된 능력치 값 종류가 설정되지 않았습니다. {0}", buffAssetData.Name.ToLogString());
                 }
-                if (type is LinkedBuffStatTypes.MissingLifeOfAttacker)
+                if (type is LinkedBuffStatTypes.MissingHealthOfAttacker)
                 {
                     if (useColor)
                     {

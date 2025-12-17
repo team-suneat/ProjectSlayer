@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace TeamSuneat
 {
-    public partial class Life : VitalResource
+    public partial class Health : VitalResource
     {
-        #region Invulerable
+        #region Invulnerable
 
         public void SetTemporarilyInvulnerable(Component source)
         {
@@ -56,6 +56,6 @@ namespace TeamSuneat
             PostDamageInvulnerable = false;
         }
 
-        #endregion Invulerable
+        #endregion Invulnerable
     }
 }

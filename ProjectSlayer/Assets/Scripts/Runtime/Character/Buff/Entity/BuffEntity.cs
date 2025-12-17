@@ -307,7 +307,7 @@ namespace TeamSuneat
                         {
                             if (!TryAttack())
                             {
-                                ApplyHealLife();
+                                ApplyHealHealth();
                             }
                         }
                         break;

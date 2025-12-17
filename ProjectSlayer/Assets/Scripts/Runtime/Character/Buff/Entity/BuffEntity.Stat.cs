@@ -147,19 +147,19 @@ namespace TeamSuneat
                 float statDivisor = AssetData.LinkedBuffStatDivisors[index];
                 switch (AssetData.LinkedBuffStatTypes[index])
                 {
-                    case LinkedBuffStatTypes.CurrentLifeOfAttacker: // 시전자의 현재 생명력
+                    case LinkedBuffStatTypes.CurrentHealthOfAttacker: // 시전자의 현재 생명력
                         {
-                            return GetCurrentLifeOfAttackerMultiplier(statDivisor);
+                            return GetCurrentHealthOfAttackerMultiplier(statDivisor);
                         }
 
-                    case LinkedBuffStatTypes.MaxLifeOfAttacker: // 시전자의 최대 생명력
+                    case LinkedBuffStatTypes.MaxHealthOfAttacker: // 시전자의 최대 생명력
                         {
-                            return GetMaxLifeOfAttackerMultiplier(statDivisor);
+                            return GetMaxHealthOfAttackerMultiplier(statDivisor);
                         }
 
-                    case LinkedBuffStatTypes.MissingLifeOfAttacker: // 시전자의 잃은 생명력
+                    case LinkedBuffStatTypes.MissingHealthOfAttacker: // 시전자의 잃은 생명력
                         {
-                            return GetMissingLifeOfAttackerMultiplier(statDivisor);
+                            return GetMissingHealthOfAttackerMultiplier(statDivisor);
                         }
 
                     default:
@@ -170,27 +170,27 @@ namespace TeamSuneat
             }
         }
 
-        private float GetCurrentLifeOfAttackerMultiplier(float statDivisor)
+        private float GetCurrentHealthOfAttackerMultiplier(float statDivisor)
         {
-            float multiplier = Mathf.FloorToInt(Owner.MyVital.CurrentLife.SafeDivide(statDivisor));
-            LogCurrentLifeMultiplier(Owner.MyVital.CurrentLife, statDivisor, multiplier);
+            float multiplier = Mathf.FloorToInt(Owner.MyVital.CurrentHealth.SafeDivide(statDivisor));
+            LogCurrentHealthMultiplier(Owner.MyVital.CurrentHealth, statDivisor, multiplier);
 
             return multiplier;
         }
 
-        private float GetMaxLifeOfAttackerMultiplier(float statDivisor)
+        private float GetMaxHealthOfAttackerMultiplier(float statDivisor)
         {
-            float multiplier = Mathf.FloorToInt(Owner.MyVital.MaxLife.SafeDivide(statDivisor));
-            LogMaxLifeMultiplier(Owner.MyVital.MaxLife, statDivisor, multiplier);
+            float multiplier = Mathf.FloorToInt(Owner.MyVital.MaxHealth.SafeDivide(statDivisor));
+            LogMaxHealthMultiplier(Owner.MyVital.MaxHealth, statDivisor, multiplier);
 
             return multiplier;
         }
 
-        private float GetMissingLifeOfAttackerMultiplier(float statDivisor)
+        private float GetMissingHealthOfAttackerMultiplier(float statDivisor)
         {
-            float missingLifeRate = 1 - Owner.MyVital.LifeRate;
-            float multiplier = Mathf.FloorToInt(missingLifeRate.SafeDivide(statDivisor));
-            LogMissingLifeMultiplier(missingLifeRate, statDivisor, multiplier);
+            float missingHealthRate = 1 - Owner.MyVital.HealthRate;
+            float multiplier = Mathf.FloorToInt(missingHealthRate.SafeDivide(statDivisor));
+            LogMissingHealthMultiplier(missingHealthRate, statDivisor, multiplier);
 
             return multiplier;
         }
@@ -237,34 +237,34 @@ namespace TeamSuneat
             }
         }
 
-        private void LogCurrentLifeMultiplier(float currentLife, float statDivisor, float multiplier)
+        private void LogCurrentHealthMultiplier(float currentHealth, float statDivisor, float multiplier)
         {
             if (Log.LevelProgress)
             {
                 LogProgress("연결된 [시전자의 현재 생명력({0})]의 ({1})당 비례 능력치 배율({2})을 설정합니다.",
-                currentLife,
+                currentHealth,
                 statDivisor,
                 ValueStringEx.GetPercentString(multiplier, 0f));
             }
         }
 
-        private void LogMaxLifeMultiplier(float maxLife, float statDivisor, float multiplier)
+        private void LogMaxHealthMultiplier(float maxHealth, float statDivisor, float multiplier)
         {
             if (Log.LevelProgress)
             {
                 LogProgress("연결된 [시전자의 최대 생명력({0})]의 ({1})당 비례 능력치 배율({2})을 설정합니다.",
-                maxLife,
+                maxHealth,
                 statDivisor,
                 ValueStringEx.GetPercentString(multiplier, 0f));
             }
         }
 
-        private void LogMissingLifeMultiplier(float missingLifeRate, float statDivisor, float multiplier)
+        private void LogMissingHealthMultiplier(float missingHealthRate, float statDivisor, float multiplier)
         {
             if (Log.LevelProgress)
             {
                 LogProgress("연결된 [시전자의 잃은 생명력 비율({0})]의 ({1})당 비례 능력치 배율({2})을 설정합니다.",
-                ValueStringEx.GetPercentString(missingLifeRate),
+                ValueStringEx.GetPercentString(missingHealthRate),
                 ValueStringEx.GetPercentString(statDivisor),
                 ValueStringEx.GetValueString(multiplier, 0f));
             }

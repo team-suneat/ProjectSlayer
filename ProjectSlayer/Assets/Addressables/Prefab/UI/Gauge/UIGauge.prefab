@@ -50,7 +50,6 @@ GameObject:
   - component: {fileID: 3784047242819839999}
   - component: {fileID: 8815422573759230302}
   - component: {fileID: 4962266348794968264}
-  - component: {fileID: 480633907615526273}
   m_Layer: 0
   m_Name: Value Text
   m_TagString: Untagged
@@ -176,27 +175,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &480633907615526273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439917336643416952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e949f8a2a74f4fbca5d3170f314a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StringKey: 
-  FontType: 0
-  FontTypeString: 
-  TextPro: {fileID: 4962266348794968264}
-  CustomAddtionalFontSize: 0
-  UseCustomLanguage: 0
-  CustomLanguage: 0
-  _fontController: {fileID: 0}
-  _sizeController: {fileID: 0}
 --- !u!1 &5565251084299518232
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +459,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5565251085390980540}
   - component: {fileID: 8466580020108817066}
-  - component: {fileID: 8493153824157919798}
   m_Layer: 5
   m_Name: UIGauge
   m_TagString: Untagged
@@ -518,41 +495,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5565251085390980515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b7f68653cb7fd479a25ec6ee121533, type: 3}
+  m_Script: {fileID: 11500000, guid: 36eb370eeb84e4845bdd0525d11a566a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FrontSlider: {fileID: 5565251085774873355}
   ResourceSlider: {fileID: 0}
   ValueText: {fileID: 4962266348794968264}
-  FollowObject: {fileID: 8493153824157919798}
   BackGauge: {fileID: 0}
   UseFrontValueText: 0
-  UseDespawnOnMissingVital: 1
-  IgnoreDespawn: 0
   FrontValue: 0
-  DespawnMark: 0
-  LinkedVital: {fileID: 0}
-  UseDespawnOnceOnMissingVital: 0
---- !u!114 &8493153824157919798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5565251085390980515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8aa37693237a7843953751b5df38dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rect: {fileID: 8242530753156800393}
-  WorldOffset: {x: 0, y: 0, z: 0}
-  ScreenOffset: {x: 0, y: 0, z: 0}
-  FollowingPoint: {fileID: 0}
-  ClonePoint: {fileID: 0}
-  UseFollowPointClone: 0
-  IsMustBeInsideTheCanvas: 0
-  HeightOffset: 0
 --- !u!1 &5565251085483425226
 GameObject:
   m_ObjectHideFlags: 0

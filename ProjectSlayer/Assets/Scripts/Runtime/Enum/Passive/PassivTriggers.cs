@@ -71,13 +71,13 @@
 
         #endregion 시전 및 실행 (Cast or Execute)
 
-        #region 전투 자원 (Battle Resource : Life, Shield, Resource)
+        #region 전투 자원 (Battle Resource : Health, Shield, Resource)
 
         /// <summary> 플레이어가 회복합니다 </summary>
         PlayerHealed,
 
         /// <summary> 플레이어의 생명력이 변경됩니다 </summary>
-        PlayerChangeLife,
+        PlayerChangeHealth,
 
         /// <summary> 플레이어의 자원이 회복되거나 사용됩니다.</summary>
         PlayerChangeVitalResource,
@@ -94,7 +94,7 @@
         /// <summary> 몬스터가 전투 자원을 회복합니다 </summary>
         RestoreMonsterVitalResource,
 
-        #endregion 전투 자원 (Battle Resource : Life, Shield, Resource)
+        #endregion 전투 자원 (Battle Resource : Health, Shield, Resource)
 
         #region 플레이어 (Player)
 

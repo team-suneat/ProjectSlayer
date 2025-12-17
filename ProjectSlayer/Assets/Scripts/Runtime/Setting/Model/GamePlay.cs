@@ -8,7 +8,7 @@
         private bool _useMonsterGauge;          // 몬스터 게이지 사용
         private bool _useDamageText;            // 피해량 텍스트 사용
         private bool _useStateEffectText;       // 상테이상 텍스트 사용
-        private bool _showMonsterLifeText;      // 몬스터 생맹력 텍스트 사용
+        private bool _showMonsterHealthText;      // 몬스터 생맹력 텍스트 사용
         private bool _showItemOptionRange;      // 아이템 옵션 범위 사용
         private bool _showItemOptionCompare;    // 아이템 옵션 비교 사용
         private bool _showAllBuffIcons;         // 모든 버프 아이콘 가시화 사용
@@ -53,14 +53,14 @@
         }
 
         /// <summary> 몬스터의 생명력 텍스트를 표시합니다. </summary>
-        public bool ShowMonsterLifeText
+        public bool ShowMonsterHealthText
         {
-            get => _showMonsterLifeText;
+            get => _showMonsterHealthText;
             set
             {
-                if (_showMonsterLifeText != value)
+                if (_showMonsterHealthText != value)
                 {
-                    _showMonsterLifeText = value;
+                    _showMonsterHealthText = value;
                     GamePrefs.SetBool(GamePrefTypes.OPTION_SHOW_MONSTER_LIFE_TEXT, value);
                     _ = GlobalEvent<bool>.Send(GlobalEventType.GAME_PLAY_SHOW_GAUGE_VALUE_TEXT, value);
                 }
@@ -289,11 +289,11 @@
 
             if (GamePrefs.HasKey(GamePrefTypes.OPTION_SHOW_MONSTER_LIFE_TEXT))
             {
-                _showMonsterLifeText = GamePrefs.GetBool(GamePrefTypes.OPTION_SHOW_MONSTER_LIFE_TEXT);
+                _showMonsterHealthText = GamePrefs.GetBool(GamePrefTypes.OPTION_SHOW_MONSTER_LIFE_TEXT);
             }
             else
             {
-                _showMonsterLifeText = false;
+                _showMonsterHealthText = false;
             }
 
             if (GamePrefs.HasKey(GamePrefTypes.OPTION_SHOW_MONSTER_ATTACK_COOLDOWN))

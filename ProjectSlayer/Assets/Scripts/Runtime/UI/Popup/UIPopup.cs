@@ -42,7 +42,6 @@ namespace TeamSuneat.UserInterface
         // 속성
 
         public virtual UIPopupNames Name => UIPopupNames.None;
-        protected virtual float InputWaitTimeOnOpenPopup => GameDefine.INPUT_WAIT_TIME;
 
         public override void AutoGetComponents()
         {
@@ -157,7 +156,6 @@ namespace TeamSuneat.UserInterface
         public virtual void Open()
         {
             LogInfo("팝업을 엽니다.");
-            UIManager.Instance.PopupManager.StartLockPopupWhileOpening(InputWaitTimeOnOpenPopup);
 
             ConfigurePopupSettings(true);
             Activate();

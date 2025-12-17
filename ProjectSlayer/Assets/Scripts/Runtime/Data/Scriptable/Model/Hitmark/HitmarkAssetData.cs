@@ -76,7 +76,7 @@ namespace TeamSuneat.Data
         [Tooltip("피해 종류가 물리 또는 마법일 때 피격자의 생명력 비율이 일정 이하라면 적을 처형합니다.")]
         [SuffixLabel("피격자의 처형 조건 생명력 비율*")]
         [Range(0f, 1f)]
-        public float ExecutionConditionalTargetLifeRate;
+        public float ExecutionConditionalTargetHealthRate;
 
         [FoldoutGroup("#피해량")]
         [GUIColor("GetIntColor")]
@@ -322,7 +322,7 @@ namespace TeamSuneat.Data
                 ApplyToSelf = ApplyToSelf,
                 ApplyMultiplierToSelf = ApplyMultiplierToSelf,
 
-                ExecutionConditionalTargetLifeRate = ExecutionConditionalTargetLifeRate,
+                ExecutionConditionalTargetHealthRate = ExecutionConditionalTargetHealthRate,
                 MinDamageValue = MinDamageValue,
                 FixedDamage = FixedDamage,
                 FixedDamageByLevel = FixedDamageByLevel,
@@ -419,7 +419,7 @@ namespace TeamSuneat.Data
             if (IgnoreEvasion != another.IgnoreEvasion) { return false; }
             if (ApplyToSelf != another.ApplyToSelf) { return false; }
             if (ApplyMultiplierToSelf != another.ApplyMultiplierToSelf) { return false; }
-            if (ExecutionConditionalTargetLifeRate != another.ExecutionConditionalTargetLifeRate) { return false; }
+            if (ExecutionConditionalTargetHealthRate != another.ExecutionConditionalTargetHealthRate) { return false; }
             if (MinDamageValue != another.MinDamageValue) { return false; }
             if (FixedDamage != another.FixedDamage) { return false; }
             if (FixedDamageByLevel != another.FixedDamageByLevel) { return false; }

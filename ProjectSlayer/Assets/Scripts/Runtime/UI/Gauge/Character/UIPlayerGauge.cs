@@ -1,9 +1,9 @@
-using TeamSuneat;
 using UnityEngine;
+using Lean.Pool;
 
 namespace TeamSuneat.UserInterface
 {
-    public class UIEnemyGauge : MonoBehaviour, IEnemyGaugeView
+    public class UIPlayerGauge : MonoBehaviour, ICharacterGaugeView, IPoolable
     {
         [SerializeField] private UIGauge _healthGauge;
         [SerializeField] private UIGauge _shieldGauge;
@@ -12,13 +12,19 @@ namespace TeamSuneat.UserInterface
         [SerializeField] private Vector3 _worldOffset;
         [SerializeField] private Vector3 _screenOffset;
 
-        private MonsterCharacter _monster;
+        private Character _character;
         private Vital _vital;
         private bool _despawnMark;
 
-        private void OnDisable()
+        public void OnSpawn()
         {
-            Unbind();
+        }
+        public void OnDespawn()
+        {
+        }
+        public void Despawn()
+        {
+            ResourcesManager.Despawn(gameObject);
         }
 
         private void Update()
@@ -30,30 +36,30 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        public void Bind(MonsterCharacter monster)
+        public void Bind(Character character)
         {
             Unbind();
 
-            if (monster == null)
+            if (character == null)
             {
                 return;
             }
 
-            Vital vital = monster.MyVital;
+            Vital vital = character.MyVital;
             if (vital == null)
             {
                 return;
             }
 
-            _monster = monster;
+            _character = character;
             _vital = vital;
 
             UIGaugeManager gaugeManager = UIManager.Instance != null ? UIManager.Instance.GaugeManager : null;
             if (gaugeManager != null)
             {
-                if (!gaugeManager.RegisterEnemy(_vital, this))
+                if (!gaugeManager.RegisterCharacter(_vital, this))
                 {
-                    _monster = null;
+                    _character = null;
                     _vital = null;
                     return;
                 }
@@ -64,29 +70,25 @@ namespace TeamSuneat.UserInterface
                 _vital.DieEvent.AddListener(OnVitalDied);
             }
 
-            if (_vital.Life != null)
+            if (_vital.Health != null)
             {
-                _vital.Life.OnValueChanged += OnHealthChanged;
-                SetHealth(_vital.Life.Current, _vital.Life.Max);
+                _vital.Health.OnValueChanged += OnHealthChanged;
+                SetHealth(_vital.Health);
             }
 
             if (_vital.Shield != null)
             {
                 _vital.Shield.OnValueChanged += OnShieldChanged;
-                SetShield(_vital.Shield.Current, _vital.Shield.Max);
             }
+            SetShield(_vital.Shield);
 
             if (_vital.Mana != null)
             {
                 _vital.Mana.OnValueChanged += OnResourceChanged;
-                SetResource(_vital.Mana.Current, _vital.Mana.Max);
             }
-            else
-            {
-                SetResource(0, 0);
-            }
+            SetResource(_vital.Mana);
 
-            Transform anchor = _vital.GaugePoint != null ? _vital.GaugePoint : _monster.transform;
+            Transform anchor = _vital.GaugePoint != null ? _vital.GaugePoint : _character.transform;
             SetupFollow(anchor);
         }
 
@@ -95,7 +97,7 @@ namespace TeamSuneat.UserInterface
             UIGaugeManager gaugeManager = UIManager.Instance != null ? UIManager.Instance.GaugeManager : null;
             if (gaugeManager != null && _vital != null)
             {
-                _ = gaugeManager.UnregisterEnemy(_vital);
+                _ = gaugeManager.UnregisterCharacter(_vital);
             }
 
             if (_vital != null && _vital.DieEvent != null)
@@ -105,9 +107,9 @@ namespace TeamSuneat.UserInterface
 
             if (_vital != null)
             {
-                if (_vital.Life != null)
+                if (_vital.Health != null)
                 {
-                    _vital.Life.OnValueChanged -= OnHealthChanged;
+                    _vital.Health.OnValueChanged -= OnHealthChanged;
                 }
 
                 if (_vital.Shield != null)
@@ -121,44 +123,59 @@ namespace TeamSuneat.UserInterface
                 }
             }
 
-            _monster = null;
+            _character = null;
             _vital = null;
 
             _followObject?.StopFollowing();
         }
 
-        public void SetHealth(int current, int max)
+        public void SetHealth(VitalResource resource)
         {
             if (_healthGauge == null)
             {
                 return;
             }
 
-            float rate = max > 0 ? (float)current / max : 0f;
-            _healthGauge.SetValueText(current, max);
-            _healthGauge.SetFrontValue(rate);
+            if (resource == null)
+            {
+                _healthGauge.ResetValueText();
+                _healthGauge.ResetFrontValue();
+                return;
+            }
+
+            _healthGauge.SetValueText(resource.Current, resource.Max);
+            _healthGauge.SetFrontValue(resource.Rate);
         }
 
-        public void SetShield(int current, int max)
+        public void SetShield(VitalResource resource)
         {
             if (_shieldGauge == null)
             {
                 return;
             }
 
-            float rate = max > 0 ? (float)current / max : 0f;
-            _shieldGauge.SetValueText(current, max);
-            _shieldGauge.SetFrontValue(rate);
+            bool hasShield = resource != null && resource.Max > 0;
+            _shieldGauge.gameObject.SetActive(hasShield);
+
+            if (!hasShield)
+            {
+                _shieldGauge.ResetValueText();
+                _shieldGauge.ResetFrontValue();
+                return;
+            }
+
+            _shieldGauge.SetValueText(resource.Current, resource.Max);
+            _shieldGauge.SetFrontValue(resource.Rate);
         }
 
-        public void SetResource(int current, int max)
+        public void SetResource(VitalResource resource)
         {
             if (_manaGauge == null)
             {
                 return;
             }
 
-            bool hasMana = max > 0;
+            bool hasMana = resource != null && resource.Max > 0;
             _manaGauge.gameObject.SetActive(hasMana);
 
             if (!hasMana)
@@ -168,9 +185,8 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            float rate = (float)current / max;
-            _manaGauge.SetValueText(current, max);
-            _manaGauge.SetFrontValue(rate);
+            _manaGauge.SetValueText(resource.Current, resource.Max);
+            _manaGauge.SetFrontValue(resource.Rate);
         }
 
         public void Clear()
@@ -212,22 +228,23 @@ namespace TeamSuneat.UserInterface
 
         private void OnHealthChanged(int current, int max)
         {
-            SetHealth(current, max);
+            SetHealth(_vital?.Health);
         }
 
         private void OnShieldChanged(int current, int max)
         {
-            SetShield(current, max);
+            SetShield(_vital?.Shield);
         }
 
         private void OnResourceChanged(int current, int max)
         {
-            SetResource(current, max);
+            SetResource(_vital?.Mana);
         }
 
         private void OnVitalDied()
         {
             Clear();
+            Despawn();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TeamSuneat
         public VitalResourceTypes ResourceType;
 
         [FoldoutGroup("#Vital-Battle Resource")]
-        public Life Life;
+        public Health Health;
 
         [FoldoutGroup("#Vital-Battle Resource")]
         public Shield Shield;
@@ -42,8 +42,24 @@ namespace TeamSuneat
             {
                 if (UIManager.Instance != null)
                 {
-                    IEnemyGaugeView view = UIManager.Instance.GaugeManager.FindEnemy(this);
+                    ICharacterGaugeView view = UIManager.Instance.GaugeManager.FindCharacter(this);
                     return view as UIEnemyGauge;
+                }
+
+                return null;
+            }
+        }
+
+        [FoldoutGroup("#Vital-Gauge")]
+        [ReadOnly]
+        public UIPlayerGauge PlayerGauge
+        {
+            get
+            {
+                if (UIManager.Instance != null)
+                {
+                    ICharacterGaugeView view = UIManager.Instance.GaugeManager.FindCharacter(this);
+                    return view as UIPlayerGauge;
                 }
 
                 return null;

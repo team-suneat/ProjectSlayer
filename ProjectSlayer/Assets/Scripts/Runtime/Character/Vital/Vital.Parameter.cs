@@ -2,28 +2,28 @@
 {
     public partial class Vital : Entity
     {
-        public int CurrentLife
+        public int CurrentHealth
         {
-            get => Life != null ? Life.Current : 0;
+            get => Health != null ? Health.Current : 0;
             set
             {
-                if (Life != null)
+                if (Health != null)
                 {
-                    Life.Current = value;
+                    Health.Current = value;
                 }
             }
         }
 
-        public float LifeRate => Life != null ? Life.Rate : 0f;
+        public float HealthRate => Health != null ? Health.Rate : 0f;
 
-        public int MaxLife
+        public int MaxHealth
         {
-            get => Life != null ? Life.Max : 0;
+            get => Health != null ? Health.Max : 0;
             set
             {
-                if (Life != null)
+                if (Health != null)
                 {
-                    Life.Max = value;
+                    Health.Max = value;
                 }
             }
         }
@@ -65,15 +65,15 @@
             }
         }
 
-        public bool IsAlive => CurrentLife > 0;
+        public bool IsAlive => CurrentHealth > 0;
 
         public bool IsInvulnerable
         {
             get
             {
-                if (Life != null)
+                if (Health != null)
                 {
-                    return Life.CheckInvulnerable();
+                    return Health.CheckInvulnerable();
                 }
                 return false;
             }

@@ -12,14 +12,14 @@ namespace TeamSuneat
 
             if (MyVital != null)
             {
-                if (MyVital.Life != null)
+                if (MyVital.Health != null)
                 {
-                    LogInfo("캐릭터의 생명(Life)의 피격/부활/죽음/죽임 이벤트를 모두 해제합니다.");
+                    LogInfo("캐릭터의 생명(Health)의 피격/부활/죽음/죽임 이벤트를 모두 해제합니다.");
 
-                    MyVital.Life.UnregisterOnDamageEvent(OnDamage);
-                    MyVital.Life.UnregisterOnReviveEvent(OnRevive);
-                    MyVital.Life.UnregisterOnDeathEvent(OnDeath);
-                    MyVital.Life.UnregisterOnKilledEvent(OnKilled);
+                    MyVital.Health.UnregisterOnDamageEvent(OnDamage);
+                    MyVital.Health.UnregisterOnReviveEvent(OnRevive);
+                    MyVital.Health.UnregisterOnDeathEvent(OnDeath);
+                    MyVital.Health.UnregisterOnKilledEvent(OnKilled);
                 }
             }
         }
@@ -60,14 +60,14 @@ namespace TeamSuneat
         {
             if (MyVital != null)
             {
-                if (MyVital.Life != null)
+                if (MyVital.Health != null)
                 {
-                    LogInfo("캐릭터의 생명(Life)의 데미지/부활/죽음/킬 이벤트를 등록합니다.");
+                    LogInfo("캐릭터의 생명(Health)의 데미지/부활/죽음/킬 이벤트를 등록합니다.");
 
-                    MyVital.Life.RegisterOnDamageEvent(OnDamage);
-                    MyVital.Life.RegisterOnReviveEvent(OnRevive);
-                    MyVital.Life.RegisterOnDeathEvent(OnDeath);
-                    MyVital.Life.RegisterOnKilledEvent(OnKilled);
+                    MyVital.Health.RegisterOnDamageEvent(OnDamage);
+                    MyVital.Health.RegisterOnReviveEvent(OnRevive);
+                    MyVital.Health.RegisterOnDeathEvent(OnDeath);
+                    MyVital.Health.RegisterOnKilledEvent(OnKilled);
                 }
             }
         }

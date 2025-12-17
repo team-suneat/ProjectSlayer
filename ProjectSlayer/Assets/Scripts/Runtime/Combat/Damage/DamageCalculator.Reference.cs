@@ -18,16 +18,16 @@ namespace TeamSuneat
                     }
                     break;
 
-                case LinkedDamageTypes.CurrentLifeOfAttacker:
+                case LinkedDamageTypes.CurrentHealthOfAttacker:
                     {
-                        ReferenceValue = Attacker.MyVital.CurrentLife;
+                        ReferenceValue = Attacker.MyVital.CurrentHealth;
                         LogProgressReferenceValue("공격자의 현재 생명력", ReferenceValue);
                     }
                     break;
 
-                case LinkedDamageTypes.MaxLifeOfAttacker:
+                case LinkedDamageTypes.MaxHealthOfAttacker:
                     {
-                        ReferenceValue = Attacker.MyVital.MaxLife;
+                        ReferenceValue = Attacker.MyVital.MaxHealth;
                         LogProgressReferenceValue("공격자의 최대 생명력", ReferenceValue);
                     }
                     break;
@@ -46,16 +46,16 @@ namespace TeamSuneat
                     }
                     break;
 
-                case LinkedDamageTypes.CurrentLifeOfTarget:
+                case LinkedDamageTypes.CurrentHealthOfTarget:
                     {
-                        ReferenceValue = TargetVital.CurrentLife;
+                        ReferenceValue = TargetVital.CurrentHealth;
                         LogProgressReferenceValue("피격자의 현재 생명력", ReferenceValue);
                     }
                     break;
 
-                case LinkedDamageTypes.MaxLifeOfTarget:
+                case LinkedDamageTypes.MaxHealthOfTarget:
                     {
-                        ReferenceValue = TargetVital.MaxLife;
+                        ReferenceValue = TargetVital.MaxHealth;
                         LogProgressReferenceValue("피격자의 최대 생명력", ReferenceValue);
                     }
                     break;

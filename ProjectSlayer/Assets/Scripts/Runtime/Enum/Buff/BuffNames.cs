@@ -11,7 +11,7 @@ namespace TeamSuneat
         Defense,
         Attack,
         Speed,
-        Life,
+        Health,
         Mana,
         Energy,
         // 상태이상 버프들

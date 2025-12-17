@@ -6,7 +6,7 @@ namespace TeamSuneat
         /// <summary> 보호막 계산 데이터를 로깅합니다. </summary>
         private void LogShieldMaxValueRefreshed(ShieldCalculationData data)
         {
-            LogShieldMaxValueRefreshed(Current, Max, data.FixedValue, Vital.MaxLife, data.Multiplier);
+            LogShieldMaxValueRefreshed(Current, Max, data.FixedValue, Vital.MaxHealth, data.Multiplier);
         }
 
         #region Log
@@ -27,7 +27,7 @@ namespace TeamSuneat
             }
         }
 
-        protected void LogShieldMaxValueRefreshed(int current, int max, float fixedValue, int maxLife, float valueRate)
+        protected void LogShieldMaxValueRefreshed(int current, int max, float fixedValue, int maxHealth, float valueRate)
         {
             if (Log.LevelInfo)
             {
@@ -36,10 +36,10 @@ namespace TeamSuneat
             }
         }
 
-        protected void LogShieldMaxValueIncreasedFromZero(int current, int max, float fixedValue, int maxLife, float valueRateBaseOnMaxLife, float valueRate)
+        protected void LogShieldMaxValueIncreasedFromZero(int current, int max, float fixedValue, int maxHealth, float valueRateBaseOnMaxHealth, float valueRate)
         {
             LogInfo("캐릭터의 최대 보호막을 불러옵니다. 최대 값이 0에서부터 설정되어 현재값도 함께 설정합니다. {0}/{1}. 계산식: [고정 보호막({2}) + 최대 생명력 비례 고정 보호막({3}*{4})] * 보호막 배율({5})",
-                current.ToSelectString(), max.ToSelectString(0), fixedValue, maxLife, valueRateBaseOnMaxLife, valueRate);
+                current.ToSelectString(), max.ToSelectString(0), fixedValue, maxHealth, valueRateBaseOnMaxHealth, valueRate);
         }
 
         protected void LogShieldMaxValueError()

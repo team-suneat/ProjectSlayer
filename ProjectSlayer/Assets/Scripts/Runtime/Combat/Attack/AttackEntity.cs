@@ -164,7 +164,7 @@ namespace TeamSuneat
             {
                 return false;
             }
-            else if (targetVital.Life.CheckInvulnerable())
+            else if (targetVital.Health.CheckInvulnerable())
             {
                 return false;
             }

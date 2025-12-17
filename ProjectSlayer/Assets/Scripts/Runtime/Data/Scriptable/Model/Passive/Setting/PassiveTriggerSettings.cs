@@ -1105,7 +1105,7 @@ namespace TeamSuneat.Data
                     }
                     break;
 
-                case PassiveTriggers.PlayerChangeLife:
+                case PassiveTriggers.PlayerChangeHealth:
                     {
                         TriggerMessege = "플레이어의 생명력이 변경됩니다";
                     }

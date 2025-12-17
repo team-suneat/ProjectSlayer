@@ -31,7 +31,7 @@ namespace TeamSuneat.UserInterface
             switch (resourceType)
             {
                 case VitalResourceTypes.Health:
-                    { SetBackValue(linkedVital.LifeRate); }
+                    { SetBackValue(linkedVital.HealthRate); }
                     break;
 
                 case VitalResourceTypes.Shield:
@@ -61,7 +61,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        // 체력바의 백 게이지 값을 설정 (Life Back Value)
+        // 체력바의 백 게이지 값을 설정 (Health Back Value)
 
         public void SetBackValue(float backFillAmount)
         {
