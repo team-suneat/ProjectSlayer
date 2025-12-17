@@ -30,7 +30,7 @@ namespace TeamSuneat.UserInterface
 
             switch (resourceType)
             {
-                case VitalResourceTypes.Life:
+                case VitalResourceTypes.Health:
                     { SetBackValue(linkedVital.LifeRate); }
                     break;
 

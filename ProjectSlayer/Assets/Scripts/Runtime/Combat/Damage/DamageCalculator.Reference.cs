@@ -82,23 +82,5 @@ namespace TeamSuneat
                 }
             }
         }
-
-        //
-
-        private void LogProgressReferenceValue(string description, float value)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("{0}을 참조값을 설정합니다. Value: {1}", description, value.ToSelectString(0));
-            }
-        }
-
-        private void LogErrorReferenceValue(LinkedDamageTypes linkedDamageType, StateEffects linkedStateEffect, float value)
-        {
-            if (Log.LevelWarning)
-            {
-                LogWarning("참조값을 설정할 수 없습니다. 참조 피해 종류: {0}, 참조 상태 이상: {1}, 참조 값: {2}", linkedDamageType, linkedStateEffect, value.ToSelectString(0));
-            }
-        }
     }
 }

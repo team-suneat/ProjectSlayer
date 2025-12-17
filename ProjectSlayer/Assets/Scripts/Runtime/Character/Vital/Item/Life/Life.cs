@@ -108,7 +108,7 @@ namespace TeamSuneat
         /// <summary>
         /// 생명력 타입을 반환합니다.
         /// </summary>
-        public override VitalResourceTypes Type => VitalResourceTypes.Life;
+        public override VitalResourceTypes Type => VitalResourceTypes.Health;
 
         public VProfile ProfileInfo = GameApp.GetSelectedProfile();
 
@@ -352,12 +352,6 @@ namespace TeamSuneat
             }
             OnDamageFlicker(damageResult);
 
-            if (TryDeathDefiance(damageResult))
-            {
-                // 죽음을 저항합니다.
-                return;
-            }
-
             if (Current <= 0)
             {
                 Current = 0;
@@ -439,12 +433,6 @@ namespace TeamSuneat
                 return false;
             }
 
-            if (damageResult.DamageType == DamageTypes.Grab)
-            {
-                return false;
-            }
-
-            Vital.Owner.CharacterAnimator.SetDamageTriggerIndex(damageResult.TargetVitalColliderIndex);
             Vital.Owner.CharacterAnimator.SetDamageTypeParameter(damageResult.Asset.IsPowerfulAttack);
 
             return Vital.Owner.CharacterAnimator.PlayDamageAnimation(damageResult.Asset);
@@ -498,7 +486,7 @@ namespace TeamSuneat
         {
             switch (damageResult.DamageType)
             {
-                case DamageTypes.Physical:
+                case DamageTypes.Normal:
                     _ = AudioManager.Instance.PlaySFXOneShotScaled(SoundNames.Damage_Physical, position);
                     break;
 
@@ -785,7 +773,7 @@ namespace TeamSuneat
         {
             switch (damageResult.DamageType)
             {
-                case DamageTypes.Physical:
+                case DamageTypes.Normal:
                     DamagePhysicalFeedbacks?.PlayFeedbacks(damagePosition, 0);
                     break;
 

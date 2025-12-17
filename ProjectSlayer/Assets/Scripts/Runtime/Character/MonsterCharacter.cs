@@ -67,8 +67,7 @@ namespace TeamSuneat
             if (data != null)
             {
                 Stat.AddWithSourceInfo(StatNames.Health, data.Health, this, NameString, "CharacterBase");
-                Stat.AddWithSourceInfo(StatNames.Damage, data.Damage, this, NameString, "CharacterBase");
-                Stat.AddWithSourceInfo(StatNames.AttackRange, data.AttackRange, this, NameString, "CharacterBase");
+                Stat.AddWithSourceInfo(StatNames.Attack, data.Damage, this, NameString, "CharacterBase");
             }
         }
 

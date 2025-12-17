@@ -42,6 +42,9 @@ namespace TeamSuneat
         ///<summary> 플레이어 캐릭터가 적을 공격할 때 치명타가 발생합니다. </summary>
         PLAYER_CHARACTER_ATTACK_MONSTER_CRITICAL,
 
+        ///<summary> 플레이어 캐릭터가 적을 공격할 때 회심의 일격이 발생합니다. </summary>
+        PLAYER_CHARACTER_ATTACK_MONSTER_DEVASTATING_STRIKE,
+
         //
 
         ///<summary> 플레이어 캐릭터 피해를 입습니다. </summary>

@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace TeamSuneat.UserInterface
 {
-    public class EnemyHealthShieldView : MonoBehaviour, IEnemyGaugeView
+    public class UIEnemyGauge : MonoBehaviour, IEnemyGaugeView
     {
         [SerializeField] private UIGauge _healthGauge;
         [SerializeField] private UIGauge _shieldGauge;
+        [SerializeField] private UIGauge _manaGauge;
         [SerializeField] private UIFollowObject _followObject;
         [SerializeField] private Vector3 _worldOffset;
         [SerializeField] private Vector3 _screenOffset;
@@ -65,7 +66,7 @@ namespace TeamSuneat.UserInterface
 
             if (_vital.Life != null)
             {
-                _vital.Life.OnValueChanged += OnLifeChanged;
+                _vital.Life.OnValueChanged += OnHealthChanged;
                 SetHealth(_vital.Life.Current, _vital.Life.Max);
             }
 
@@ -74,9 +75,15 @@ namespace TeamSuneat.UserInterface
                 _vital.Shield.OnValueChanged += OnShieldChanged;
                 SetShield(_vital.Shield.Current, _vital.Shield.Max);
             }
+
+            if (_vital.Mana != null)
+            {
+                _vital.Mana.OnValueChanged += OnResourceChanged;
+                SetResource(_vital.Mana.Current, _vital.Mana.Max);
+            }
             else
             {
-                SetShield(0, 0);
+                SetResource(0, 0);
             }
 
             Transform anchor = _vital.GaugePoint != null ? _vital.GaugePoint : _monster.transform;
@@ -100,12 +107,17 @@ namespace TeamSuneat.UserInterface
             {
                 if (_vital.Life != null)
                 {
-                    _vital.Life.OnValueChanged -= OnLifeChanged;
+                    _vital.Life.OnValueChanged -= OnHealthChanged;
                 }
 
                 if (_vital.Shield != null)
                 {
                     _vital.Shield.OnValueChanged -= OnShieldChanged;
+                }
+
+                if (_vital.Mana != null)
+                {
+                    _vital.Mana.OnValueChanged -= OnResourceChanged;
                 }
             }
 
@@ -134,19 +146,31 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            bool hasShield = max > 0;
-            _shieldGauge.gameObject.SetActive(hasShield);
+            float rate = max > 0 ? (float)current / max : 0f;
+            _shieldGauge.SetValueText(current, max);
+            _shieldGauge.SetFrontValue(rate);
+        }
 
-            if (!hasShield)
+        public void SetResource(int current, int max)
+        {
+            if (_manaGauge == null)
             {
-                _shieldGauge.ResetValueText();
-                _shieldGauge.ResetFrontValue();
+                return;
+            }
+
+            bool hasMana = max > 0;
+            _manaGauge.gameObject.SetActive(hasMana);
+
+            if (!hasMana)
+            {
+                _manaGauge.ResetValueText();
+                _manaGauge.ResetFrontValue();
                 return;
             }
 
             float rate = (float)current / max;
-            _shieldGauge.SetValueText(current, max);
-            _shieldGauge.SetFrontValue(rate);
+            _manaGauge.SetValueText(current, max);
+            _manaGauge.SetFrontValue(rate);
         }
 
         public void Clear()
@@ -156,6 +180,9 @@ namespace TeamSuneat.UserInterface
 
             _shieldGauge?.ResetValueText();
             _shieldGauge?.ResetFrontValue();
+
+            _manaGauge?.ResetValueText();
+            _manaGauge?.ResetFrontValue();
 
             Unbind();
         }
@@ -183,7 +210,7 @@ namespace TeamSuneat.UserInterface
             _followObject.Setup(anchor);
         }
 
-        private void OnLifeChanged(int current, int max)
+        private void OnHealthChanged(int current, int max)
         {
             SetHealth(current, max);
         }
@@ -191,6 +218,11 @@ namespace TeamSuneat.UserInterface
         private void OnShieldChanged(int current, int max)
         {
             SetShield(current, max);
+        }
+
+        private void OnResourceChanged(int current, int max)
+        {
+            SetResource(current, max);
         }
 
         private void OnVitalDied()

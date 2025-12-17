@@ -232,7 +232,7 @@ namespace TeamSuneat
 
         #endregion Notice
 
-        public static EnemyHealthShieldView SpawnMonsterGauge(Vital vital)
+        public static UIEnemyGauge SpawnEnemyGauge(Vital vital)
         {
             if (GameSetting.Instance.Play.HideUserInterface)
             {
@@ -250,7 +250,7 @@ namespace TeamSuneat
                 return null;
             }
 
-            return spawnedObject.GetComponent<EnemyHealthShieldView>();
+            return spawnedObject.GetComponent<UIEnemyGauge>();
         }
 
         internal static UIDetails SpawnDetails(UIDetailsNames detailsName, Transform parent)

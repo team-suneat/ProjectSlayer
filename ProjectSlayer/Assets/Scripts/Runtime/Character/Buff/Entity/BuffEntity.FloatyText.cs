@@ -85,10 +85,9 @@ namespace TeamSuneat
                 return null;
             }
 
-            UnityEngine.Collider2D collider = Owner.MyVital.GetNotGuardCollider();
-            if (collider != null)
+            if (Owner.MyVital != null)
             {
-                return ResourcesManager.SpawnFloatyText(content, floatyMove, collider.transform);
+                return ResourcesManager.SpawnFloatyText(content, floatyMove, Owner.MyVital.transform);
             }
 
             return null;

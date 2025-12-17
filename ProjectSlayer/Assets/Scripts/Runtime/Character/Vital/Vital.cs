@@ -26,11 +26,6 @@ namespace TeamSuneat
                 Life.Initialize();
             }
 
-            if (Shield != null)
-            {
-                Shield.Initialize();
-            }
-
             if (UseSpawnGaugeOnInit)
             {
                 SpawnEnemyGauge();
@@ -110,40 +105,6 @@ namespace TeamSuneat
             {
                 return false;
             }
-            else if (Shield != null && CurrentShield > 0)
-            {
-                if (CurrentShield >= damageResult.DamageValue)
-                {
-                    if (Shield.UseCurrentValue(damageResult.DamageValueToInt, damageResult))
-                    {
-                        Shield.SpawnShieldFloatyText(damageResult.DamageValueToInt);
-                        damageResult.DamageValue = 0;
-
-                        SendGlobalEventOfDamaged(damageResult);
-
-                        return false;
-                    }
-                }
-                else
-                {
-                    int reduceDamageValue = Shield.Current;
-                    if (Shield.UseCurrentValue(damageResult.DamageValueToInt, damageResult))
-                    {
-                        Shield.SpawnShieldFloatyText(reduceDamageValue);
-                        damageResult.DamageValue -= reduceDamageValue;
-
-                        if (damageResult.DamageValue > 0)
-                        {
-                            Life.TakeDamage(damageResult, damageResult.Attacker);
-                            SendGlobalEventOfDamaged(damageResult);
-                        }
-                    }
-                    else
-                    {
-                        LogErrorUseShield();
-                    }
-                }
-            }
             else if (damageResult.DamageValue > 0)
             {
                 Life.TakeDamage(damageResult, damageResult.Attacker);
@@ -189,15 +150,20 @@ namespace TeamSuneat
                 case DamageTypes.Heal:
                     {
                         int healValue = Mathf.CeilToInt(damageResult.DamageValue);
-
                         targetVital.Heal(healValue);
+                    }
+                    break;
+
+                case DamageTypes.RestoreMana:
+                    {
+                        int manaValue = Mathf.CeilToInt(damageResult.DamageValue);
+                        targetVital.RestoreMana(manaValue);
                     }
                     break;
 
                 case DamageTypes.Charge:
                     {
                         int chargeValue = Mathf.CeilToInt(damageResult.DamageValue);
-
                         targetVital.Charge(chargeValue);
                     }
                     break;
@@ -225,9 +191,14 @@ namespace TeamSuneat
             Life?.Heal(value);
         }
 
+        public void RestoreMana(int value)
+        {
+            Mana?.AddCurrentValue(value);
+        }
+
         public void Charge(int value)
         {
-            _ = (Shield?.AddCurrentValue(value));
+            Shield?.AddCurrentValue(value);
         }
 
         public void AddCurrentValue(VitalConsumeTypes consumeType, float value)
@@ -252,24 +223,6 @@ namespace TeamSuneat
                     }
                     break;
 
-                case VitalConsumeTypes.FixedShield:
-                    {
-                        Charge((int)value);
-                    }
-                    break;
-
-                case VitalConsumeTypes.MaxShieldPercent:
-                    {
-                        Charge(Mathf.RoundToInt(MaxShield * value));
-                    }
-                    break;
-
-                case VitalConsumeTypes.CurrentShieldPercent:
-                    {
-                        Charge(Mathf.RoundToInt(CurrentShield * value));
-                    }
-                    break;
-
                 default:
                     {
                         LogErrorAddResource(consumeType, value);
@@ -287,14 +240,6 @@ namespace TeamSuneat
                 case VitalConsumeTypes.CurrentLifePercent:
                     {
                         Heal(value);
-                    }
-                    break;
-
-                case VitalConsumeTypes.FixedShield:
-                case VitalConsumeTypes.MaxShieldPercent:
-                case VitalConsumeTypes.CurrentShieldPercent:
-                    {
-                        Charge(value);
                     }
                     break;
 
@@ -324,21 +269,6 @@ namespace TeamSuneat
                         }
                     }
                     break;
-
-                case VitalConsumeTypes.FixedShield:
-                case VitalConsumeTypes.MaxShieldPercent:
-                case VitalConsumeTypes.CurrentShieldPercent:
-                    {
-                        if (Shield != null)
-                        {
-                            if (value > 0)
-                            {
-                                _ = Shield.UseCurrentValue(value);
-                                return;
-                            }
-                        }
-                    }
-                    break;
             }
 
             LogErrorUseBattleResource(hitmarkAssetData, value);
@@ -361,17 +291,10 @@ namespace TeamSuneat
                 case VitalResourceTypes.None:
                     return 0;
 
-                case VitalResourceTypes.Life:
+                case VitalResourceTypes.Health:
                     if (Life != null)
                     {
                         return Life.Current;
-                    }
-                    break;
-
-                case VitalResourceTypes.Shield:
-                    if (Shield != null)
-                    {
-                        return Shield.Current;
                     }
                     break;
             }
@@ -391,11 +314,6 @@ namespace TeamSuneat
                 case VitalConsumeTypes.MaxLifePercent:
                 case VitalConsumeTypes.FixedLife:
                     return CurrentLife;
-
-                case VitalConsumeTypes.CurrentShieldPercent:
-                case VitalConsumeTypes.MaxShieldPercent:
-                case VitalConsumeTypes.FixedShield:
-                    return CurrentShield;
             }
 
             LogErrorFindCurrentResource(consumeType);
@@ -414,11 +332,6 @@ namespace TeamSuneat
                 case VitalConsumeTypes.MaxLifePercent:
                 case VitalConsumeTypes.FixedLife:
                     return MaxLife;
-
-                case VitalConsumeTypes.CurrentShieldPercent:
-                case VitalConsumeTypes.MaxShieldPercent:
-                case VitalConsumeTypes.FixedShield:
-                    return MaxShield;
             }
 
             LogErrorFindMaxResource(consumeType);
@@ -433,17 +346,10 @@ namespace TeamSuneat
                 case VitalResourceTypes.None:
                     return 0;
 
-                case VitalResourceTypes.Life:
+                case VitalResourceTypes.Health:
                     if (Life != null)
                     {
                         return Life.Rate;
-                    }
-                    break;
-
-                case VitalResourceTypes.Shield:
-                    if (Shield != null)
-                    {
-                        return Shield.Rate;
                     }
                     break;
             }

@@ -31,6 +31,5 @@ namespace TeamSuneat
 
         Warning,
         Execution,
-        Overwhelm,
     }
 }

@@ -75,7 +75,7 @@ namespace TeamSuneat
         /// <summary> 보호막 피격 시 호출됩니다. </summary>
         private void OnDamageShield(DamageResult damageResult)
         {
-            DamageFeedbacks?.PlayFeedbacks(damageResult.DamagePosition, damageResult.TargetVitalColliderIndex);
+            DamageFeedbacks?.PlayFeedbacks();
             OnDamageEvent?.Invoke(damageResult);
         }
 

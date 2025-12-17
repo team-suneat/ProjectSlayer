@@ -4,13 +4,9 @@
     {
         None,
 
-        Physical,  // 물리
-        Grab,      // 잡기
-        Thorns,    // 가시
-        Overwhelm, // 압도
-
+        Normal,  // 일반 피해
+        Thorns,  // 가시 피해
         DamageOverTime, // 일반 지속 피해
-        HealOverTime, // 생명력 지속 회복
 
         #region 처형 (Execution)
 
@@ -21,12 +17,14 @@
         #region 회복
 
         Heal, // 생명력 회복
+        HealOverTime, // 생명력 지속 회복
+
+        RestoreMana, // 마나 회복
+        RestoreManaOverTime, // 마나 지속 회복
+
         Charge, // 보호막 충전
 
         #endregion 회복
-
-        Spawn, // 캐릭터 또는 피해 없는 발사체 생성
-        Sacrifice, // 희생 (스스로 피해)
     }
 
     public static class DamageTypeChecker
@@ -35,10 +33,8 @@
         {
             switch (damageType)
             {
-                case DamageTypes.Physical:
-                case DamageTypes.Grab:
+                case DamageTypes.Normal:
                 case DamageTypes.Thorns:
-                case DamageTypes.Overwhelm:
                 case DamageTypes.Execution:
 
                     return true;
@@ -64,10 +60,8 @@
         {
             switch (key)
             {
-                case DamageTypes.Physical:
-                case DamageTypes.Grab:
+                case DamageTypes.Normal:
                 case DamageTypes.Thorns:
-                case DamageTypes.Overwhelm:
                 case DamageTypes.DamageOverTime:
                     {
                         return true;
@@ -82,6 +76,31 @@
             {
                 case DamageTypes.Heal:
                 case DamageTypes.HealOverTime:
+                    {
+                        return true;
+                    }
+            }
+            return false;
+        }
+
+        public static bool IsRestoreMana(this DamageTypes key)
+        {
+            switch (key)
+            {
+                case DamageTypes.RestoreMana:
+                case DamageTypes.RestoreManaOverTime:
+                    {
+                        return true;
+                    }
+            }
+            return false;
+        }
+
+        public static bool IsCharge(this DamageTypes key)
+        {
+            switch (key)
+            {
+                case DamageTypes.Charge:
                     {
                         return true;
                     }

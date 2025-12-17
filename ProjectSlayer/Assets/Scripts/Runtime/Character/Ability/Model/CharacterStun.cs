@@ -76,7 +76,6 @@ namespace TeamSuneat
             if (Owner != null)
             {
                 Owner.Attack?.DeactivateAll();
-                Owner.MyVital?.ResizeCollider("Default");
                 Owner.ChangeConditionState(CharacterConditions.Stunned);
 
                 Owner.CharacterAnimator?.StopAttacking();

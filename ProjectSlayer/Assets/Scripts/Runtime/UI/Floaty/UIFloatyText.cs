@@ -19,7 +19,6 @@ namespace TeamSuneat.UserInterface
 
         [FoldoutGroup("Sprite-Damage")] public Sprite PhysicalCritialSprite;
         [FoldoutGroup("Sprite-Damage")] public Sprite MagicalCriticalSprite;
-        [FoldoutGroup("Sprite-Damage")] public Sprite OverwhelmSprite;
         [FoldoutGroup("Sprite-Currency")] public Sprite GoldSprite;
         [FoldoutGroup("Sprite-Currency")] public Sprite MagicStoneSprite;
         [FoldoutGroup("Sprite-Currency")] public Sprite RubyKeySprite;
@@ -52,7 +51,7 @@ namespace TeamSuneat.UserInterface
             {
                 if (damageResult.TargetCharacter.IsPlayer)
                 {
-                    if (vitalResourceType == VitalResourceTypes.Life)
+                    if (vitalResourceType == VitalResourceTypes.Health)
                     {
                         return UIFloatyMoveNames.PlayerDamaged;
                     }
@@ -63,11 +62,6 @@ namespace TeamSuneat.UserInterface
                 }
             }
 
-            if (damageResult.DamageType == DamageTypes.Overwhelm)
-            {
-                return UIFloatyMoveNames.Overwhelm;
-            }
-
             switch (damageResult.DamageType)
             {
                 case DamageTypes.Heal:
@@ -76,7 +70,18 @@ namespace TeamSuneat.UserInterface
                         return UIFloatyMoveNames.HealLife;
                     }
 
-                case DamageTypes.Physical:
+                case DamageTypes.RestoreMana:
+                case DamageTypes.RestoreManaOverTime:
+                    {
+                        return UIFloatyMoveNames.RestoreMana;
+                    }
+
+                case DamageTypes.Charge:
+                    {
+                        return UIFloatyMoveNames.Shield;
+                    }
+
+                case DamageTypes.Normal:
                     {
                         if (damageResult.DamageValue == float.MaxValue)
                         {
@@ -222,13 +227,6 @@ namespace TeamSuneat.UserInterface
                     case UIFloatyMoveNames.MagicalCritical:
                         {
                             TextImage.SetSprite(MagicalCriticalSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    case UIFloatyMoveNames.Overwhelm:
-                        {
-                            TextImage.SetSprite(OverwhelmSprite, true);
                             TextImage.gameObject.SetActive(true);
                         }
                         break;

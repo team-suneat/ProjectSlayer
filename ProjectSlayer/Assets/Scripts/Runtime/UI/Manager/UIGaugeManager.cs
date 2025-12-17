@@ -65,9 +65,9 @@ namespace TeamSuneat.UserInterface
             Log.Warning(LogTags.UI_Gauge, "[Manager] 모든 게이지를 삭제합니다. 등록된 게이지를 초기화합니다.");
         }
 
-        internal EnemyHealthShieldView SpawnEnemyGauge(Character owner)
+        internal UIEnemyGauge SpawnEnemyGauge(Character owner)
         {
-            return ResourcesManager.SpawnMonsterGauge(owner.MyVital);
+            return ResourcesManager.SpawnEnemyGauge(owner.MyVital);
         }
     }
 }

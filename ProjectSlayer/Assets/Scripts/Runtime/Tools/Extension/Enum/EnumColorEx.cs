@@ -42,7 +42,7 @@ namespace TeamSuneat
         {
             switch (damageType)
             {
-                case DamageTypes.Physical:
+                case DamageTypes.Normal:
                     return GameColors.Physical;
 
                 case DamageTypes.Thorns:

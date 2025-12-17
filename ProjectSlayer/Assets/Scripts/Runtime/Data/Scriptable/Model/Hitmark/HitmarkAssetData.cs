@@ -35,12 +35,6 @@ namespace TeamSuneat.Data
         [SuffixLabel("회피 불가 공격")]
         public bool IgnoreEvasion;
 
-        [FoldoutGroup("#피해 정보 - 토글")]
-        [GUIColor("GetBoolColor")]
-        [SuffixLabel("압도 보호막 필요 여부")]
-        [EnableIf("DamageType", DamageTypes.Overwhelm)]
-        public bool IsRequireShieldForOverwhelm;
-
         // 피격
 
         [FoldoutGroup("#피해 정보 - 토글/애니메이션", true)]
@@ -321,7 +315,6 @@ namespace TeamSuneat.Data
 
                 DamageType = DamageType,
                 IgnoreEvasion = IgnoreEvasion,
-                IsRequireShieldForOverwhelm = IsRequireShieldForOverwhelm,
                 IsPowerfulAttack = IsPowerfulAttack,
                 IsReverseDamageDirection = IsReverseDamageDirection,
                 NotPlayDamageAnimation = NotPlayDamageAnimation,

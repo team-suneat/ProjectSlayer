@@ -36,13 +36,7 @@ namespace TeamSuneat
             {
                 return false;
             }
-
-            int attackRange = _monster.Stat.FindValueOrDefaultToInt(StatNames.AttackRange);
-            if (attackRange <= 0)
-            {
-                return false;
-            }
-
+        
             return true;
         }
 

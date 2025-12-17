@@ -12,7 +12,6 @@ namespace TeamSuneat
             if (!TemporarilyInvulnerable.Contains(source))
             {
                 TemporarilyInvulnerable.Add(source);
-                Vital.DeactivateColliders();
                 LogInfo($"임시 무적 상태를 {"부여".ToSelectString()}합니다. {source.GetHierarchyName()}");
             }
 
@@ -33,8 +32,6 @@ namespace TeamSuneat
                     {
                         Vital.Owner.CharacterRenderer.HideOutline();
                     }
-
-                    Vital.ActivateColliders();
                 }
             }
         }

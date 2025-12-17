@@ -121,7 +121,9 @@ namespace TeamSuneat
         private void RegisterSystemStrategies()
         {
             _strategies[StatNames.Health] = new HealthUpdateStrategy();
-            _strategies[StatNames.Shield] = new ShieldUpdateStrategy();
+            _strategies[StatNames.Attack] = new AttackUpdateStrategy();
+            _strategies[StatNames.CriticalChance] = new CriticalUpdateStrategy();
+            _strategies[StatNames.CriticalDamage] = new CriticalUpdateStrategy();
         }
 
         /// <summary>

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using TeamSuneat.Data;
-using TeamSuneat.Data.Game;
-using UnityEngine;
+﻿using TeamSuneat.Data;
 
 namespace TeamSuneat
 {
@@ -11,17 +8,8 @@ namespace TeamSuneat
 
         public override void Initialize()
         {
-            VProfile profileInfo = GameApp.GetSelectedProfile();
-            if (profileInfo != null)
-            {
-                Name = profileInfo.Character.SelectedCharacterName;
-
-                SetupLevel();
-
-                ProfileInfo.Character.Unlock(Name);
-
-                base.Initialize();
-            }
+            base.Initialize();
+            SetupLevel();
         }
 
         public override void BattleReady()

@@ -8,7 +8,7 @@ namespace TeamSuneat
         public virtual void SetHUD()
         {
             RefreshLifeGauge();
-            RefreshShieldGauge();
+            RefreshResourceGauge();
         }
 
         /// <summary> 생명력 게이지가 할당되어있다면 갱신합니다. </summary>
@@ -19,6 +19,17 @@ namespace TeamSuneat
                 if (EnemyGauge != null)
                 {
                     EnemyGauge.SetHealth(Life.Current, Life.Max);
+                }
+            }
+        }
+
+        public virtual void RefreshResourceGauge()
+        {
+            if (Mana != null)
+            {
+                if (EnemyGauge != null)
+                {
+                    EnemyGauge.SetResource(Mana.Current, Mana.Max);
                 }
             }
         }
@@ -49,7 +60,7 @@ namespace TeamSuneat
             if (UIManager.Instance == null || UIManager.Instance.GaugeManager == null) { return; }
             if (UIManager.Instance.GaugeManager.FindEnemy(this) != null) { return; }
 
-            EnemyHealthShieldView view = UIManager.Instance.GaugeManager.SpawnEnemyGauge(Owner);
+            UIEnemyGauge view = UIManager.Instance.GaugeManager.SpawnEnemyGauge(Owner);
             if (view != null)
             {
                 view.Bind(monster);

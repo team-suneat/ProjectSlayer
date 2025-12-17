@@ -31,10 +31,10 @@ namespace TeamSuneat
         private void RefreshCritical(StatSystem StatSystem)
         {
             float criticalChance = StatSystem.FindValueOrDefault(StatNames.CriticalChance);
-            float criticalDamageMultiplier = StatSystem.FindValueOrDefault(StatNames.CriticalDamageMulti);
+            float criticalDamage = StatSystem.FindValueOrDefault(StatNames.CriticalDamage);
             
             LogStatUpdate(StatNames.CriticalChance, criticalChance);
-            LogStatUpdate(StatNames.CriticalDamageMulti, criticalDamageMultiplier);
+            LogStatUpdate(StatNames.CriticalDamage, criticalDamage);
 
             // 치명타 관련 시스템 새로고침
             // 실제 구현은 치명타 계산 시스템에 따라 달라질 수 있습니다

@@ -8,8 +8,14 @@ namespace TeamSuneat
         /// <summary> 치명타 여부 </summary>
         public bool IsCritical;
 
+        /// <summary> 회심의 일격 여부 </summary>
+        public bool IsDevastatingStrike;
+
         /// <summary> 회피 여부 </summary>
         public bool IsEvasion;
+
+        /// <summary> 명중 실패 여부 </summary>
+        public bool IsMiss;
 
         //───────────────────────────────────────────────────────────────────────────────────────────────────=
 
@@ -49,12 +55,6 @@ namespace TeamSuneat
         /// <summary> 피격자 바이탈 </summary>
         public Vital TargetVital;
 
-        /// <summary> 피격자 바이탈 충돌체 </summary>
-        public Collider2D TargetVitalCollider;
-
-        /// <summary> 피격자 바이탈 충돌체 인덱스 </summary>
-        public int TargetVitalColliderIndex;
-
         //───────────────────────────────────────────────────────────────────────────────────────────────────
 
         /// <summary> 히트마크 레벨 </summary>
@@ -79,18 +79,9 @@ namespace TeamSuneat
         {
             get
             {
-                if (TargetVitalCollider != null)
-                {
-                    return TargetVitalCollider.transform.position;
-                }
-
                 if (TargetVital != null)
                 {
-                    Collider2D vitalCollider = TargetVital.GetNotGuardCollider();
-                    if (vitalCollider != null)
-                    {
-                        return vitalCollider.transform.position;
-                    }
+                    return TargetVital.transform.position;
                 }
 
                 return Vector3.zero;

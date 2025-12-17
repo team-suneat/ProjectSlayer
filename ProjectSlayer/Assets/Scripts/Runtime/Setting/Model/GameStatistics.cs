@@ -78,7 +78,7 @@ namespace TeamSuneat.Setting
                 return 0;
             }
 
-            float damage = _damagePerSeconds[key].FindValue(DamageTypes.Physical);
+            float damage = _damagePerSeconds[key].FindValue(DamageTypes.Normal);
             if (damage.IsZero())
             {
                 return 0;

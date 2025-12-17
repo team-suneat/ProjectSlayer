@@ -80,6 +80,14 @@ namespace TeamSuneat
                 {
                     Owner.MyVital.Heal(damageResult.DamageValueToInt);
                 }
+                else if (damageResult.DamageType.IsRestoreMana())
+                {
+                    Owner.MyVital.RestoreMana(damageResult.DamageValueToInt);
+                }
+                else if (damageResult.DamageType.IsCharge())
+                {
+                    Owner.MyVital.Charge(damageResult.DamageValueToInt);
+                }
             }
         }
 
@@ -117,7 +125,13 @@ namespace TeamSuneat
                         continue;
                     }
 
-                    if (damageResult.DamageType == DamageTypes.Charge)
+                    if (damageResult.DamageType.IsRestoreMana())
+                    {
+                        Owner.MyVital.RestoreMana(damageResult.DamageValueToInt);
+                        continue;
+                    }
+
+                    if (damageResult.DamageType.IsCharge())
                     {
                         Owner.MyVital.Charge(damageResult.DamageValueToInt);
                         continue;

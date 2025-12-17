@@ -76,15 +76,9 @@ namespace TeamSuneat
         {
             string content = damageValue.ToString();
 
-            UIFloatyText floatyText = null;
-            Collider2D vitalCollider = Vital.GetNotGuardCollider();
-            if (vitalCollider != null)
+            if (Vital != null)
             {
-                floatyText = SpawnFloatyText(content, vitalCollider.transform, UIFloatyMoveNames.Shield);
-            }
-            else if (Vital.Owner != null)
-            {
-                floatyText = SpawnFloatyText(content, DamageTextPoint, UIFloatyMoveNames.Shield);
+                _ = SpawnFloatyText(content, DamageTextPoint, UIFloatyMoveNames.Shield);
             }
         }
     }

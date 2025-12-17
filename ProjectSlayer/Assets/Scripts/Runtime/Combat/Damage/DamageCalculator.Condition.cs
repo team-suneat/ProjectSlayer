@@ -7,18 +7,11 @@ namespace TeamSuneat
     {
         private bool TryCheatDamage(HitmarkAssetData damageAsset, ref DamageResult damageResult)
         {
-            if (Attacker == null)
-            {
-                return TryReceiveDamageOnlyOne(damageAsset, ref damageResult);
-            }
-            else if (damageAsset.DamageType.IsDamage() || damageAsset.DamageType == DamageTypes.Grab)
-            {
-                return TryReceiveDamageOnlyOne(damageAsset, ref damageResult);
-            }
-
+            // 치트 피해 관련 로직이 필요할 경우 여기에 구현
             return false;
         }
 
+        // 명중/회피 판정: (명중률 - 적 회피율)에 따른 판정
         private bool DetermineEvasion(DamageResult damageResult)
         {
             if (damageResult.Asset.IgnoreEvasion)
@@ -26,20 +19,29 @@ namespace TeamSuneat
                 return false;
             }
 
-            if (damageResult.TargetCharacter == null)
+            if (Attacker == null || damageResult.TargetCharacter == null)
             {
                 return false;
             }
 
-            float targetEvasionChance = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.EvasionChance);
-            if (RandomEx.GetFloatValue() < targetEvasionChance)
+            // 공격자 명중률
+            float attackerAccuracy = Attacker.Stat.FindValueOrDefault(StatNames.Accuracy);
+            // 피격자 회피율
+            float targetEvasion = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.Evasion);
+
+            // 명중 판정: 명중률 - 적 회피율
+            float hitChance = attackerAccuracy - targetEvasion;
+
+            // 명중 실패 (회피 성공) 판정
+            if (RandomEx.GetFloatValue() >= hitChance)
             {
                 SpawnFloatyText("Evasion");
                 _ = GlobalEvent<DamageResult>.Send(GlobalEventType.PLAYER_CHARACTER_DODGE, damageResult);
-
+                LogEvasionApplied(hitChance, attackerAccuracy, targetEvasion);
                 return true;
             }
 
+            LogEvasionNotApplied(hitChance, attackerAccuracy, targetEvasion);
             return false;
         }
 
@@ -91,10 +93,10 @@ namespace TeamSuneat
             float criticalChance = 0f;
             float targetCriticalChance = 0f;
 
-            TryAddAttackerCalculateStatValue(StatNames.CriticalChance, ref criticalChance);
+            TryAddAttackerStatValue(StatNames.CriticalChance, ref criticalChance);
 
             GameDefineAssetData defineAssetData = ScriptableDataManager.Instance.GetGameDefine().Data;
-            float resultCriticalChance = criticalChance + targetCriticalChance;       
+            float resultCriticalChance = criticalChance + targetCriticalChance;
 
             // 치명타 확률이 0% 이하이면 치명타 발생하지 않음
             if (resultCriticalChance <= 0f)
@@ -125,6 +127,41 @@ namespace TeamSuneat
                 }
             }
 
+            return false;
+        }
+
+        // 회심의 일격 판정: 회심의 일격 확률에 따른 랜덤 판정
+        private bool DetermineDevastatingStrike(DamageResult damageResult)
+        {
+            if (Attacker == null || TargetCharacter == null)
+            {
+                return false;
+            }
+
+            // 플레이어만 회심의 일격 사용 가능
+            if (!Attacker.IsPlayer)
+            {
+                return false;
+            }
+
+            // 회심의 일격 확률 가져오기
+            float devastatingStrikeChance = Attacker.Stat.FindValueOrDefault(StatNames.DevastatingStrikeChance);
+
+            // 회심의 일격 확률이 0% 이하이면 발생하지 않음
+            if (devastatingStrikeChance <= 0f)
+            {
+                LogDevastatingStrikeNotApplied(devastatingStrikeChance);
+                return false;
+            }
+
+            float randomValue = RandomEx.GetFloatValue();
+            if (randomValue < devastatingStrikeChance)
+            {
+                LogDevastatingStrikeApplied(devastatingStrikeChance);
+                return true;
+            }
+
+            LogDevastatingStrikeNotApplied(devastatingStrikeChance);
             return false;
         }
     }

@@ -217,6 +217,10 @@ namespace TeamSuneat
                 case DamageTypes.HealOverTime:
                     return ProcessHealDamage(damageResult);
 
+                case DamageTypes.RestoreMana:
+                case DamageTypes.RestoreManaOverTime:
+                    return ProcessRestoreManaDamage(damageResult);
+
                 case DamageTypes.Charge:
                     return ProcessChargeDamage(damageResult);
 
@@ -228,6 +232,12 @@ namespace TeamSuneat
         protected virtual bool ProcessHealDamage(DamageResult damageResult)
         {
             _damageInfo.TargetVital.Heal(damageResult.DamageValueToInt);            
+            return true;
+        }
+
+        protected virtual bool ProcessRestoreManaDamage(DamageResult damageResult)
+        {
+            _damageInfo.TargetVital.RestoreMana(damageResult.DamageValueToInt);            
             return true;
         }
 

@@ -21,12 +21,6 @@ namespace TeamSuneat
                     MyVital.Life.UnregisterOnDeathEvent(OnDeath);
                     MyVital.Life.UnregisterOnKilledEvent(OnKilled);
                 }
-
-                if (MyVital.Shield != null)
-                {
-                    LogInfo("캐릭터의 방어막(Shield)의 피격 이벤트를 모두 해제합니다.");
-                    MyVital.Shield.UnregisterDamageEvent(OnDamage);
-                }
             }
         }
 
@@ -74,12 +68,6 @@ namespace TeamSuneat
                     MyVital.Life.RegisterOnReviveEvent(OnRevive);
                     MyVital.Life.RegisterOnDeathEvent(OnDeath);
                     MyVital.Life.RegisterOnKilledEvent(OnKilled);
-                }
-
-                if (MyVital.Shield != null)
-                {
-                    LogInfo("캐릭터의 방어막(Shield)의 데미지 이벤트를 모두 등록합니다.");
-                    MyVital.Shield.RegisterDamageEvent(OnDamage);
                 }
             }
         }

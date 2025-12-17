@@ -1,4 +1,3 @@
-using System.Linq;
 using TeamSuneat.Data;
 using UnityEngine;
 
@@ -6,19 +5,32 @@ namespace TeamSuneat
 {
     public partial class DamageCalculator
     {
+        // 최소 피해 증폭 배율 (피해가 0이 되는 것을 방지)
+        private const float MIN_DAMAGE_AMPLIFICATION = 0.01f;
+
+        // 피해 증폭 계산: 치명타 + 회심의 일격
         private float CalculateDamageAmplification(HitmarkAssetData damageAssetData, DamageResult damageResult)
         {
             float damageAmplification = 1f;
-            float criticalDamageMultiplier = GetCriticalDamageMultiplier(damageResult);
 
+            // 치명타 피해 배율: 기본 데미지 × (1 + 치명타 피해%)
+            float criticalDamageMultiplier = GetCriticalDamageMultiplier(damageResult);
             if (!criticalDamageMultiplier.IsEqual(1))
             {
                 damageAmplification *= criticalDamageMultiplier;
             }
 
-            return Mathf.Max(0.01f, damageAmplification); // 최소값 보정
+            // 회심의 일격 피해 배율: 기본 데미지 × (1 + 회심의 일격%)
+            float devastatingStrikeMultiplier = GetDevastatingStrikeMultiplier(damageResult);
+            if (!devastatingStrikeMultiplier.IsEqual(1))
+            {
+                damageAmplification *= devastatingStrikeMultiplier;
+            }
+
+            return Mathf.Max(MIN_DAMAGE_AMPLIFICATION, damageAmplification);
         }
 
+        // 치명타 피해 배율 계산: 기본 데미지 × (1 + 치명타 피해%)
         private float GetCriticalDamageMultiplier(DamageResult damageResult)
         {
             if (damageResult.DamageType.IsInstantDamage())
@@ -33,52 +45,29 @@ namespace TeamSuneat
             return 1f;
         }
 
-        private float GetDamageAmplificationByStat(DamageResult damageResult, StatNames statName)
+        // 회심의 일격 피해 배율 계산: 기본 데미지 × (1 + 회심의 일격%)
+        private float GetDevastatingStrikeMultiplier(DamageResult damageResult)
         {
-            float result = 1f;
-            if (TryAddAttackerStatValueIfNotEqual(statName, ref result, 1f,
-                (value) => LogDamageAmplificationByStat(statName, value)))
+            if (damageResult.DamageType.IsInstantDamage())
             {
-                return result;
+                damageResult.IsDevastatingStrike = DetermineDevastatingStrike(damageResult);
+                if (damageResult.IsDevastatingStrike)
+                {
+                    return CalculateDevastatingStrikeMultiplier(damageResult);
+                }
             }
+
             return 1f;
         }
 
-        private bool TryMultiplierState()
+        // 회심의 일격 피해량 배율 계산
+        private float CalculateDevastatingStrikeMultiplier(DamageResult damageResult)
         {
-            StateEffects[] states = { StateEffects.Weak, StateEffects.Dazed, StateEffects.Vulnerable, StateEffects.EnhancedVulnerable };
-            return states.Any(state => ContainsTargetCharacterStateEffect(state));
-        }
+            float devastatingStrikeMultiplier = 0f;
+            _ = TryAddAttackerStatValue(StatNames.DevastatingStrike, ref devastatingStrikeMultiplier, LogDevastatingStrikeRate);
 
-        private void AddLogDamageAmplication(float damageAmplification,
-            float damageAmplificationByDamageType,
-            float damageAmplificationByTick,
-            float dotDamageAmplification,
-            float criticalDamageMultiplier,
-            float damageAmplificationFromTarget)
-        {
-            if (Log.LevelInfo)
-            {
-#if UNITY_EDITOR
-                _stringBuilder.AppendLine();
-                _stringBuilder.AppendFormat("피해 증폭 배율[({0}) = 피해종류:{1} * 틱마다:{2} * 지속피해:{3} * 치명타:{4} * 피격자:{5}",
-                        ValueStringEx.GetPercentString(damageAmplification, 1),
-                        ValueStringEx.GetPercentString(damageAmplificationByDamageType, 1),
-                        ValueStringEx.GetPercentString(damageAmplificationByTick, 1),
-                        ValueStringEx.GetPercentString(dotDamageAmplification, 1),
-                        ValueStringEx.GetPercentString(criticalDamageMultiplier, 1),
-                        ValueStringEx.GetPercentString(damageAmplificationFromTarget, 1));
-                _stringBuilder.AppendLine();
-#endif
-            }
-        }
-
-        private void LogDamageAmplificationByStat(StatNames statName, float statValue)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("능력치({0})에 의해 피해량 증폭이 적용됩니다. {1}", statName.ToLogString(), ValueStringEx.GetPercentString(statValue, 0));
-            }
+            // 기본 데미지 × (1 + 회심의 일격%)
+            return 1f + devastatingStrikeMultiplier;
         }
     }
 }

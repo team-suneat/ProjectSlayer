@@ -13,7 +13,6 @@ namespace TeamSuneat
         private readonly StringBuilder _stringBuilder = new();
 #endif
         private Vital _targetVital;
-        private Collider2D _targetVitalCollider;
 
         // StringBuilder 헬퍼 메서드들
 
@@ -49,27 +48,13 @@ namespace TeamSuneat
         {
 #if UNITY_EDITOR
             return _stringBuilder.ToString();
-#endif
+#else
             return string.Empty;
+#endif
         }
 
-        private VProfile ProfileInfo => GameApp.GetSelectedProfile();
         public Vital TargetVital => _targetVital;
-        public Collider2D TargetVitalCollider => _targetVitalCollider;
         public Character TargetCharacter => _targetVital?.Owner;
-
-        public int TargetVitalColliderIndex
-        {
-            get
-            {
-                if (TargetVital != null)
-                {
-                    return TargetVital.GetColliderIndex(TargetVitalCollider);
-                }
-
-                return -1;
-            }
-        }
 
         public HitmarkAssetData HitmarkAssetData { get; set; }
         public Character Attacker { get; private set; }
@@ -79,7 +64,7 @@ namespace TeamSuneat
         public float DamageReferenceValue { get; private set; }
         public float ManaCostReferenceValue { get; private set; }
         public float CooldownReferenceValue { get; private set; }
-        public float DecrescenceRate { get; private set; }
+        public float DiminishingReturns { get; private set; }
         public int Level { get; private set; } = 1;
         public int Stack { get; set; }
         public int Tick { get; set; }
@@ -114,9 +99,16 @@ namespace TeamSuneat
             RefreshReferenceValue(damageAsset);
             ComputeByType(damageAsset, ref damageResult);
 
+            // 치명타 이벤트 발송
             if (damageResult.IsCritical)
             {
                 GlobalEvent<DamageResult>.Send(GlobalEventType.PLAYER_CHARACTER_ATTACK_MONSTER_CRITICAL, damageResult);
+            }
+
+            // 회심의 일격 이벤트 발송
+            if (damageResult.IsDevastatingStrike)
+            {
+                GlobalEvent<DamageResult>.Send(GlobalEventType.PLAYER_CHARACTER_ATTACK_MONSTER_DEVASTATING_STRIKE, damageResult);
             }
 
             DamageResults.Add(damageResult);
@@ -147,15 +139,8 @@ namespace TeamSuneat
                 HitmarkLevel = Level,
                 Attacker = Attacker,
                 AttackEntity = AttackEntity,
-                TargetVital = TargetVital,
-                TargetVitalCollider = TargetVitalCollider,
-                TargetVitalColliderIndex = TargetVitalColliderIndex
+                TargetVital = TargetVital
             };
-        }
-
-        private bool TryReceiveDamageOnlyOne(HitmarkAssetData damageAsset, ref DamageResult damageResult)
-        {
-            return false;
         }
 
         private void ResetDamageResults()
@@ -187,9 +172,6 @@ namespace TeamSuneat
             {
                 _targetVital = targetVital;
                 LogProgressTargetVital(_targetVital.GetHierarchyPath());
-
-                _targetVitalCollider = targetVital.GetNotGuardCollider();
-                LogProgressTargetVitalCollider(_targetVitalCollider.GetHierarchyPath());
             }
             else
             {
@@ -239,201 +221,5 @@ namespace TeamSuneat
                 ResourcesManager.SpawnFloatyText(content, true, TargetVital.transform);
             }
         }
-
-        #region Log
-
-        private void LogHealingPowerBySkillCategory(string skillCategory, float statValue)
-        {
-            if (Log.LevelInfo)
-            {
-#if UNITY_EDITOR
-                string statValueContent = ValueStringEx.GetPercentString(statValue, true);
-                string content = string.Format("기술 범주에 따른 회복량 배율을 계산합니다. {0}(기술 범주), {1}", skillCategory, statValueContent);
-                AppendToLog(content);
-#endif
-            }
-        }
-
-        private void LogHealingOrResourceRestoration(HitmarkAssetData damageAsset, float fixedValue, float referenceValue, float magnification, float result)
-        {
-            if (Log.LevelInfo)
-            {
-                string format;
-                if (damageAsset.DamageType.IsHeal())
-                {
-                    format = "생명력 회복량을 계산합니다. 고정 회복량({0}) + [참조 회복량({1}) * 참조 회복 계수({2})] = {3}";
-                }
-                else
-                {
-                    format = "{4} 회복량을 계산합니다. 고정 회복량({0}) + [참조 회복량({1}) * 참조 회복 계수({2})] = {3}";
-                }
-
-                LogInfo(format,
-                    ValueStringEx.GetValueString(fixedValue),
-                    ValueStringEx.GetValueString(referenceValue),
-                    ValueStringEx.GetPercentString(magnification, 0f),
-                    ValueStringEx.GetValueString(result), damageAsset.DamageType);
-            }
-        }
-
-        private void LogCooldownReduction(DamageTypes damageType, float fixedValue, float referenceValue, float valueRatio, float magnification, float result)
-        {
-            if (Log.LevelInfo)
-            {
-                string format = "{0} 재사용 대기 시간 감소량을 계산합니다. {5}. 계산식: 고정 감소량({1}) + [{2}(참조 재사용 대기시간) * {3}(참조 재사용 대기시간 계수)* {4}(참조 재사용 대기시간 배율)]";
-                LogInfo(format,
-                    damageType, ValueStringEx.GetValueString(fixedValue),
-                    ValueStringEx.GetValueString(referenceValue),
-                    ValueStringEx.GetPercentString(valueRatio),
-                    ValueStringEx.GetPercentString(magnification),
-                    ValueStringEx.GetValueString(result));
-            }
-        }
-
-        private void LogErrorHitmarkNotSet()
-        {
-            if (Log.LevelError)
-            {
-                LogError("설정된 히트마크가 없습니다.");
-            }
-        }
-
-        private void LogProgressResetDamageResults()
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("이전 계산된 피해값을 초기화합니다.");
-            }
-        }
-
-        private void LogProgressSkillLevel(string skillName, string level)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("기술 레벨을 설정합니다. {0}, 레벨: {1}", skillName, level);
-            }
-        }
-
-        private void LogProgressAttacker(string path)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("공격자를 설정합니다. {0}", path);
-            }
-        }
-
-        private void LogProgressTargetVital(string path)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("목표 바이탈을 설정합니다. {0}", path);
-            }
-        }
-
-        private void LogWarningTargetVital()
-        {
-            if (Log.LevelWarning)
-            {
-                LogWarning("목표 바이탈을 설정할 수 없습니다.");
-            }
-        }
-
-        private void LogProgressTargetVitalCollider(string path)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("목표 바이탈 충돌체를 설정합니다. {0}", path);
-            }
-        }
-
-        private void LogProgressManaCostReferenceValue(string value)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("마나 소모 참조값을 설정합니다. Value: {0}", value);
-            }
-        }
-
-        private void LogProgressDamageReferenceValue(string value)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("피해 참조값을 설정합니다. Value: {0}", value);
-            }
-        }
-
-        private void LogProgressCooldownReferenceValue(string value)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("재사용 대기시간 참조값을 설정합니다. Value: {0}", value);
-            }
-        }
-
-        private void LogInfoCriticalAppliedByCheat()
-        {
-            if (Log.LevelInfo)
-            {
-                LogInfo("치트를 통해 치명타를 적용합니다.");
-            }
-        }
-
-        private void LogInfoNoCriticalAppliedByCheat()
-        {
-            if (Log.LevelInfo)
-            {
-                LogInfo("치트를 통해 치명타를 적용하지 않습니다.");
-            }
-        }
-
-        private void LogCriticalHitApplied(float resultCriticalChance, float criticalChance, float targetCriticalChance)
-        {
-            if (Log.LevelInfo)
-            {
-                LogInfo("치명타가 적용되었습니다. 결과: {0}, 시전자: {1}, 피격자: {2}",
-                    ValueStringEx.GetPercentString(resultCriticalChance, 0),
-                    ValueStringEx.GetPercentString(criticalChance, 0),
-                    ValueStringEx.GetPercentString(targetCriticalChance, 0));
-            }
-        }
-
-        private void LogCriticalHitNotApplied(float resultCriticalChance, float criticalChance, float targetCriticalChance)
-        {
-            if (Log.LevelInfo)
-            {
-                LogInfo("치명타가 적용되지 않았습니다. 결과: {0}, 시전자: {1}, 피격자: {2}",
-                    ValueStringEx.GetPercentString(resultCriticalChance, 0),
-                    ValueStringEx.GetPercentString(criticalChance, 0),
-                    ValueStringEx.GetPercentString(targetCriticalChance, 0));
-            }
-        }
-
-        private void LogExecutionApplied(float targetLifeRate, float executionConditionalTargetLifeRate)
-        {
-            if (Log.LevelInfo)
-            {
-                LogInfo("처형이 적용되었습니다. 목표 생명력 비율: {0}, 처형 조건: {1}",
-                    ValueStringEx.GetPercentString(targetLifeRate, 0),
-                    ValueStringEx.GetPercentString(executionConditionalTargetLifeRate, 0));
-            }
-        }
-
-        private void LogProgressMissingLife(float chanceOnMissingLife)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("생명력 부족 시 추가 확률을 적용합니다. {0}", ValueStringEx.GetPercentString(chanceOnMissingLife, 0));
-            }
-        }
-
-        private void LogProgressMissingResource(float chanceOnMissingResource)
-        {
-            if (Log.LevelProgress)
-            {
-                LogProgress("자원 부족 시 추가 확률을 적용합니다. {0}", ValueStringEx.GetPercentString(chanceOnMissingResource, 0));
-            }
-        }
-
-        #endregion Log
     }
 }
