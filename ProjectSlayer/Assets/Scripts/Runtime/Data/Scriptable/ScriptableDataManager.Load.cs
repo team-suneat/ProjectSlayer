@@ -131,7 +131,7 @@ namespace TeamSuneat.Data
             {
                 if (_enhancementDataAsset != null)
                 {
-                    Log.Warning(LogTags.ScriptableData, "강화 시스템 데이터 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}", 
+                    Log.Warning(LogTags.ScriptableData, "강화 시스템 데이터 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
                         _enhancementDataAsset.name, asset.name);
                 }
                 else
@@ -165,7 +165,7 @@ namespace TeamSuneat.Data
             {
                 if (_growthDataAsset != null)
                 {
-                    Log.Warning(LogTags.ScriptableData, "성장 시스템 데이터 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}", 
+                    Log.Warning(LogTags.ScriptableData, "성장 시스템 데이터 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
                         _growthDataAsset.name, asset.name);
                 }
                 else

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9224e92eed4e5b748a46f4ecbf77ac54, type: 3}
+  m_Name: EnhancementData
+  m_EditorClassIdentifier: 
+  NameString: EnhancementData
+  DataArray:
+  - StatName: 1
+    MaxLevel: 1900000
+    InitialValue: 0
+    GrowthValue: 2
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+  - StatName: 2
+    MaxLevel: 1900000
+    InitialValue: 0
+    GrowthValue: 20
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+  - StatName: 3
+    MaxLevel: 1900000
+    InitialValue: 0
+    GrowthValue: 2
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+  - StatName: 4
+    MaxLevel: 10000
+    InitialValue: 0
+    GrowthValue: 0.001
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+  - StatName: 5
+    MaxLevel: 1000
+    InitialValue: 0
+    GrowthValue: 0.01
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+  - StatName: 13
+    MaxLevel: 4000
+    InitialValue: 0
+    GrowthValue: 0.01
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 4
+    RequiredStatLevel: 1000
+  - StatName: 14
+    MaxLevel: 1000
+    InitialValue: 0
+    GrowthValue: 0.001
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 4
+    RequiredStatLevel: 1000

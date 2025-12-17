@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TeamSuneat;
 
 namespace TeamSuneat.Data.Game
 {
@@ -21,13 +20,13 @@ namespace TeamSuneat.Data.Game
                 EnhancementLevels = new Dictionary<string, int>();
             }
 
-            Log.Info(LogTags.GameData, "[Character] 강화 능력치 레벨 데이터를 불러옵니다. 총 {0}개", EnhancementLevels.Count);
+            Log.Info(LogTags.GameData_Character, "강화 능력치 레벨 데이터를 불러옵니다. 총 {0}개", EnhancementLevels.Count);
         }
 
         public void ClearIngameData()
         {
             EnhancementLevels.Clear();
-            Log.Info(LogTags.GameData, "[Character] 강화 능력치 레벨 데이터를 초기화합니다.");
+            Log.Info(LogTags.GameData_Character, "강화 능력치 레벨 데이터를 초기화합니다.");
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace TeamSuneat.Data.Game
 
             string key = statName.ToString();
             EnhancementLevels[key] = level;
-            Log.Info(LogTags.GameData, "[Character] 강화 능력치 {0}의 레벨을 {1}로 설정합니다.", statName, level);
+            Log.Info(LogTags.GameData_Character, "강화 능력치 {0}의 레벨을 {1}로 설정합니다.", statName, level);
         }
 
         /// <summary>
@@ -87,4 +86,3 @@ namespace TeamSuneat.Data.Game
         }
     }
 }
-

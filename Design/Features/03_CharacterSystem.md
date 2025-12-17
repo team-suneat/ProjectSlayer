@@ -64,6 +64,12 @@
 - [x] 레벨 제한 시스템 (MAX LV 체크 로직) (GrowthData에 MaxLevel 포함)
 - [x] ScriptableObject 데이터 구조 구현
   - [x] GrowthDataAsset: 단일 에셋으로 모든 성장 능력치 데이터 관리
+    - [x] CharacterGrowthTypes 기반 검색 메서드 추가
+      - [x] FindGrowthDataByType(CharacterGrowthTypes) 메서드
+      - [x] GetStatNameByGrowthType() 변환 메서드
+      - [x] GetGrowthTypeByStatName() 변환 메서드
+    - [x] CreateAllStatData에서 GrowthType 자동 설정
+    - [x] LogErrorInvalid에 GrowthType 유효성 검사 및 중복 체크
   - [x] GrowthData: 개별 성장 능력치 데이터 (레벨당 증가량, 비용 등)
   - [x] ScriptableDataManager 통합
   - [x] Editor 자동 생성 기능 (CharacterSystemAssetCreator)
@@ -118,6 +124,11 @@
   - [x] LUK 레벨
   - [x] ACC 레벨
   - [x] DODGE 레벨
+- [x] CharacterGrowthTypes 기반 레벨 관리 메서드
+  - [x] GetLevel(CharacterGrowthTypes) 메서드
+  - [x] SetLevel(CharacterGrowthTypes, int) 메서드
+  - [x] AddLevel(CharacterGrowthTypes, int) 메서드
+  - [x] GrowthTypeToStatName() 변환 메서드
 
 ## 3. UI
 

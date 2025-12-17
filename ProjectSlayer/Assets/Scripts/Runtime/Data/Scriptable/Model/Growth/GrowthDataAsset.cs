@@ -1,6 +1,6 @@
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using System.Linq;
-using TeamSuneat;
 using UnityEditor;
 using UnityEngine;
 
@@ -37,6 +37,10 @@ namespace TeamSuneat.Data
                     continue;
                 }
 
+                if (data.GrowthType == CharacterGrowthTypes.None)
+                {
+                    Log.Error("성장 시스템 데이터[{0}]의 성장 타입이 설정되지 않았습니다: {1}", i, name);
+                }
                 if (data.StatName == StatNames.None)
                 {
                     Log.Error("성장 시스템 데이터[{0}]의 스탯 이름이 설정되지 않았습니다: {1}", i, name);
@@ -47,23 +51,33 @@ namespace TeamSuneat.Data
                 }
             }
 
-            // 중복 체크
-            var duplicates = DataArray
+            // 성장 타입 중복 체크
+            IEnumerable<CharacterGrowthTypes> typeDuplicates = DataArray
+                .Where(d => d != null && d.GrowthType != CharacterGrowthTypes.None)
+                .GroupBy(d => d.GrowthType)
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key);
+
+            foreach (CharacterGrowthTypes duplicate in typeDuplicates)
+            {
+                Log.Error("성장 시스템 데이터에 중복된 성장 타입이 있습니다: {0} in {1}", duplicate, name);
+            }
+
+            // 스탯 중복 체크
+            IEnumerable<StatNames> statDuplicates = DataArray
                 .Where(d => d != null && d.StatName != StatNames.None)
                 .GroupBy(d => d.StatName)
                 .Where(g => g.Count() > 1)
                 .Select(g => g.Key);
 
-            foreach (var duplicate in duplicates)
+            foreach (StatNames duplicate in statDuplicates)
             {
                 Log.Error("성장 시스템 데이터에 중복된 스탯이 있습니다: {0} in {1}", duplicate, name);
             }
 #endif
         }
 
-        /// <summary>
-        /// 스탯 이름으로 성장 데이터를 찾습니다.
-        /// </summary>
+        // 스탯 이름으로 성장 데이터를 찾습니다.
         public GrowthData FindGrowthData(StatNames statName)
         {
             if (DataArray == null)
@@ -80,6 +94,57 @@ namespace TeamSuneat.Data
             }
 
             return null;
+        }
+
+        // 성장 타입으로 성장 데이터를 찾습니다.
+        public GrowthData FindGrowthDataByType(CharacterGrowthTypes growthType)
+        {
+            if (DataArray == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < DataArray.Length; i++)
+            {
+                if (DataArray[i] != null && DataArray[i].GrowthType == growthType)
+                {
+                    return DataArray[i];
+                }
+            }
+
+            return null;
+        }
+
+        // 성장 타입에 해당하는 스탯 이름을 반환합니다.
+        public static StatNames GetStatNameByGrowthType(CharacterGrowthTypes growthType)
+        {
+            return growthType switch
+            {
+                CharacterGrowthTypes.Strength => StatNames.Strength,
+                CharacterGrowthTypes.HealthPoint => StatNames.HealthPoint,
+                CharacterGrowthTypes.Vitality => StatNames.Vitality,
+                CharacterGrowthTypes.Critical => StatNames.Critical,
+                CharacterGrowthTypes.Luck => StatNames.Luck,
+                CharacterGrowthTypes.AccuracyStat => StatNames.AccuracyStat,
+                CharacterGrowthTypes.Dodge => StatNames.Dodge,
+                _ => StatNames.None
+            };
+        }
+
+        // 스탯 이름에 해당하는 성장 타입을 반환합니다.
+        public static CharacterGrowthTypes GetGrowthTypeByStatName(StatNames statName)
+        {
+            return statName switch
+            {
+                StatNames.Strength => CharacterGrowthTypes.Strength,
+                StatNames.HealthPoint => CharacterGrowthTypes.HealthPoint,
+                StatNames.Vitality => CharacterGrowthTypes.Vitality,
+                StatNames.Critical => CharacterGrowthTypes.Critical,
+                StatNames.Luck => CharacterGrowthTypes.Luck,
+                StatNames.AccuracyStat => CharacterGrowthTypes.AccuracyStat,
+                StatNames.Dodge => CharacterGrowthTypes.Dodge,
+                _ => CharacterGrowthTypes.None
+            };
         }
 
 #if UNITY_EDITOR
@@ -152,12 +217,12 @@ namespace TeamSuneat.Data
                 StatNames.Dodge
             };
 
-            System.Collections.Generic.List<GrowthData> dataList = new System.Collections.Generic.List<GrowthData>();
+            System.Collections.Generic.List<GrowthData> dataList = new();
 
             // 각 능력치별 기본값 설정
-            System.Collections.Generic.Dictionary<StatNames, (int maxLevel, int initialCost, float costGrowthRate, float statIncrease)> defaultValues = 
-                new System.Collections.Generic.Dictionary<StatNames, (int, int, float, float)>
-            {
+            System.Collections.Generic.Dictionary<StatNames, (int maxLevel, int initialCost, float costGrowthRate, float statIncrease)> defaultValues =
+                new()
+                {
                 { StatNames.Strength, (1000, 1, 1.0f, 1f) },
                 { StatNames.HealthPoint, (1000, 1, 1.0f, 1f) },
                 { StatNames.Vitality, (1000, 1, 1.0f, 1f) },
@@ -175,14 +240,13 @@ namespace TeamSuneat.Data
                     continue;
                 }
 
-                if (defaultValues.TryGetValue(statName, out var values))
+                if (defaultValues.TryGetValue(statName, out (int maxLevel, int initialCost, float costGrowthRate, float statIncrease) values))
                 {
-                    GrowthData data = new GrowthData
+                    GrowthData data = new()
                     {
                         StatName = statName,
                         MaxLevel = values.maxLevel,
-                        InitialCost = values.initialCost,
-                        CostGrowthRate = values.costGrowthRate,
+                        GrowthType = GetGrowthTypeByStatName(statName),
                         StatIncreasePerLevel = values.statIncrease
                     };
 
@@ -201,4 +265,3 @@ namespace TeamSuneat.Data
 #endif
     }
 }
-

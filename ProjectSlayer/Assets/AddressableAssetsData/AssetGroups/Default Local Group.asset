@@ -51,20 +51,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6260e59fad323a944b16b300f37a5aa4
-    m_Address: Assets/Addressables/Prefab/UI/Popup/UIGameStartSelectionPopup.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a10b5cf9a5d42346b2d7f8146343699
     m_Address: Assets/Addressables/Prefab/PlayerCharacter.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6ea9e6f359d93f64dafbde024ea380ad
-    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIGauge.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame
@@ -87,20 +75,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ae6ae2529c719ce49bd627568abc1c78
-    m_Address: Assets/Addressables/Prefab/UI/UISlotItem.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b28b1b959ac99b847ac38b1d32bc2ec4
     m_Address: Assets/Addressables/Atlas/atlas_character.spriteatlasv2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Ingame
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c09305cba701e2a42bd514b7cf397ff4
-    m_Address: Assets/Addressables/Prefab/UI/Notice/UITurnNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame

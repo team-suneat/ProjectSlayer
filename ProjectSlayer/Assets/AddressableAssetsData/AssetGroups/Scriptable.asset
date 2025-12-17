@@ -57,6 +57,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90bef338bc87e494bb498a45ccab18ac
+    m_Address: Assets/Addressables/Scriptable/Character/ExperienceConfig.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d452892f14649e41b88926b8554bade
     m_Address: Assets/Addressables/Scriptable/Floaty_PhysicalCritical.asset
     m_ReadOnly: 0
@@ -71,6 +77,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6f4b923892827946a943ebaf1ecfc6d
     m_Address: Assets/Addressables/Scriptable/Floaty_Physical.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad054745a1ae1624aa24a4931ec339e6
+    m_Address: Assets/Addressables/Scriptable/Character/GrowthData.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -119,6 +131,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e76dee3bfc696ab49b5e3e4d77eb3dda
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_CrimsonAxe.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2af02920d7351a418b549673dc864c5
+    m_Address: Assets/Addressables/Scriptable/Character/EnhancementData.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
