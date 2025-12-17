@@ -6,11 +6,20 @@ namespace TeamSuneat.UserInterface
     public interface ICharacterGaugeView
     {
         void Clear();
+        void LogicUpdate();
     }
 
     public class UIGaugeManager : XBehaviour
     {
         public Dictionary<Vital, ICharacterGaugeView> CharacterGauges = new Dictionary<Vital, ICharacterGaugeView>();
+
+        private void Update()
+        {
+            foreach (var view in CharacterGauges.Values)
+            {
+                view.LogicUpdate();
+            }
+        }
 
         public ICharacterGaugeView FindCharacter(Vital vital)
         {

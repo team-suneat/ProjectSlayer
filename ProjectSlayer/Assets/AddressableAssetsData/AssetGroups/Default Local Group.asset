@@ -94,7 +94,7 @@ MonoBehaviour:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0e914d5f9f147b47abcacd3abec69b4
-    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIMonsterGauge.prefab
+    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIPlayerGauge.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame
@@ -107,6 +107,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc7856f7b9692a4439c2e311d582079c
     m_Address: Assets/Addressables/Prefab/Stage/Stage10.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb8d74baaf4a0ab47a9bfda9ef9fdeb0
+    m_Address: Assets/Addressables/Prefab/UI/Gauge/UIEnemyGauge.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame

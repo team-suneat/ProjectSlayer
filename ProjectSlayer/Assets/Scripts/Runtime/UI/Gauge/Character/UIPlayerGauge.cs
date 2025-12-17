@@ -1,10 +1,10 @@
 using UnityEngine;
-using Lean.Pool;
 
 namespace TeamSuneat.UserInterface
 {
-    public class UIPlayerGauge : MonoBehaviour, ICharacterGaugeView, IPoolable
+    public class UIPlayerGauge : MonoBehaviour, ICharacterGaugeView
     {
+        [SerializeField] private UIGaugePoolHandler _poolHandler;
         [SerializeField] private UIGauge _healthGauge;
         [SerializeField] private UIGauge _shieldGauge;
         [SerializeField] private UIGauge _manaGauge;
@@ -14,26 +14,32 @@ namespace TeamSuneat.UserInterface
 
         private Character _character;
         private Vital _vital;
-        private bool _despawnMark;
 
-        public void OnSpawn()
+        private void Awake()
         {
-        }
-        public void OnDespawn()
-        {
-        }
-        public void Despawn()
-        {
-            ResourcesManager.Despawn(gameObject);
-        }
-
-        private void Update()
-        {
-            if (_despawnMark)
+            if (_poolHandler != null)
             {
-                _despawnMark = false;
-                Clear();
+                _poolHandler.OnClearRequested += Clear;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (_poolHandler != null)
+            {
+                _poolHandler.OnClearRequested -= Clear;
+            }
+        }
+
+        public void Despawn() => _poolHandler?.Despawn();
+        public void SetDespawnMark() => _poolHandler?.SetDespawnMark();
+
+        public void LogicUpdate()
+        {
+            _poolHandler?.LogicUpdate();
+            _healthGauge?.LogicUpdate();
+            _shieldGauge?.LogicUpdate();
+            _manaGauge?.LogicUpdate();
         }
 
         public void Bind(Character character)
@@ -201,16 +207,6 @@ namespace TeamSuneat.UserInterface
             _manaGauge?.ResetFrontValue();
 
             Unbind();
-        }
-
-        public void SetDespawnMark()
-        {
-            if (_despawnMark)
-            {
-                return;
-            }
-
-            _despawnMark = true;
         }
 
         private void SetupFollow(Transform anchor)

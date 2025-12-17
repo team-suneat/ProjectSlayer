@@ -1,4 +1,3 @@
-using Lean.Pool;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -6,34 +5,22 @@ using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
-    public partial class UIGauge : XBehaviour, IPoolable
+    public partial class UIGauge : XBehaviour
     {
         [FoldoutGroup("#UI Gauge-Component")]
         public Slider FrontSlider;
 
         [FoldoutGroup("#UI Gauge-Component")]
-        public Slider ResourceSlider;
+        public Slider BackSlider;
 
         [FoldoutGroup("#UI Gauge-Component")]
         public TextMeshProUGUI ValueText;
 
-        [FoldoutGroup("#UI Gauge-Component")]
-        public UIBackGauge BackGauge;
-
         [FoldoutGroup("#UI Gauge-Toggle")]
         public bool UseFrontValueText;
 
-        public delegate void OnDespawnedDelegate();
-
-        [FoldoutGroup("#UI Gauge-Event")]
-        public OnDespawnedDelegate OnDespawned;
-
-        //
-
         [ReadOnly] public float FrontValue;
-
-        public bool IsSpawned { get; set; }
-        public bool IsDespawned { get; set; }
+        [ReadOnly] public float BackValue;
 
         public override void AutoGetComponents()
         {
@@ -46,56 +33,37 @@ namespace TeamSuneat.UserInterface
             }
 
             FrontSlider = rect.FindComponent<Slider>("Slider (Front)");
-            ResourceSlider = rect.FindComponent<Slider>("Slider (Resource)");
+            BackSlider = rect.FindComponent<Slider>("Slider (Back)");
 
             if (ValueText == null)
             {
                 ValueText = rect.FindComponent<TextMeshProUGUI>("Value Text");
             }
-
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
-            BackGauge?.ResetBackValue();
+            ResetBackValue();
         }
 
-        private void LateUpdate()
+        public void LogicUpdate()
         {
-            BackGauge?.Decrease(FrontValue);
+            DecreaseBackValue();
         }
 
-        // Poolable
-
-        public virtual void OnSpawn()
+        private void DecreaseBackValue()
         {
-            LogProgress("게이지의 스폰을 완료합니다. (OnSpawn)");
-            IsSpawned = true;
-            IsDespawned = false;
-        }
-
-        public virtual void OnDespawn()
-        {
-            LogProgress("게이지의 디스폰을 완료합니다. (OnDespawn)");
-        }
-
-        public void Despawn()
-        {
-            if (IsSpawned)
+            if (BackSlider == null)
             {
-                if (!IsDespawned)
-                {
-                    IsDespawned = true;
-                    LogInfo("게이지를 디스폰합니다.");
-                    OnDespawned?.Invoke();
+                return;
+            }
 
-                    if (!IsDestroyed)
-                    {
-                        ResourcesManager.Despawn(gameObject, Time.deltaTime);
-                    }
-                }
+            if (FrontValue < BackValue)
+            {
+                float backValue = BackValue - (Time.deltaTime * 0.3f);
+                SetBackValue(backValue);
             }
         }
 
@@ -153,7 +121,6 @@ namespace TeamSuneat.UserInterface
                 FrontSlider.value = FrontValue;
             }
 
-            SetFrontLineAnimation(FrontValue);
         }
 
         public void ResetFrontValue()
@@ -161,28 +128,26 @@ namespace TeamSuneat.UserInterface
             SetFrontValue(0f);
         }
 
-        protected virtual void SetFrontLineAnimation(float fillAmount)
-        {
-        }
-
         public void SetFrontColor(Color color)
         {
             FrontSlider.targetGraphic.color = color;
         }
 
-        // 자원 값 (Resource Value)
+        // Back 게이지
 
-        public void SetResourceValue(float currentValue)
+        public void SetBackValue(float backFillAmount)
         {
-            if (ResourceSlider != null)
+            BackValue = Mathf.Clamp01(backFillAmount);
+
+            if (BackSlider != null)
             {
-                ResourceSlider.value = currentValue;
+                BackSlider.value = BackValue;
             }
         }
 
-        public void SetBackValue(float value)
+        public void ResetBackValue()
         {
-            BackGauge?.SetBackValue(value);
+            SetBackValue(0f);
         }
     }
 }

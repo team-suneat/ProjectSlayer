@@ -499,11 +499,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FrontSlider: {fileID: 5565251085774873355}
-  ResourceSlider: {fileID: 0}
+  BackSlider: {fileID: 5565251084942996995}
   ValueText: {fileID: 4962266348794968264}
-  BackGauge: {fileID: 0}
   UseFrontValueText: 0
   FrontValue: 0
+  BackValue: 0
 --- !u!1 &5565251085483425226
 GameObject:
   m_ObjectHideFlags: 0
