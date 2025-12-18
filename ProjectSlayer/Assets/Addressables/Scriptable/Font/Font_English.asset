@@ -17,7 +17,7 @@ MonoBehaviour:
   Title:
     Type: 1
     Font: {fileID: 11400000, guid: 4760866c766956c40b520270e3bb7b83, type: 2}
-    FontSize: 36
+    FontSize: 32
   Content:
     Type: 2
     Font: {fileID: 11400000, guid: 4760866c766956c40b520270e3bb7b83, type: 2}
@@ -25,8 +25,8 @@ MonoBehaviour:
   Button:
     Type: 3
     Font: {fileID: 11400000, guid: 4760866c766956c40b520270e3bb7b83, type: 2}
-    FontSize: 20
+    FontSize: 24
   Toggle:
     Type: 4
     Font: {fileID: 11400000, guid: 4760866c766956c40b520270e3bb7b83, type: 2}
-    FontSize: 20
+    FontSize: 24

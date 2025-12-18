@@ -17,16 +17,16 @@ MonoBehaviour:
   Title:
     Type: 1
     Font: {fileID: 11400000, guid: 823a5c81b438c764b9a1d0ebd36b55f0, type: 2}
-    FontSize: 36
+    FontSize: 32
   Content:
     Type: 2
-    Font: {fileID: 11400000, guid: 5e3e02d0227d85d4ead784fe23c26e8f, type: 2}
+    Font: {fileID: 11400000, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
     FontSize: 20
   Button:
     Type: 3
     Font: {fileID: 11400000, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
-    FontSize: 20
+    FontSize: 24
   Toggle:
     Type: 4
     Font: {fileID: 11400000, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
-    FontSize: 20
+    FontSize: 24
