@@ -4,7 +4,7 @@ using TeamSuneat.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TeamSuneat
+namespace TeamSuneat.UserInterface
 {
     // 강화 페이지 - 강화 아이템 스크롤 뷰 관리
     public class UIEnhancementPage : UIPage
@@ -15,7 +15,6 @@ namespace TeamSuneat
         [SerializeField] private UIEnhancementItem _itemPrefab;
 
         private readonly List<UIEnhancementItem> _items = new();
-        private bool _isInitialized;
 
         public override void AutoGetComponents()
         {
@@ -28,21 +27,9 @@ namespace TeamSuneat
             }
         }
 
-        protected override void OnShow()
+        public override void Initialize()
         {
-            base.OnShow();
-
-            if (!_isInitialized)
-            {
-                Initialize();
-            }
-
-            RefreshAllItems();
-        }
-
-        private void Initialize()
-        {
-            AutoGetComponents();
+            base.Initialize();
 
             if (_itemPrefab == null)
             {
@@ -57,7 +44,7 @@ namespace TeamSuneat
             }
 
             CreateEnhancementItems();
-            _isInitialized = true;
+            RefreshAllItems();
         }
 
         private void CreateEnhancementItems()

@@ -135,7 +135,19 @@ namespace TeamSuneat.Data.Game
 
         public static VCurrency CreateDefault()
         {
-            return new VCurrency();
+            VCurrency defaultCurrency = new VCurrency();
+
+            defaultCurrency.Add(CurrencyNames.Gold, 100000);
+            defaultCurrency.Add(CurrencyNames.Diamond, 100000);
+            defaultCurrency.Add(CurrencyNames.Emerald, 100000);
+            defaultCurrency.Add(CurrencyNames.ShiningFeather, 100000);
+            defaultCurrency.Add(CurrencyNames.EnhancementCube, 100000);
+            defaultCurrency.Add(CurrencyNames.AttributeStoneFire, 100000);
+            defaultCurrency.Add(CurrencyNames.AttributeStoneWater, 100000);
+            defaultCurrency.Add(CurrencyNames.AttributeStoneEarth, 100000);
+            defaultCurrency.Add(CurrencyNames.AttributeStoneWind, 100000);
+
+            return defaultCurrency;
         }
     }
 }

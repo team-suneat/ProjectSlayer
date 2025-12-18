@@ -54,7 +54,7 @@ MonoBehaviour:
     CostGrowthRate: 1.1
     RequiredStatName: 0
     RequiredStatLevel: 0
-  - StatName: 13
+  - StatName: 12
     MaxLevel: 4000
     InitialValue: 0
     GrowthValue: 0.01
@@ -62,7 +62,7 @@ MonoBehaviour:
     CostGrowthRate: 1.1
     RequiredStatName: 4
     RequiredStatLevel: 1000
-  - StatName: 14
+  - StatName: 13
     MaxLevel: 1000
     InitialValue: 0
     GrowthValue: 0.001

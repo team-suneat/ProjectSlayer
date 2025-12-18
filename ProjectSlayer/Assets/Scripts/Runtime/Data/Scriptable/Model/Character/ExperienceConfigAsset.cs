@@ -46,18 +46,18 @@ namespace TeamSuneat.Data
         /// </summary>
         /// <param name="level">목표 레벨</param>
         /// <returns>레벨 n에 도달하기 위한 총 경험치</returns>
-        public long GetTotalExperienceRequired(int level)
+        public int GetTotalExperienceRequired(int level)
         {
             if (level <= 1)
             {
-                return 0;
+                return InitialExperienceRequired;
             }
 
             // 총 경험치 = InitialExperienceRequired × (GrowthRate^level - 1) / (GrowthRate - 1)
             double growthRate = ExperienceGrowthRate;
             double numerator = InitialExperienceRequired * (System.Math.Pow(growthRate, level) - 1.0);
             double denominator = growthRate - 1.0;
-            return (long)(numerator / denominator);
+            return (int)(numerator / denominator);
         }
 
         /// <summary>

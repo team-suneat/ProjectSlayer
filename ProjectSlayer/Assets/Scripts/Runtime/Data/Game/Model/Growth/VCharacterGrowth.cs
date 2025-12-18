@@ -51,7 +51,7 @@ namespace TeamSuneat.Data.Game
                 return 0;
             }
 
-            StatNames statName = GrowthTypeToStatName(growthType);
+            StatNames statName = growthType.ConvertToStatName();
             return GetLevel(statName);
         }
 
@@ -72,7 +72,7 @@ namespace TeamSuneat.Data.Game
                 return;
             }
 
-            StatNames statName = GrowthTypeToStatName(growthType);
+            StatNames statName = growthType.ConvertToStatName();
             SetLevel(statName, level);
         }
 
@@ -92,23 +92,8 @@ namespace TeamSuneat.Data.Game
                 return 0;
             }
 
-            StatNames statName = GrowthTypeToStatName(growthType);
+            StatNames statName = growthType.ConvertToStatName();
             return AddLevel(statName, addLevel);
-        }
-
-        private static StatNames GrowthTypeToStatName(CharacterGrowthTypes growthType)
-        {
-            return growthType switch
-            {
-                CharacterGrowthTypes.Strength => StatNames.Strength,
-                CharacterGrowthTypes.HealthPoint => StatNames.HealthPoint,
-                CharacterGrowthTypes.Vitality => StatNames.Vitality,
-                CharacterGrowthTypes.Critical => StatNames.Critical,
-                CharacterGrowthTypes.Luck => StatNames.Luck,
-                CharacterGrowthTypes.AccuracyStat => StatNames.AccuracyStat,
-                CharacterGrowthTypes.Dodge => StatNames.Dodge,
-                _ => StatNames.None
-            };
         }
 
         public int AddStatPoint(int addPoint)
@@ -135,6 +120,35 @@ namespace TeamSuneat.Data.Game
         {
             GrowthLevels?.Clear();
             StatPoint = 0;
+        }
+
+        /// <summary>
+        /// 소비한 능력치 포인트의 총합을 계산합니다.
+        /// </summary>
+        /// <returns>모든 능력치 레벨의 합계</returns>
+        public int GetTotalConsumedStatPoints()
+        {
+            int total = 0;
+            if (GrowthLevels != null)
+            {
+                foreach (var level in GrowthLevels.Values)
+                {
+                    total += level;
+                }
+            }
+            return total;
+        }
+
+        /// <summary>
+        /// 모든 성장 능력치 레벨을 초기화하고 소비한 능력치 포인트를 반환합니다.
+        /// </summary>
+        /// <returns>초기화 전 소비한 능력치 포인트 총합</returns>
+        public int ResetGrowthLevels()
+        {
+            int totalConsumed = GetTotalConsumedStatPoints();
+            GrowthLevels?.Clear();
+            Log.Info(LogTags.GameData_Character, "성장 능력치 레벨을 초기화합니다. 반환될 능력치 포인트: {0}", totalConsumed);
+            return totalConsumed;
         }
 
         public static VCharacterGrowth CreateDefault()

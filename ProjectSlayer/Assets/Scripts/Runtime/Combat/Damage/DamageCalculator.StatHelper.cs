@@ -37,7 +37,7 @@ namespace TeamSuneat
             }
             else
             {
-                StatData statData = JsonDataManager.FindStatDataClone(statName);
+                StatData statData = JsonDataManager.FindStatData(statName);
                 if (statData.IsValid())
                 {
                     return statData.DefaultValue;
@@ -60,7 +60,7 @@ namespace TeamSuneat
             }
             else
             {
-                StatData statData = JsonDataManager.FindStatDataClone(statName);
+                StatData statData = JsonDataManager.FindStatData(statName);
                 if (statData.IsValid())
                 {
                     return statData.DefaultValue;

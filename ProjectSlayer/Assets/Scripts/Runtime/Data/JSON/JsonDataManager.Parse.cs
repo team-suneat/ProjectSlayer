@@ -63,151 +63,30 @@ namespace TeamSuneat.Data
         {
             switch (sheet)
             {
-                //───────────────────────────────────────────────────────────────────────────────────────
-
-                case _Sheet.PlayerCharacter:
-                    {
-                        ParsePlayerCharacterJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                case _Sheet.MonsterCharacter:
-                    {
-                        ParseMonsterCharacterJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                //───────────────────────────────────────────────────────────────────────────────────────
-
-                case _Sheet.Weapon:
-                    {
-                        ParseWeaponJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                case _Sheet.Potion:
-                    {
-                        ParsePotionDataJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                case _Sheet.Stage:
-                    {
-                        ParseStageJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                case _Sheet.Wave:
-                    {
-                        ParseWaveJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                //───────────────────────────────────────────────────────────────────────────────────────
-                case _Sheet.Stat:
-                    {
-                        ParseStatJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                //───────────────────────────────────────────────────────────────────────────────────────
-
                 case _Sheet.String:
                     {
                         ParseStringJsonData(sheet, jsonData);
                     }
                     break;
-
-                case _Sheet.CharacterLevelExp:
+                case _Sheet.Stat:
                     {
-                        ParseCharacterLevelExpJsonData(sheet, jsonData);
-                    }
-                    break;
-
-                case _Sheet.CharacterRankExp:
-                    {
-                        ParseCharacterRankExpJsonData(sheet, jsonData);
+                        ParseStatJsonData(sheet, jsonData);
                     }
                     break;
             }
         }
 
-        #region Parse-Details
-
-        private static void ParsePlayerCharacterJsonData(_Sheet sheet, string jsonData)
+        private static void ParseStringJsonData(_Sheet sheet, string jsonData)
         {
-            List<PlayerCharacterData> dataList = DeserializeJsonData<PlayerCharacterData>(jsonData);
+            List<StringData> dataList = DeserializeJsonData<StringData>(jsonData);
 
             for (int i = 0; i < dataList.Count; i++)
             {
                 dataList[i].Refresh();
 
-                if (!_playerCharacterSheetData.ContainsKey(dataList[i].GetKey()))
+                if (!_stringSheetData.ContainsKey(dataList[i].GetKey()))
                 {
-                    _playerCharacterSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseMonsterCharacterJsonData(_Sheet sheet, string jsonData)
-        {
-            List<MonsterCharacterData> dataList = DeserializeJsonData<MonsterCharacterData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_monsterCharacterSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _monsterCharacterSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseWeaponJsonData(_Sheet sheet, string jsonData)
-        {
-            List<WeaponData> dataList = DeserializeJsonData<WeaponData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_weaponSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _weaponSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParsePotionDataJsonData(_Sheet sheet, string jsonData)
-        {
-            List<PotionData> dataList = DeserializeJsonData<PotionData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_potionSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _potionSheetData.Add(dataList[i].GetKey(), dataList[i]);
+                    _stringSheetData.Add(dataList[i].GetKey(), dataList[i]);
                 }
                 else
                 {
@@ -232,111 +111,11 @@ namespace TeamSuneat.Data
                 }
                 else
                 {
-                    LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseStringJsonData(_Sheet sheet, string jsonData)
-        {
-            List<StringData> dataList = DeserializeJsonData<StringData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_stringSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _stringSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
                     LogSameKeyAlreadyExists(dataList[i].GetKey().ToString(), sheet.ToString());
                 }
             }
 
             Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
         }
-
-        private static void ParseCharacterLevelExpJsonData(_Sheet sheet, string jsonData)
-        {
-            List<CharacterLevelExpData> dataList = DeserializeJsonData<CharacterLevelExpData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_characterLevelExpSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _characterLevelExpSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Level.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseCharacterRankExpJsonData(_Sheet sheet, string jsonData)
-        {
-            List<CharacterRankExpData> dataList = DeserializeJsonData<CharacterRankExpData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_characterRankExpSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _characterRankExpSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Rank.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseStageJsonData(_Sheet sheet, string jsonData)
-        {
-            List<StageData> dataList = DeserializeJsonData<StageData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                if (!_stageSheetData.ContainsKey(dataList[i].GetKey()))
-                {
-                    _stageSheetData.Add(dataList[i].GetKey(), dataList[i]);
-                }
-                else
-                {
-                    LogSameKeyAlreadyExists(dataList[i].Name.ToString(), sheet.ToString());
-                }
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        private static void ParseWaveJsonData(_Sheet sheet, string jsonData)
-        {
-            List<WaveData> dataList = DeserializeJsonData<WaveData>(jsonData);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                dataList[i].Refresh();
-
-                _waveSheetData.Add(dataList[i].GetKey(), dataList[i]);
-            }
-
-            Log.Progress(LogTags.JsonData, $"({sheet.ToSelectString()}) Json 데이터를 읽어옵니다. 불러온 데이터의 수: {dataList.Count.ToSelectString()})");
-        }
-
-        #endregion Parse-Details
     }
 }

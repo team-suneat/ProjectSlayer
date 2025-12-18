@@ -1,5 +1,4 @@
-﻿using TeamSuneat;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TeamSuneat
 {
@@ -13,7 +12,7 @@ namespace TeamSuneat
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void RuntimeInitializeBeforeSceneLoad()
         {
-            XScene.ResetChangeSceneCoroutine();
+            Scenes.XScene.ResetChangeSceneCoroutine();
 
             AppBase = Object.FindFirstObjectByType<XGameApp>();
             if (AppBase == null)

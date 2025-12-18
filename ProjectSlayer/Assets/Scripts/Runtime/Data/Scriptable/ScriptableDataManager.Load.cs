@@ -6,6 +6,15 @@ namespace TeamSuneat.Data
 {
     public partial class ScriptableDataManager
     {
+        public bool CheckLoadedSync()
+        {
+            if (_logSetting == default) { return false; }
+            else if (_gameDefine == default) { return false; }
+            else if (!_fontAssets.IsValid()) { return false; }
+
+            return true;
+        }
+
         public bool CheckLoaded()
         {
             if (_logSetting == default) { return false; }
@@ -21,6 +30,7 @@ namespace TeamSuneat.Data
             else if (_enhancementDataAsset == null) { return false; }
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
+            else if (_monsterStatConfigAsset == null) { return false; }
 
             return true;
         }
@@ -39,10 +49,8 @@ namespace TeamSuneat.Data
             // 경험치 설정 데이터 OnLoadData() 메서드 호출
             _experienceConfigAsset?.OnLoadData();
 
-            // 사운드 OnLoadData() 메서드 호출
-            foreach (KeyValuePair<int, SoundAsset> asset in _soundAssets)
-            {
-            }
+            // 몬스터 스탯 설정 데이터 OnLoadData() 메서드 호출
+            _monsterStatConfigAsset?.OnLoadData();
         }
 
         public void LoadScriptableAssets()
@@ -106,6 +114,10 @@ namespace TeamSuneat.Data
                     count += 1;
                 }
                 else if (LoadExperienceConfigSync(path))
+                {
+                    count += 1;
+                }
+                else if (LoadMonsterStatConfigSync(path))
                 {
                     count += 1;
                 }
@@ -218,11 +230,114 @@ namespace TeamSuneat.Data
             return false;
         }
 
+        /// <summary>
+        /// 몬스터 스탯 설정 에셋을 동기적으로 로드합니다.
+        /// </summary>
+        private bool LoadMonsterStatConfigSync(string filePath)
+        {
+            if (!filePath.Contains("MonsterStatConfig"))
+            {
+                return false;
+            }
+
+            MonsterStatConfigAsset asset = ResourcesManager.LoadResource<MonsterStatConfigAsset>(filePath);
+            if (asset != null)
+            {
+                if (_monsterStatConfigAsset != null)
+                {
+                    Log.Warning(LogTags.ScriptableData, "몬스터 스탯 설정 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                        _monsterStatConfigAsset.name, asset.name);
+                }
+                else
+                {
+                    Log.Progress("스크립터블 데이터를 읽어왔습니다. Path: {0}", filePath);
+                    _monsterStatConfigAsset = asset;
+                }
+
+                return true;
+            }
+            else
+            {
+                Log.Warning("스크립터블 데이터를 읽을 수 없습니다. Path: {0}", filePath);
+            }
+
+            return false;
+        }
+
+        public void LoadScriptableAssetsSyncByLabel()
+        {
+            IList<ScriptableObject> assets = ResourcesManager.LoadResourcesByLabelSync<UnityEngine.ScriptableObject>(AddressableLabels.ScriptableSync);
+            int count = 0;
+
+            for (int i = 0; i < assets.Count; i++)
+            {
+                ScriptableObject asset = assets[i];
+                if (asset == null)
+                {
+                    continue;
+                }
+
+                switch (asset)
+                {
+                    case LogSettingAsset logSetting:
+                        if (_logSetting == null)
+                        {
+                            _logSetting = logSetting;
+#if !UNITY_EDITOR
+                            _logSetting.ExternSwitchOffAll();
+#endif
+                            count++;
+                        }
+                        else
+                        {
+                            Log.Warning(LogTags.ScriptableData, "LogSettingAsset이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                                _logSetting.name, logSetting.name);
+                        }
+                        break;
+
+                    case GameDefineAsset gameDefine:
+                        if (_gameDefine == null)
+                        {
+                            _gameDefine = gameDefine;
+                            count++;
+                        }
+                        else
+                        {
+                            Log.Warning(LogTags.ScriptableData, "GameDefineAsset이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                                _gameDefine.name, gameDefine.name);
+                        }
+                        break;
+
+                    case FontAsset font:
+                        if (!_fontAssets.ContainsKey(font.TID))
+                        {
+                            _fontAssets[font.TID] = font;
+                            count++;
+                        }
+                        else
+                        {
+                            Log.Warning(LogTags.ScriptableData, "FontAsset이 중복으로 로드 되고 있습니다. TID: {0}, 기존: {1}, 새로운: {2}",
+                                font.TID, _fontAssets[font.TID].name, font.name);
+                        }
+                        break;
+                }
+            }
+
+            if (count > 0)
+            {
+                Log.Info(LogTags.ScriptableData, "Addressable ScriptableSync 라벨로 {0}개 파일을 동기적으로 읽어왔습니다.", count.ToString());
+            }
+        }
+
         public async Task LoadScriptableAssetsAsync()
         {
             Clear();
-            int count = 0;
 
+            // 동기 로드: GameDefineAsset, LogSettingAsset, FontAsset
+            LoadScriptableAssetsSyncByLabel();
+
+            // 비동기 로드: 나머지 에셋들
+            int count = 0;
             IList<ScriptableObject> assets = await ResourcesManager.LoadResourcesByLabelAsync<UnityEngine.ScriptableObject>(AddressableLabels.Scriptable);
             for (int i = 0; i < assets.Count; i++)
             {
@@ -235,13 +350,21 @@ namespace TeamSuneat.Data
                 switch (asset)
                 {
                     case LogSettingAsset logSetting:
-                        _logSetting = logSetting;
-                        count++;
+                        // 이미 동기 로드되었으면 건너뛰기
+                        if (_logSetting == null)
+                        {
+                            _logSetting = logSetting;
+                            count++;
+                        }
                         break;
 
                     case GameDefineAsset gameDefine:
-                        _gameDefine = gameDefine;
-                        count++;
+                        // 이미 동기 로드되었으면 건너뛰기
+                        if (_gameDefine == null)
+                        {
+                            _gameDefine = gameDefine;
+                            count++;
+                        }
                         break;
 
                     case BuffAsset buff:
@@ -277,6 +400,7 @@ namespace TeamSuneat.Data
                         break;
 
                     case FontAsset font:
+                        // 이미 동기 로드되었으면 건너뛰기
                         if (!_fontAssets.ContainsKey(font.TID))
                         {
                             _fontAssets[font.TID] = font;
@@ -331,10 +455,18 @@ namespace TeamSuneat.Data
                             count++;
                         }
                         break;
+
+                    case MonsterStatConfigAsset monsterStatConfig:
+                        if (_monsterStatConfigAsset == null)
+                        {
+                            _monsterStatConfigAsset = monsterStatConfig;
+                            count++;
+                        }
+                        break;
                 }
             }
 
-            Log.Info("Addressable Scriptable 라벨로 파일을 읽어왔습니다. Count: {0}", count.ToString());
+            Log.Info(LogTags.ScriptableData, "Addressable Scriptable 라벨로 파일을 읽어왔습니다. Count: {0}", count.ToString());
 
             OnLoadData();
         }

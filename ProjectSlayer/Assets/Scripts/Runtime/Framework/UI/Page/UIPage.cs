@@ -22,6 +22,13 @@ namespace TeamSuneat
             }
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            Initialize();
+        }
+
         public virtual void Initialize()
         {
         }

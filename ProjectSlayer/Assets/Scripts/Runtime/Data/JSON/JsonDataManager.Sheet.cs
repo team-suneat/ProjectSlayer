@@ -6,17 +6,8 @@ namespace TeamSuneat.Data
     {
         public enum _Sheet
         {
-            PlayerCharacter,
-            MonsterCharacter,
-            Passive,
-            Stat,
-            Weapon,
-            Potion,
-            Stage,
-            Wave,
             String,
-            CharacterLevelExp,
-            CharacterRankExp,
+            Stat,
         }
     }
 }

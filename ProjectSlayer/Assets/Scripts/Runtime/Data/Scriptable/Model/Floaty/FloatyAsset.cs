@@ -1,6 +1,5 @@
-﻿using TeamSuneat.Setting;
-using TeamSuneat.UserInterface;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+using TeamSuneat.Setting;
 using UnityEngine;
 
 namespace TeamSuneat.Data
@@ -83,11 +82,6 @@ namespace TeamSuneat.Data
                 return;
             }
 
-            if (FontType is GameFontTypes.Difficulty or GameFontTypes.Number or GameFontTypes.Content_DialogueTitle)
-            {
-                return;
-            }
-
             if (!ScriptableDataManager.Instance.CheckLoaded())
             {
                 ScriptableDataManager.Instance.LoadScriptableAssetsAsync();
@@ -107,23 +101,20 @@ namespace TeamSuneat.Data
             GameFontTypes[] matchTypes = new GameFontTypes[]
             {
                 GameFontTypes.Title,
-                GameFontTypes.Title_GrayShadow,
-                GameFontTypes.Content_DefaultSize,
-                GameFontTypes.Content_DefaultSize_GrayShadow,
-                GameFontTypes.Content_LargeSize,
-                GameFontTypes.Content_SmallSize,
-                GameFontTypes.Content_XSmallSize
+                GameFontTypes.Content,
+                GameFontTypes.Button,
+                GameFontTypes.Toggle
             };
             for (int i = 0; i < matchTypes.Length; i++)
             {
                 GameFontTypes type = matchTypes[i];
-                FontAsset.FontAssetData? dataNullable = fontAsset.GetFontAssetData(type);
+                FontAssetData? dataNullable = fontAsset.GetFontAssetData(type);
                 if (dataNullable == null)
                 {
                     continue;
                 }
 
-                FontAsset.FontAssetData data = dataNullable.Value;
+                FontAssetData data = dataNullable.Value;
                 float compareSize = data.FontSize;
                 float diff = Mathf.Abs(currentFontSize - compareSize);
                 if (diff < minDiff)
@@ -136,15 +127,6 @@ namespace TeamSuneat.Data
             if (closestType != GameFontTypes.None)
             {
                 GameFontTypes prevType = FontType;
-
-                if (prevType == GameFontTypes.Title_GrayShadow && closestType == GameFontTypes.Title)
-                {
-                    closestType = GameFontTypes.Title_GrayShadow;
-                }
-                else if (prevType == GameFontTypes.Content_DefaultSize_GrayShadow && closestType == GameFontTypes.Content_DefaultSize)
-                {
-                    closestType = GameFontTypes.Content_DefaultSize_GrayShadow;
-                }
 
                 FontType = closestType;
                 FontTypeString = closestType.ToString();

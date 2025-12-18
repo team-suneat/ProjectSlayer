@@ -358,7 +358,7 @@ namespace TeamSuneat
                 }
             }
 
-            StatData statData = JsonDataManager.FindStatDataClone(Name);
+            StatData statData = JsonDataManager.FindStatData(Name);
             if (statData.IsValid() && statData.UseRange)
             {
                 float minValue = statData.MinValue;

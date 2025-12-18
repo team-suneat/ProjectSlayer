@@ -29,7 +29,7 @@ namespace TeamSuneat.UserInterface
         private Tweener _fadeTextImageTweener;
         private Sequence _sequence;
 
-        public string Content => Text.TextPro.text;
+        public string Content => Text.Content;
 
         private FloatyAsset Asset { get; set; }
 
@@ -275,7 +275,7 @@ namespace TeamSuneat.UserInterface
             {
                 Text.FontType = Asset.FontType;
                 Text.FontTypeString = Asset.FontTypeString;
-                Text.CustomFontSize = Asset.FontSize;
+                Text.SetDefaultFontSize(Asset.FontSize);
 
                 Text.Refresh(GameSetting.Instance.Language.Name);
             }

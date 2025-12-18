@@ -73,38 +73,11 @@ namespace TeamSuneat
 
             switch (datasetId)
             {
-                case GoogleSheetDatasetId.PlayerCharacter:
-                    return ProcessDatasetInternal<PlayerCharacterData>(datasetId, gid, rows, datasetName, JsonDataManager.SetPlayerCharacterData);
-
-                case GoogleSheetDatasetId.MonsterCharacter:
-                    return ProcessDatasetInternal<MonsterCharacterData>(datasetId, gid, rows, datasetName, JsonDataManager.SetMonsterCharacterData);
-
-                case GoogleSheetDatasetId.Passive:
-                    return ProcessDatasetInternal<PassiveData>(datasetId, gid, rows, datasetName, JsonDataManager.SetPassiveData);
-
-                case GoogleSheetDatasetId.Stat:
-                    return ProcessDatasetInternal<StatData>(datasetId, gid, rows, datasetName, JsonDataManager.SetStatData);
-
-                case GoogleSheetDatasetId.Weapon:
-                    return ProcessDatasetInternal<WeaponData>(datasetId, gid, rows, datasetName, JsonDataManager.SetWeaponData);
-
-                case GoogleSheetDatasetId.Potion:
-                    return ProcessDatasetInternal<PotionData>(datasetId, gid, rows, datasetName, JsonDataManager.SetPotionData);
-
-                case GoogleSheetDatasetId.Stage:
-                    return ProcessDatasetInternal<StageData>(datasetId, gid, rows, datasetName, JsonDataManager.SetStageData);
-
-                case GoogleSheetDatasetId.Wave:
-                    return ProcessDatasetInternal<WaveData>(datasetId, gid, rows, datasetName, JsonDataManager.SetWaveData);
-
                 case GoogleSheetDatasetId.String:
                     return ProcessDatasetInternal<StringData>(datasetId, gid, rows, datasetName, JsonDataManager.SetStringData);
 
-                case GoogleSheetDatasetId.CharacterLevelExp:
-                    return ProcessDatasetInternal<CharacterLevelExpData>(datasetId, gid, rows, datasetName, JsonDataManager.SetCharacterLevelExpData);
-
-                case GoogleSheetDatasetId.CharacterRankExp:
-                    return ProcessDatasetInternal<CharacterRankExpData>(datasetId, gid, rows, datasetName, JsonDataManager.SetCharacterRankExpData);
+                case GoogleSheetDatasetId.Stat:
+                    return ProcessDatasetInternal<StatData>(datasetId, gid, rows, datasetName, JsonDataManager.SetStatData);
 
                 default:
                     Debug.LogWarning($"[GoogleSheetRuntimeSync] 미지원 데이터셋: {datasetId}");

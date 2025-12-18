@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TeamSuneat
+namespace TeamSuneat.Scenes
 {
     public class GameSplashScene : XScene
     {

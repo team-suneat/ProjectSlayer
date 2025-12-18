@@ -25,9 +25,9 @@ namespace TeamSuneat
             }
 
             // 공격자 명중률
-            float attackerAccuracy = Attacker.Stat.FindValueOrDefault(StatNames.Accuracy);
+            float attackerAccuracy = Attacker.Stat.FindValueOrDefault(StatNames.AccuracyChance);
             // 피격자 회피율
-            float targetEvasion = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.Evasion);
+            float targetEvasion = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.DodgeChance);
 
             // 명중 판정: 명중률 - 적 회피율
             float hitChance = attackerAccuracy - targetEvasion;

@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 276a00a78678bcb4186c9460fbfe300e, type: 2}
   - {fileID: 11400000, guid: b2a713c438108964da952e9a7859062b, type: 2}
   - {fileID: 11400000, guid: b90bcae47b733a8438d21ce5e9afaaee, type: 2}
+  - {fileID: 11400000, guid: 3189bb6143ccbc84093deda35471ddfe, type: 2}
   - {fileID: 11400000, guid: 21e23a51c44e1c84f8815927c887db77, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -103,10 +104,11 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Ingame
     - JSON
     - Scriptable
+    - ScriptableSync
     - Area01
-    - Ingame
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: c1733a895a30c4f4c870d466adba8720, type: 2}

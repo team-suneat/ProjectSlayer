@@ -126,7 +126,7 @@ namespace TeamSuneat
         {
             if (clone.activeInHierarchy && clone.activeSelf)
             {
-                if (false == XScene.IsChangeScene)
+                if (false == Scenes.XScene.IsChangeScene)
                 {
                     LeanPool.Despawn(clone);
                 }
@@ -141,7 +141,7 @@ namespace TeamSuneat
         {
             if (clone.activeInHierarchy && clone.activeSelf)
             {
-                if (false == XScene.IsChangeScene)
+                if (false == Scenes.XScene.IsChangeScene)
                 {
                     LeanPool.Despawn(clone, delay);
                 }
@@ -257,6 +257,24 @@ namespace TeamSuneat
             catch (Exception ex)
             {
                 Log.Error(LogTags.Resource, "라벨 리소스 로드 실패: {0}, 오류: {1}", label, ex.Message);
+                return new List<T>();
+            }
+        }
+
+        public static IList<T> LoadResourcesByLabelSync<T>(string label) where T : UnityEngine.Object
+        {
+            if (!IsValidPath(label, "라벨"))
+            {
+                return new List<T>();
+            }
+
+            try
+            {
+                return _addressableManager.LoadResourcesByLabelSync<T>(label);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(LogTags.Resource, "라벨 리소스 동기 로드 실패: {0}, 오류: {1}", label, ex.Message);
                 return new List<T>();
             }
         }

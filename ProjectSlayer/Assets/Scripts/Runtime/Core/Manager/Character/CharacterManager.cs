@@ -57,7 +57,7 @@ namespace TeamSuneat
 
         public void PhysicsUpdate()
         {
-            if (XScene.IsChangeScene)
+            if (Scenes.XScene.IsChangeScene)
             {
                 return;
             }

@@ -8,15 +8,13 @@ namespace TeamSuneat
 {
     public abstract class UIInteractiveElement : XBehaviour
     {
-        [Title("#UIInteractiveElement")]
-        [SerializeField] protected Image _frameImage;
-        [SerializeField] protected Image _buttonImage;
-        [SerializeField] protected TextMeshProUGUI _nameText;
+        [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected Image _frameImage;
+        [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected Image _buttonImage;
+        [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected TextMeshProUGUI _nameText;
 
-        [Title("#UIInteractiveElement-Settings")]
-        [SerializeField] protected float _clickCooldown = 0.3f;
-        [SerializeField] protected float _punchScaleDuration = 0.2f;
-        [SerializeField] protected Vector3 _punchScale = new Vector3(-0.1f, -0.1f, -0.1f);
+        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected float _clickCooldown = 0.3f;
+        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected float _punchScaleDuration = 0.2f;
+        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected Vector3 _punchScale = new Vector3(-0.1f, -0.1f, -0.1f);
 
         protected float _lastClickTime;
         protected Tween _scaleTween;
@@ -27,8 +25,7 @@ namespace TeamSuneat
         protected Color _frameImageOriginalColor;
         protected Color _nameTextOriginalColor;
 
-
-        Vector3 _originalScale;
+        private Vector3 _originalScale;
 
         public override void AutoGetComponents()
         {
@@ -39,7 +36,7 @@ namespace TeamSuneat
             _nameText ??= this.FindComponent<TextMeshProUGUI>("Button Name Text");
         }
 
-        void Awake()
+        private void Awake()
         {
             _originalScale = transform.localScale;
         }
@@ -128,23 +125,6 @@ namespace TeamSuneat
             _isClickable = isClickable;
         }
 
-        protected void SetFrameImageColor(Color color, float duration = 0f)
-        {
-            if (_frameImage == null)
-            {
-                return;
-            }
-
-            if (duration > 0f)
-            {
-                _frameImage.DOColor(color, duration).SetEase(Ease.OutQuad);
-            }
-            else
-            {
-                _frameImage.color = color;
-            }
-        }
-
         protected void SetNameTextColor(Color color, float duration = 0f)
         {
             if (_nameText == null)
@@ -162,12 +142,33 @@ namespace TeamSuneat
             }
         }
 
-        protected void SetButtonImageColor(Color color, float duration = 0f)
+        protected void SetFrameImageColor(Color color, float alpha = 1f, float duration = 0f)
+        {
+            if (_frameImage == null)
+            {
+                return;
+            }
+
+            color.a = alpha;
+
+            if (duration > 0f)
+            {
+                _frameImage.DOColor(color, duration).SetEase(Ease.OutQuad);
+            }
+            else
+            {
+                _frameImage.color = color;
+            }
+        }
+
+        protected void SetButtonImageColor(Color color, float alpha = 1f, float duration = 0f)
         {
             if (_buttonImage == null)
             {
                 return;
             }
+
+            color.a = alpha;
 
             if (duration > 0f)
             {

@@ -17,7 +17,7 @@ namespace TeamSuneat
 
         public static bool IsPercent(this StatNames key)
         {
-            StatData statData = JsonDataManager.FindStatDataClone(key);
+            StatData statData = JsonDataManager.FindStatData(key);
 
             if (statData.IsValid())
             {

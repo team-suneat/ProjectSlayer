@@ -1,7 +1,6 @@
-using TeamSuneat.Data;
 using UnityEngine;
 
-namespace TeamSuneat
+namespace TeamSuneat.Scenes
 {
     public class GameMainScene : XScene
     {

@@ -13,7 +13,7 @@ namespace TeamSuneat
 
         public static string GetStatValueString(this StatNames statName, float statValue)
         {
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             if (statData.IsValid())
             {
                 if (statName.IsPercent())
@@ -31,7 +31,7 @@ namespace TeamSuneat
 
         public static string GetStatValueString(this StatNames statName, float statValue, bool useColor)
         {
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             bool colorFlag = useColor;
 
             if (statName.IsPercent())
@@ -46,7 +46,7 @@ namespace TeamSuneat
 
         public static string GetStatValueString(this StatNames statName, float statValue, float defaultValue)
         {
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             bool colorFlag = !float.IsNaN(defaultValue) && statValue != defaultValue;
 
             if (statName.IsPercent())
@@ -61,7 +61,7 @@ namespace TeamSuneat
 
         public static string GetStatValueString(this StatNames statName, float statValue, Color color)
         {
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             if (statName.IsPercent())
             {
                 return ValueStringEx.GetPercentStringWithDigit(statValue, statData.Digit, color);
@@ -80,7 +80,7 @@ namespace TeamSuneat
         public static string GetRangeString(this StatNames statName, float minValue, float maxValue)
         {
             StringBuilder sb = new StringBuilder();
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
 
             float formattedMin = FormatStatValue(minValue, statData);
             float formattedMax = FormatStatValue(maxValue, statData);

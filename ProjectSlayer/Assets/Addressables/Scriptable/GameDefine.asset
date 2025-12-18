@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4081162c731c7d54bb1a0ebe7f6fa36f, type: 3}
+  m_Script: {fileID: 11500000, guid: 93cd0a9b2918c854383ef807a15de20c, type: 3}
   m_Name: GameDefine
   m_EditorClassIdentifier: 
   Data:
     EDITOR_BUILD_TYPE: 1
-    SUPPORTED_BUILD_TYPES_FOR_GOOGLE_SHEET: 02000000
+    SUPPORTED_BUILD_TYPES_FOR_GOOGLE_SHEET: 

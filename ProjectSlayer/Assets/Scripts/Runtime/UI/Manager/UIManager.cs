@@ -17,6 +17,8 @@ namespace TeamSuneat.UserInterface
 
         public HUDManager HUDManager;
 
+        public UITextManager TextManager;
+
         public Vector3 WorldPositionMin { get; set; }
         public Vector3 WorldPositionMax { get; set; }
 
@@ -35,6 +37,7 @@ namespace TeamSuneat.UserInterface
             HUDManager = GetComponentInChildren<HUDManager>();
             GaugeManager = GetComponentInChildren<UIGaugeManager>();
             DetailsManager = GetComponentInChildren<UIDetailsManager>();
+            TextManager = GetComponentInChildren<UITextManager>();
         }
 
         public void Clear()

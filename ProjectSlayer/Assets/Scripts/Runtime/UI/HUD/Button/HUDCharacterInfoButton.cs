@@ -1,14 +1,8 @@
-using Sirenix.OdinInspector;
-using TeamSuneat.UserInterface;
-using UnityEngine;
-
-namespace TeamSuneat
+namespace TeamSuneat.UserInterface
 {
     // HUD 캐릭터 정보 버튼 - 클릭 시 캐릭터 정보 팝업 열기
     public class HUDCharacterInfoButton : UIButton
     {
-        [Title("#HUDCharacterInfoButton")]
-
         protected override void OnButtonClick()
         {
             base.OnButtonClick();
@@ -17,7 +11,7 @@ namespace TeamSuneat
 
         private void OpenCharacterInfoPopup()
         {
-            if (CharacterManager .Instance == null || CharacterManager.Instance.Player == null)
+            if (CharacterManager.Instance == null || CharacterManager.Instance.Player == null)
             {
                 Log.Warning(LogTags.UI_Popup, "CharacterManager가 없어 캐릭터 정보 팝업을 열 수 없습니다.");
                 return;

@@ -40,7 +40,7 @@
             GamePrefs.SetInt(GamePrefTypes.OPTION_LANGUAGE,
                              BitConvert.Enum32ToInt(newLanguage));
 
-            if (!XScene.IsChangeScene)
+            if (!Scenes.XScene.IsChangeScene)
             {
                 GlobalEvent.Send(GlobalEventType.GAME_LANGUAGE_CHANGED);
             }

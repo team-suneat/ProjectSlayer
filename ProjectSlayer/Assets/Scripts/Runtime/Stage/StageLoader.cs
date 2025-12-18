@@ -49,13 +49,6 @@ namespace TeamSuneat
                 StageNames currentStageName = profileInfo.Stage.CurrentStage;
                 Log.Info(LogTags.Stage, "스테이지 로드 시작: {0}", currentStageName);
 
-                StageData stageData = JsonDataManager.FindStageDataClone(currentStageName);
-                if (stageData == null)
-                {
-                    Log.Error(LogTags.Stage, "스테이지 데이터를 찾을 수 없습니다: {0}", currentStageName);
-                    return;
-                }
-
                 // 스테이지 시스템 생성
                 CreateStageSystem(currentStageName);
             }

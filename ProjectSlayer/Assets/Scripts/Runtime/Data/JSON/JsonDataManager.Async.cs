@@ -21,7 +21,7 @@ namespace TeamSuneat.Data
 
             await LoadJsonSheetsByLabelAsync();
 
-            OnLoadJsonDatas();
+            OnLoadJsonDataAll();
             LogWarningParseJsonData();
             LogWarningParseJsonData();
         }
@@ -65,7 +65,7 @@ namespace TeamSuneat.Data
                 }
             }
 
-            OnLoadJsonDatas();
+            OnLoadJsonDataAll();
             LogWarningParseJsonData();
             LogWarningParseJsonData();
         }

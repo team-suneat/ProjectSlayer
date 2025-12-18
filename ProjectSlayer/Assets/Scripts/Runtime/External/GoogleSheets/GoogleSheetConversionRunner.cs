@@ -10,17 +10,8 @@ namespace TeamSuneat
     {
         private static readonly Dictionary<string, object> gidToConverter = new()
         {
-            { GoogleSheetDatasetGids.PlayerCharacter, new PlayerCharacterRowConverter() },
-            { GoogleSheetDatasetGids.MonsterCharacter, new MonsterCharacterRowConverter() },
-            { GoogleSheetDatasetGids.Passive, new PassiveRowConverter() },
-            { GoogleSheetDatasetGids.Stat, new StatRowConverter() },
-            { GoogleSheetDatasetGids.Weapon, new WeaponRowConverter() },            
-            { GoogleSheetDatasetGids.Potion, new PotionRowConverter() },
-            { GoogleSheetDatasetGids.Stage, new StageRowConverter() },
-            { GoogleSheetDatasetGids.Wave, new WaveRowConverter() },
             { GoogleSheetDatasetGids.String, new StringRowConverter() },
-            { GoogleSheetDatasetGids.CharacterLevelExp, new CharacterLevelExpRowConverter() },
-            { GoogleSheetDatasetGids.CharacterRankExp, new CharacterRankExpRowConverter() },
+            { GoogleSheetDatasetGids.Stat, new StatRowConverter() },
         };
 
         public static bool HasConverterForGid(string gid)

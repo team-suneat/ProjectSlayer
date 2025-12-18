@@ -9,17 +9,8 @@ namespace TeamSuneat
     public enum GoogleSheetDatasetId
     {
         None = 0,
-        PlayerCharacter,
-        MonsterCharacter,
-        Passive,
-        Stat,
-        Weapon,
-        Potion,
-        Stage,
-        Wave,
         String,
-        CharacterLevelExp,
-        CharacterRankExp,
+        Stat,
     }
 
     /// <summary>
@@ -30,32 +21,14 @@ namespace TeamSuneat
     public static class GoogleSheetDatasetGids
     {
         // 고정 GID 상수
-        public const string PlayerCharacter = "0";
-        public const string MonsterCharacter = "1459762493";
-        public const string Passive = "1242859680";
-        public const string Stat = "135446725";
-        public const string Weapon = "700832083";
-        public const string Potion = "1558675697";
-        public const string Stage = "1085377210";
-        public const string Wave = "500721965";
-        public const string String = "595378682";
-        public const string CharacterLevelExp = "913942234";
-        public const string CharacterRankExp = "2053898515";
+        public const string String = "0";
+        public const string Stat = "1316031185";
 
         private static readonly Dictionary<GoogleSheetDatasetId, string> DatasetIdToGid = new()
-    {
-        { GoogleSheetDatasetId.PlayerCharacter, PlayerCharacter },
-        { GoogleSheetDatasetId.MonsterCharacter, MonsterCharacter },
-        { GoogleSheetDatasetId.Passive, Passive},
-        { GoogleSheetDatasetId.Stat, Stat },
-        { GoogleSheetDatasetId.Weapon, Weapon },        
-        { GoogleSheetDatasetId.Potion, Potion },
-        { GoogleSheetDatasetId.Stage, Stage },
-        { GoogleSheetDatasetId.Wave, Wave },
-        { GoogleSheetDatasetId.String, String },
-        { GoogleSheetDatasetId.CharacterLevelExp, CharacterLevelExp },
-        { GoogleSheetDatasetId.CharacterRankExp, CharacterRankExp },
-    };
+        {
+            { GoogleSheetDatasetId.String, String },
+            { GoogleSheetDatasetId.Stat, Stat},
+        };
 
         public static string GetGid(GoogleSheetDatasetId datasetId)
         {

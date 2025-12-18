@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace TeamSuneat
+namespace TeamSuneat.UserInterface
 {
     // 캐릭터 페이지 - 강화/성장/승급 탭 전환 관리
     public class UICharacterPage : UIPage

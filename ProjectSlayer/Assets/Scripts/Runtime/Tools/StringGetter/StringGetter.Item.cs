@@ -160,6 +160,11 @@ namespace TeamSuneat
         }
 
         // 재화 (Currency)
+        public static string GetStringKey(this CurrencyNames key)
+        {
+            return $"Currency_Name_{key}";
+        }
+
         public static string GetLocalizedString(this CurrencyNames key)
         {
             return GetLocalizedString(key, GameSetting.Instance.Language.Name);
@@ -167,20 +172,12 @@ namespace TeamSuneat
 
         public static string GetLocalizedString(this CurrencyNames key, LanguageNames languageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Currency_Name_");
-            stringBuilder.Append(key.ToString());
-
-            return JsonDataManager.FindStringClone(stringBuilder.ToString(), languageName);
+            return JsonDataManager.FindStringClone($"Currency_Name_{key}", languageName);
         }
 
         public static string GetFormatString(this CurrencyNames key)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Currency_Format_");
-            stringBuilder.Append(key.ToString());
-
-            return JsonDataManager.FindStringClone(stringBuilder.ToString());
+            return JsonDataManager.FindStringClone($"Currency_Format_{key}");
         }
 
         public static string GetLocalizedString(this CurrencyNames key, int value)

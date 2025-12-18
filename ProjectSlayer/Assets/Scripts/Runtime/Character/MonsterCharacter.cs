@@ -63,11 +63,11 @@ namespace TeamSuneat
         //
         public override void AddCharacterStats()
         {
-            MonsterCharacterData data = JsonDataManager.FindMonsterCharacterDataClone(Name);
-            if (data != null)
+            MonsterStatConfigAsset monsterStatConfigAsset = ScriptableDataManager.Instance.GetMonsterStatConfigAsset();
+            if (monsterStatConfigAsset != null)
             {
-                Stat.AddWithSourceInfo(StatNames.Health, data.Health, this, NameString, "CharacterBase");
-                Stat.AddWithSourceInfo(StatNames.Attack, data.Damage, this, NameString, "CharacterBase");
+                Stat.AddWithSourceInfo(StatNames.Health, monsterStatConfigAsset.GetHealth(Level, IsBoss), this, NameString, "CharacterBase");
+                Stat.AddWithSourceInfo(StatNames.Attack, monsterStatConfigAsset.GetAttack(Level, IsBoss), this, NameString, "CharacterBase");
             }
         }
 

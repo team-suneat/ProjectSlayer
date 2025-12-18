@@ -6,19 +6,10 @@ namespace TeamSuneat.Data
     {
         #region OnLoadData
 
-        private static void OnLoadJsonDatas()
+        private static void OnLoadJsonDataAll()
         {
-            OnLoadJsonData(_playerCharacterSheetData.Values);
-            OnLoadJsonData(_monsterCharacterSheetData.Values);
-            OnLoadJsonData(_passiveSheetData.Values);
             OnLoadJsonData(_statSheetData.Values);
-            OnLoadJsonData(_weaponSheetData.Values);
-            OnLoadJsonData(_potionSheetData.Values);
-            OnLoadJsonData(_stageSheetData.Values);
-            OnLoadJsonData(_stringSheetData.Values);            
-            OnLoadJsonData(_waveSheetData);
-            OnLoadJsonData(_characterLevelExpSheetData.Values);
-            OnLoadJsonData(_characterRankExpSheetData.Values);
+            OnLoadJsonData(_stringSheetData.Values);
         }
 
         private static void OnLoadJsonData(IEnumerable<IData<int>> datas)

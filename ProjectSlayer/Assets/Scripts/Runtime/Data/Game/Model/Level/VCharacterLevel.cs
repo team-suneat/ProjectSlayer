@@ -15,31 +15,38 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨과 경험치를 초기화합니다.");
         }
 
-        /// <returns>Current Level</returns>
-        public int AddExperience(int experience)
+        public void AddExperience(int experience)
         {
             if (CharacterManager.Instance.Player == null)
             {
-                return 0;
+                return;
             }
 
-            CharacterLevelExpData data = JsonDataManager.FindCharacterLevelExpDataClone(Level);
-            int nextExperience = data.RequiredExperience;
-            float increasedExperience = CharacterManager.Instance.Player.Stat.FindValueOrDefault(StatNames.XPGain);
+            float multiplier = CharacterManager.Instance.Player.Stat.FindValueOrDefault(StatNames.XPGain);
 
-            Log.Info(LogTags.GameData, "[Character] 받는 경험치 획득량을 결정합니다. EXP: {0}, 추가 획득량 {1}", experience, increasedExperience);
+            Log.Info(LogTags.GameData, "[Character] 받는 경험치 획득량을 결정합니다. EXP: {0}, 추가 획득량 {1}", experience, multiplier);
 
-            int resultLevel = 0;
-            Experience += Mathf.RoundToInt(experience * increasedExperience);
-            if (Experience >= nextExperience)
+            if (multiplier > 0)
             {
-                int overflowExperience = Experience - nextExperience;
-                Experience = overflowExperience;
-                resultLevel = LevelUp();
+                Experience += Mathf.RoundToInt(experience * multiplier);
+            }
+            else
+            {
+                Experience += experience;
             }
 
-            _ = GlobalEvent<int, int>.Send(GlobalEventType.GAME_DATA_CHARACTER_ADD_EXPERIENCE, Experience, nextExperience);
-            return resultLevel;
+            GlobalEvent.Send(GlobalEventType.GAME_DATA_CHARACTER_ADD_EXPERIENCE);
+        }
+
+        public int GetRequiredExperience()
+        {
+            ExperienceConfigAsset config = ScriptableDataManager.Instance.GetExperienceConfigAsset();
+            if (config != null)
+            {
+                return config.GetExperienceRequiredForNextLevel(Level);
+            }
+
+            return 0;
         }
 
         public int LevelUp()
@@ -57,24 +64,33 @@ namespace TeamSuneat.Data.Game
             int addedLevel = 0;
             for (int i = 0; i < addLevel; i++)
             {
-                if (Level < GameDefine.CHARACTER_MAX_LEVEL)
-                {
-                    Level += 1;
-                    addedLevel += 1;
-                    Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨이 올랐습니다: Lv.{0}", Level.ToString());
-                }
-                else
+                if (Level >= GameDefine.CHARACTER_MAX_LEVEL)
                 {
                     break;
                 }
+
+                int requiredExperience = GetRequiredExperience();
+                if (Experience < requiredExperience)
+                {
+                    break;
+                }
+
+                Experience -= requiredExperience;
+                Level += 1;
+                addedLevel += 1;
+                Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨이 올랐습니다: Lv.{0}", Level.ToString());
             }
 
-            if (CharacterManager.Instance.Player != null)
+            if (addedLevel > 0 && CharacterManager.Instance.Player != null)
             {
                 CharacterManager.Instance.Player.OnLevelup(addedLevel);
             }
 
-            _ = GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, Level);
+            if (addedLevel > 0)
+            {
+                _ = GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, Level);
+            }
+
             return addedLevel;
         }
 

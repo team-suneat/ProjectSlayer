@@ -289,6 +289,79 @@ namespace TeamSuneat
             }
         }
 
+        public IList<T> LoadResourcesByLabelSync<T>(string label) where T : UnityEngine.Object
+        {
+            // Addressables 초기화 확인
+            if (!IsAddressableSystemReady())
+            {
+                Log.Error(LogTags.Resource, "Addressable 시스템이 초기화되지 않았거나 빌드되지 않았습니다. 라벨 리소스를 로드할 수 없습니다: {0}", label);
+                Log.Error(LogTags.Resource, "Unity Editor에서 Play 모드로 들어가기 전에 'Window > Asset Management > Addressables > Groups'에서 'Build > New Build > Default Build Script'를 실행하세요.");
+                return new List<T>();
+            }
+
+            try
+            {
+                // 먼저 라벨에 해당하는 리소스 위치를 확인
+                AsyncOperationHandle<IList<IResourceLocation>> locationsHandle = Addressables.LoadResourceLocationsAsync(label, typeof(T));
+                IList<IResourceLocation> locations = locationsHandle.WaitForCompletion();
+                
+                try
+                {
+                    if (locations == null || locations.Count == 0)
+                    {
+                        Log.Warning(LogTags.Resource, "{0} 라벨로 {1} 타입의 리소스를 찾을 수 없습니다.", label, typeof(T).Name);
+                        return new List<T>();
+                    }
+
+                    // 실제 리소스 로드 (동기)
+                    AsyncOperationHandle<IList<T>> handle = Addressables.LoadAssetsAsync<T>(label, null);
+                    _asyncOperationHandles[label] = handle;
+
+                    IList<T> assets = handle.WaitForCompletion();
+                    
+                    if (assets != null && assets.Count > 0)
+                    {
+                        Log.Info(LogTags.Resource, "{0} 라벨로 {1} 타입의 리소스를 {2}개 동기적으로 불러왔습니다.", label, typeof(T).Name, assets.Count);
+                        CacheResourcesByLocationsSync(label, assets, locations);
+                        return assets;
+                    }
+                    else
+                    {
+                        Log.Warning(LogTags.Resource, "{0} 라벨로 {1} 타입의 리소스를 불러왔지만 비어있습니다.", label, typeof(T).Name);
+                        return new List<T>();
+                    }
+                }
+                finally
+                {
+                    Addressables.Release(locationsHandle);
+                }
+            }
+            catch (UnityEngine.AddressableAssets.InvalidKeyException ex)
+            {
+                Log.Error(LogTags.Resource, "{0} 라벨로 {1} 타입의 리소스를 찾을 수 없습니다. 라벨이 존재하지 않거나 해당 타입의 에셋이 없습니다.", label, typeof(T).Name);
+                Log.Error(LogTags.Resource, "에러 상세: {0}", ex.Message);
+                Log.Error(LogTags.Resource, "해결 방법: Addressables Groups에서 '{0}' 라벨이 올바르게 설정되어 있는지 확인하세요.", label);
+                return new List<T>();
+            }
+            catch (System.Exception ex)
+            {
+                string errorMessage = ex.Message;
+                
+                if (errorMessage.Contains("not assignable") || errorMessage.Contains("InvalidKeyException"))
+                {
+                    Log.Error(LogTags.Resource, "{0} 라벨로 {1} 타입의 리소스를 로드할 수 없습니다.", label, typeof(T).Name);
+                    Log.Error(LogTags.Resource, "원인: 라벨에 해당 타입의 에셋이 없거나 타입이 맞지 않습니다.");
+                    Log.Error(LogTags.Resource, "해결 방법: Addressables Groups에서 '{0}' 라벨이 {1} 타입의 에셋에만 할당되어 있는지 확인하세요.", label, typeof(T).Name);
+                }
+                else
+                {
+                    Log.Error(LogTags.Resource, "{0} 라벨 리소스 불러오기 중 오류 발생: {1}", label, errorMessage);
+                }
+                
+                return new List<T>();
+            }
+        }
+
         #endregion 리소스 불러오기
 
         #region 리소스 해제
@@ -541,6 +614,48 @@ namespace TeamSuneat
             finally
             {
                 Addressables.Release(locationsHandle);
+            }
+        }
+
+        private void CacheResourcesByLocationsSync<T>(string label, IList<T> assets, IList<IResourceLocation> locations) where T : UnityEngine.Object
+        {
+            if (locations == null || locations.Count == 0)
+            {
+                Log.Warning(LogTags.Resource, "{0} 라벨로 리소스 위치를 찾을 수 없습니다.", label);
+                return;
+            }
+
+            try
+            {
+                int count = Mathf.Min(assets.Count, locations.Count);
+                for (int i = 0; i < count; i++)
+                {
+                    string cacheKey = locations[i].PrimaryKey;
+                    T asset = assets[i];
+
+                    if (_resourcesCache.ContainsKey(cacheKey))
+                    {
+                        continue;
+                    }
+
+                    _resourcesCache.Add(cacheKey, asset);
+                    
+                    // 참조 카운트 증가
+                    if (_referenceCounts.ContainsKey(cacheKey))
+                    {
+                        _referenceCounts[cacheKey]++;
+                    }
+                    else
+                    {
+                        _referenceCounts[cacheKey] = 1;
+                    }
+                    
+                    Log.Progress(LogTags.Resource, "{0} 라벨로 불러온 리소스를 AssetGUID로 캐시합니다. Key: {1}, Asset: {2}", label, cacheKey, asset.name);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error(LogTags.Resource, "{0} 라벨 리소스 캐싱 중 오류 발생: {1}", label, ex.Message);
             }
         }
 

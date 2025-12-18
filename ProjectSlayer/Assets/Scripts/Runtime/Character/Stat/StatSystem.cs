@@ -82,7 +82,7 @@ namespace TeamSuneat
             if (statValue.IsNaN()) { return; }
             if (statValue.IsZero()) { return; }
 
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             if (!statData.IsValid()) { return; }
 
             if (statData.Mod == StatModType.Once)

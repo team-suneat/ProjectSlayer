@@ -8,10 +8,10 @@ namespace TeamSuneat
 {
     public class UIButton : UIInteractiveElement
     {
-        [Title("#UIButton")]
+        [FoldoutGroup("#UIButton")]
         [SerializeField] private Button _button;
 
-        [Title("#UIButton-Settings")]
+        [FoldoutGroup("#UIButton")]
         [SerializeField] private float _buttonImageAlphaDuration = 0.15f;
 
         private Tween _alphaTween;

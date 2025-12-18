@@ -9,7 +9,7 @@ namespace TeamSuneat.Assets.Scripts.Runtime.Stage
         public StageNames Name;
         public string NameString;
 
-        private StageData _currentStageData;
+        // private StageData _currentStageData;
 
         public override void AutoSetting()
         {
@@ -38,12 +38,6 @@ namespace TeamSuneat.Assets.Scripts.Runtime.Stage
 
         private void LoadStageData()
         {
-            _currentStageData = JsonDataManager.FindStageDataClone(Name);
-            if (_currentStageData == null)
-            {
-                Log.Error(LogTags.Stage, "스테이지 데이터를 찾을 수 없습니다: {0}", Name);
-                return;
-            }
         }
 
         private void RegisterCurrentStage()
@@ -56,7 +50,7 @@ namespace TeamSuneat.Assets.Scripts.Runtime.Stage
 
         public void CleanupStage()
         {
-            _currentStageData = null;
+            // _currentStageData = null;
         }
 
         private UIStageTitleNotice SpawnStageTitleNotice()

@@ -50,20 +50,7 @@ namespace TeamSuneat
         public void OnLevelup(int addedLevel)
         {
             SetupLevel();
-            if (Stat != null)
-            {
-                int previousHealth = MyVital.CurrentHealth;
 
-                PlayerCharacterData characterData = JsonDataManager.FindPlayerCharacterDataClone(Name);
-                if (characterData != null)
-                {
-                    ApplyGrowthStats(characterData);
-                    LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
-                }
-
-                Stat.OnLevelUp();
-                MyVital?.OnLevelUp(Stat, previousHealth);
-            }
             if (OnLevelUpFeedbacks != null)
             {
                 OnLevelUpFeedbacks.PlayFeedbacks(position, 0);
@@ -93,46 +80,29 @@ namespace TeamSuneat
 
         public override void AddCharacterStats()
         {
-            PlayerCharacterData data = JsonDataManager.FindPlayerCharacterDataClone(Name);
-            if (data != null)
-            {
-                // 기본 스탯 적용
-                ApplyBaseStats(data);
-
-                // 레벨별 성장 스탯 적용
-                ApplyGrowthStats(data);
-
-                LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
-            }
+            //  PlayerCharacterData data = JsonDataManager.FindPlayerCharacterDataClone(Name);
+            //  if (data != null)
+            //  {
+            //      // 기본 스탯 적용
+            //      ApplyBaseStats(data);
+            //
+            //      LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
+            //  }
         }
 
-        private void ApplyBaseStats(PlayerCharacterData data)
-        {
-            if (!data.IsValid()) return;
-            for (int i = 0; i < data.BaseStats.Length; i++)
-            {
-                StatNames baseStatName = data.BaseStats[i];
-                float baseStatValue = data.BaseStatValues[i];
-
-                if (baseStatName == StatNames.None || baseStatValue.IsZero()) continue;
-
-                Stat.AddWithSourceInfo(baseStatName, baseStatValue, this, NameString, "CharacterBase");
-            }
-        }
-
-        private void ApplyGrowthStats(PlayerCharacterData data)
-        {
-            if (!data.IsValid()) return;
-            for (int i = 0; i < data.GrowStats.Length; i++)
-            {
-                StatNames baseStatName = data.GrowStats[i];
-                float baseStatValue = data.GrowStatValues[i];
-
-                if (baseStatName == StatNames.None || baseStatValue.IsZero()) continue;
-
-                Stat.AddWithSourceInfo(baseStatName, baseStatValue, this, NameString, "CharacterGrowth");
-            }
-        }
+        // private void ApplyBaseStats(PlayerCharacterData data)
+        // {
+        //     if (!data.IsValid()) return;
+        //     for (int i = 0; i < data.BaseStats.Length; i++)
+        //     {
+        //         StatNames baseStatName = data.BaseStats[i];
+        //         float baseStatValue = data.BaseStatValues[i];
+        //
+        //         if (baseStatName == StatNames.None || baseStatValue.IsZero()) continue;
+        //
+        //         Stat.AddWithSourceInfo(baseStatName, baseStatValue, this, NameString, "CharacterBase");
+        //     }
+        // }
 
         //
 

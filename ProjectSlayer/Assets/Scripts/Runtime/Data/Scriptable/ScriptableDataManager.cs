@@ -8,6 +8,11 @@ namespace TeamSuneat.Data
         private GameDefineAsset _gameDefine;
         private LogSettingAsset _logSetting;
 
+        private ExperienceConfigAsset _experienceConfigAsset; // 캐릭터 경험치
+        private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 스탯
+        private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
+        private GrowthDataAsset _growthDataAsset; // 캐릭터 성장
+
         private readonly Dictionary<int, HitmarkAsset> _hitmarkAssets = new();
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();
         private readonly Dictionary<int, BuffStateEffectAsset> _stateEffectAssets = new();
@@ -16,9 +21,6 @@ namespace TeamSuneat.Data
         private readonly Dictionary<int, FloatyAsset> _floatyAssets = new();
         private readonly Dictionary<int, FlickerAsset> _flickerAssets = new();
         private readonly Dictionary<int, SoundAsset> _soundAssets = new();
-        private EnhancementDataAsset _enhancementDataAsset;
-        private GrowthDataAsset _growthDataAsset;
-        private ExperienceConfigAsset _experienceConfigAsset;
 
         public void Clear()
         {
@@ -36,6 +38,7 @@ namespace TeamSuneat.Data
             _enhancementDataAsset = null;
             _growthDataAsset = null;
             _experienceConfigAsset = null;
+            _monsterStatConfigAsset = null;
         }
 
         public void RefreshAll()
@@ -50,6 +53,7 @@ namespace TeamSuneat.Data
             RefreshAllEnhancement();
             RefreshAllGrowth();
             RefreshAllExperienceConfig();
+            RefreshAllMonsterStatConfig();
         }
     }
 }

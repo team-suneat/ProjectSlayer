@@ -16,7 +16,7 @@ namespace TeamSuneat
             if (statName == StatNames.None) { return; }
             if (statValue.IsNaN()) { return; }
 
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             if (statData.IsValid())
             {
                 if (statData.Mod == StatModType.Once)
@@ -46,7 +46,7 @@ namespace TeamSuneat
             if (statName == StatNames.None) { return; }
             if (statValue.IsNaN()) { return; }
 
-            StatData statData = JsonDataManager.FindStatDataClone(statName);
+            StatData statData = JsonDataManager.FindStatData(statName);
             if (statData.IsValid())
             {
                 if (statData.Mod == StatModType.Once)

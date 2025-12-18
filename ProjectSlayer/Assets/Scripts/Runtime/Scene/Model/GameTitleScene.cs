@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace TeamSuneat
+namespace TeamSuneat.Scenes
 {
     /// <summary>
     /// 게임 타이틀 씬을 관리하는 클래스

@@ -193,7 +193,7 @@ namespace TeamSuneat
             StatData statData;
             for (int i = 1; i < statNames.Length; i++)
             {
-                statData = JsonDataManager.FindStatDataClone(statNames[i]);
+                statData = JsonDataManager.FindStatData(statNames[i]);
                 if (!statData.IsValid()) { continue; }
 
                 Stat.AddWithSourceInfo(statNames[i], 0, this, NameString, "Character");

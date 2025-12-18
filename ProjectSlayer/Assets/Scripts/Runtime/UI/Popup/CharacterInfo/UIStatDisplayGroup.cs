@@ -20,8 +20,8 @@ namespace TeamSuneat.UserInterface
             StatNames.CriticalDamage,
             StatNames.Mana,
             StatNames.ManaRegen,
-            StatNames.Accuracy,
-            StatNames.Evasion,
+            StatNames.AccuracyChance,
+            StatNames.DodgeChance,
             StatNames.GoldGain,
             StatNames.XPGain,
         };

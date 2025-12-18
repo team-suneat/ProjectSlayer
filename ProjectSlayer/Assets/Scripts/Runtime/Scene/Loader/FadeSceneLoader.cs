@@ -82,7 +82,7 @@ namespace TeamSuneat
 
             ActiveTargetScene(SceneManager.GetActiveScene().name);
 
-            XScene.ResetChangeSceneCoroutine();
+            Scenes. XScene.ResetChangeSceneCoroutine();
 
             yield return Delay(FadeDelayTime);
             yield return FadeOut(targetSceneName, FadeOutDuration);
@@ -98,7 +98,7 @@ namespace TeamSuneat
         private void ExitScene()
         {
             // Unload Prev
-            XScene gameScene = GameApp.FindGameScene();
+            Scenes.XScene gameScene = GameApp.FindGameScene();
 
             if (gameScene)
             {

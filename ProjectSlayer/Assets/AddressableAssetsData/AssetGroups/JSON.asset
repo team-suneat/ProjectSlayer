@@ -15,80 +15,14 @@ MonoBehaviour:
   m_GroupName: JSON
   m_GUID: 14d5d10955573b0408816efc238f7f89
   m_SerializeEntries:
-  - m_GUID: 1425bff4e0f036d45aeff9f4a473e5b7
-    m_Address: Assets/Addressables/JSON/MonsterCharacter.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 14ecd359529b5784e86d6e9cb4e6663c
-    m_Address: Assets/Addressables/JSON/Potion.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17ef6ff6024715e4688b73d635d83450
-    m_Address: Assets/Addressables/JSON/Passive.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 23f8343304f53344683e1a3f2fcc9c6d
-    m_Address: Assets/Addressables/JSON/CharacterLevelExp.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c5bde2778257a14e99239861dd349a3
-    m_Address: Assets/Addressables/JSON/StringDialogue.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4635f893becf07e48811b77f68ed6bb7
     m_Address: Assets/Addressables/JSON/String.json
     m_ReadOnly: 0
     m_SerializedLabels:
     - JSON
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 48042956c80e2e6498a6b906da0ddf54
-    m_Address: Assets/Addressables/JSON/WeaponLevel.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 689d90bc9219f9b4aa9bf2fbad46abeb
-    m_Address: Assets/Addressables/JSON/Wave.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6e589a6b46db1154cbc3c2541e03b648
-    m_Address: Assets/Addressables/JSON/Stage.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 829e3a92ae41f0144b1d42ffe1a990c8
     m_Address: Assets/Addressables/JSON/Stat.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 84a337bb0a7fdfa4cb4c227a1989896f
-    m_Address: Assets/Addressables/JSON/Weapon.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a3bd370a7ce508b45abea4d2c829c591
-    m_Address: Assets/Addressables/JSON/PlayerCharacter.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JSON
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bee7a858999fb094ba5703271e87927b
-    m_Address: Assets/Addressables/JSON/CharacterRankExp.json
     m_ReadOnly: 0
     m_SerializedLabels:
     - JSON

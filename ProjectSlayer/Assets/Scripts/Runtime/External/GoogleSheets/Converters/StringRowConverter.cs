@@ -12,7 +12,6 @@ namespace TeamSuneat
             _ = row.TryGetValue("ID", out string id);
             _ = row.TryGetValue("Korean", out string korean);
             _ = row.TryGetValue("English", out string english);
-
             if (!row.TryGetValue("Arguments", out string argumentsString) || !GoogleSheetValueParsers.TryParseInt(argumentsString, out int arguments))
             {
                 Log.Warning($"{id}: Arguments 파싱 실패: {argumentsString}");

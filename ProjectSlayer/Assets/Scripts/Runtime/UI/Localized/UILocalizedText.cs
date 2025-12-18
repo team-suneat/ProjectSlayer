@@ -1,39 +1,70 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using TeamSuneat.Data;
 using TeamSuneat.Setting;
 using TMPro;
 using UnityEngine;
 
 namespace TeamSuneat.UserInterface
 {
-    public class UILocalizedText : XBehaviour
+    public class UILocalizedText : XBehaviour, IUITextLocalizable
     {
         [Title("#UI Localized Text")]
-        public string StringKey;
-
-        public GameFontTypes FontType;
-        public string FontTypeString;
-        public TextMeshProUGUI TextPro;
-        public int CustomAdditionalFontSize;
-
-        [Title("#UI Localized Text", "Language")]
-        public bool UseCustomLanguage;
-        public LanguageNames CustomLanguage;
-
-        public float CustomFontSize { get; set; }
+        [SerializeField]
+        private TextMeshProUGUI _textPro;
 
         [SerializeField]
-        private UILocalizedTextFontController _fontController;
-        private string _content;
-        private string _spriteContent;
+        private UITextLocalizer _textLocalizer;
 
         [SerializeField]
-        private UILocalizedTextSizeController _sizeController;
+        private UITextFontLocalizer _fontLocalizer;
+
+        public string StringKey
+        {
+            get => TextLocalizer?.StringKey ?? string.Empty;
+            set
+            {
+                if (TextLocalizer != null)
+                {
+                    TextLocalizer.SetStringKey(value);
+                }
+            }
+        }
+
+        public GameFontTypes FontType
+        {
+            get => FontLocalizer?.FontType ?? GameFontTypes.None;
+            set
+            {
+                if (FontLocalizer != null)
+                {
+                    FontLocalizer.FontType = value;
+                    FontLocalizer.FontTypeString = value.ToString();
+                }
+            }
+        }
+
+        public string FontTypeString
+        {
+            get => FontLocalizer?.FontTypeString ?? string.Empty;
+            set
+            {
+                if (FontLocalizer != null)
+                {
+                    FontLocalizer.FontTypeString = value;
+                    if (!EnumEx.ConvertTo(ref FontLocalizer.FontType, value))
+                    {
+                        Log.Error(LogTags.Font, "{0} 폰트 타입이 변환되지 않습니다. {1}", FontLocalizer.FontType, value);
+                    }
+                }
+            }
+        }
+
 
         public Color DefaultTextColor { get; private set; }
 
-        public int FontSize => TextPro != null ? (int)TextPro.fontSize : 0;
+        public int FontSize => _textPro != null ? (int)_textPro.fontSize : 0;
+
+        public string Content => _textPro!=null ? _textPro.text : string.Empty;
 
         #region 컴포넌트 할당
 
@@ -41,15 +72,23 @@ namespace TeamSuneat.UserInterface
         {
             base.AutoGetComponents();
 
-            AssignTextComponents();
-            AssignFontController();
+            _textPro ??= GetComponent<TextMeshProUGUI>();
+            _textLocalizer ??= GetComponent<UITextLocalizer>();
+            _fontLocalizer ??= GetComponent<UITextFontLocalizer>();
         }
 
-        private void AssignTextComponents()
+        public override void AutoAddComponents()
         {
-            if (TextPro == null)
+            base.AutoAddComponents();
+
+            if (_textLocalizer == null)
             {
-                TextPro = GetComponent<TextMeshProUGUI>();
+                _textLocalizer = gameObject.AddComponent<UITextLocalizer>();
+            }
+
+            if (_fontLocalizer == null)
+            {
+                _fontLocalizer = gameObject.AddComponent<UITextFontLocalizer>();
             }
         }
 
@@ -57,63 +96,39 @@ namespace TeamSuneat.UserInterface
 
         #region 초기화 및 이벤트
 
-        private void OnValidate()
-        {
-            if (!EnumEx.ConvertTo(ref FontType, FontTypeString))
-            {
-                Log.Error(LogTags.Font, "{0} 폰트 타입이 변환되지 않습니다. {1}", FontType, FontTypeString);
-            }
-        }
-
         public override void AutoSetting()
         {
             base.AutoSetting();
 
-            if (!string.IsNullOrEmpty(StringKey))
+            if (TextLocalizer != null && !string.IsNullOrEmpty(TextLocalizer.StringKey))
             {
-                StringKey = StringKey.Replace(" ", "");
-            }
-            if (FontType != GameFontTypes.None)
-            {
-                FontTypeString = FontType.ToString();
+                TextLocalizer.StringKey = TextLocalizer.StringKey.Replace(" ", "");
             }
         }
 
         protected void Awake()
         {
-            AssignTextComponents();
-            AssignFontController();
+            _textPro ??= GetComponent<TextMeshProUGUI>();
+            _textLocalizer ??= GetComponent<UITextLocalizer>();
+            _fontLocalizer ??= GetComponent<UITextFontLocalizer>();
 
-            if (TextPro != null)
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (_textPro != null)
             {
-                DefaultTextColor = TextPro.color;
-                _content = TextPro.text;
-                FontController?.InitializeDefaultFontSize(TextPro.fontSize);
+                DefaultTextColor = _textPro.color;
+                FontLocalizer?.InitializeDefaultFontSize(_textPro.fontSize);
             }
-        }
-
-        protected override void RegisterGlobalEvent()
-        {
-            base.RegisterGlobalEvent();
-            GlobalEvent.Register(GlobalEventType.GAME_LANGUAGE_CHANGED, OnGameLanguageChanged);
-        }
-
-        protected override void UnregisterGlobalEvent()
-        {
-            base.UnregisterGlobalEvent();
-            GlobalEvent.Unregister(GlobalEventType.GAME_LANGUAGE_CHANGED, OnGameLanguageChanged);
-        }
-
-        private void OnGameLanguageChanged()
-        {
-            Refresh(GameSetting.Instance.Language.Name);
         }
 
         protected override void OnEnabled()
         {
             base.OnEnabled();
 
-            Refresh(GameSetting.Instance.Language.Name);
+            RefreshLanguage(GameSetting.Instance.Language.Name);
         }
 
         #endregion 초기화 및 이벤트
@@ -122,17 +137,17 @@ namespace TeamSuneat.UserInterface
 
         public void Activate()
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.enabled = true;
+                _textPro.enabled = true;
             }
         }
 
         public void Deactivate()
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.enabled = false;
+                _textPro.enabled = false;
             }
         }
 
@@ -142,114 +157,32 @@ namespace TeamSuneat.UserInterface
 
         public void ResetText()
         {
-            ResetTextInternal();
-        }
-
-        private void ResetTextInternal()
-        {
-            if (TextPro == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(_content))
-            {
-                _content = string.Empty;
-            }
-            OnSetText();
+            TextLocalizer?.ResetText();
         }
 
         public void SetText(string content)
         {
-            if (TextPro == null)
-            {
-                return;
-            }
-
-            if (_content == content)
-            {
-                return;
-            }
-
-            _content = content;
-            OnSetText();
+            TextLocalizer?.SetText(content);
         }
 
         public void SetStringKey(string stringKey)
         {
-            if (StringKey == stringKey)
-            {
-                return;
-            }
-
-            StringKey = stringKey;
-
-            RefreshContent(GameSetting.Instance.Language.Name);
+            TextLocalizer?.SetStringKey(stringKey);
         }
 
         public void ResetStringKey()
         {
-            if (string.IsNullOrEmpty(StringKey))
-            {
-                return;
-            }
-
-            StringKey = string.Empty;
-            RefreshContent(GameSetting.Instance.Language.Name);
+            TextLocalizer?.ResetStringKey();
         }
 
         public void SetSpriteText(string spriteContent)
         {
-            if (TextPro == null)
-            {
-                return;
-            }
-
-            if (_spriteContent == spriteContent)
-            {
-                return;
-            }
-
-            _spriteContent = spriteContent;
-            OnSetText();
+            TextLocalizer?.SetSpriteText(spriteContent);
         }
 
         public void ResetSpriteText()
         {
-            if (TextPro == null)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_spriteContent))
-            {
-                return;
-            }
-
-            _spriteContent = string.Empty;
-            OnSetText();
-        }
-
-        private void OnSetText()
-        {
-            if (!string.IsNullOrEmpty(_spriteContent) && !string.IsNullOrEmpty(_content))
-            {
-                TextPro.SetText($"{_spriteContent} {_content}");
-            }
-            else if (!string.IsNullOrEmpty(_spriteContent))
-            {
-                TextPro.SetText(_spriteContent);
-            }
-            else if (!string.IsNullOrEmpty(_content))
-            {
-                TextPro.SetText(_content);
-            }
-            else
-            {
-                TextPro.ResetText();
-            }
-
-            RefreshTextRectSize();
+            TextLocalizer?.ResetSpriteText();
         }
 
         #endregion 텍스트 처리
@@ -258,43 +191,38 @@ namespace TeamSuneat.UserInterface
 
         public void SetDefaultFontSize(float fontSize)
         {
-            FontController?.SetDefaultFontSize(fontSize);
-        }
-
-        private void RefreshFontSize()
-        {
-            FontController?.RefreshFontSize();
+            FontLocalizer?.SetDefaultFontSize(fontSize);
         }
 
         public void SetAlignment(TextAlignmentOptions alignment)
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.alignment = alignment;
+                _textPro.alignment = alignment;
             }
         }
 
         public void SetFontStyle(FontStyles fontStyle)
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.fontStyle = fontStyle;
+                _textPro.fontStyle = fontStyle;
             }
         }
 
         public void SetSpriteAsset(TMP_SpriteAsset spriteAsset)
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.spriteAsset = spriteAsset;
+                _textPro.spriteAsset = spriteAsset;
             }
         }
 
         public void SetTextColor(Color fontColor)
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.SetTextColor(fontColor);
+                _textPro.SetTextColor(fontColor);
             }
         }
 
@@ -304,9 +232,9 @@ namespace TeamSuneat.UserInterface
 
         public Tweener FadeOut(float targetAlpha, float duration, float delayTime)
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                return TextPro.FadeOut(targetAlpha, duration, delayTime);
+                return _textPro.FadeOut(targetAlpha, duration, delayTime);
             }
             return null;
         }
@@ -315,46 +243,15 @@ namespace TeamSuneat.UserInterface
 
         #region 언어변환 및 폰트 설정
 
+        public void RefreshLanguage(LanguageNames languageName)
+        {
+            TextLocalizer?.RefreshLanguage(languageName);
+            FontLocalizer?.RefreshLanguage(languageName);
+        }
+
         public void Refresh(LanguageNames languageName)
         {
-            string storageContent = _content;
-
-            ResetTextInternal();
-
-            RefreshFont(languageName);
-            RefreshContent(languageName, storageContent);
-            RefreshTextRectSize();
-        }
-
-        private void RefreshContent(LanguageNames languageName, string storageContent)
-        {
-            if (string.IsNullOrEmpty(StringKey))
-            {
-                if (!string.IsNullOrEmpty(storageContent))
-                {
-                    SetText(storageContent);
-                }
-                return;
-            }
-
-            string content = JsonDataManager.FindStringClone(StringKey, languageName);
-            SetText(content);
-        }
-
-        private void RefreshContent(LanguageNames languageName)
-        {
-            if (string.IsNullOrEmpty(StringKey))
-            {
-                return;
-            }
-
-            string content = JsonDataManager.FindStringClone(StringKey, languageName);
-            SetText(content);
-        }
-
-        private void RefreshFont(LanguageNames languageName)
-        {
-            FontController?.RefreshFont(languageName);
+            RefreshLanguage(languageName);
         }
 
         #endregion 언어변환 및 폰트 설정
@@ -363,9 +260,9 @@ namespace TeamSuneat.UserInterface
 
         public void ResetTextColor()
         {
-            if (TextPro != null)
+            if (_textPro != null)
             {
-                TextPro.color = DefaultTextColor;
+                _textPro.color = DefaultTextColor;
             }
         }
 
@@ -373,28 +270,9 @@ namespace TeamSuneat.UserInterface
 
         #region 크기 조정
 
-        private void RefreshTextRectSize()
-        {
-            UILocalizedTextSizeController controller = SizeController;
-            if (controller == null)
-            {
-                return;
-            }
+        private UITextLocalizer TextLocalizer => _textLocalizer ??= GetComponent<UITextLocalizer>();
 
-            controller.Refresh(TextPro);
-        }
-
-        private UILocalizedTextSizeController SizeController => _sizeController ??= GetComponent<UILocalizedTextSizeController>();
-
-        private UILocalizedTextFontController FontController => _fontController ??= GetComponent<UILocalizedTextFontController>();
-
-        private void AssignFontController()
-        {
-            if (_fontController == null)
-            {
-                _fontController = GetComponent<UILocalizedTextFontController>();
-            }
-        }
+        private UITextFontLocalizer FontLocalizer => _fontLocalizer ??= GetComponent<UITextFontLocalizer>();
 
         #endregion 크기 조정
 
@@ -402,18 +280,18 @@ namespace TeamSuneat.UserInterface
 
         public void SetUnderline(bool isActive)
         {
-            if (TextPro == null)
+            if (_textPro == null)
             {
                 return;
             }
 
             if (isActive)
             {
-                TextPro.fontStyle |= TMPro.FontStyles.Underline;
+                _textPro.fontStyle |= TMPro.FontStyles.Underline;
             }
             else
             {
-                TextPro.fontStyle &= ~TMPro.FontStyles.Underline;
+                _textPro.fontStyle &= ~TMPro.FontStyles.Underline;
             }
         }
 

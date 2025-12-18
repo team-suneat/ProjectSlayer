@@ -8,18 +8,19 @@ namespace TeamSuneat
 {
     public static partial class StringGetter
     {
-        public static string GetLocalizedString(this StatNames key)
+        public static string GetStringKey(this CharacterGrowthTypes key)
+        {
+            return $"Growth_Type_{key}";
+        }
+
+        public static string GetLocalizedString(this CharacterGrowthTypes key)
         {
             return GetLocalizedString(key, GameSetting.Instance.Language.Name);
         }
 
-        public static string GetLocalizedString(this StatNames key, LanguageNames languageName)
+        public static string GetLocalizedString(this CharacterGrowthTypes key, LanguageNames languageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Stat_Name_");
-            stringBuilder.Append(key.ToString());
-
-            string result = JsonDataManager.FindStringClone(stringBuilder.ToString(), languageName);
+            string result = JsonDataManager.FindStringClone(key.GetStringKey(), languageName);
             if (!string.IsNullOrEmpty(result))
             {
                 return result;
@@ -28,75 +29,25 @@ namespace TeamSuneat
             return key.ToString();
         }
 
-        public static string GetStatusDetailsString(this StatNames key)
+        public static string GetStringKey(this StatNames key)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Status_Details_Stat_Name_");
-            stringBuilder.Append(key.ToString());
-
-            return JsonDataManager.FindStringClone(stringBuilder.ToString());
+            return $"Stat_Name_{key}";
         }
 
-        #region Status Category Details
-
-        public static string GetStatusDetailsCategoryString(this StatNames statName)
+        public static string GetLocalizedString(this StatNames key)
         {
-            return GetStatusDetailsString(statName, "Status_Details_Category_");
+            return GetLocalizedString(key, GameSetting.Instance.Language.Name);
         }
 
-        public static string GetStatusDetailsCategoryString(this StatNames statName, string[] values)
+        public static string GetLocalizedString(this StatNames key, LanguageNames languageName)
         {
-            return GetStatusDetailsString(statName, "Status_Details_Category_", values);
-        }
-
-        public static string GetStatusDetailsCalculationString(this StatNames statName, string[] values)
-        {
-            if (GameSetting.Instance.Play.ShowStatusCalculations)
+            string result = JsonDataManager.FindStringClone(key.GetStringKey(), languageName);
+            if (!string.IsNullOrEmpty(result))
             {
-                string content = GetStatusDetailsString(statName, "Status_Details_Category_Dev_", values);
-                if (!string.IsNullOrEmpty(content))
-                {
-                    return content;
-                }
+                return result;
             }
 
-            return string.Empty;
-        }
-
-        private static string GetStatusDetailsString(this StatNames statName, string key, params string[] values)
-        {
-            string stringKey = key + statName.ToString();
-            string content;
-
-            if (values == null || values.Length == 0)
-            {
-                content = JsonDataManager.FindStringClone(stringKey);
-            }
-            else
-            {
-                StringData stringData = JsonDataManager.FindStringData(stringKey);
-                content = Format(stringData, values);
-            }
-
-            content = ReplacePlaceholders(content);
-            return content;
-        }
-
-        private static string ReplacePlaceholders(string content)
-        {
-            content = ReplaceCharacterName(content);
-            return content;
-        }
-
-        #endregion Status Category Details
-
-        public static string GetStatusString(this StatNames key)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Status_Stat_Name_");
-            stringBuilder.Append(key.ToString());
-
-            return JsonDataManager.FindStringClone(stringBuilder.ToString());
+            return key.ToString();
         }
 
         public static string ReplaceStatValue(string input, bool useColor = true)

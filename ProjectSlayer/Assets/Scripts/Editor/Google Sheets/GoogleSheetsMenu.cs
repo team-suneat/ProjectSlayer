@@ -17,17 +17,8 @@ namespace TeamSuneat
             // 중앙집중식 GID 상수 사용
             string[] gids = new string[]
             {
-                GoogleSheetDatasetGids.PlayerCharacter,
-                GoogleSheetDatasetGids.MonsterCharacter,
-                GoogleSheetDatasetGids.Passive,
                 GoogleSheetDatasetGids.Stat,
-                GoogleSheetDatasetGids.Weapon,                
-                GoogleSheetDatasetGids.Potion,
-                GoogleSheetDatasetGids.Stage,
-                GoogleSheetDatasetGids.Wave,
                 GoogleSheetDatasetGids.String,
-                GoogleSheetDatasetGids.CharacterLevelExp,
-                GoogleSheetDatasetGids.CharacterRankExp,
             };
 
             for (int idx = 0; idx < gids.Length; idx++)
@@ -57,36 +48,10 @@ namespace TeamSuneat
         [MenuItem("Tools/Google Sheets/Convert To Json/All")]
         public static async void ConvertAllToJson()
         {
-            ConvertPlayerCharacterToJson();
-            ConvertMonsterCharacterToJson();
-            ConvertPassiveToJson();
             ConvertStatToJson();
-            ConvertWeaponToJson();            
-            ConvertPotionToJson();
-            ConvertStageToJson();
-            ConvertWaveToJson();
             ConvertStringToJson();
-            ConvertCharacterLevelExpToJson();
-            ConvertCharacterRankExpToJson();
         }
 
-        [MenuItem("Tools/Google Sheets/Convert To Json/PlayerCharacter")]
-        public static async void ConvertPlayerCharacterToJson()
-        {
-            ConvertCacheToJson<PlayerCharacterData>("PlayerCharacter", GoogleSheetDatasetGids.PlayerCharacter);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/MonsterCharacter")]
-        public static async void ConvertMonsterCharacterToJson()
-        {
-            ConvertCacheToJson<MonsterCharacterData>("MonsterCharacter", GoogleSheetDatasetGids.MonsterCharacter);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/Passive")]
-        public static async void ConvertPassiveToJson()
-        {
-            ConvertCacheToJson<PassiveData>("Passive", GoogleSheetDatasetGids.Passive);
-        }
 
         [MenuItem("Tools/Google Sheets/Convert To Json/Stat")]
         public static async void ConvertStatToJson()
@@ -94,48 +59,12 @@ namespace TeamSuneat
             ConvertCacheToJson<StatData>("Stat", GoogleSheetDatasetGids.Stat);
         }
 
-        [MenuItem("Tools/Google Sheets/Convert To Json/Weapon")]
-        public static async void ConvertWeaponToJson()
-        {
-            ConvertCacheToJson<WeaponData>("Weapon", GoogleSheetDatasetGids.Weapon);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/Potion")]
-        public static async void ConvertPotionToJson()
-        {
-            ConvertCacheToJson<PotionData>("Potion", GoogleSheetDatasetGids.Potion);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/Stage")]
-        public static async void ConvertStageToJson()
-        {
-            ConvertCacheToJson<StageData>("Stage", GoogleSheetDatasetGids.Stage);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/Wave")]
-        public static async void ConvertWaveToJson()
-        {
-            ConvertCacheToJson<WaveData>("Wave", GoogleSheetDatasetGids.Wave);
-        }
 
         [MenuItem("Tools/Google Sheets/Convert To Json/String")]
         public static async void ConvertStringToJson()
         {
             ConvertCacheToJson<StringData>("String", GoogleSheetDatasetGids.String);
         }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/CharacterLevelExp")]
-        public static async void ConvertCharacterLevelExpToJson()
-        {
-            ConvertCacheToJson<CharacterLevelExpData>("CharacterLevelExp", GoogleSheetDatasetGids.CharacterLevelExp);
-        }
-
-        [MenuItem("Tools/Google Sheets/Convert To Json/CharacterRankExp")]
-        public static async void ConvertCharacterRankExpToJson()
-        {
-            ConvertCacheToJson<CharacterRankExpData>("CharacterRankExp", GoogleSheetDatasetGids.CharacterRankExp);
-        }
-
         private static async void ConvertCacheToJson<IData>(string key, string gid)
         {
             string url = GameGoogleSheetLoader.BuildPublishedTSVUrlForGid(gid);

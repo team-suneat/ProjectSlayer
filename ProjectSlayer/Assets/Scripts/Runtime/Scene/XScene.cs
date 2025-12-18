@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TeamSuneat
+namespace TeamSuneat.Scenes
 {
     public abstract class XScene : MonoBehaviour
     {
