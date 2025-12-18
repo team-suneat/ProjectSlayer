@@ -44,51 +44,86 @@ namespace TeamSuneat
         {
             AutoGetComponents();
 
-            if (_toggleGroup == null)
+            if (!ValidateToggleGroup())
             {
-                Debug.LogError($"[UIToggleGroup] ToggleGroup을 찾을 수 없습니다. {gameObject.name}");
                 return;
             }
 
-            _toggleGroup.allowSwitchOff = _allowSwitchOff;
+            SetupToggleGroup();
+            RegisterToggleListeners();
+            SetDefaultToggle();
+            Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 초기화 완료. Toggle 개수: {_toggles.Length}, AllowSwitchOff: {_allowSwitchOff}");
+        }
 
+        private bool ValidateToggleGroup()
+        {
+            if (_toggleGroup == null)
+            {
+                Log.Error(LogTags.UI_Toggle, $"(Group) ToggleGroup을 찾을 수 없습니다. {gameObject.name}");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void SetupToggleGroup()
+        {
+            _toggleGroup.allowSwitchOff = _allowSwitchOff;
+        }
+
+        private void RegisterToggleListeners()
+        {
+            int registeredCount = 0;
             for (int i = 0; i < _toggles.Length; i++)
             {
                 if (_toggles[i] == null)
                 {
-                    Debug.LogWarning($"[UIToggleGroup] 인덱스 {i}의 Toggle이 null입니다.");
+                    Log.Warning(LogTags.UI_Toggle, $"(Group) 인덱스 {i}의 Toggle이 null입니다.");
                     continue;
                 }
 
-                // 각 토글의 그룹 설정
                 _toggles[i].SetGroup(_toggleGroup);
 
                 int index = i;
                 _toggles[i].AddListener((isOn) => OnToggleValueChanged(index, isOn));
+                registeredCount++;
             }
+            Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 리스너 등록 완료. 등록된 Toggle: {registeredCount}/{_toggles.Length}");
+        }
 
-            // allowSwitchOff가 false일 경우 첫 번째 토글을 기본으로 켜기
-            if (!_allowSwitchOff && _toggles.Length > 0 && _toggles[0] != null)
+        private void SetDefaultToggle()
+        {
+            if (!_allowSwitchOff && _toggles.IsValidArray())
             {
-                _toggles[0].SetIsOn(true);
-                _currentActiveIndex = 0;
+                _toggles[0].SetIsOn(true);                
+                _currentActiveIndex = 0;                
+                Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 기본 Toggle 설정: 인덱스 0");
             }
         }
 
         private void OnToggleValueChanged(int index, bool isOn)
         {
+            if (_toggles[index].IsLocked || !_toggles[index].IsClickable)
+            {
+                return;
+            }
+
             if (isOn)
             {
-                if (_allowSwitchOff && _currentActiveIndex == index)
+                if (_currentActiveIndex == index)
                 {
-                    // 같은 토글을 다시 누른 경우 - 토글 닫기 (allowSwitchOff가 true일 때만)
-                    _toggles[index].SetIsOn(false);
-                    _currentActiveIndex = -1;
-                    OnToggleChanged?.Invoke(-1);
+                    // 같은 토글을 다시 누른 경우
+                    if (_allowSwitchOff)
+                    {
+                        Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 인덱스 {index} 토글 해제 (같은 토글 재클릭)");
+                        _currentActiveIndex = -1;
+                        OnToggleChanged?.Invoke(-1);
+                    }
                 }
                 else
                 {
                     // 다른 토글을 누른 경우
+                    Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 활성 토글 변경: {_currentActiveIndex} -> {index}");
                     _currentActiveIndex = index;
                     OnToggleChanged?.Invoke(index);
                 }
@@ -98,13 +133,7 @@ namespace TeamSuneat
                 // 토글이 꺼진 경우
                 if (_currentActiveIndex == index)
                 {
-                    // allowSwitchOff가 false면 다시 켜기
-                    if (!_allowSwitchOff)
-                    {
-                        _toggles[index].SetIsOn(true);
-                        return;
-                    }
-
+                    Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 인덱스 {index} 토글 해제");
                     _currentActiveIndex = -1;
                     OnToggleChanged?.Invoke(-1);
                 }
@@ -115,12 +144,13 @@ namespace TeamSuneat
         {
             if (index < 0 || index >= _toggles.Length)
             {
-                Debug.LogWarning($"[UIToggleGroup] 유효하지 않은 인덱스입니다: {index}");
+                Log.Warning(LogTags.UI_Toggle, $"(Group) 유효하지 않은 인덱스입니다: {index}");
                 return;
             }
 
             if (_toggles[index] != null)
             {
+                Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 인덱스 {index} 토글 설정: {isOn}");
                 _toggles[index].SetIsOn(isOn);
             }
         }
@@ -151,4 +181,3 @@ namespace TeamSuneat
         }
     }
 }
-

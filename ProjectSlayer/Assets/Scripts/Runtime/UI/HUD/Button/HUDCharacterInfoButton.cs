@@ -1,51 +1,17 @@
 using Sirenix.OdinInspector;
 using TeamSuneat.UserInterface;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TeamSuneat
 {
     // HUD 캐릭터 정보 버튼 - 클릭 시 캐릭터 정보 팝업 열기
-    public class HUDCharacterInfoButton : XBehaviour
+    public class HUDCharacterInfoButton : UIButton
     {
         [Title("#HUDCharacterInfoButton")]
-        [SerializeField] private Button _button;
 
-        private void Awake()
+        protected override void OnButtonClick()
         {
-            AutoGetComponents();
-            RegisterButtonEvent();
-        }
-
-        private void OnDestroy()
-        {
-            UnregisterButtonEvent();
-        }
-
-        public override void AutoGetComponents()
-        {
-            base.AutoGetComponents();
-            _button ??= GetComponent<Button>();
-        }
-
-        private void RegisterButtonEvent()
-        {
-            if (_button != null)
-            {
-                _button.onClick.AddListener(OnButtonClicked);
-            }
-        }
-
-        private void UnregisterButtonEvent()
-        {
-            if (_button != null)
-            {
-                _button.onClick.RemoveListener(OnButtonClicked);
-            }
-        }
-
-        private void OnButtonClicked()
-        {
+            base.OnButtonClick();
             OpenCharacterInfoPopup();
         }
 

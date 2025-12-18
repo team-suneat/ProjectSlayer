@@ -63,11 +63,9 @@ namespace TeamSuneat
             else
             {
                 UIToggle uiToggle = _toggleGroup.GetUIToggle(toggleIndex);
-                UIToggleLock lockComponent = uiToggle != null ? uiToggle.GetLock() : null;
-
-                if (lockComponent != null && lockComponent.IsLocked)
+                if (uiToggle != null && uiToggle.IsLocked)
                 {
-                    lockComponent.RequestLockMessage();
+                    uiToggle.RequestLockMessage();
                     _toggleGroup.SetToggle(toggleIndex, false);
                     return;
                 }

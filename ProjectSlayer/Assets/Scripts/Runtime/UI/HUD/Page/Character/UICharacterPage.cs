@@ -24,19 +24,23 @@ namespace TeamSuneat
             _characterLevelGroup ??= GetComponentInChildren<UICharacterLevelGroup>();
         }
 
-        protected override void OnShow()
+        public override void Initialize()
         {
-            base.OnShow();
-
-            AutoGetComponents();
-            RegisterEvents();
-            RefreshCharacterLevelGroup();
+            base.Initialize();
 
             // 기본 탭 열기 (강화 탭)
             if (_togglePageController != null && _currentTabIndex < 0)
             {
                 _togglePageController.OpenPage(TAB_INDEX_ENHANCEMENT);
             }
+        }
+
+        protected override void OnShow()
+        {
+            base.OnShow();
+
+            RegisterEvents();
+            // RefreshCharacterLevelGroup();
         }
 
         protected override void OnHide()

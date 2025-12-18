@@ -22,6 +22,10 @@ namespace TeamSuneat
             }
         }
 
+        public virtual void Initialize()
+        {
+        }
+
         public virtual void Show()
         {
             if (IsActive)
