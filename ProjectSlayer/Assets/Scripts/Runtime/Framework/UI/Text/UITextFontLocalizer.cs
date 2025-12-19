@@ -42,6 +42,13 @@ namespace TeamSuneat.UserInterface
                 FontTypeString = FontType.ToString();
             }
 
+            LoadData();
+
+            RefreshFont(GameSetting.Instance.Language.Name);
+        }
+
+        private void LoadData()
+        {
             if (!PathManager.CheckLoaded())
             {
                 PathManager.LoadAllSync();
@@ -49,10 +56,8 @@ namespace TeamSuneat.UserInterface
 
             if (!ScriptableDataManager.Instance.CheckLoadedSync())
             {
-                ScriptableDataManager.Instance.LoadScriptableAssetsSyncByLabel();
+                ScriptableDataManager.Instance.LoadScriptableAssetsSyncByLabel(AddressableLabels.ScriptableSync);
             }
-
-            RefreshFont(GameSetting.Instance.Language.Name);
         }
 
         private void OnValidate()

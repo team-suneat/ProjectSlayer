@@ -31,7 +31,7 @@ MonoBehaviour:
     MaxLevel: 200
     StatIncreasePerLevel: 0.03
   - GrowthType: 5
-    StatName: 10
+    StatName: 9
     MaxLevel: 1000
     StatIncreasePerLevel: 0.005
   - GrowthType: 6
@@ -39,6 +39,6 @@ MonoBehaviour:
     MaxLevel: 200
     StatIncreasePerLevel: 3
   - GrowthType: 7
-    StatName: 21
+    StatName: 14
     MaxLevel: 200
     StatIncreasePerLevel: 1

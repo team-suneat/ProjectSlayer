@@ -1,4 +1,4 @@
-﻿using TeamSuneat.Assets.Scripts.Runtime.Stage;
+﻿using TeamSuneat.Stage;
 using UnityEngine;
 
 namespace TeamSuneat

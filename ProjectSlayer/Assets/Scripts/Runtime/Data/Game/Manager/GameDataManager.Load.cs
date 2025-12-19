@@ -107,7 +107,6 @@ namespace TeamSuneat.Data.Game
                 {
                     // 모든 복구 시도 실패 시 새 데이터 생성
                     Data = GameData.CreateDefault();
-                    OnLoadGameData();
                     Save();
                 }
             }

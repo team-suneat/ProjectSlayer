@@ -69,72 +69,8 @@ namespace TeamSuneat.Data
             if (Type != 0) { TypeString = Type.ToString(); }
             if (FontType != 0) { FontTypeString = FontType.ToString(); }
 
-            SetClosestFontTypeByCurrentFontSize();
-
             IsChangingAsset = false;
             base.Refresh();
-        }
-
-        private void SetClosestFontTypeByCurrentFontSize()
-        {
-            if (FontSize == 0)
-            {
-                return;
-            }
-
-            if (!ScriptableDataManager.Instance.CheckLoaded())
-            {
-                ScriptableDataManager.Instance.LoadScriptableAssetsAsync();
-            }
-
-            float currentFontSize = FontSize;
-            LanguageNames languageName = GameSetting.Instance.Language.Name;
-            FontAsset fontAsset = ScriptableDataManager.Instance.FindFont(languageName);
-            if (fontAsset == null)
-            {
-                return;
-            }
-
-            GameFontTypes closestType = GameFontTypes.None;
-            float minDiff = float.MaxValue;
-
-            GameFontTypes[] matchTypes = new GameFontTypes[]
-            {
-                GameFontTypes.Title,
-                GameFontTypes.Content,
-                GameFontTypes.Button,
-                GameFontTypes.Toggle
-            };
-            for (int i = 0; i < matchTypes.Length; i++)
-            {
-                GameFontTypes type = matchTypes[i];
-                FontAssetData? dataNullable = fontAsset.GetFontAssetData(type);
-                if (dataNullable == null)
-                {
-                    continue;
-                }
-
-                FontAssetData data = dataNullable.Value;
-                float compareSize = data.FontSize;
-                float diff = Mathf.Abs(currentFontSize - compareSize);
-                if (diff < minDiff)
-                {
-                    minDiff = diff;
-                    closestType = type;
-                }
-            }
-
-            if (closestType != GameFontTypes.None)
-            {
-                GameFontTypes prevType = FontType;
-
-                FontType = closestType;
-                FontTypeString = closestType.ToString();
-                if (prevType != closestType)
-                {
-                    Log.Info($"[UILocalizedText] FontType이 자동으로 변경됨: {prevType} → {closestType} (기준 폰트 크기: {currentFontSize})");
-                }
-            }
         }
 
 #endif

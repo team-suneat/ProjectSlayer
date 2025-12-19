@@ -33,13 +33,11 @@ namespace TeamSuneat.Data.Game
         public string SaveForEditorOrDevelopment()
         {
             string chunk = SaveForEditor(0);
-
             if (!string.IsNullOrEmpty(chunk))
             {
                 if (_saveCount >= GAME_DATA_SAVE_INTERVAL_COUNT)
                 {
-                    _ = SaveForEditor(1);
-
+                    SaveForEditor(1);
                     _saveCount = 0;
                 }
             }
@@ -115,6 +113,11 @@ namespace TeamSuneat.Data.Game
 
             if (Data != null)
             {
+                if (string.IsNullOrEmpty(Data.Profile.Stage.CurrentAreaString))
+                {
+                    Log.Error("현재 지역의 스트링이 유효하지 않습니다.");
+                    return null;
+                }
                 chunk = SerializeObject(Data);
             }
 

@@ -27,6 +27,8 @@ namespace TeamSuneat.Data
             else if (!_floatyAssets.IsValid()) { return false; }
             else if (!_flickerAssets.IsValid()) { return false; }
             else if (!_soundAssets.IsValid()) { return false; }
+            else if (!_stageAssets.IsValid()) { return false; }
+            else if (!_areaAssets.IsValid()) { return false; }
             else if (_enhancementDataAsset == null) { return false; }
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
@@ -39,6 +41,18 @@ namespace TeamSuneat.Data
         {
             // Core.cs의 OnLoadData() 메서드 호출
             _logSetting?.OnLoadData();
+
+            // 스테이지 에셋 OnLoadData() 메서드 호출
+            foreach (var stageAsset in _stageAssets.Values)
+            {
+                stageAsset?.OnLoadData();
+            }
+
+            // 지역 에셋 OnLoadData() 메서드 호출
+            foreach (var areaAsset in _areaAssets.Values)
+            {
+                areaAsset?.OnLoadData();
+            }
 
             // 강화 시스템 데이터 OnLoadData() 메서드 호출
             _enhancementDataAsset?.OnLoadData();
@@ -105,6 +119,14 @@ namespace TeamSuneat.Data
                 {
                     count += 1;
                 }
+                else if (LoadStageSync(path))
+                {
+                    count += 1;
+                }
+                else if (LoadAreaSync(path))
+                {
+                    count += 1;
+                }
                 else if (LoadEnhancementDataSync(path))
                 {
                     count += 1;
@@ -128,9 +150,8 @@ namespace TeamSuneat.Data
             OnLoadData();
         }
 
-        /// <summary>
-        /// 강화 시스템 데이터 에셋을 동기적으로 로드합니다.
-        /// </summary>
+        //
+
         private bool LoadEnhancementDataSync(string filePath)
         {
             if (!filePath.Contains("EnhancementData"))
@@ -162,9 +183,6 @@ namespace TeamSuneat.Data
             return false;
         }
 
-        /// <summary>
-        /// 성장 시스템 데이터 에셋을 동기적으로 로드합니다.
-        /// </summary>
         private bool LoadGrowthDataSync(string filePath)
         {
             if (!filePath.Contains("GrowthData"))
@@ -196,9 +214,6 @@ namespace TeamSuneat.Data
             return false;
         }
 
-        /// <summary>
-        /// 경험치 설정 에셋을 동기적으로 로드합니다.
-        /// </summary>
         private bool LoadExperienceConfigSync(string filePath)
         {
             if (!filePath.Contains("ExperienceConfig"))
@@ -230,9 +245,6 @@ namespace TeamSuneat.Data
             return false;
         }
 
-        /// <summary>
-        /// 몬스터 스탯 설정 에셋을 동기적으로 로드합니다.
-        /// </summary>
         private bool LoadMonsterStatConfigSync(string filePath)
         {
             if (!filePath.Contains("MonsterStatConfig"))
@@ -264,9 +276,9 @@ namespace TeamSuneat.Data
             return false;
         }
 
-        public void LoadScriptableAssetsSyncByLabel()
+        public void LoadScriptableAssetsSyncByLabel(string label)
         {
-            IList<ScriptableObject> assets = ResourcesManager.LoadResourcesByLabelSync<UnityEngine.ScriptableObject>(AddressableLabels.ScriptableSync);
+            IList<ScriptableObject> assets = ResourcesManager.LoadResourcesByLabelSync<UnityEngine.ScriptableObject>(label);
             int count = 0;
 
             for (int i = 0; i < assets.Count; i++)
@@ -329,16 +341,23 @@ namespace TeamSuneat.Data
             }
         }
 
+        //
+
         public async Task LoadScriptableAssetsAsync()
         {
             Clear();
 
             // 동기 로드: GameDefineAsset, LogSettingAsset, FontAsset
-            LoadScriptableAssetsSyncByLabel();
+            LoadScriptableAssetsSyncByLabel(AddressableLabels.ScriptableSync);
 
+            await LoadScriptableAssetsAsyncByLabel(AddressableLabels.Scriptable);
+        }
+
+        public async Task LoadScriptableAssetsAsyncByLabel(string label)
+        {
             // 비동기 로드: 나머지 에셋들
             int count = 0;
-            IList<ScriptableObject> assets = await ResourcesManager.LoadResourcesByLabelAsync<UnityEngine.ScriptableObject>(AddressableLabels.Scriptable);
+            IList<ScriptableObject> assets = await ResourcesManager.LoadResourcesByLabelAsync<UnityEngine.ScriptableObject>(label);
             for (int i = 0; i < assets.Count; i++)
             {
                 ScriptableObject asset = assets[i];
@@ -460,6 +479,24 @@ namespace TeamSuneat.Data
                         if (_monsterStatConfigAsset == null)
                         {
                             _monsterStatConfigAsset = monsterStatConfig;
+                            count++;
+                        }
+                        break;
+
+                    case StageAsset stage:
+                        int stageTid = BitConvert.Enum32ToInt(stage.Name);
+                        if (!_stageAssets.ContainsKey(stageTid))
+                        {
+                            _stageAssets[stageTid] = stage;
+                            count++;
+                        }
+                        break;
+
+                    case AreaAsset area:
+                        int areaTid = BitConvert.Enum32ToInt(area.AreaName);
+                        if (!_areaAssets.ContainsKey(areaTid))
+                        {
+                            _areaAssets[areaTid] = area;
                             count++;
                         }
                         break;

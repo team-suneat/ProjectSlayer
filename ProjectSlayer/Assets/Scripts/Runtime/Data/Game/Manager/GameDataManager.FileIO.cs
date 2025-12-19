@@ -80,6 +80,7 @@ namespace TeamSuneat.Data.Game
         {
             try
             {
+                Log.Info(LogTags.GameData, "게임 데이터를 저장합니다. SaveFilePath: {0}\nChunk: {1}", saveFilePath, chunk);
                 File.WriteAllText(saveFilePath, chunk);
                 return true;
             }

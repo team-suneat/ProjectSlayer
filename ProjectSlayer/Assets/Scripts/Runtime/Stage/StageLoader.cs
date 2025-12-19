@@ -1,5 +1,7 @@
-using TeamSuneat.Assets.Scripts.Runtime.Stage;
+using TeamSuneat.Data;
+using TeamSuneat.Stage;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace TeamSuneat
 {
@@ -42,7 +44,11 @@ namespace TeamSuneat
                 AreaNames currentArea = profileInfo.Stage.CurrentArea;
                 int areaIndex = (int)currentArea;
                 string label = string.Format(AddressableLabels.AreaFormat, areaIndex);
+                
                 await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(label);
+                await ResourcesManager.LoadResourcesByLabelAsync<SpriteAtlas>(label);
+                await ResourcesManager.LoadResourcesByLabelAsync<ScriptableObject>(label);
+                await ScriptableDataManager.Instance.LoadScriptableAssetsAsyncByLabel(label);
 
                 // 스테이지 시스템 생성 전 데이터 체크
                 StageNames currentStageName = profileInfo.Stage.CurrentStage;

@@ -78,13 +78,6 @@ namespace TeamSuneat
             else
             {
                 Log.Progress("Application Lost Focus");
-
-                // 일부 플랫폼에서 OnApplicationFocus가 OnApplicationPause와 별개로 호출될 수 있음
-                // GameApp 인스턴스인 경우 저장 처리 (중복 저장은 GameApp에서 방지)
-                if (this is GameApp gameApp)
-                {
-                    gameApp.SaveGameData();
-                }
             }
         }
     }

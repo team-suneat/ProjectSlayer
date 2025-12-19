@@ -21,6 +21,8 @@ namespace TeamSuneat.Data.Game
         public AreaNames MaxReachedArea;
         public string MaxReachedAreaString;
 
+        public int CurrentWave;
+
         public void OnLoadGameData()
         {
             EnumEx.ConvertTo(ref CurrentStage, CurrentStageString);
@@ -29,20 +31,20 @@ namespace TeamSuneat.Data.Game
             EnumEx.ConvertTo(ref MaxReachedArea, MaxReachedAreaString);
         }
 
-        public void ClearIngameData()
-        {
-        }
-
         public void SelectStage(StageNames stageName)
         {
             CurrentStage = stageName;
             CurrentStageString = stageName.ToString();
+
+            Log.Info(LogTags.GameData_Stage, "현재 스테이지를 선택합니다. {0}, {1}", stageName.ToLogString(), CurrentStageString);
         }
 
         public void SelectArea(AreaNames areaName)
         {
             CurrentArea = areaName;
             CurrentAreaString = areaName.ToString();
+
+            Log.Info(LogTags.GameData_Stage, "현재 지역을 선택합니다. {0}, {1}", areaName.ToLogString(), CurrentAreaString);
         }
 
         public void UpdateMaxReachedStage(StageNames stageName)
@@ -63,19 +65,25 @@ namespace TeamSuneat.Data.Game
             }
         }
 
+        public void AddCurrentWave()
+        {
+            CurrentWave++;
+        }
+
+        public void ResetCurrentWave()
+        {
+            CurrentWave = 1;
+        }
+
         public static VCharacterStage CreateDefault()
         {
-            return new VCharacterStage()
-            {
-                CurrentStage = StageNames.Area01_StartForest1,
-                CurrentStageString = StageNames.Area01_StartForest1.ToString(),
-                CurrentArea = AreaNames.StartForest,
-                CurrentAreaString = AreaNames.StartForest.ToString(),
-                MaxReachedStage = StageNames.Area01_StartForest1,
-                MaxReachedStageString = StageNames.Area01_StartForest1.ToString(),
-                MaxReachedArea = AreaNames.StartForest,
-                MaxReachedAreaString = AreaNames.StartForest.ToString(),
-            };
+            VCharacterStage defaultStage = new VCharacterStage();
+            defaultStage.SelectArea(AreaNames.StartForest);
+            defaultStage.SelectStage(StageNames.Area01_StartForest1);
+            defaultStage.UpdateMaxReachedStage(StageNames.Area01_StartForest1);
+            defaultStage.UpdateMaxReachedArea(AreaNames.StartForest);
+            defaultStage.ResetCurrentWave();
+            return defaultStage;
         }
     }
 }

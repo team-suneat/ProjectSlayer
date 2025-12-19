@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using TeamSuneat.Setting;
+using TeamSuneat.UserInterface;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace TeamSuneat.Scenes
 
         [Title("#Component")]
         public Button GameStartButton;
+        public UIGauge LoadingGauge;
 
         private bool _isChangingScene;
 

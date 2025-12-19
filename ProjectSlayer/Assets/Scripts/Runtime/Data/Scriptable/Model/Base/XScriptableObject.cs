@@ -140,24 +140,31 @@ namespace TeamSuneat.Data
         {
         }
 
+        private void LoadData()
+        {
+            if (!PathManager.CheckLoaded())
+            {
+                PathManager.LoadAllSync();
+            }
+            if (!ScriptableDataManager.Instance.CheckLoaded())
+            {
+                ScriptableDataManager.Instance.LoadScriptableAssetsSyncByLabel(AddressableLabels.ScriptableSync);
+                ScriptableDataManager.Instance.LoadScriptableAssetsSyncByLabel(AddressableLabels.Scriptable);
+                ScriptableDataManager.Instance.LoadScriptableAssetsSyncByLabel(string.Format(AddressableLabels.AreaFormat, 1));
+            }
+            if (!JsonDataManager.CheckLoaded())
+            {
+                JsonDataManager.LoadJsonSheetsSync();
+            }
+        }
+
         //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
         [FoldoutGroup("#Button", false)]
         [Button("해당 타입의 모든 수정된 에셋 갱신", ButtonSizes.Large)]
         protected virtual void RefreshAll()
         {
-            if (!PathManager.CheckLoaded())
-            {
-                _ = PathManager.LoadAllAsync();
-            }
-            if (!ScriptableDataManager.Instance.CheckLoaded())
-            {
-                _ = ScriptableDataManager.Instance.LoadScriptableAssetsAsync();
-            }
-            if (!JsonDataManager.CheckLoaded())
-            {
-                _ = JsonDataManager.LoadJsonSheetsAsync();
-            }
+            LoadData();
         }
 
         protected void OnRefreshAll()
@@ -174,18 +181,7 @@ namespace TeamSuneat.Data
         [Button("미생성 에셋 자동 생성", ButtonSizes.Large)]
         protected virtual void CreateAll()
         {
-            if (!PathManager.CheckLoaded())
-            {
-                _ = PathManager.LoadAllAsync();
-            }
-            if (!ScriptableDataManager.Instance.CheckLoaded())
-            {
-                _ = ScriptableDataManager.Instance.LoadScriptableAssetsAsync();
-            }
-            if (!JsonDataManager.CheckLoaded())
-            {
-                _ = JsonDataManager.LoadJsonSheetsAsync();
-            }
+            LoadData();
         }
 
 #if UNITY_EDITOR

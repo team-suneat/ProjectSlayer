@@ -12,6 +12,10 @@ namespace TeamSuneat.Data
         public int SaveVersion = 1;
         public VProfile Profile;
 
+        public GameData()
+        {            
+        }
+
         public void CreateProfile()
         {
             if (Profile == null)

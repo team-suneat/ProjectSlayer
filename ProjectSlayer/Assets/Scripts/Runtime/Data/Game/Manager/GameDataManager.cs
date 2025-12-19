@@ -12,7 +12,7 @@ namespace TeamSuneat.Data.Game
         private const int GAME_DATA_COUNT = 3;
 
         private const int GAME_DATA_SAVE_INTERVAL_COUNT = 3;
-        private const bool USE_ASYNC_SAVE = true; // true: 비동기 저장, false: 동기 저장
+        private const bool USE_ASYNC_SAVE = false; // true: 비동기 저장, false: 동기 저장
         private const float SAVE_COOLDOWN_TIME = 1.0f; // 저장 쿨다운 시간 (초)
 
         // 필드

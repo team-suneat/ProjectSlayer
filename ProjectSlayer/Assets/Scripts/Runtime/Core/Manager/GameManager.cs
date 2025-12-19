@@ -1,5 +1,5 @@
 using System.Collections;
-using TeamSuneat.Assets.Scripts.Runtime.Stage;
+using TeamSuneat.Stage;
 using TeamSuneat.Data.Game;
 using UnityEngine;
 
