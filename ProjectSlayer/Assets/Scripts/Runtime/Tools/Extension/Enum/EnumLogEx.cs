@@ -290,7 +290,7 @@ namespace TeamSuneat
                 }
             }
 
-            return string.Empty;
+            return key.ToString();
         }
 
         public static string ToLogString(this AreaNames key)

@@ -17,24 +17,17 @@ namespace TeamSuneat.Data.Game
 
         public void AddExperience(int experience)
         {
-            if (CharacterManager.Instance.Player == null)
+            if (CharacterManager.Instance.Player != null)
             {
-                return;
+                float multiplier = CharacterManager.Instance.Player.Stat.FindValueOrDefault(StatNames.XPGain);
+                if (multiplier > 0)
+                {
+                    experience = Mathf.RoundToInt(experience * multiplier);
+                }
             }
 
-            float multiplier = CharacterManager.Instance.Player.Stat.FindValueOrDefault(StatNames.XPGain);
-
-            Log.Info(LogTags.GameData_Character, "받는 경험치 획득량을 결정합니다. EXP: {0}, 추가 획득량 {1}", experience, multiplier);
-
-            if (multiplier > 0)
-            {
-                Experience += Mathf.RoundToInt(experience * multiplier);
-            }
-            else
-            {
-                Experience += experience;
-            }
-
+            Experience += experience;
+            Log.Info(LogTags.GameData_Character, "받는 경험치 획득량을 결정합니다. Add EXP: {0}", experience);
             GlobalEvent.Send(GlobalEventType.GAME_DATA_CHARACTER_ADD_EXPERIENCE);
         }
 

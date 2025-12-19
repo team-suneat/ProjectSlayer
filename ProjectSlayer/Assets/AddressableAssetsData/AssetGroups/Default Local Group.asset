@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7722133c32d1164b8903ce9b2ac954a
+    m_Address: Assets/Addressables/Prefab/UI/Notice/UIStatPointShortageNotice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd2aeea7a8853a141975a77d675335f1
     m_Address: Assets/Addressables/Prefab/UI/Notice/UICurrencyShortageNotice.prefab
     m_ReadOnly: 0
@@ -71,6 +77,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb8d74baaf4a0ab47a9bfda9ef9fdeb0
     m_Address: Assets/Addressables/Prefab/UI/Gauge/UIEnemyGauge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdddf1ba0a86278429c07f96ba4ec604
+    m_Address: Assets/Addressables/Prefab/UI/Notice/UIExperienceShortageNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Ingame

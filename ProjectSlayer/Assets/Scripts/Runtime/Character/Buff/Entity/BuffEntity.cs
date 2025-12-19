@@ -224,8 +224,7 @@ namespace TeamSuneat
         /// <summary> 버프를 활성화합니다. </summary>
         public void Activate()
         {
-            LoadBuffMaxStackCount();
-            LoadBuffStackCount();
+            LoadBuffMaxStackCount();            
 
             LogInfo("버프를 활성화합니다. 레벨: {0}, 스택: {1}/{2}", Level, Stack, MaxStack);
 

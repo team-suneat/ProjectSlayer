@@ -1,5 +1,4 @@
 using TeamSuneat.Assets.Scripts.Runtime.Stage;
-using TeamSuneat.Data;
 using UnityEngine;
 
 namespace TeamSuneat
@@ -83,7 +82,7 @@ namespace TeamSuneat
             }
             else
             {
-                Log.Error($"{stageName.ToLogString()} 스테이지를 생성할 수 없습니다.");
+                Log.Warning(LogTags.Stage, $"{stageName.ToLogString()} 스테이지를 생성할 수 없습니다.");
             }
         }
     }

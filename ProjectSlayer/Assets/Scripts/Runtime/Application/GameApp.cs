@@ -30,6 +30,8 @@ namespace TeamSuneat
 
         public bool IsInitialized { get; private set; }
 
+        private bool _isApplicationPaused = false;
+
         //
 
         public void ForceApplicationStart()
@@ -101,6 +103,12 @@ namespace TeamSuneat
         {
             dataManager ??= new GameDataManager();
             dataManager.LoadGameDataWithRecovery();
+
+            // 오프라인 시간 계산 (데이터 로드 후)
+            if (data?.GetSelectedProfile() != null)
+            {
+                OfflineTimeManager.Instance.CalculateOfflineTime();
+            }
         }
 
         public void SaveGameData()
@@ -112,6 +120,42 @@ namespace TeamSuneat
         public static VProfile GetSelectedProfile()
         {
             return Instance?.data?.GetSelectedProfile();
+        }
+
+        protected override void OnApplicationPaused()
+        {
+            if (_isApplicationPaused) return; // 중복 방지
+
+            _isApplicationPaused = true;
+
+            // 저장 (LastSaveTime 자동 업데이트)
+            SaveGameData();
+
+            Log.Info(LogTags.Time, "앱이 백그라운드로 이동했습니다. 데이터를 저장했습니다.");
+        }
+
+        protected override void OnApplicationResume()
+        {
+            if (!_isApplicationPaused) return; // 중복 방지
+
+            _isApplicationPaused = false;
+
+            // 오프라인 시간 계산
+            if (data?.GetSelectedProfile() != null)
+            {
+                OfflineTimeManager.Instance.CalculateOfflineTime();
+
+                double offlineSeconds = OfflineTimeManager.Instance.RewardableOfflineTimeSeconds;
+                if (offlineSeconds > 0)
+                {
+                    Log.Info(LogTags.Time, $"앱이 포그라운드로 복귀했습니다. 오프라인 시간: {OfflineTimeManager.Instance.GetOfflineTimeString()}");
+                    // 향후: 오프라인 보상 처리
+                }
+                else
+                {
+                    Log.Info(LogTags.Time, "앱이 포그라운드로 복귀했습니다.");
+                }
+            }
         }
     }
 }

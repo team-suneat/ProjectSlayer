@@ -11,7 +11,7 @@ namespace TeamSuneat
     {
         #region Private Fields
 
-        private float _factor = 1.0f;
+        private float _factor = 1.0f; // 100%
 
         #endregion Private Fields
 
@@ -29,7 +29,7 @@ namespace TeamSuneat
             if (useSetScale)
             {
                 Time.timeScale = _factor;
-                Log.Info(LogTags.Time, "시간 스케일을 {0}로 설정합니다.", _factor);
+                Log.Info(LogTags.Time, "시간 스케일을 {0}로 설정합니다.", ValueStringEx.GetPercentString(Time.timeScale));
             }
         }
 
@@ -48,7 +48,7 @@ namespace TeamSuneat
         public void Resume()
         {
             Time.timeScale = _factor;
-            Log.Info(LogTags.Time, "게임 시간을 재개합니다. 스케일: {0}", _factor);
+            Log.Info(LogTags.Time, "게임 시간을 재개합니다. 스케일: {0}", ValueStringEx.GetPercentString(Time.timeScale));
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace TeamSuneat
             // 타임스케일과 일시정지 상태가 불일치하는 경우 디버그 로그
             if ((Time.timeScale > 0f && IsPaused) || (Time.timeScale <= 0f && !IsPaused))
             {
-                Log.Info(LogTags.Time, "(Manager) 타임스케일 불일치 감지 - TimeScale: {0:F2}, IsPaused: {1}", Time.timeScale, IsPaused);
+                Log.Info(LogTags.Time, "(Manager) 타임스케일 불일치 감지 - TimeScale: {0}, IsPaused: {1}", ValueStringEx.GetPercentString(Time.timeScale), IsPaused);
             }
 
             SetPaused(shouldBePaused);

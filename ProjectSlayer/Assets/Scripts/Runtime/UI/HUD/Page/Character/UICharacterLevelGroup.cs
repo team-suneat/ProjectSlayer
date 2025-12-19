@@ -77,7 +77,7 @@ namespace TeamSuneat.UserInterface
             int level = profileInfo.Level.Level;
             int currentEXP = profileInfo.Level.Experience;
             int maxEXP = profileInfo.Level.GetRequiredExperience();
-            float expRatio = currentEXP.SafeDivide(maxEXP);
+            float expRatio = currentEXP.SafeDivide01(maxEXP);
 
             RefreshGauge(currentEXP, maxEXP, expRatio);
             RefreshLevelText(level);

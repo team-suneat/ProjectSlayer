@@ -2,14 +2,8 @@ using UnityEngine;
 
 namespace TeamSuneat.Data.Game
 {
-    /// <summary>
-    /// GameDataManager의 저장 로직을 담당하는 partial 클래스
-    /// </summary>
     public partial class GameDataManager
     {
-        /// <summary>
-        /// 게임 데이터를 저장합니다.
-        /// </summary>
         public void Save()
         {
             float currentTime = Time.time;
@@ -27,9 +21,6 @@ namespace TeamSuneat.Data.Game
             GlobalEvent.Send(GlobalEventType.SAVE_GAME_DATA);
         }
 
-        /// <summary>
-        /// 쿨다운이 지난 후 대기 중인 저장을 처리합니다.
-        /// </summary>
         public void ProcessPendingSave()
         {
             if (_pendingSave && Time.time - _lastSaveTime >= SAVE_COOLDOWN_TIME)
@@ -39,10 +30,6 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        /// <summary>
-        /// 에디터 또는 개발 빌드용 저장을 수행합니다.
-        /// </summary>
-        /// <returns>저장된 chunk</returns>
         public string SaveForEditorOrDevelopment()
         {
             string chunk = SaveForEditor(0);
@@ -60,10 +47,6 @@ namespace TeamSuneat.Data.Game
             return chunk;
         }
 
-        /// <summary>
-        /// 빌드용 저장을 수행합니다.
-        /// </summary>
-        /// <returns>저장된 chunk</returns>
         public string SaveForBuild()
         {
             string chunk = SaveForBuild(0);
@@ -79,32 +62,16 @@ namespace TeamSuneat.Data.Game
             return chunk;
         }
 
-        /// <summary>
-        /// 에디터용 저장을 수행합니다.
-        /// </summary>
-        /// <param name="index">저장할 인덱스</param>
-        /// <returns>저장된 chunk</returns>
         public string SaveForEditor(int index)
         {
             return PerformSave(index, false);
         }
 
-        /// <summary>
-        /// 빌드용 저장을 수행합니다.
-        /// </summary>
-        /// <param name="index">저장할 인덱스</param>
-        /// <returns>저장된 chunk</returns>
         private string SaveForBuild(int index)
         {
             return PerformSave(index, false);
         }
 
-        /// <summary>
-        /// 게임 데이터를 저장합니다 (통합된 저장 메서드).
-        /// </summary>
-        /// <param name="index">저장할 인덱스</param>
-        /// <param name="isBackground">백그라운드 스레드에서 호출되는지 여부</param>
-        /// <returns>저장된 chunk</returns>
         private string PerformSave(int index, bool isBackground = false, float? customTimestamp = null)
         {
             string chunk = ConvertToChunk(index, isBackground);
@@ -129,18 +96,19 @@ namespace TeamSuneat.Data.Game
                     // 동기에서는 Time.time 사용
                     UpdateSaveState(chunk, index, Time.time, isBackground);
                 }
+
+                // 메인 저장 파일(index 0) 저장 성공 시 LastSaveTime 업데이트
+                if (index == 0)
+                {
+                    Data?.GetSelectedProfile()?.Statistics?.RegisterLastSaveTime();
+                }
+
                 return chunk;
             }
 
             return null;
         }
 
-        /// <summary>
-        /// GameData를 chunk로 변환합니다.
-        /// </summary>
-        /// <param name="index">인덱스</param>
-        /// <param name="isBackground">백그라운드 스레드에서 호출되는지 여부</param>
-        /// <returns>변환된 chunk</returns>
         private string ConvertToChunk(int index, bool isBackground = false)
         {
             string chunk = null;
@@ -177,13 +145,6 @@ namespace TeamSuneat.Data.Game
             return chunk;
         }
 
-        /// <summary>
-        /// 저장 상태를 업데이트합니다.
-        /// </summary>
-        /// <param name="chunk">저장된 chunk</param>
-        /// <param name="index">저장 인덱스</param>
-        /// <param name="timestamp">저장 시간 (메인 스레드에서 미리 계산된 값)</param>
-        /// <param name="isBackground">백그라운드 스레드에서 호출되는지 여부</param>
         private void UpdateSaveState(string chunk, int index, float timestamp, bool isBackground = false)
         {
             _storedChunks[index] = chunk;

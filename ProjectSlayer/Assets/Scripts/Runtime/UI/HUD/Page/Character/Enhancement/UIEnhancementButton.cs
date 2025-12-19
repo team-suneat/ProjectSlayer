@@ -124,6 +124,15 @@ namespace TeamSuneat.UserInterface
         private void RefreshLevelUpButton(VProfile profile, int currentLevel)
         {
             bool canLevelUp = CanLevelUp(profile, currentLevel);
+            if (canLevelUp)
+            {
+                int cost = CalculateCost(currentLevel);
+                if (!profile.Currency.CanUse(ENHANCEMENT_COST_CURRENCY, cost))
+                {
+                    canLevelUp = false;
+                }
+            }
+
             Color buttonColor = canLevelUp ? GameColors.MediumAquamarine : GameColors.IndianRed;
             SetFrameImageColor(buttonColor);
         }
@@ -158,12 +167,6 @@ namespace TeamSuneat.UserInterface
                 {
                     return false;
                 }
-            }
-
-            int cost = CalculateCost(currentLevel);
-            if (!profile.Currency.CanUse(ENHANCEMENT_COST_CURRENCY, cost))
-            {
-                return false;
             }
 
             return true;

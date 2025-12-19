@@ -1,5 +1,5 @@
-using System.Collections;
 using Lean.Pool;
+using System.Collections;
 using UnityEngine;
 
 namespace TeamSuneat
@@ -66,33 +66,6 @@ namespace TeamSuneat
         private void SetBuffStackIcon()
         {
             _buffStackRenderer?.ActivateStacks(Stack);
-        }
-
-        private void LoadBuffStackCount()
-        {
-            if (ProfileInfo == null)
-            {
-                Log.Error("프로필 정보를 찾을 수 없습니다.");
-                return;
-            }
-
-            if (!Duration.IsZero())
-            {
-                return;
-            }
-
-            // 버프 통계에서 스택 로드
-            LoadStackFromStatistics();
-        }
-
-        private void LoadStackFromStatistics()
-        {
-            int buffStack = ProfileInfo.Statistics.FindStack(Name);
-            Stack = Mathf.Max(0, buffStack);
-            if (Stack > 0)
-            {
-                LogProgress("세이브 버프 데이터에 저장된 버프의 스택을 불러옵니다. {0}/{1}", Stack, MaxStack);
-            }
         }
 
         private void LoadBuffMaxStackCount()
