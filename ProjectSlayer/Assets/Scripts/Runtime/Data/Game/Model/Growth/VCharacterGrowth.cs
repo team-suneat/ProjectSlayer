@@ -2,9 +2,6 @@ using System.Collections.Generic;
 
 namespace TeamSuneat.Data.Game
 {
-    /// <summary>
-    /// 캐릭터의 성장 능력치 레벨 및 능력치 포인트 저장 데이터
-    /// </summary>
     [System.Serializable]
     public class VCharacterGrowth
     {
@@ -96,11 +93,28 @@ namespace TeamSuneat.Data.Game
             return AddLevel(statName, addLevel);
         }
 
+        //
+
         public int AddStatPoint(int addPoint)
         {
             StatPoint += addPoint;
             Log.Info(LogTags.GameData_Character, "능력치 포인트를 {0} 추가합니다. 총 능력치 포인트: {1}", addPoint, StatPoint);
             return StatPoint;
+        }
+
+        public bool CanConsumeStatPoint(int consumePoint)
+        {
+            return StatPoint >= consumePoint;
+        }
+
+        public bool CanConsumeStatPointOrNotify(int consumePoint)
+        {
+            bool canConsume = CanConsumeStatPoint(consumePoint);
+            if (!canConsume)
+            {
+                GlobalEvent.Send(GlobalEventType.STAT_POINT_SHORTAGE);
+            }
+            return canConsume;
         }
 
         public bool ConsumeStatPoint(int consumePoint)
@@ -116,16 +130,14 @@ namespace TeamSuneat.Data.Game
             return true;
         }
 
-        public void ResetAllLevels()
+        //
+
+        public void Clear()
         {
             GrowthLevels?.Clear();
             StatPoint = 0;
         }
 
-        /// <summary>
-        /// 소비한 능력치 포인트의 총합을 계산합니다.
-        /// </summary>
-        /// <returns>모든 능력치 레벨의 합계</returns>
         public int GetTotalConsumedStatPoints()
         {
             int total = 0;
@@ -139,10 +151,6 @@ namespace TeamSuneat.Data.Game
             return total;
         }
 
-        /// <summary>
-        /// 모든 성장 능력치 레벨을 초기화하고 소비한 능력치 포인트를 반환합니다.
-        /// </summary>
-        /// <returns>초기화 전 소비한 능력치 포인트 총합</returns>
         public int ResetGrowthLevels()
         {
             int totalConsumed = GetTotalConsumedStatPoints();

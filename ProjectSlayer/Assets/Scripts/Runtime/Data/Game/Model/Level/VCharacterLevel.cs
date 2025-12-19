@@ -12,7 +12,7 @@ namespace TeamSuneat.Data.Game
             Level = 1;
             Experience = 0;
 
-            Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨과 경험치를 초기화합니다.");
+            Log.Info(LogTags.GameData_Character, "플레이어 캐릭터의 레벨과 경험치를 초기화합니다.");
         }
 
         public void AddExperience(int experience)
@@ -24,7 +24,7 @@ namespace TeamSuneat.Data.Game
 
             float multiplier = CharacterManager.Instance.Player.Stat.FindValueOrDefault(StatNames.XPGain);
 
-            Log.Info(LogTags.GameData, "[Character] 받는 경험치 획득량을 결정합니다. EXP: {0}, 추가 획득량 {1}", experience, multiplier);
+            Log.Info(LogTags.GameData_Character, "받는 경험치 획득량을 결정합니다. EXP: {0}, 추가 획득량 {1}", experience, multiplier);
 
             if (multiplier > 0)
             {
@@ -47,6 +47,27 @@ namespace TeamSuneat.Data.Game
             }
 
             return 0;
+        }
+
+        public bool CanLevelUp()
+        {
+            if (Level >= GameDefine.CHARACTER_MAX_LEVEL)
+            {
+                return false;
+            }
+
+            int requiredExperience = GetRequiredExperience();
+            return Experience >= requiredExperience;
+        }
+
+        public bool CanLevelUpOrNotify()
+        {
+            bool canLevelUp = CanLevelUp();
+            if (!canLevelUp)
+            {
+                GlobalEvent.Send(GlobalEventType.EXPERIENCE_SHORTAGE);
+            }
+            return canLevelUp;
         }
 
         public int LevelUp()
@@ -78,7 +99,7 @@ namespace TeamSuneat.Data.Game
                 Experience -= requiredExperience;
                 Level += 1;
                 addedLevel += 1;
-                Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨이 올랐습니다: Lv.{0}", Level.ToString());
+                Log.Info(LogTags.GameData_Character, "플레이어 캐릭터의 레벨이 올랐습니다: Lv.{0}", Level.ToString());
             }
 
             if (addedLevel > 0 && CharacterManager.Instance.Player != null)
@@ -88,7 +109,7 @@ namespace TeamSuneat.Data.Game
 
             if (addedLevel > 0)
             {
-                _ = GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, Level);
+                GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, Level);
             }
 
             return addedLevel;

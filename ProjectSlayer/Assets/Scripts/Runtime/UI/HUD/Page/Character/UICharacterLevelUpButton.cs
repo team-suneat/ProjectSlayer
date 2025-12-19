@@ -12,51 +12,14 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("#UIButton-CharacterLevelUp"), SerializeField]
         public UnityEvent OnLevelUpSuccess;
 
-        protected override void OnButtonClick()
+        private VProfile GetProfile()
         {
-            VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null)
-            {
-                return;
-            }
-
-            if (!CanLevelUp(profile))
-            {
-                Log.Warning(LogTags.UI_Page, "경험치가 부족하여 레벨업할 수 없습니다.");
-                return;
-            }
-
-            int addedLevel = LevelUp(profile);
-            if (addedLevel > 0)
-            {
-                AddStatPoint(profile);
-                RefreshUI();
-                OnLevelUpSuccess?.Invoke();
-            }
+            return GameApp.GetSelectedProfile();
         }
 
-        private int LevelUp(VProfile profile)
+        public void Refresh()
         {
-            return profile.Level.LevelUp();
-        }
-
-        private void AddStatPoint(VProfile profile)
-        {
-
-            ExperienceConfigAsset experienceConfigAsset = ScriptableDataManager.Instance.GetExperienceConfigAsset();
-            if (experienceConfigAsset == null)
-            {
-                return;
-            }
-
-            int statPointPerLevel = experienceConfigAsset.StatPointPerLevel;
-            profile.Growth.AddStatPoint(statPointPerLevel);
-
-        }
-
-        public void RefreshUI()
-        {
-            VProfile profile = GameApp.GetSelectedProfile();
+            VProfile profile = GetProfile();
             if (profile == null)
             {
                 SetFrameImageColor(GameColors.IndianRed);
@@ -64,14 +27,23 @@ namespace TeamSuneat.UserInterface
             }
 
             bool canLevelUp = CanLevelUp(profile);
+            Color buttonColor = canLevelUp ? GameColors.SteelBlue : GameColors.IndianRed;
+            SetFrameImageColor(buttonColor);
+        }
 
-            if (canLevelUp)
+        protected override void OnButtonClick()
+        {
+            VProfile profile = GetProfile();
+            if (profile == null)
             {
-                SetFrameImageColor(GameColors.SteelBlue);
+                return;
             }
-            else
+
+            if (TryLevelUp(profile))
             {
-                SetFrameImageColor(GameColors.IndianRed);
+                AddStatPoint(profile);
+                Refresh();
+                OnLevelUpSuccess?.Invoke();
             }
         }
 
@@ -82,23 +54,36 @@ namespace TeamSuneat.UserInterface
                 return false;
             }
 
-            float expRatio = CalculateExpRatio(profile);
-            return expRatio >= 1.0f;
+            return profile.Level.CanLevelUp();
         }
 
-        private float CalculateExpRatio(VProfile profile)
+        private bool TryLevelUp(VProfile profile)
         {
-            int currentExp = profile.Level.Experience;
-            int currentLevel = profile.Level.Level;
+            if (!profile.Level.CanLevelUpOrNotify())
+            {
+                Log.Warning(LogTags.UI_Page, "경험치가 부족하여 레벨업할 수 없습니다.");
+                return false;
+            }
 
+            int addedLevel = profile.Level.LevelUp();
+            if (addedLevel <= 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void AddStatPoint(VProfile profile)
+        {
             ExperienceConfigAsset experienceConfigAsset = ScriptableDataManager.Instance.GetExperienceConfigAsset();
             if (experienceConfigAsset == null)
             {
-                return 0f;
+                return;
             }
 
-            int requiredExperience = experienceConfigAsset.GetExperienceRequiredForNextLevel(currentLevel);
-            return currentExp.SafeDivide01(requiredExperience);
+            int statPointPerLevel = experienceConfigAsset.StatPointPerLevel;
+            profile.Growth.AddStatPoint(statPointPerLevel);
         }
     }
 }

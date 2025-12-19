@@ -58,7 +58,7 @@ namespace TeamSuneat.UserInterface
             if (_levelUpButton != null)
             {
                 _levelUpButton.OnLevelUpSuccess.AddListener(Refresh);
-                _levelUpButton.RefreshUI();
+                _levelUpButton.Refresh();
             }
         }
 
@@ -82,7 +82,7 @@ namespace TeamSuneat.UserInterface
             RefreshGauge(currentEXP, maxEXP, expRatio);
             RefreshLevelText(level);
             RefreshExperienceText(expRatio);
-            _levelUpButton?.RefreshUI();
+            _levelUpButton?.Refresh();
         }
 
         public void RefreshGauge(int current, int max, float rate)

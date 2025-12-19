@@ -231,9 +231,7 @@ namespace TeamSuneat
             }
         }
 
-        /// <summary>
-        /// PathMetaData를 동기적으로 로드합니다.
-        /// </summary>
+        [MenuItem("Tools/Path/PathMetaData 파일 불러오기")]
         public static void LoadAllSync()
         {
             TextAsset textAsset = null;

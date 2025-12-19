@@ -11,7 +11,6 @@ namespace TeamSuneat.Data.Game
 
         public VCharacterWeapon Weapon;
         public VCharacterAccessory Accessory;
-        public VCharacterPotion Potion;
         public VCharacterItem Item;
         public VCurrency Currency;
 
@@ -25,7 +24,6 @@ namespace TeamSuneat.Data.Game
 
             Weapon.OnLoadGameData();
             Accessory.OnLoadGameData();
-            Potion.OnLoadGameData();
             Item.OnLoadGameData();
             Currency.OnLoadGameData();
 
@@ -41,7 +39,6 @@ namespace TeamSuneat.Data.Game
             Level ??= VCharacterLevel.CreateDefault();
             Weapon ??= VCharacterWeapon.CreateDefault();
             Accessory ??= VCharacterAccessory.CreateDefault();
-            Potion ??= VCharacterPotion.CreateDefault();
             Item ??= VCharacterItem.CreateDefault();
             Currency ??= VCurrency.CreateDefault();
             Stage ??= VCharacterStage.CreateDefault();
@@ -61,9 +58,6 @@ namespace TeamSuneat.Data.Game
 
             // 인게임 악세사리 정보를 초기화합니다.
             Accessory.ClearIngameData();
-
-            // 인게임 물약 정보를 초기화합니다.
-            Potion.ClearIngameData();
 
             // 인게임 아이템 정보를 초기화합니다.
             Item.ClearIngameData();

@@ -1,23 +1,28 @@
 using System.Collections.Generic;
-using TeamSuneat;
 
 namespace TeamSuneat.UserInterface
 {
-    // Notice UI 관리자 - 일시적으로 표시되는 알림 메시지들을 관리
+    /// <summary>
+    /// Notice UI 관리자 - 일시적으로 표시되는 알림 메시지들을 관리
+    /// </summary>
     public class UINoticeManager : XBehaviour
     {
-        private List<XBehaviour> _activeNotices = new List<XBehaviour>();
+        private List<UINoticeBase> _activeNotices = new List<UINoticeBase>();
 
         protected override void RegisterGlobalEvent()
         {
             base.RegisterGlobalEvent();
             GlobalEvent<CurrencyNames>.Register(GlobalEventType.CURRENCY_SHORTAGE, OnCurrencyShortage);
+            GlobalEvent.Register(GlobalEventType.STAT_POINT_SHORTAGE, OnStatPointShortage);
+            GlobalEvent.Register(GlobalEventType.EXPERIENCE_SHORTAGE, OnExperienceShortage);
         }
 
         protected override void UnregisterGlobalEvent()
         {
             base.UnregisterGlobalEvent();
             GlobalEvent<CurrencyNames>.Unregister(GlobalEventType.CURRENCY_SHORTAGE, OnCurrencyShortage);
+            GlobalEvent.Unregister(GlobalEventType.STAT_POINT_SHORTAGE, OnStatPointShortage);
+            GlobalEvent.Unregister(GlobalEventType.EXPERIENCE_SHORTAGE, OnExperienceShortage);
         }
 
         private void OnCurrencyShortage(CurrencyNames currencyName)
@@ -25,20 +30,19 @@ namespace TeamSuneat.UserInterface
             SpawnCurrencyShortageNotice(currencyName);
         }
 
+        private void OnStatPointShortage()
+        {
+            SpawnStatPointShortageNotice();
+        }
+
+        private void OnExperienceShortage()
+        {
+            SpawnExperienceShortageNotice();
+        }
+
         public UICurrencyShortageNotice SpawnCurrencyShortageNotice(CurrencyNames currencyName)
         {
             UICurrencyShortageNotice notice = ResourcesManager.SpawnCurrencyShortageNotice(currencyName);
-            if (notice != null)
-            {
-                RegisterNotice(notice);
-                notice.OnCompleted += () => UnregisterNotice(notice);
-            }
-            return notice;
-        }
-
-        public UICurrencyShortageNotice SpawnCurrencyShortageNotice(string content)
-        {
-            UICurrencyShortageNotice notice = ResourcesManager.SpawnCurrencyShortageNotice(content);
             if (notice != null)
             {
                 RegisterNotice(notice);
@@ -58,9 +62,9 @@ namespace TeamSuneat.UserInterface
             return notice;
         }
 
-        public UIStageTitleNotice SpawnStageTitleNotice(string content)
+        public UIStatPointShortageNotice SpawnStatPointShortageNotice()
         {
-            UIStageTitleNotice notice = ResourcesManager.SpawnStageTitleNotice(content);
+            UIStatPointShortageNotice notice = ResourcesManager.SpawnStatPointShortageNotice();
             if (notice != null)
             {
                 RegisterNotice(notice);
@@ -69,7 +73,20 @@ namespace TeamSuneat.UserInterface
             return notice;
         }
 
-        private void RegisterNotice(XBehaviour notice)
+        public UIExperienceShortageNotice SpawnExperienceShortageNotice()
+        {
+            UIExperienceShortageNotice notice = ResourcesManager.SpawnExperienceShortageNotice();
+            if (notice != null)
+            {
+                RegisterNotice(notice);
+                notice.OnCompleted += () => UnregisterNotice(notice);
+            }
+            return notice;
+        }
+
+        //
+
+        private void RegisterNotice(UINoticeBase notice)
         {
             if (notice != null && !_activeNotices.Contains(notice))
             {
@@ -77,7 +94,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        private void UnregisterNotice(XBehaviour notice)
+        private void UnregisterNotice(UINoticeBase notice)
         {
             if (notice != null && _activeNotices.Contains(notice))
             {

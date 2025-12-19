@@ -22,17 +22,23 @@ namespace TeamSuneat.UserInterface
             _fader ??= GetComponentInChildren<UICanvasGroupFader>(true);
         }
 
-        public virtual void Show(string content)
+        public virtual void SetContent(string content)
         {
             if (_titleText != null)
             {
                 _titleText.SetText(content);
             }
-
-            StartFadeInOut();
         }
 
-        private void StartFadeInOut()
+        public virtual void SetStringKey(string stringKey)
+        {
+            if (_titleText != null)
+            {
+                _titleText.SetStringKey(stringKey);
+            }
+        }
+
+        public void Show()
         {
             if (_fader != null)
             {

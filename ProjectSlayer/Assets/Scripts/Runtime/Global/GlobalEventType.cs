@@ -277,6 +277,20 @@ namespace TeamSuneat
 
         #endregion 재화 CURRENCY
 
+        #region 성장 GROWTH
+
+        ///<summary> 능력치 포인트가 부족합니다. </summary>
+        STAT_POINT_SHORTAGE,
+
+        #endregion 성장 GROWTH
+
+        #region 레벨 LEVEL
+
+        ///<summary> 경험치가 부족합니다. </summary>
+        EXPERIENCE_SHORTAGE,
+
+        #endregion 레벨 LEVEL
+
         #region 설정 SETTING
 
         ///<summary> 게임 언어가 변경됩니다. </summary>

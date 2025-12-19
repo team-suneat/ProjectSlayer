@@ -5,10 +5,9 @@ namespace TeamSuneat.UserInterface
     // 스테이지 타이틀 Notice 컴포넌트
     public class UIStageTitleNotice : UINoticeBase
     {
-        public void Show(StageNames stageName)
+        public void SetContent(StageNames stageName)
         {
-            Show(stageName.GetLocalizedString());
+            SetContent(stageName.GetLocalizedString());
         }
     }
 }
-

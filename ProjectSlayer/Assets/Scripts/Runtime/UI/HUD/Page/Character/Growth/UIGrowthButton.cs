@@ -1,15 +1,13 @@
 using Sirenix.OdinInspector;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
     public class UIGrowthButton : UIButton
-    {   
+    {
         [FoldoutGroup("#UIButton-Growth"), SerializeField]
         public UnityEvent OnLevelUpSuccess;
 
@@ -19,6 +17,11 @@ namespace TeamSuneat.UserInterface
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
+        }
+
+        private VProfile GetProfile()
+        {
+            return GameApp.GetSelectedProfile();
         }
 
         public void Setup(GrowthData data, UIGrowthItem parentItem)
@@ -35,28 +38,35 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            VProfile profile = GameApp.GetSelectedProfile();
+            VProfile profile = GetProfile();
             if (profile == null)
             {
                 return;
             }
 
-            int currentLevel = profile.Growth.GetLevel(_data.StatName);    
+            int currentLevel = profile.Growth.GetLevel(_data.StatName);
             RefreshLevelUpButton(profile, currentLevel);
         }
 
-     
-        private void RefreshLevelUpButton(VProfile profile, int currentLevel)
+        protected override void OnButtonClick()
         {
-            bool canLevelUp = CanLevelUp(profile, currentLevel);
-
-            if (canLevelUp)
+            if (_data == null)
             {
-                SetFrameImageColor(GameColors.SteelBlue);
+                return;
             }
-            else
+
+            VProfile profile = GetProfile();
+            if (profile == null)
             {
-                SetFrameImageColor(GameColors.IndianRed);
+                return;
+            }
+
+            int currentLevel = profile.Growth.GetLevel(_data.StatName);
+            if (TryLevelUp(profile, currentLevel))
+            {
+                Refresh();
+                _parentItem?.Refresh();
+                OnLevelUpSuccess?.Invoke();
             }
         }
 
@@ -73,15 +83,7 @@ namespace TeamSuneat.UserInterface
                 return false;
             }
 
-            // 최대 레벨 확인
             if (currentLevel >= _data.MaxLevel)
-            {
-                return false;
-            }
-
-            // 능력치 포인트 확인
-            int cost = CalculateCost();
-            if (profile.Growth.StatPoint < cost)
             {
                 return false;
             }
@@ -89,49 +91,41 @@ namespace TeamSuneat.UserInterface
             return true;
         }
 
-        protected override void OnButtonClick()
+        private bool TryLevelUp(VProfile profile, int currentLevel)
         {
-            if (_data == null)
-            {
-                return;
-            }
-
-            VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null)
-            {
-                return;
-            }
-
-            int currentLevel = profile.Growth.GetLevel(_data.StatName);
-
-            // 레벨업 가능 여부 확인
             if (!CanLevelUp(profile, currentLevel))
             {
-                Log.Warning(LogTags.UI_Page, "{0} 성장 레벨업 조건을 충족하지 못했습니다.", _data.StatName);
-                return;
+                return false;
             }
 
-            // 능력치 포인트 차감
             int cost = CalculateCost();
-            if (!profile.Growth.ConsumeStatPoint(cost))
+            if (!profile.Growth.CanConsumeStatPointOrNotify(cost))
             {
-                Log.Warning(LogTags.UI_Page, "능력치 포인트가 부족합니다.");
-                return;
+                Log.Warning(LogTags.UI_Page, "{0} 성장 레벨업 조건을 충족하지 못했습니다.", _data.StatName);
+
+                return false;
             }
 
-            // 레벨 증가
-            int newLevel = profile.Growth.AddLevel(_data.StatName);
+            profile.Growth.ConsumeStatPoint(cost);
+            profile.Growth.AddLevel(_data.StatName);
 
-            Log.Info(LogTags.UI_Page, "{0} 성장 레벨업! Lv.{1} → Lv.{2}, 비용: {3}",
-                _data.StatName, currentLevel, newLevel, cost);
+            return true;
+        }
 
-            // UI 갱신
-            Refresh();
-            _parentItem?.Refresh();
+        private void RefreshLevelUpButton(VProfile profile, int currentLevel)
+        {
+            bool canLevelUp = CanLevelUp(profile, currentLevel);
+            if (canLevelUp)
+            {
+                int cost = CalculateCost();
+                if (!profile.Growth.CanConsumeStatPoint(cost))
+                {
+                    canLevelUp = false;
+                }
+            }
 
-            // 레벨업 성공 이벤트 발생
-            OnLevelUpSuccess?.Invoke();
+            Color buttonColor = canLevelUp ? GameColors.SteelBlue : GameColors.IndianRed;
+            SetFrameImageColor(buttonColor);
         }
     }
 }
-
