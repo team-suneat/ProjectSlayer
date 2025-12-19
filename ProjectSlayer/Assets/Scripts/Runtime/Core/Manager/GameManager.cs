@@ -23,18 +23,8 @@ namespace TeamSuneat
 
         private void InitializeGameplayTimeTracking()
         {
-            VProfile profileInfo = GameApp.GetSelectedProfile();
-
-            // 게임 재시작 시 게임플레이 시간 추적 상태를 복원
-            if (GameApp.Instance.data == null || profileInfo == null || profileInfo.Statistics == null)
-            {
-                GameTimeManager.Instance.InitializeGameplayTracking(false);
-            }
-            else
-            {
-                bool isChallengeStarted = profileInfo.Statistics.IsChallengeStarted();
-                GameTimeManager.Instance.InitializeGameplayTracking(isChallengeStarted);
-            }
+            // 게임플레이 시간 추적 초기화
+            GameTimeManager.Instance.InitializeGameplayTracking(false);
         }
 
         private void OnEnable()
