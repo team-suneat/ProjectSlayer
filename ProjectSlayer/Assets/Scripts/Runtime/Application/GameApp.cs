@@ -1,4 +1,4 @@
-﻿using TeamSuneat.Data;
+using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using TeamSuneat.Setting;
 using UnityEngine;
@@ -101,10 +101,7 @@ namespace TeamSuneat
 
         public void LoadGameData()
         {
-            if (dataManager == null)
-            {
-                dataManager = new GameDataManager();
-            }
+            dataManager ??= new GameDataManager();
             dataManager.LoadGameDataWithRecovery();
 
             // 오프라인 시간 계산 (데이터 로드 후)
@@ -116,6 +113,7 @@ namespace TeamSuneat
 
         public void SaveGameData()
         {
+            // data.Statistics.RegisterLastSaveTime();
             dataManager?.Save();
         }
 
@@ -129,6 +127,9 @@ namespace TeamSuneat
             if (_isApplicationPaused) return; // 중복 방지
 
             _isApplicationPaused = true;
+
+            // 저장 (LastSaveTime 자동 업데이트)
+            SaveGameData();
 
             Log.Info(LogTags.Time, "앱이 백그라운드로 이동했습니다. 데이터를 저장했습니다.");
         }
