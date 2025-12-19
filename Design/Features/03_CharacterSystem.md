@@ -172,40 +172,54 @@
       - [ ] 아이콘 표시
       - [ ] 레벨 표시
   - [ ] 외형 탭 내용 (향후 구현)
-- [ ] 경험치 표시 및 관리
-- [ ] 능력치 포인트 표시 및 관리
+- [x] 경험치 표시 및 관리
+  - [x] 경험치 게이지 UI (UIExperienceGauge) 구현
+  - [x] 경험치 변경 이벤트 연동 (GAME_DATA_CHARACTER_ADD_EXPERIENCE)
+  - [x] 레벨업 시 게이지 리셋 처리
+- [x] 능력치 포인트 표시 및 관리
+  - [x] VCharacterGrowth.StatPoint를 통한 능력치 포인트 관리
+  - [x] 레벨업 시 능력치 포인트 3개 획득 (ExperienceConfigAsset.StatPointPerLevel)
 
 ### 3.2 경험치 및 레벨업 UI
-- [ ] 경험치 바 표시
-- [ ] 레벨업 처리 UI
-  - [ ] 레벨업 시 능력치 포인트 3개 획득 표시
-  - [ ] 레벨업 효과 적용 표시
+- [x] 경험치 바 표시
+  - [x] UIExperienceGauge 컴포넌트 구현
+  - [x] 경험치 게이지 바 (UIGauge 사용)
+  - [x] 현재 경험치 / 필요 경험치 표시
+  - [x] 레벨 표시
+  - [x] 레벨업 가능 여부 표시 (UICharacterLevelUpButton 색상 변경)
+- [x] 레벨업 처리 UI
+  - [x] UICharacterLevelUpButton 구현
+  - [x] 레벨업 시 능력치 포인트 3개 획득 표시 (VCharacterGrowth.AddStatPoint)
+  - [x] 레벨업 효과 적용 표시
+  - [x] CanLevelUp, CanLevelUpOrNotify 메서드 구현 (VCharacterLevel)
 - [ ] 적 처치 시 경험치 획득 표시
 
 ### 3.3 강화 시스템 UI
-- [ ] 캐릭터 페이지 강화 탭
-  - [ ] UITogglePageController를 통한 탭 전환
-  - [ ] 강화 / 성장 / 승급 토글
-- [ ] 캐릭터 정보 영역 (Character Level Group)
-  - [ ] 캐릭터 아이콘 이미지
-  - [ ] 캐릭터 레벨 텍스트
-  - [ ] 경험치 비율 텍스트
-  - [ ] 경험치 게이지 (UIGauge)
-  - [ ] 레벨업 버튼 (경험치 100% 시 활성화)
-  - [ ] 강화/성장 페이지에서 표시, 승급 페이지에서 숨김
-- [ ] 강화 아이템 스크롤 뷰 (Character Enhancement Group)
-  - [ ] 모든 강화 타입에 대해 아이템 생성
-  - [ ] UIEnhancementItem 컴포넌트
-    - [ ] 강화 아이콘 표시
-    - [ ] 강화 이름 표시
-    - [ ] 현재 레벨 표시
-    - [ ] 능력치 값 표시 (현재값 → 레벨업 후 값)
-    - [ ] 레벨업 버튼 (재화 아이콘 + 비용 텍스트)
-- [ ] 강화 레벨업 처리
-  - [ ] 재화 충분 여부 확인
-  - [ ] 최대 레벨 도달 여부 확인
-  - [ ] 요구 능력치 레벨 충족 여부 확인
-  - [ ] 강화 레벨 증가 및 재화 차감
+- [x] 캐릭터 페이지 강화 탭
+  - [x] UICharacterPage 구현 (UITogglePageController를 통한 탭 전환)
+  - [x] 강화 / 성장 / 승급 토글 (UITogglePageController 활용)
+- [x] 캐릭터 정보 영역 (Character Level Group)
+  - [x] UICharacterLevelGroup 구현
+  - [x] 캐릭터 아이콘 이미지
+  - [x] 캐릭터 레벨 텍스트
+  - [x] 경험치 비율 텍스트
+  - [x] 경험치 게이지 (UIGauge)
+  - [x] 레벨업 버튼 (경험치 100% 시 활성화, UICharacterLevelUpButton)
+  - [x] 강화/성장 페이지에서 표시, 승급 페이지에서 숨김
+- [x] 강화 아이템 스크롤 뷰 (Character Enhancement Group)
+  - [x] UIEnhancementPage 구현
+  - [x] 모든 강화 타입에 대해 아이템 생성
+  - [x] UIEnhancementItem 컴포넌트
+    - [x] 강화 아이콘 표시
+    - [x] 강화 이름 표시
+    - [x] 현재 레벨 표시
+    - [x] 능력치 값 표시 (현재값 → 레벨업 후 값)
+    - [x] 레벨업 버튼 (재화 아이콘 + 비용 텍스트)
+- [x] 강화 레벨업 처리
+  - [x] 재화 충분 여부 확인 (VCurrency.CanUseOrNotify)
+  - [x] 최대 레벨 도달 여부 확인 (EnhancementData.MaxLevel)
+  - [x] 요구 능력치 레벨 충족 여부 확인 (EnhancementData.RequiredStatName, RequiredStatLevel)
+  - [x] 강화 레벨 증가 및 재화 차감 (VCharacterEnhancement.AddLevel, VCurrency.Use)
 
 ### 3.4 성장 지식 시스템 UI
 - [ ] 성장 지식 UI
@@ -218,12 +232,14 @@
 - [ ] 회심의 일격 최대 레벨 확장 표시
 
 ### 3.5 성장 시스템 UI
-- [ ] 능력치 포인트로 구매 가능한 능력치 UI
-  - [ ] 각 능력치 표시
-  - [ ] 현재 레벨 표시
-  - [ ] MAX LV 표시
-  - [ ] 능력치 포인트 소비 표시
-  - [ ] 업그레이드 버튼
+- [x] 능력치 포인트로 구매 가능한 능력치 UI
+  - [x] UIGrowthPage 구현 (스켈레톤)
+  - [x] 각 능력치 표시
+  - [x] 현재 레벨 표시
+  - [x] MAX LV 표시
+  - [x] 능력치 포인트 소비 표시
+  - [x] 업그레이드 버튼 (UIGrowthButton)
+  - [x] CanConsumeStatPoint, CanConsumeStatPointOrNotify 메서드 구현 (VCharacterGrowth)
 - [ ] 능력치 효과 적용 표시
 
 ### 3.6 캐릭터 관리 UI

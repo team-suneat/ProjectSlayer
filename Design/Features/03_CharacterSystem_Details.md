@@ -288,6 +288,8 @@
 - ResetValues(): 레벨과 경험치 초기화
 - AddExperience(int): 경험치 추가 및 레벨업 처리
 - LevelUp(): 레벨 증가
+- CanLevelUp(): 레벨업 가능 여부 확인
+- CanLevelUpOrNotify(): 레벨업 가능 여부 확인 및 부족 시 알림 표시
 
 **VCharacterEnhancement**
 - EnhancementLevels: 강화 능력치별 레벨 저장 (Dictionary<string, int>)
@@ -304,6 +306,8 @@
 - AddLevel(StatNames, int): 특정 성장 능력치의 레벨 증가
 - AddStatPoint(int): 능력치 포인트 추가
 - ConsumeStatPoint(int): 능력치 포인트 소비
+- CanConsumeStatPoint(int): 능력치 포인트 소비 가능 여부 확인
+- CanConsumeStatPointOrNotify(int): 능력치 포인트 소비 가능 여부 확인 및 부족 시 알림 표시
 - ClearIngameData(): 인게임 데이터 초기화
 
 ### 6.2 데이터 안정성
@@ -343,20 +347,25 @@
 **구성 요소**
 - **캐릭터 아이콘 이미지**: 현재 캐릭터의 아이콘 표시
 - **레벨 텍스트**: "Lv.{레벨}" 형식으로 현재 레벨 표시
-- **경험치 비율 텍스트**: "{현재 경험치 비율}%" 형식으로 표시
+- **경험치 비율 텍스트**: "{현재 경험치} / {필요 경험치}" 형식으로 표시
 - **경험치 게이지**: UIGauge 컴포넌트를 사용하여 경험치 바 표시
   - FrontSlider: 현재 경험치 비율 표시
   - BackSlider: 이전 경험치 비율에서 부드럽게 감소 (선택적)
   - ValueText: 경험치 비율 텍스트 (선택적)
-- **레벨업 버튼**:
-  - 활성화 조건: 경험치 비율이 100%일 때
+- **레벨업 버튼** (UICharacterLevelUpButton):
+  - 활성화 조건: 경험치 비율이 100%일 때 (CanLevelUp() == true)
   - 비활성화 조건: 경험치 비율이 100% 미만일 때
   - 클릭 시 동작:
-    - 캐릭터 레벨 1 증가
-    - 현재 레벨의 필요 경험치만큼 차감
-    - 레벨업 시 능력치 포인트 3개 획득
-    - UI 갱신
+    - VCharacterLevel.CanLevelUpOrNotify()로 검증
+    - 캐릭터 레벨 1 증가 (VCharacterLevel.LevelUp())
+    - 현재 레벨의 필요 경험치만큼 차감 (ExperienceConfigAsset.GetExperienceRequiredForNextLevel 사용)
+    - 레벨업 시 능력치 포인트 3개 획득 (VCharacterGrowth.AddStatPoint, ExperienceConfigAsset.StatPointPerLevel)
+    - UI 갱신 (GAME_DATA_CHARACTER_LEVEL_CHANGED 이벤트 발생)
   - 다중 레벨업 지원: 경험치가 충분할 경우 여러 번 클릭하여 연속 레벨업 가능
+- **경험치 게이지 UI** (UIExperienceGauge):
+  - HUD에 표시되는 경험치 게이지
+  - 경험치 획득 시 자동 업데이트 (GAME_DATA_CHARACTER_ADD_EXPERIENCE 이벤트 구독)
+  - 레벨업 시 게이지 리셋
 
 ### 7.3 강화 페이지 (Enhancement Page)
 
@@ -375,17 +384,17 @@
 - **강화 이름 텍스트**: 강화 타입 이름 (예: "공격력", "체력")
 - **강화 레벨 텍스트**: "Lv.{현재 레벨}" 형식으로 현재 강화 레벨 표시
 - **능력치 값 텍스트**: "{현재값} → {레벨업 후 값}" 형식으로 강화 시 능력치 변화 표시
-  - 현재값: 현재 레벨의 능력치 값
-  - 레벨업 후 값: 다음 레벨의 능력치 값
+  - 현재값: 현재 레벨의 능력치 값 (InitialValue + (현재 레벨 × GrowthValue))
+  - 레벨업 후 값: 다음 레벨의 능력치 값 (InitialValue + ((현재 레벨 + 1) × GrowthValue))
 - **레벨업 버튼**:
   - 재화 아이콘 이미지: 강화에 필요한 재화 아이콘 (골드)
-  - 비용 텍스트: 강화에 필요한 비용 표시
+  - 비용 텍스트: 강화에 필요한 비용 표시 (InitialCost × CostGrowthRate^(현재 레벨 - 1))
   - 클릭 시 동작:
-    - 재화 충분 여부 확인
-    - 최대 레벨 도달 여부 확인
-    - 요구 능력치 레벨 충족 여부 확인
-    - 조건 충족 시 강화 레벨 1 증가 및 재화 차감
-    - UI 갱신
+    - 재화 충분 여부 확인 (VCurrency.CanUseOrNotify)
+    - 최대 레벨 도달 여부 확인 (EnhancementData.MaxLevel)
+    - 요구 능력치 레벨 충족 여부 확인 (EnhancementData.RequiredStatName, RequiredStatLevel)
+    - 조건 충족 시 강화 레벨 1 증가 (VCharacterEnhancement.AddLevel) 및 재화 차감 (VCurrency.Use)
+    - UI 갱신 (재화 변경 이벤트 발생)
 
 ### 7.4 강화 아이템 데이터 바인딩
 
@@ -415,9 +424,9 @@ UIPageGroup
 │   │   │   ├── Toggle (Growth) - 성장
 │   │   │   └── Toggle (Promotion) - 승급
 │   │   └── UIPageGroup
-│   │       ├── Page (Enhancement)
-│   │       ├── Page (Growth)
-│   │       └── Page (Promotion)
+│   │       ├── Page (Enhancement) - UIEnhancementPage
+│   │       ├── Page (Growth) - UIGrowthPage
+│   │       └── Page (Promotion) - UIPromotionPage
 │   ├── Character Level Group (강화/성장 페이지에서만 표시)
 │   │   ├── Character Icon Image
 │   │   ├── Level Name Text
@@ -441,4 +450,9 @@ UIPageGroup
 │                       └── LevelUp Button
 │                           ├── Currency Icon Image
 │                           └── Text (TMP)
+│   └── Character Growth Group (성장 페이지 내용)
+│       └── Scroll View
+│           └── Viewport
+│               └── Content
+│                   └── UIGrowthItem (성장 타입별 생성, 향후 구현)
 ```
