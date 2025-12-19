@@ -28,7 +28,6 @@ namespace TeamSuneat.UserInterface
         private IUIPopupFeedbackHandler _feedbackHandler;
         private IUIPopupCallbackHandler _callbackHandler;
         private IUIPopupInputBlockHandler _inputBlockHandler;
-        private UIPopupPauseHandler _pauseHandler;
         private UIPopupFloatyHandler _floatyHandler;
 
         // 핵심 설정
@@ -78,7 +77,6 @@ namespace TeamSuneat.UserInterface
             _feedbackHandler = GetComponent<IUIPopupFeedbackHandler>();
             _callbackHandler = GetComponent<IUIPopupCallbackHandler>();
             _inputBlockHandler = GetComponent<IUIPopupInputBlockHandler>();
-            _pauseHandler = GetComponent<UIPopupPauseHandler>();
             _floatyHandler = GetComponent<UIPopupFloatyHandler>();
 
             // 각 핸들러 초기화
@@ -86,7 +84,6 @@ namespace TeamSuneat.UserInterface
             _feedbackHandler?.Initialize();
             _callbackHandler?.Initialize();
             _inputBlockHandler?.Initialize();
-            _pauseHandler?.Initialize();
             _floatyHandler?.Initialize();
         }
 
@@ -129,7 +126,6 @@ namespace TeamSuneat.UserInterface
             _feedbackHandler?.Cleanup();
             _callbackHandler?.Cleanup();
             _inputBlockHandler?.Cleanup();
-            _pauseHandler?.Cleanup();
             _floatyHandler?.Cleanup();
 
             if (UseFullScreenSize)
@@ -161,9 +157,8 @@ namespace TeamSuneat.UserInterface
             Activate();
             StartBlockInput();
             TriggerOpenFeedback();
-            Pause();
 
-            _ = GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_OPEN, Name);
+            GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_OPEN, Name);
         }
 
         /// <summary>
@@ -192,7 +187,7 @@ namespace TeamSuneat.UserInterface
             OnClose(true);
             Despawn();
 
-            _ = GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_CLOSE, Name);
+            GlobalEvent<UIPopupNames>.Send(GlobalEventType.GAME_POPUP_CLOSE, Name);
         }
 
         /// <summary>
@@ -214,7 +209,6 @@ namespace TeamSuneat.UserInterface
         public virtual void OnClose(bool result)
         {
             UIManager.Instance.DetailsManager.Clear();
-            Resume();
             ConfigurePopupSettings(false);
             InvokeCloseCallback(result);
             TriggerCloseFeedback();
@@ -386,26 +380,6 @@ namespace TeamSuneat.UserInterface
         }
 
         #endregion 입력 차단
-
-        #region 일시정지
-
-        /// <summary>
-        /// 게임을 일시정지합니다.
-        /// </summary>
-        private void Pause()
-        {
-            _pauseHandler?.Pause();
-        }
-
-        /// <summary>
-        /// 게임을 재개합니다.
-        /// </summary>
-        private void Resume()
-        {
-            _pauseHandler?.Resume();
-        }
-
-        #endregion 일시정지
 
         /// <summary>
         /// 첫 번째 슬롯 이벤트를 선택합니다.

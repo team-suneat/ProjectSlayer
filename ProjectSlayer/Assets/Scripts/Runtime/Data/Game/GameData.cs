@@ -43,10 +43,6 @@ namespace TeamSuneat.Data
         {
             Profile.ClearIngameData();
 
-            // 게임 플레이 시간 초기화
-            GameTimeManager.Instance.StopGameplayTracking();
-            GameTimeManager.Instance.ResetGameplayTime();
-
             GameApp.Instance.SaveGameData();
         }
 

@@ -18,13 +18,6 @@ namespace TeamSuneat
         private IEnumerator Start()
         {
             yield return new WaitUntil(() => { return GameApp.Instance != null; });
-            InitializeGameplayTimeTracking();
-        }
-
-        private void InitializeGameplayTimeTracking()
-        {
-            // 게임플레이 시간 추적 초기화
-            GameTimeManager.Instance.InitializeGameplayTracking(false);
         }
 
         private void OnEnable()
@@ -41,7 +34,6 @@ namespace TeamSuneat
 
         private void Update()
         {
-            GameTimeManager.Instance.UpdateTimeTracking();
             CharacterManager.Instance.LogicUpdate();
 
             // UIManager.Instance?.LogicUpdate();
@@ -67,8 +59,8 @@ namespace TeamSuneat
 
         private void OnApplicationPause(bool pause)
         {
-            if (pause) { GameTimeManager.Instance.Pause(); }
-            else { GameTimeManager.Instance.Resume(); }
+            // 방치형 게임에서는 앱이 백그라운드로 가도 게임이 계속 진행되어야 함
+            // 오프라인 시간은 OfflineTimeManager에서 처리
         }
 
         internal void ResetStage()
