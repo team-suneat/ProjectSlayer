@@ -9,24 +9,21 @@ namespace TeamSuneat
 {
     public class UIToggle : UIInteractiveElement
     {
-        [Title("#UIToggle")]
-        [SerializeField] private Toggle _toggle;
-        [SerializeField] private Image _iconImage;
-        [SerializeField] private Image _lockImage;
-        [SerializeField] private Image _updateIndicatorImage;
-        [SerializeField] private Graphic _toggleGraphic;
+        [FoldoutGroup("#UIToggle"), SerializeField] private Toggle _toggle;
+        [FoldoutGroup("#UIToggle"), SerializeField] private Image _iconImage;
+        [FoldoutGroup("#UIToggle"), SerializeField] private Image _lockImage;
+        [FoldoutGroup("#UIToggle"), SerializeField] private Image _updateIndicatorImage;
+        [FoldoutGroup("#UIToggle"), SerializeField] private Graphic _toggleGraphic;
 
-        [Title("#UIToggle-Lock")]
-        [SerializeField] private bool _isLocked;
-        [SerializeField] private string _lockMessage;
+        [FoldoutGroup("#UIToggle-Lock"), SerializeField] private bool _isLocked;
+        [FoldoutGroup("#UIToggle-Lock"), SerializeField] private string _lockMessage;
 
-        [Title("#UIToggle-Settings")]
-        [SerializeField] private Color _buttonImageActiveColor = new Color(1f, 1f, 1f, 0.5f);
-        [SerializeField] private Color _buttonImageInactiveColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        [SerializeField] private Color _frameImageInactiveColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-        [SerializeField] private float _colorTransitionDuration = 0.2f;
+        [FoldoutGroup("#UIToggle-Settings"), SerializeField] private Color _buttonImageActiveColor = new Color(1f, 1f, 1f, 0.5f);
+        [FoldoutGroup("#UIToggle-Settings"), SerializeField] private Color _buttonImageInactiveColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        [FoldoutGroup("#UIToggle-Settings"), SerializeField] private Color _frameImageInactiveColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+        [FoldoutGroup("#UIToggle-Settings"), SerializeField] private float _colorTransitionDuration = 0.2f;
 
-        [Title("#UIToggle-Events")]
+        [FoldoutGroup("#UIToggle-Events")]
         public UnityEvent<string> OnLockMessageRequested;
 
         private Tween _buttonColorTween;

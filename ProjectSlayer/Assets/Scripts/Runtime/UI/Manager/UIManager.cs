@@ -8,16 +8,13 @@ namespace TeamSuneat.UserInterface
     {
         [Title("Manager")]
         public UICanvasManager CanvasManager;
-
-        public UIPopupManager PopupManager;
-
         public UIGaugeManager GaugeManager;
-
-        public UIDetailsManager DetailsManager;
+        public UITextManager TextManager;
 
         public HUDManager HUDManager;
-
-        public UITextManager TextManager;
+        public UIPopupManager PopupManager;
+        public UIDetailsManager DetailsManager;
+        public UINoticeManager NoticeManager;
 
         public Vector3 WorldPositionMin { get; set; }
         public Vector3 WorldPositionMax { get; set; }
@@ -37,6 +34,7 @@ namespace TeamSuneat.UserInterface
             HUDManager = GetComponentInChildren<HUDManager>();
             GaugeManager = GetComponentInChildren<UIGaugeManager>();
             DetailsManager = GetComponentInChildren<UIDetailsManager>();
+            NoticeManager = GetComponentInChildren<UINoticeManager>();
             TextManager = GetComponentInChildren<UITextManager>();
         }
 
@@ -44,6 +42,7 @@ namespace TeamSuneat.UserInterface
         {
             PopupManager?.ResetValues();
             GaugeManager?.Clear();
+            NoticeManager?.Clear();
         }
 
         public CanvasOrder GetCanvas(CanvasOrderNames canvasOrderName)
@@ -60,6 +59,7 @@ namespace TeamSuneat.UserInterface
 
             PopupManager?.LogicUpdate();
             HUDManager?.LogicUpdate();
+            NoticeManager?.LogicUpdate();
         }
 
         internal void SpawnSoliloquyNotice(SoliloquyTypes content)

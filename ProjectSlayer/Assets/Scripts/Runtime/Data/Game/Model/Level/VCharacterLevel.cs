@@ -94,14 +94,6 @@ namespace TeamSuneat.Data.Game
             return addedLevel;
         }
 
-        public void LevelDown()
-        {
-            Level = Mathf.Max(Level - 1, 1);
-            Log.Info(LogTags.GameData, "[Character] 플레이어 캐릭터의 레벨이 떨어졌습니다. {0}", Level.ToString());
-            CharacterManager.Instance.Player.OnLevelDown();
-            _ = GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, Level);
-        }
-
         public static VCharacterLevel CreateDefault()
         {
             return new VCharacterLevel()

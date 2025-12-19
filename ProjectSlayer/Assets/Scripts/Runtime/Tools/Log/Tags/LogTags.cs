@@ -215,7 +215,7 @@
 
         #endregion Scene
 
-        #region UI
+        #region UI (일반)
 
         /// <summary> UI </summary>
         UI,
@@ -232,6 +232,13 @@
         /// <summary> UI 페이지 </summary>
         UI_Page,
 
+        /// <summary> UI 알림 </summary>
+        UI_Notice,
+
+        #endregion UI
+
+        #region  UI (특수)
+
         /// <summary> UI 인벤토리 </summary>
         UI_Inventory,
 
@@ -247,12 +254,7 @@
         /// <summary> UI 유물 </summary>
         UI_Relic,
 
-        /// <summary> UI 선택 이벤트 </summary>
-        UI_SelectEvent,
+        #endregion
 
-        /// <summary> UI 탭 </summary>
-        UI_Tab,
-
-        #endregion UI
     }
 }

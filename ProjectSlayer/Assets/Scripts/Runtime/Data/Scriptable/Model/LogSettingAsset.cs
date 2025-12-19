@@ -81,13 +81,12 @@ namespace TeamSuneat
         [FoldoutGroup("[UI]")][SuffixLabel("게이지")] public bool UI_Gauge;
         [FoldoutGroup("[UI]")][SuffixLabel("토글")] public bool UI_Toggle;
         [FoldoutGroup("[UI]")][SuffixLabel("페이지")] public bool UI_Page;
+        [FoldoutGroup("[UI]")][SuffixLabel("알림")] public bool UI_Notice;
         [FoldoutGroup("[UI]")][SuffixLabel("소지품")] public bool UI_Inventory;
         [FoldoutGroup("[UI]")][SuffixLabel("팝업")] public bool UI_Popup;
         [FoldoutGroup("[UI]")][SuffixLabel("상세정보")] public bool UI_Details;
         [FoldoutGroup("[UI]")][SuffixLabel("기술")] public bool UI_Skill;
         [FoldoutGroup("[UI]")][SuffixLabel("유물")] public bool UI_Relic;
-        [FoldoutGroup("[UI]")][SuffixLabel("선택 이벤트")] public bool UI_SelectEvent;
-        [FoldoutGroup("[UI]")][SuffixLabel("탭")] public bool UI_Tab;
 
         public bool LoadString;
 
@@ -180,13 +179,12 @@ namespace TeamSuneat
             UI_Gauge = true;
             UI_Toggle = true;
             UI_Page = true;
+            UI_Notice = true;
             UI_Inventory = true;
             UI_Popup = true;
             UI_Details = true;
             UI_Skill = true;
             UI_Relic = true;
-            UI_SelectEvent = true;
-            UI_Tab = true;
         }
 
         private void SwitchOffAll()
@@ -260,13 +258,13 @@ namespace TeamSuneat
             UI_Gauge = false;
             UI_Toggle = false;
             UI_Page = false;
+            UI_Notice = false;
+            
             UI_Inventory = false;
             UI_Popup = false;
             UI_Details = false;
             UI_Skill = false;
             UI_Relic = false;
-            UI_SelectEvent = false;
-            UI_Tab = false;
         }
 
         public void OnLoadData()
@@ -349,13 +347,12 @@ namespace TeamSuneat
                 LogTags.UI_Gauge => UI_Gauge,
                 LogTags.UI_Toggle => UI_Toggle,
                 LogTags.UI_Page => UI_Page,
+                LogTags.UI_Notice => UI_Notice,
                 LogTags.UI_Inventory => UI_Inventory,
                 LogTags.UI_Popup => UI_Popup,
                 LogTags.UI_Details => UI_Details,
                 LogTags.UI_Skill => UI_Skill,
                 LogTags.UI_Relic => UI_Relic,
-                LogTags.UI_SelectEvent => UI_SelectEvent,
-                LogTags.UI_Tab => UI_Tab,
 
                 _ => false,
             };
@@ -434,13 +431,12 @@ namespace TeamSuneat
                 case LogTags.UI_Gauge: { UI_Gauge = true; } break;
                 case LogTags.UI_Toggle: { UI_Toggle = true; } break;
                 case LogTags.UI_Page: { UI_Page = true; } break;
+                case LogTags.UI_Notice: { UI_Notice = true; } break;
                 case LogTags.UI_Inventory: { UI_Inventory = true; } break;
                 case LogTags.UI_Popup: { UI_Popup = true; } break;
                 case LogTags.UI_Details: { UI_Details = true; } break;
                 case LogTags.UI_Skill: { UI_Skill = true; } break;
                 case LogTags.UI_Relic: { UI_Relic = true; } break;
-                case LogTags.UI_SelectEvent: { UI_SelectEvent = true; } break;
-                case LogTags.UI_Tab: { UI_Tab = true; } break;
             }
         }
 
@@ -517,13 +513,12 @@ namespace TeamSuneat
                 case LogTags.UI_Gauge: { UI_Gauge = false; } break;
                 case LogTags.UI_Toggle: { UI_Toggle = false; } break;
                 case LogTags.UI_Page: { UI_Page = false; } break;
+                case LogTags.UI_Notice: { UI_Notice = false; } break;
                 case LogTags.UI_Inventory: { UI_Inventory = false; } break;
                 case LogTags.UI_Popup: { UI_Popup = false; } break;
                 case LogTags.UI_Details: { UI_Details = false; } break;
                 case LogTags.UI_Skill: { UI_Skill = false; } break;
                 case LogTags.UI_Relic: { UI_Relic = false; } break;
-                case LogTags.UI_SelectEvent: { UI_SelectEvent = false; } break;
-                case LogTags.UI_Tab: { UI_Tab = false; } break;
             }
         }
 

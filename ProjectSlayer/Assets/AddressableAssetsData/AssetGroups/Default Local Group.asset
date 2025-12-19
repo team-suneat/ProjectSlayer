@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd2aeea7a8853a141975a77d675335f1
+    m_Address: Assets/Addressables/Prefab/UI/Notice/UICurrencyShortageNotice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf65f72866f858649aede54d0db5eed5
     m_Address: Assets/Addressables/Prefab/UI/Popup/UICharacterInfoPopup.prefab
     m_ReadOnly: 0

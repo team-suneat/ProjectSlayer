@@ -272,6 +272,9 @@ namespace TeamSuneat
         ///<summary> 재화를 지불합니다. </summary>
         CURRENCY_PAYED,
 
+        ///<summary> 재화가 부족합니다. </summary>
+        CURRENCY_SHORTAGE,
+
         #endregion 재화 CURRENCY
 
         #region 설정 SETTING

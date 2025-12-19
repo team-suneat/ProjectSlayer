@@ -34,9 +34,9 @@ RectTransform:
   - {fileID: 9020760294905623877}
   m_Father: {fileID: 7282433762277298593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -170}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!225 &1403945235702094363
@@ -155,6 +155,8 @@ GameObject:
   - component: {fileID: 4755645299680997202}
   - component: {fileID: 7033519675538305930}
   - component: {fileID: 7409610500573730411}
+  - component: {fileID: 6465264437551191737}
+  - component: {fileID: 4631241665927377597}
   m_Layer: 5
   m_Name: Notice Text
   m_TagString: Untagged
@@ -209,7 +211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD14C\uC774\uC9C0 \uC774\uB984"
+  m_text: "\uC7AC\uD654\uAC00 \uBD80\uC871\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
   m_sharedMaterial: {fileID: 6911550201042835066, guid: 3e41d50bd12c35b478ffd0828949c13f, type: 2}
@@ -236,8 +238,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 17.04
+  m_fontSizeBase: 17.04
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -292,9 +294,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18671cfec38e2b4d997de4111fb2b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPro: {fileID: 0}
-  _textLocalizer: {fileID: 0}
-  _fontLocalizer: {fileID: 0}
+  _textPro: {fileID: 7033519675538305930}
+  _textLocalizer: {fileID: 6465264437551191737}
+  _fontLocalizer: {fileID: 4631241665927377597}
+--- !u!114 &6465264437551191737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6914545358827985746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc84a11010a7bb74285605c5e60dcc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textPro: {fileID: 7033519675538305930}
+  StringKey: 
+--- !u!114 &4631241665927377597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6914545358827985746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ec5a72ec15b4c459575f7618c6c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textPro: {fileID: 7033519675538305930}
+  FontType: 2
+  FontTypeString: Content
+  _sizeToTextLengthX: 0
+  _sizeToTextLengthY: 0
+  _layoutElement: {fileID: 0}
 --- !u!1 &8144290836902770559
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,9 +338,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7282433762277298593}
-  - component: {fileID: 9166663464639083084}
+  - component: {fileID: 5985072263865195452}
   m_Layer: 5
-  m_Name: UIStageTitleNotice
+  m_Name: UICurrencyShortageNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +366,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9166663464639083084
+--- !u!114 &5985072263865195452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,7 +375,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8144290836902770559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d1577e65b6e724f9294d17c621057c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e19e1424d9216445b12729a7c727aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _titleText: {fileID: 7409610500573730411}

@@ -59,12 +59,11 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-
         public Color DefaultTextColor { get; private set; }
 
         public int FontSize => _textPro != null ? (int)_textPro.fontSize : 0;
 
-        public string Content => _textPro!=null ? _textPro.text : string.Empty;
+        public string Content => _textPro != null ? _textPro.text : string.Empty;
 
         #region 컴포넌트 할당
 
@@ -157,12 +156,26 @@ namespace TeamSuneat.UserInterface
 
         public void ResetText()
         {
-            TextLocalizer?.ResetText();
+            if (TextLocalizer != null)
+            {
+                TextLocalizer.ResetText();
+            }
+            else if (_textPro != null)
+            {
+                _textPro.ResetText();
+            }
         }
 
         public void SetText(string content)
         {
-            TextLocalizer?.SetText(content);
+            if (TextLocalizer != null)
+            {
+                TextLocalizer.SetText(content);
+            }
+            else if (_textPro != null)
+            {
+                _textPro.SetText(content);
+            }
         }
 
         public void SetStringKey(string stringKey)
@@ -182,7 +195,10 @@ namespace TeamSuneat.UserInterface
 
         public void ResetSpriteText()
         {
-            TextLocalizer?.ResetSpriteText();
+            if (TextLocalizer != null)
+            {
+                TextLocalizer.ResetSpriteText();
+            }
         }
 
         #endregion 텍스트 처리

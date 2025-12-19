@@ -27,9 +27,19 @@ namespace TeamSuneat.Data.Game
             GlobalEvent<CurrencyNames, int>.Send(GlobalEventType.CURRENCY_EARNED, currencyName, GetAmount(currencyName));
         }
 
-        public bool CanUseOrNotify(CurrencyNames currencyName, int amount)
+        public bool CanUse(CurrencyNames currencyName, int amount)
         {
             return CanUse(currencyName.ToString(), amount);
+        }
+
+        public bool CanUseOrNotify(CurrencyNames currencyName, int amount)
+        {
+            bool canUse = CanUse(currencyName.ToString(), amount);
+            if (!canUse)
+            {
+                GlobalEvent<CurrencyNames>.Send(GlobalEventType.CURRENCY_SHORTAGE, currencyName);
+            }
+            return canUse;
         }
 
         public void Use(CurrencyNames currencyName, int amount)

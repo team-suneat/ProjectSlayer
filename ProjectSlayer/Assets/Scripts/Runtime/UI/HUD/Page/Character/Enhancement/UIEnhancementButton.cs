@@ -8,8 +8,11 @@ using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
+    // 강화 레벨업 버튼 컴포넌트
     public class UIEnhancementButton : UIButton
     {
+        private const CurrencyNames ENHANCEMENT_COST_CURRENCY = CurrencyNames.Gold;
+
         [FoldoutGroup("#UIButton-Enhancement"), SerializeField]
         private Image _currencyIconImage;
 
@@ -48,7 +51,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            VProfile profile = GameApp.GetSelectedProfile();
+            VProfile profile = GetProfile();
             if (profile == null)
             {
                 return;
@@ -60,6 +63,42 @@ namespace TeamSuneat.UserInterface
             RefreshLevelUpButton(profile, currentLevel);
         }
 
+        protected override void OnButtonClick()
+        {
+            if (_data == null)
+            {
+                return;
+            }
+
+            VProfile profile = GetProfile();
+            if (profile == null)
+            {
+                return;
+            }
+
+            int currentLevel = profile.Enhancement.GetLevel(_data.StatName);
+
+            if (!TryLevelUp(profile, currentLevel))
+            {
+                return;
+            }
+
+            int newLevel = profile.Enhancement.GetLevel(_data.StatName);
+            int cost = CalculateCost(currentLevel);
+
+            Log.Info(LogTags.UI_Page, "{0} 강화 레벨업! Lv.{1} → Lv.{2}, 비용: {3}",
+                _data.StatName, currentLevel, newLevel, cost);
+
+            Refresh();
+            _parentItem?.Refresh();
+            OnLevelUpSuccess?.Invoke();
+        }
+
+        private VProfile GetProfile()
+        {
+            return GameApp.GetSelectedProfile();
+        }
+
         private void RefreshCurrencyText()
         {
             if (_costCurrencyText == null)
@@ -67,7 +106,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            string stringKey = CurrencyNames.Gold.GetStringKey();
+            string stringKey = ENHANCEMENT_COST_CURRENCY.GetStringKey();
             _costCurrencyText.SetStringKey(stringKey);
         }
 
@@ -85,15 +124,8 @@ namespace TeamSuneat.UserInterface
         private void RefreshLevelUpButton(VProfile profile, int currentLevel)
         {
             bool canLevelUp = CanLevelUp(profile, currentLevel);
-
-            if (canLevelUp)
-            {
-                SetFrameImageColor(GameColors.MediumAquamarine);
-            }
-            else
-            {
-                SetFrameImageColor(GameColors.IndianRed);
-            }
+            Color buttonColor = canLevelUp ? GameColors.MediumAquamarine : GameColors.IndianRed;
+            SetFrameImageColor(buttonColor);
         }
 
         private int CalculateCost(int level)
@@ -114,13 +146,11 @@ namespace TeamSuneat.UserInterface
                 return false;
             }
 
-            // 최대 레벨 확인
             if (currentLevel >= _data.MaxLevel)
             {
                 return false;
             }
 
-            // 요구 능력치 확인
             if (_data.HasRequirement)
             {
                 int requiredLevel = profile.Enhancement.GetLevel(_data.RequiredStatName);
@@ -130,9 +160,8 @@ namespace TeamSuneat.UserInterface
                 }
             }
 
-            // 재화 확인
             int cost = CalculateCost(currentLevel);
-            if (!profile.Currency.CanUseOrNotify(CurrencyNames.Gold, cost))
+            if (!profile.Currency.CanUse(ENHANCEMENT_COST_CURRENCY, cost))
             {
                 return false;
             }
@@ -140,44 +169,24 @@ namespace TeamSuneat.UserInterface
             return true;
         }
 
-        protected override void OnButtonClick()
+        private bool TryLevelUp(VProfile profile, int currentLevel)
         {
-            if (_data == null)
-            {
-                return;
-            }
-
-            VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null)
-            {
-                return;
-            }
-
-            int currentLevel = profile.Enhancement.GetLevel(_data.StatName);
-
-            // 레벨업 가능 여부 확인
             if (!CanLevelUp(profile, currentLevel))
             {
                 Log.Warning(LogTags.UI_Page, "{0} 강화 레벨업 조건을 충족하지 못했습니다.", _data.StatName);
-                return;
+                return false;
             }
 
-            // 비용 차감
             int cost = CalculateCost(currentLevel);
-            profile.Currency.Use(CurrencyNames.Gold, cost);
+            if (!profile.Currency.CanUseOrNotify(ENHANCEMENT_COST_CURRENCY, cost))
+            {
+                return false;
+            }
 
-            // 레벨 증가
-            int newLevel = profile.Enhancement.AddLevel(_data.StatName);
+            profile.Currency.Use(ENHANCEMENT_COST_CURRENCY, cost);
+            profile.Enhancement.AddLevel(_data.StatName);
 
-            Log.Info(LogTags.UI_Page, "{0} 강화 레벨업! Lv.{1} → Lv.{2}, 비용: {3}",
-                _data.StatName, currentLevel, newLevel, cost);
-
-            // UI 갱신
-            Refresh();
-            _parentItem?.Refresh();
-
-            // 레벨업 성공 이벤트 발생
-            OnLevelUpSuccess?.Invoke();
+            return true;
         }
     }
 }

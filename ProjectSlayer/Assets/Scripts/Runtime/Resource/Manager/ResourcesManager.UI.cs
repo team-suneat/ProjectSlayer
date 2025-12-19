@@ -204,7 +204,7 @@ namespace TeamSuneat
             return notice;
         }
 
-        public static UITurnNotice SpawnTurnNotice(TurnNoticeOwner owner)
+        public static UICurrencyShortageNotice SpawnCurrencyShortageNotice(CurrencyNames currencyName)
         {
             if (GameSetting.Instance.Play.HideUserInterface)
             {
@@ -217,7 +217,7 @@ namespace TeamSuneat
                 return null;
             }
 
-            GameObject spawnedObject = SpawnPrefab("UITurnNotice", canvasOrder.transform);
+            GameObject spawnedObject = SpawnPrefab("UICurrencyShortageNotice", canvasOrder.transform);
             if (spawnedObject == null)
             {
                 return null;
@@ -225,8 +225,35 @@ namespace TeamSuneat
 
             spawnedObject.ResetLocalTransform();
 
-            UITurnNotice notice = spawnedObject.GetComponent<UITurnNotice>();
-            notice?.Show(owner);
+            UICurrencyShortageNotice notice = spawnedObject.GetComponent<UICurrencyShortageNotice>();
+            notice?.Show(currencyName);
+
+            return notice;
+        }
+
+        public static UICurrencyShortageNotice SpawnCurrencyShortageNotice(string content)
+        {
+            if (GameSetting.Instance.Play.HideUserInterface)
+            {
+                return null;
+            }
+
+            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
+            if (canvasOrder == null)
+            {
+                return null;
+            }
+
+            GameObject spawnedObject = SpawnPrefab("UICurrencyShortageNotice", canvasOrder.transform);
+            if (spawnedObject == null)
+            {
+                return null;
+            }
+
+            spawnedObject.ResetLocalTransform();
+
+            UICurrencyShortageNotice notice = spawnedObject.GetComponent<UICurrencyShortageNotice>();
+            notice?.Show(content);
 
             return notice;
         }

@@ -15,10 +15,7 @@ namespace TeamSuneat.UserInterface
         [ReadOnly]
         public Transform FollowingPoint;
 
-        public Transform ClonePoint;
-
         public bool IsWorldSpaceCanvas { get; set; }
-        public bool UseFollowPointClone;
 
         [Tooltip("반드시 캔버스 내부에 있습니다.")]
         public bool IsMustBeInsideTheCanvas;
@@ -48,7 +45,6 @@ namespace TeamSuneat.UserInterface
         {
             base.AutoGetComponents();
             Rect = this.FindComponent<RectTransform>("Rect");
-            ClonePoint = this.FindTransform("ClonePoint");
         }
 
         protected void Awake()
@@ -104,25 +100,11 @@ namespace TeamSuneat.UserInterface
 
         public void StartFollowing(Transform point)
         {
-            if (UseFollowPointClone && ClonePoint != null)
-            {
-                ClonePoint.SetParent(null);
-                ClonePoint.position = point.position;
-                FollowingPoint = ClonePoint;
-            }
-            else
-            {
-                FollowingPoint = point;
-            }
+            FollowingPoint = point;
         }
 
         public void StopFollowing()
         {
-            if (ClonePoint != null)
-            {
-                ClonePoint.SetParent(transform);
-            }
-
             FollowingPoint = null;
         }
 

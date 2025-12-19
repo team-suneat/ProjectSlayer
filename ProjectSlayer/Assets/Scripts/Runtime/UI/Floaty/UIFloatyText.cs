@@ -43,6 +43,7 @@ namespace TeamSuneat.UserInterface
             FollowObject = GetComponent<UIFollowObject>();
 
             Text = GetComponentInChildren<UILocalizedText>();
+            TextImage = Text?.GetComponentInChildren<Image>(true);
         }
 
         public static UIFloatyMoveNames ConvertToName(DamageResult damageResult, VitalResourceTypes vitalResourceType)

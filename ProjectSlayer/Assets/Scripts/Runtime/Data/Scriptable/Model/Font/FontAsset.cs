@@ -21,20 +21,13 @@ namespace TeamSuneat.Data
         public override void Refresh()
         {
             NameString = Language.ToString();
-
-            Title.SetDefaultFontSize(GameFontTypes.Title);
-            Content.SetDefaultFontSize(GameFontTypes.Content);
-            Button.SetDefaultFontSize(GameFontTypes.Button);
-            Toggle.SetDefaultFontSize(GameFontTypes.Toggle);
-
             base.Refresh();
         }
 
         public override void Validate()
         {
             base.Validate();
-
-            _ = EnumEx.ConvertTo(ref Language, NameString);
+            EnumEx.ConvertTo(ref Language, NameString);
         }
 
         public TMP_FontAsset FindFont(GameFontTypes fontType)

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5276094741441299211}
-  - component: {fileID: 2556108174225182236}
   - component: {fileID: 2669839043653156102}
+  - component: {fileID: 2556108174225182236}
   m_Layer: 5
   m_Name: UIExperienceButton
   m_TagString: Untagged
@@ -39,27 +39,6 @@ RectTransform:
   m_AnchoredPosition: {x: 92, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2556108174225182236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72998392916137947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5bc4bd298a85b428ffb8f0ad2c9685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frameImage: {fileID: 8743546562078845213}
-  _buttonImage: {fileID: 6682181750654202518}
-  _nameText: {fileID: 0}
-  _clickCooldown: 0.3
-  _punchScaleDuration: 0.2
-  _punchScale: {x: -0.1, y: -0.1, z: -0.1}
-  _button: {fileID: 2669839043653156102}
-  _buttonImageAlphaDuration: 0.15
-  _earnAmount: 100
 --- !u!114 &2669839043653156102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +83,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2556108174225182236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72998392916137947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5bc4bd298a85b428ffb8f0ad2c9685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frameImage: {fileID: 8743546562078845213}
+  _buttonImage: {fileID: 6682181750654202518}
+  _nameText: {fileID: 0}
+  _clickCooldown: 0.3
+  _punchScaleDuration: 0.2
+  _punchScale: {x: -0.1, y: -0.1, z: -0.1}
+  _button: {fileID: 2669839043653156102}
+  _buttonImageAlphaDuration: 0.15
+  _earnAmount: 100
 --- !u!1 &432290544886254963
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,6 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cee7f30c6a6084d8b036d7efb866ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelText: {fileID: 0}
+  _expText: {fileID: 0}
   _experienceGauge: {fileID: 7580731444126563801}
 --- !u!1 &1577342449801804355
 GameObject:
@@ -1958,7 +1960,7 @@ MonoBehaviour:
   _characterIconImage: {fileID: 8917476289263341481}
   _levelText: {fileID: 7978631553811094800}
   _expText: {fileID: 5655402710767231784}
-  _expGauge: {fileID: 7580731444126563801}
+  _experienceGauge: {fileID: 0}
   _levelUpButton: {fileID: 4547330253651475814}
 --- !u!1 &6394515294319598052
 GameObject:
