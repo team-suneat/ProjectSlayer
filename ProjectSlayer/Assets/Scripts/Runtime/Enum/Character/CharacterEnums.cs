@@ -2,18 +2,9 @@ namespace TeamSuneat
 {
     public enum CharacterConditions
     {
-        Normal,
-        Dead,
-        Stunned,
-        Snared,
-    }
-
-    public enum MovementStates
-    {
-        None,
-        Idle,
-        Moving,
-        Attack,
-        Knockback,
+        Normal, // 정상
+        Dead, // 사망
+        Stunned, // 기절
+        KnockBack, // 넉백
     }
 }

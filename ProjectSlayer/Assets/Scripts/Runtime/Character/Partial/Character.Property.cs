@@ -75,8 +75,6 @@ namespace TeamSuneat
 
         //
 
-        public bool IsFlying { get; set; }
-
         public bool IsCrowdControl
         {
             get

@@ -42,7 +42,6 @@ namespace TeamSuneat
             if (Animator != null)
             {
                 _ = Animator.UpdateAnimatorBool(_aliveAnimationParameter, ConditionState.CurrentState != CharacterConditions.Dead, AnimatorParameters);
-                _ = Animator.UpdateAnimatorBool(_idleSpeedAnimationParameter, MovementState.CurrentState == MovementStates.Idle, AnimatorParameters);
 
                 UpdateAnimationRandomNumber();
 

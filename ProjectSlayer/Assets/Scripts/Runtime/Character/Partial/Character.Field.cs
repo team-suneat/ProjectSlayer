@@ -71,9 +71,6 @@ namespace TeamSuneat
         // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
         [FoldoutGroup("#Character/State Machine")]
-        public StateMachine<MovementStates> MovementState;
-
-        [FoldoutGroup("#Character/State Machine")]
         public StateMachine<CharacterConditions> ConditionState;
 
         // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────

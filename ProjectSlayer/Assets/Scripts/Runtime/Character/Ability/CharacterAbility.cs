@@ -38,11 +38,6 @@ namespace TeamSuneat
                         return false;
                     }
 
-                    if (!CheckBlockingMovementStates())
-                    {
-                        return false;
-                    }
-
                     if (!CheckBlockingConditionStates(BlockingConditionStates))
                     {
                         return false;
@@ -57,11 +52,8 @@ namespace TeamSuneat
 
         public virtual Types Type => Types.None;
 
-        public virtual MovementStates[] BlockingMovementStates { get; }
-
         public virtual CharacterConditions[] BlockingConditionStates { get; }
 
-        protected StateMachine<MovementStates> _movementState { get; private set; }
 
         protected StateMachine<CharacterConditions> _conditionState { get; private set; }
 
@@ -90,7 +82,6 @@ namespace TeamSuneat
 
             if (Owner != null)
             {
-                _movementState = Owner.MovementState;
                 _conditionState = Owner.ConditionState;
             }
 
@@ -223,23 +214,6 @@ namespace TeamSuneat
         #endregion Feedback
 
         #region Conditions
-
-        private bool CheckBlockingMovementStates()
-        {
-            if ((BlockingMovementStates != null) && (BlockingMovementStates.Length > 0))
-            {
-                for (int i = 0; i < BlockingMovementStates.Length; i++)
-                {
-                    if (BlockingMovementStates[i] == Owner.MovementState.CurrentState)
-                    {
-                        LogProgress("{0} 이동 상태일 때 해당 능력을 사용할 수 없습니다.", Owner.MovementState.CurrentState);
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
 
         protected bool CheckBlockingConditionStates(CharacterConditions[] conditions)
         {
