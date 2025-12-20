@@ -9,8 +9,8 @@ namespace TeamSuneat.Data
         private LogSettingAsset _logSetting;
 
         private ExperienceConfigAsset _experienceConfigAsset; // 캐릭터 경험치
-        private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 스탯
-        private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 스탯
+        private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 능력치
+        private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 능력치
         private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
         private GrowthDataAsset _growthDataAsset; // 캐릭터 성장
 
@@ -18,6 +18,7 @@ namespace TeamSuneat.Data
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();
         private readonly Dictionary<int, BuffStateEffectAsset> _stateEffectAssets = new();
         private readonly Dictionary<int, PassiveAsset> _passiveAssets = new();
+        private readonly Dictionary<int, SkillAsset> _skillAssets = new();
         private readonly Dictionary<int, FontAsset> _fontAssets = new();
         private readonly Dictionary<int, FloatyAsset> _floatyAssets = new();
         private readonly Dictionary<int, FlickerAsset> _flickerAssets = new();
@@ -35,6 +36,7 @@ namespace TeamSuneat.Data
             _buffAssets.Clear();
             _stateEffectAssets.Clear();
             _passiveAssets.Clear();
+            _skillAssets.Clear();
             _fontAssets.Clear();
             _floatyAssets.Clear();
             _flickerAssets.Clear();
@@ -51,6 +53,7 @@ namespace TeamSuneat.Data
         {
             RefreshAllBuff();
             RefreshAllPassive();
+            RefreshAllSkill();
             RefreshAllHitmark();
             RefreshAllFonts();
             RefreshAllFlicker();

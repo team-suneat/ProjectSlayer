@@ -80,10 +80,10 @@ namespace TeamSuneat
 
         public override void AddCharacterStats()
         {
-            PlayerCharacterStatAsset asset = ScriptableDataManager.Instance.FindPlayerCharacterStatAssetClone(Name);
+            PlayerCharacterStatAsset asset = ScriptableDataManager.Instance.GetPlayerCharacterStatAsset();
             if (asset != null)
             {
-                // 기본 스탯 적용
+                // 기본 능력치 적용
                 ApplyBaseStats(asset);
 
                 LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
@@ -101,6 +101,7 @@ namespace TeamSuneat
             Stat.AddWithSourceInfo(StatNames.Mana, asset.BaseMana, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.ManaRegen, asset.BaseManaRegen, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.AccuracyChance, asset.BaseAccuracyChance, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.DodgeChance, asset.BaseDodgeChance, this, NameString, "CharacterBase");            
             Stat.AddWithSourceInfo(StatNames.GoldGain, asset.BaseGoldGain, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.XPGain, asset.BaseXPGain, this, NameString, "CharacterBase");
         }

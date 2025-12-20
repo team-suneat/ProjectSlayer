@@ -18,7 +18,7 @@ namespace TeamSuneat.Data
         }
 
         /// <summary>
-        /// 스탯 이름으로 강화 데이터를 가져옵니다.
+        /// 능력치 이름으로 강화 데이터를 가져옵니다.
         /// </summary>
         public EnhancementData GetEnhancementData(StatNames statName)
         {

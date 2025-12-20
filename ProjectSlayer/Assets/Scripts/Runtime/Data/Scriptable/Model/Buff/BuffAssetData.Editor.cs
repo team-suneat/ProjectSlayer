@@ -23,7 +23,7 @@ namespace TeamSuneat.Data
                         {
                             if (!StatValuesIncreaseInRange.IsValidArray())
                             {
-                                Log.Error("스탯 데이터({0})의 레벨별 값이 설정되어 있지 않습니다.", Name);
+                                Log.Error("능력치 데이터({0})의 레벨별 값이 설정되어 있지 않습니다.", Name);
                             }
                         }
                     }

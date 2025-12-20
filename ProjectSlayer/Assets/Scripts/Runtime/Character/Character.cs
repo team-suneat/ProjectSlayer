@@ -96,12 +96,9 @@ namespace TeamSuneat
 
         private void InitializeStateMachines()
         {
-            MovementState = new StateMachine<MovementStates>(SendStateChangeEvents);
             ConditionState = new StateMachine<CharacterConditions>(SendStateChangeEvents);
 
-            ChangeMovementState(MovementStates.Idle);
-
-            LogInfo("캐릭터의 상태를 초기화합니다. (Movement, Condition)");
+            LogInfo("캐릭터의 상태를 초기화합니다. (Condition)");
         }
 
         public virtual void BattleReady()
@@ -200,17 +197,7 @@ namespace TeamSuneat
             }
         }
 
-        #region 상태 (State) : 움직임 또는 조건
-
-        public void ChangeMovementState(MovementStates movementState)
-        {
-            if (MovementState.CurrentState != movementState)
-            {
-                LogInfo("캐릭터의 움직임 상태를 변경합니다. {0} 에서 {1}", MovementState.CurrentState.ToString(), movementState.ToString());
-
-                MovementState.ChangeState(movementState);
-            }
-        }
+        #region 상태 (State) : 조건
 
         public void ChangeConditionState(CharacterConditions conditionState)
         {
@@ -241,7 +228,7 @@ namespace TeamSuneat
         {
         }
 
-        #endregion 상태 (State) : 움직임 또는 조건
+        #endregion 상태 (State) : 조건
 
         #region 데미지 시 (On Damage)
 

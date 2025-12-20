@@ -16,7 +16,7 @@ namespace TeamSuneat.Data
         #region Target
 
         [FoldoutGroup("Target", true)]
-        [GUIColor("GetPassiveTargetTypeFieldColor")]
+        [GUIColor("GetPassiveTargetTypeColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브가 검색할 대상")]
         public PassiveTargetTypes ConditionTarget;
@@ -26,13 +26,13 @@ namespace TeamSuneat.Data
         #region Character
 
         [FoldoutGroup("Character", true)]
-        [GUIColor("GetConditionCharactersFieldColor")]
+        [GUIColor("GetConditionCharactersColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("조건 캐릭터")]
         public CharacterNames[] ConditionCharacters;
 
         [FoldoutGroup("Character", true)]
-        [GUIColor("GetConditionMonsterGradesFieldColor")]
+        [GUIColor("GetConditionMonsterGradesColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("몬스터 등급")]
         public MonsterGrades[] ConditionMonsterGrades;
@@ -42,41 +42,41 @@ namespace TeamSuneat.Data
         #region Buff
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetBuffNameFieldColor")]
+        [GUIColor("GetBuffNameColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("버프 이름")]
         public BuffNames ConditionBuff;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetBuffNameFieldColor")]
+        [GUIColor("GetBuffNameColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("버프 이름 2")]
         public BuffNames ConditionBuff2;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("버프 스택 개수")]
         public int ConditionBuffStack;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetBuffTypeFieldColor")]
+        [GUIColor("GetBuffTypeColor")]
         [SuffixLabel("버프 타입 종류")]
         public BuffTypes ConditionBuffType;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetStateEffectFieldColor")]
+        [GUIColor("GetStateEffectColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("버프 상태효과 이상")]
         public StateEffects ConditionStateEffect;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [SuffixLabel("버프 상태효과 이상 수")]
         public int ConditionStateEffectCount;
 
         [FoldoutGroup("Buff", true)]
-        [GUIColor("GetPassiveOperatorFieldColor")]
+        [GUIColor("GetPassiveOperatorColor")]
         [InfoBox("$ConditionStateEffectOperatorMessege")]
         public PassiveOperator ConditionStateEffectOperator;
 
@@ -85,28 +85,28 @@ namespace TeamSuneat.Data
         #region Buff-Ignore
 
         [FoldoutGroup("Buff-Ignore", true)]
-        [GUIColor("GetPassiveTargetTypeFieldColor")]
+        [GUIColor("GetPassiveTargetTypeColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("버프가 검색할 대상")]
         public PassiveTargetTypes ConditionIgnoreTarget;
 
         [FoldoutGroup("Buff-Ignore", true)]
-        [GUIColor("GetBuffNameFieldColor")]
+        [GUIColor("GetBuffNameColor")]
         [EnableIf("IsChangingAsset")]
         public BuffNames ConditionIgnoreBuff;
 
         [FoldoutGroup("Buff-Ignore", true)]
-        [GUIColor("GetBuffTypeFieldColor")]
+        [GUIColor("GetBuffTypeColor")]
         [EnableIf("IsChangingAsset")]
         public BuffTypes ConditionIgnoreBuffType;
 
         [FoldoutGroup("Buff-Ignore", true)]
-        [GUIColor("GetConditionIgnoreStateEffectsFieldColor")]
+        [GUIColor("GetConditionIgnoreStateEffectsColor")]
         [EnableIf("IsChangingAsset")]
         public StateEffects[] ConditionIgnoreStateEffects;
 
         [FoldoutGroup("Buff-Ignore", true)]
-        [GUIColor("GetPassiveOperatorFieldColor")]
+        [GUIColor("GetPassiveOperatorColor")]
         [InfoBox("$ConditionStateEffectOperatorMessege")]
         public PassiveOperator ConditionIgnoreStateEffectOperator;
 
@@ -116,21 +116,21 @@ namespace TeamSuneat.Data
 
         [FoldoutGroup("Vital Resource", true)]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetVitalResourceFieldColor")]
+        [GUIColor("GetVitalResourceColor")]
         public VitalResourceTypes ConditionVitalResource;
 
         [FoldoutGroup("Vital Resource", true)]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetPassiveOperatorFieldColor")]
+        [GUIColor("GetPassiveOperatorColor")]
         [InfoBox("$ConditionVitalResourceOperatorMessege")]
         public PassiveOperator ConditionVitalResourceOperator;
 
         [FoldoutGroup("Vital Resource", true)]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         public int ConditionVitalResourceValue;
 
         [FoldoutGroup("Vital Resource", true)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0f, 1f)]
         public float ConditionVitalResourceRatio;
 
@@ -459,7 +459,7 @@ namespace TeamSuneat.Data
 
         #region Color
 
-        protected Color GetPassiveTargetTypeFieldColor(PassiveTargetTypes triggerName)
+        protected Color GetPassiveTargetTypeColor(PassiveTargetTypes triggerName)
         {
             if (triggerName == 0)
             {
@@ -471,19 +471,19 @@ namespace TeamSuneat.Data
             }
         }
 
-        protected Color GetConditionIgnoreStateEffectsFieldColor()
+        protected Color GetConditionIgnoreStateEffectsColor()
         { if (!ConditionIgnoreStateEffects.IsValid()) { return GameColors.DarkGray; } return GameColors.GreenYellow; }
 
-        protected Color GetConditionCharactersFieldColor()
+        protected Color GetConditionCharactersColor()
         { if (!ConditionCharacters.IsValid()) { return GameColors.DarkGray; } return GameColors.GreenYellow; }
 
-        protected Color GetConditionMonsterGradesFieldColor()
+        protected Color GetConditionMonsterGradesColor()
         { if (!ConditionMonsterGrades.IsValid()) { return GameColors.DarkGray; } return GameColors.GreenYellow; }
 
-        protected Color GetPassiveOperatorFieldColor(PassiveOperator key)
+        protected Color GetPassiveOperatorColor(PassiveOperator key)
         { if (key == 0) { return GameColors.DarkGray; } return GameColors.GreenYellow; }
 
-        protected Color GetVitalResourceFieldColor(VitalResourceTypes key)
+        protected Color GetVitalResourceColor(VitalResourceTypes key)
         { if (key == 0) { return GameColors.DarkGray; } return GameColors.GreenYellow; }
 
         #endregion Color

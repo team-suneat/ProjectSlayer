@@ -16,13 +16,13 @@ namespace TeamSuneat.Data
         #region 적용 대상
 
         [FoldoutGroup("대상")]
-        [GUIColor("GetPassiveTargetTypeFieldColor")]
+        [GUIColor("GetPassiveTargetTypeColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 적용 타겟 설정")]
         public PassiveTargetTypes ApplyTarget;
 
         [FoldoutGroup("대상")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("자기 자신도 패시브 적용")]
         public bool UseApplySelf;
 
@@ -31,36 +31,36 @@ namespace TeamSuneat.Data
         #region 적용 횟수
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("발동 여부와는 관계없이 발동 여부를 저장합니다")]
         public bool StoreTriggerAttempt;
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("일회성 패시브 적용")]
         public bool ApplyOneTime;
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("아이템별 일회성 패시브 적용")]
         public bool ApplyOneTimePerItem;
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [Tooltip("패시브 적용 횟수가 최대에 도달하면 초기화 시간동안 패시브가 발동하지 않습니다.")]
         [SuffixLabel("패시브 적용 최대 횟수*")]
         [DisableIf("ApplyOneTime")]
         public int ApplyMaxCount;
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Tooltip("패시브 적용 횟수가 최대에 도달하면 초기화 시간동안 패시브가 발동하지 않습니다.")]
         [SuffixLabel("패시브 적용 최대 횟수 초기화 시간*")]
         [DisableIf("ApplyOneTime")]
         public float ResetTimeApplyMaxCount;
 
         [FoldoutGroup("횟수")]
-        [GUIColor("GetStateEffectFieldColor")]
+        [GUIColor("GetStateEffectColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("지속 피해 한 번에 적용")]
         public StateEffects ApplyDamageOverTimeAtOnce;
@@ -70,7 +70,7 @@ namespace TeamSuneat.Data
         #region 적용 시간
 
         [FoldoutGroup("시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Tooltip("패시브가 지연시간 이후 적용됩니다.")]
         [SuffixLabel("적용 지연시간*")]
         public float ApplyDelayTime;
@@ -80,31 +80,31 @@ namespace TeamSuneat.Data
         #region 적용 버프
 
         [FoldoutGroup("버프")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [Tooltip("선택된 버프 중에서 무작위로 1개를 뽑아 적용")]
         [SuffixLabel("무작위 여부*")]
         public bool RendomApplyBuffs;
 
         [FoldoutGroup("버프")]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetBuffsFieldColor")]
+        [GUIColor("GetBuffsColor")]
         [SuffixLabel("적용되는 버프 이름")]
         public BuffNames[] Buffs;
 
         [FoldoutGroup("버프")]
-        [GUIColor("GetReleaseBuffsFieldColor")]
+        [GUIColor("GetReleaseBuffsColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("적용시 해제 버프")]
         public BuffNames[] ReleaseBuffs;
 
         [FoldoutGroup("버프")]
-        [GUIColor("GetReleaseStateEffectsFieldColor")]
+        [GUIColor("GetReleaseStateEffectsColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("적용시 해제 상태이상")]
         public StateEffects[] ReleaseStateEffects;
 
         [FoldoutGroup("버프")]
-        [GUIColor("GetBuffReleaseApplicationsFieldColor")]
+        [GUIColor("GetBuffReleaseApplicationsColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("적용시 해제 방식")]
         public BuffReleaseApplications ReleaseBuffApplication;
@@ -118,25 +118,25 @@ namespace TeamSuneat.Data
         #region 적용 히트마크
 
         [FoldoutGroup("히트마크")]
-        [GUIColor("GetHitmarksFieldColor")]
+        [GUIColor("GetHitmarksColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("적용되는 히트마크")]
         public HitmarkNames[] Hitmarks;
 
         [FoldoutGroup("히트마크")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [Tooltip("히트마크 목록 중 무작위로 하나를 골라 적용")]
         [SuffixLabel("히트마크 무작위 적용 여부")]
         public bool UseRandomHitmark;
 
         [FoldoutGroup("히트마크")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [Tooltip("패시브의 공격 독립체 위치를 패시브를 발동시킨 공격 독립체의 위치로 설정")]
         [SuffixLabel("패시브의 트리거 위치에 따라 공격 위치 설정*")]
         public bool SetPositionToAttackPosition;
 
         [FoldoutGroup("히트마크")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [Tooltip("패시브의 공격 독립체 위치를 타겟의 위치로 설정")]
         [SuffixLabel("패시브의 타겟 위치에 따라 공격 위치 설정*")]
         public bool SetPositionToTargetPosition;
@@ -147,13 +147,13 @@ namespace TeamSuneat.Data
 
         [FoldoutGroup("물약")]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("적용 물약 사용")]
         public bool IsAutoUsePotion;
 
         [FoldoutGroup("물약")]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("물약 사용 실패시 적용 안함")]
         public bool IgnoreEffectOnPotionFail;
 
@@ -162,35 +162,35 @@ namespace TeamSuneat.Data
         #region 지속 시간
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetStateEffectFieldColor")]
+        [GUIColor("GetStateEffectColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("변동 지속시간 상태이상")]
         public StateEffects DurationStateEffect;
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("추가 지속시간")]
         public float AddDuration;
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("추가 지속 시간으로 추가할 수 있는 최대 지속 시간")]
         public float AddMaxDuration;
 
         //
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("범위 내 최소 지속 시간")]
         public float MinAddDuration;
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("범위 내 최대 추가 지속시간")]
         public float MaxAddDuration;
 
         [FoldoutGroup("지속 시간")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("성장 추가 지속시간")]
         public float GrowAddDuration;
 
@@ -205,17 +205,17 @@ namespace TeamSuneat.Data
 
         [FoldoutGroup("보상")]
         [EnableIf("IsChangingAsset")]
-        [GUIColor("GetCurrencyRewardsFieldColor")]
+        [GUIColor("GetCurrencyRewardsColor")]
         [SuffixLabel("재화 보상")]
         public PassiveRewardCurrency[] CurrencyRewards;
 
         [FoldoutGroup("보상")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [SuffixLabel("레벨 보상")]
         public int RewardLevel;
 
         [FoldoutGroup("보상")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [SuffixLabel("경험치 보상")]
         public int RewardExperience;
 
@@ -224,7 +224,7 @@ namespace TeamSuneat.Data
         #region 안내
 
         [FoldoutGroup("안내")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         public bool UseSoliloquy;
 
         #endregion 안내
@@ -232,22 +232,22 @@ namespace TeamSuneat.Data
         #region 유휴
 
         [FoldoutGroup("유휴")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("유휴 시간동안 패시브 미발동")]
         public float RestTime;
 
         [FoldoutGroup("유휴")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("패시브 레벨 증가 시 유휴 시간이 증가")]
         public float RestTimeByLevel;
 
         [FoldoutGroup("유휴")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("버프의 지속시간만큼 유휴 시간이 증가")]
         public bool IsBuffDurationAddedToRestTime;
 
         [FoldoutGroup("유휴")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("패시브의 유휴가 완료 시 UI 표시")]
         public bool IsSoliloquyOnRestCompleted;
 
@@ -576,7 +576,7 @@ namespace TeamSuneat.Data
 
         #region GUI-Color
 
-        protected Color GetPassiveTargetTypeFieldColor(PassiveTargetTypes triggerName)
+        protected Color GetPassiveTargetTypeColor(PassiveTargetTypes triggerName)
         {
             if (triggerName == 0)
             {
@@ -588,7 +588,7 @@ namespace TeamSuneat.Data
             }
         }
 
-        private Color GetBuffsFieldColor()
+        private Color GetBuffsColor()
         {
             if (Buffs.IsValidArray())
             {
@@ -598,7 +598,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetReleaseBuffsFieldColor()
+        private Color GetReleaseBuffsColor()
         {
             if (ReleaseBuffs.IsValidArray())
             {
@@ -608,7 +608,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetReleaseStateEffectsFieldColor()
+        private Color GetReleaseStateEffectsColor()
         {
             if (ReleaseStateEffects.IsValidArray())
             {
@@ -617,7 +617,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetBuffReleaseApplicationsFieldColor()
+        private Color GetBuffReleaseApplicationsColor()
         {
             if (ReleaseBuffApplication != BuffReleaseApplications.None)
             {
@@ -632,7 +632,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetCurrencyRewardsFieldColor()
+        private Color GetCurrencyRewardsColor()
         {
             if (CurrencyRewards.IsValid())
             {
@@ -642,7 +642,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetHitmarksFieldColor()
+        protected Color GetHitmarksColor()
         {
             if (Hitmarks.IsValidArray())
             {

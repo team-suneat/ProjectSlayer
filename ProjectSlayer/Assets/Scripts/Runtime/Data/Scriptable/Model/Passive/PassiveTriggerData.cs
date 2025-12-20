@@ -16,7 +16,7 @@ namespace TeamSuneat.Data
         [FoldoutGroup("#Trigger")] public BuffNames TriggerBuff;
         [FoldoutGroup("#Trigger")] public BuffTypes TriggerBuffType;
 
-        [GUIColor("GetStatNameFieldColor")]
+        [GUIColor("GetStatNameColor")]
         [FoldoutGroup("#Trigger")] public StatNames TriggerStat;
 
         [FoldoutGroup("#Trigger")] public int TriggerCount;

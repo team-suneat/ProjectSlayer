@@ -39,7 +39,7 @@ namespace TeamSuneat.Data
 
                 if (data.StatName == StatNames.None)
                 {
-                    Log.Error("강화 시스템 데이터[{0}]의 스탯 이름이 설정되지 않았습니다: {1}", i, name);
+                    Log.Error("강화 시스템 데이터[{0}]의 능력치 이름이 설정되지 않았습니다: {1}", i, name);
                 }
                 if (data.MaxLevel == 0)
                 {
@@ -85,7 +85,7 @@ namespace TeamSuneat.Data
         }
 
         /// <summary>
-        /// 스탯 이름으로 강화 데이터를 찾습니다.
+        /// 능력치 이름으로 강화 데이터를 찾습니다.
         /// </summary>
         public EnhancementData FindEnhancementData(StatNames statName)
         {
@@ -193,7 +193,7 @@ namespace TeamSuneat.Data
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Debug.LogFormat("모든 스탯 데이터를 생성했습니다. 총 {0}개", dataList.Count);
+            Debug.LogFormat("모든 능력치 데이터를 생성했습니다. 총 {0}개", dataList.Count);
         }
 
 #endif

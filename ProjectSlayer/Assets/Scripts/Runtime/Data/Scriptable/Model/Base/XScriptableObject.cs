@@ -213,8 +213,8 @@ namespace TeamSuneat.Data
 
                 // 부모 폴더가 없으면 기본 경로 사용, 있으면 해당 경로 사용
                 string assetPath = string.IsNullOrEmpty(parentFolder)
-                    ? $"Assets/Resources/Scriptable/{assetType}/{assetType}_{assetName}.asset"
-                    : $"Assets/Resources/Scriptable/{parentFolder}/{assetType}/{assetType}_{assetName}.asset";
+                    ? $"Assets/Addressables/Scriptable/{assetType}/{assetType}_{assetName}.asset"
+                    : $"Assets/Addressables/Scriptable/{parentFolder}/{assetType}/{assetType}_{assetName}.asset";
 
                 T asset = ScriptableObject.CreateInstance<T>();
                 UnityEditor.AssetDatabase.CreateAsset(asset, assetPath);
@@ -290,7 +290,7 @@ namespace TeamSuneat.Data
         /// 일반 값(T)이 기본 값(default)과 동일하면 DarkGray, 그렇지 않으면 GreenYellow를 반환합니다.
         /// (bool, int, enum 등 대부분의 타입에 적용 가능)
         /// </summary>
-        protected Color GetFieldColor<T>(T value)
+        protected Color GetColor<T>(T value)
         {
             if (EqualityComparer<T>.Default.Equals(value, default(T)))
             {
@@ -305,7 +305,7 @@ namespace TeamSuneat.Data
         /// <summary>
         /// float 타입의 경우 IsZero 확장 메서드를 사용해 값이 0에 가까운지 판별합니다.
         /// </summary>
-        protected Color GetFieldColor(float value)
+        protected Color GetColor(float value)
         {
             if (value.IsZero())
             {
@@ -321,71 +321,76 @@ namespace TeamSuneat.Data
 
         #region Inspector Color Methods
 
-        protected Color GetPlayerFieldColor(CharacterNames key)
+        protected Color GetPlayerColor(CharacterNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetMonsterFieldColor(CharacterNames key)
+        protected Color GetMonsterColor(CharacterNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetPassiveNameFieldColor(PassiveNames key)
+        protected Color GetPassiveNameColor(PassiveNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetBuffNameFieldColor(BuffNames key)
+        protected Color GetBuffNameColor(BuffNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetBuffTypeFieldColor(BuffTypes key)
+        protected Color GetBuffTypeColor(BuffTypes key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetStatNameFieldColor(StatNames key)
+        protected Color GetStatNameColor(StatNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetStateEffectFieldColor(StateEffects key)
+        protected Color GetStateEffectColor(StateEffects key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetHitmarkFieldColor(HitmarkNames key)
+        protected Color GetHitmarkColor(HitmarkNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetAreaNameFieldColor(AreaNames key)
+        protected Color GetAreaNameColor(AreaNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
         }
 
-        protected Color GetStageNameFieldColor(StageNames key)
+        protected Color GetStageNameColor(StageNames key)
         {
-            return GetFieldColor(key);
+            return GetColor(key);
+        }
+
+        protected Color GetSkillNameColor(SkillNames key)
+        {
+            return GetColor(key);
         }
 
         //
 
-        protected Color GetBoolFieldColor(bool value)
+        protected Color GetBoolColor(bool value)
         {
-            return GetFieldColor(value);
+            return GetColor(value);
         }
 
-        protected Color GetFloatFieldColor(float value)
+        protected Color GetFloatColor(float value)
         {
-            return GetFieldColor(value);
+            return GetColor(value);
         }
 
-        protected Color GetIntFieldColor(int value)
+        protected Color GetIntColor(int value)
         {
-            return GetFieldColor(value);
+            return GetColor(value);
         }
 
         #endregion Inspector Color Methods

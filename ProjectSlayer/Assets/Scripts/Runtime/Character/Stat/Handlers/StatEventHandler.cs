@@ -153,7 +153,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 변경 이벤트를 등록합니다.
+        /// 능력치 변경 이벤트를 등록합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void RegisterOnStatChanged(UnityAction<StatNames, float, float> callback)
@@ -162,7 +162,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 변경 이벤트를 해제합니다.
+        /// 능력치 변경 이벤트를 해제합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void UnregisterOnStatChanged(UnityAction<StatNames, float, float> callback)
@@ -171,7 +171,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 새로고침 이벤트를 등록합니다.
+        /// 능력치 새로고침 이벤트를 등록합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void RegisterOnRefresh(UnityAction<StatNames, float> callback)
@@ -180,7 +180,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 새로고침 이벤트를 해제합니다.
+        /// 능력치 새로고침 이벤트를 해제합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void UnregisterOnRefresh(UnityAction<StatNames, float> callback)
@@ -189,7 +189,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 새로고침 완료 이벤트를 등록합니다.
+        /// 능력치 새로고침 완료 이벤트를 등록합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void RegisterOnRefreshed(UnityAction<StatNames, float> callback)
@@ -198,7 +198,7 @@ namespace TeamSuneat
         }
 
         /// <summary>
-        /// 스탯 새로고침 완료 이벤트를 해제합니다.
+        /// 능력치 새로고침 완료 이벤트를 해제합니다.
         /// </summary>
         /// <param name="callback">콜백 함수</param>
         public void UnregisterOnRefreshed(UnityAction<StatNames, float> callback)

@@ -9,14 +9,14 @@ namespace TeamSuneat.Data
         public bool IsChangingAsset;
         public PassiveNames Name;
 
-        [GUIColor("GetCurrenciesFieldColor")]
+        [GUIColor("GetCurrenciesColor")]
         [EnableIf("IsChangingAsset")]
         public CurrencyNames[] Currencies;
 
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         public int Amount;
 
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         public float Rate;
 
         [FoldoutGroup("#String")]
@@ -140,7 +140,7 @@ namespace TeamSuneat.Data
             }
         }
 
-        private Color GetCurrenciesFieldColor()
+        private Color GetCurrenciesColor()
         {
             if (Currencies.IsValid())
             {

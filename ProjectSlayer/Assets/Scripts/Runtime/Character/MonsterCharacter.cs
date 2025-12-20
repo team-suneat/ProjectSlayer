@@ -9,6 +9,7 @@ namespace TeamSuneat
         [FoldoutGroup("#Character/Component/Monster")]
         [ChildGameObjectsOnly]
         [SerializeField] private DropObjectSpawner _dropObjectSpawner;
+
         public override Transform Target => null;
 
         public override LogTags LogTag => LogTags.Monster;
@@ -28,9 +29,6 @@ namespace TeamSuneat
 
             PlaySpawnAnimation();
             CharacterManager.Instance.Register(this);
-
-            MonsterAttackAbility attackAbility = FindAbility<MonsterAttackAbility>();
-            attackAbility?.UpdateAttackReadyIcon();
         }
 
         //

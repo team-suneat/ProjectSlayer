@@ -1,6 +1,5 @@
 using System.Collections;
 using TeamSuneat.Stage;
-using TeamSuneat.Data.Game;
 using UnityEngine;
 
 namespace TeamSuneat

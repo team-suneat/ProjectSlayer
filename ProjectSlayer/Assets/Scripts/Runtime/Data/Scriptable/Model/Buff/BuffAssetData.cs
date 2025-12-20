@@ -102,7 +102,7 @@ namespace TeamSuneat.Data
         public int MaxStackOptionStep;
 
         [FoldoutGroup("#Stack")]
-        [GUIColor("GetStatNameFieldColor")]
+        [GUIColor("GetStatNameColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("능력치에 따른 최대 스택")]
         public StatNames MaxStackByStat;
@@ -164,7 +164,7 @@ namespace TeamSuneat.Data
         public float DurationByStack;
 
         [FoldoutGroup("#Time")]
-        [GUIColor("GetStatNameFieldColor")]
+        [GUIColor("GetStatNameColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("능력치에 따라 지속시간 증가")]
         public StatNames DurationByStat;

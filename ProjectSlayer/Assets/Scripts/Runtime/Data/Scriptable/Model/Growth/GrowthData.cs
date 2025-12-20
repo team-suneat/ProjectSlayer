@@ -18,7 +18,7 @@ namespace TeamSuneat.Data
         [Tooltip("최대 레벨")]
         public int MaxLevel;
 
-        [Tooltip("능력치 레벨당 스탯 증가량")]
+        [Tooltip("능력치 레벨당 능력치 증가량")]
         public float StatIncreasePerLevel;
 
         public int TID => BitConvert.Enum32ToInt(StatName);

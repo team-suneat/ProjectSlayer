@@ -37,7 +37,7 @@ namespace TeamSuneat.Data
             return GetFieldColor(key);
         }
 
-        protected Color GetStatNameFieldColor(StatNames key)
+        protected Color GetStatNameColor(StatNames key)
         {
             return GetFieldColor(key);
         }
@@ -64,17 +64,27 @@ namespace TeamSuneat.Data
             }
         }
 
-        protected Color GetAreaNameFieldColor(AreaNames key)
+        protected Color GetAreaNameColor(AreaNames key)
         {
             return GetFieldColor(key);
         }
 
-        protected Color GetStageNameFieldColor(StageNames key)
+        protected Color GetStageNameColor(StageNames key)
         {
             return GetFieldColor(key);
         }
 
         protected Color GetItemNameColor(ItemNames key)
+        {
+            return GetFieldColor(key);
+        }
+
+        protected Color GetSkillNameColor(SkillNames key)
+        {
+            return GetFieldColor(key);
+        }
+
+        protected Color GetCurrencyNameColor(CurrencyNames key)
         {
             return GetFieldColor(key);
         }

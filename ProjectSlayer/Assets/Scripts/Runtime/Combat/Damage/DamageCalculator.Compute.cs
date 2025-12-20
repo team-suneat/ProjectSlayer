@@ -107,7 +107,7 @@ namespace TeamSuneat
             ClearLogBuilder();
             AppendLineToLog();
 
-            // 1단계: 총 공격력 계산 (기본 공격력 + 장비 공격력 + 강화 공격력은 이미 스탯 시스템에서 합산됨)
+            // 1단계: 총 공격력 계산 (기본 공격력 + 장비 공격력 + 강화 공격력은 이미 능력치 시스템에서 합산됨)
             float totalAttackPower = FindAttackerStatValue(StatNames.Attack);
             float fixedDamage = GetFixedDamageValue(damageAsset, hitmarkLevel);
             float baseDamage = totalAttackPower + fixedDamage;

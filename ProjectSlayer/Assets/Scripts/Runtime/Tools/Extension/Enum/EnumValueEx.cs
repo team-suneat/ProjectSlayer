@@ -25,7 +25,7 @@ namespace TeamSuneat
                     return ValueStringEx.GetFormattedString(statValue, statData.Digit, false, null);
                 }
             }
-            Log.Warning("스탯 데이터를 찾을 수 없습니다. {0}({1})", statName, statName.ToLogString());
+            Log.Warning("능력치 데이터를 찾을 수 없습니다. {0}({1})", statName, statName.ToLogString());
             return "0";
         }
 

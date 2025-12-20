@@ -8,7 +8,7 @@ namespace TeamSuneat.Data
     [CreateAssetMenu(fileName = "MonsterStatConfig", menuName = "TeamSuneat/Scriptable/MonsterStatConfig")]
     public class MonsterStatConfigAsset : XScriptableObject
     {
-        [Title("기본 스탯")]
+        [Title("기본 능력치")]
         [Tooltip("레벨 1 몬스터의 기본 체력")]
         public int BaseHealth = 100;
 
@@ -123,12 +123,12 @@ namespace TeamSuneat.Data
                 return;
             }
 #endif
-            Debug.LogFormat("몬스터 스탯 설정 에셋의 갱신을 시작합니다.");
+            Debug.LogFormat("몬스터 능력치 설정 에셋의 갱신을 시작합니다.");
 
             base.RefreshAll();
             OnRefreshAll();
 
-            Debug.LogFormat("몬스터 스탯 설정 에셋의 갱신을 종료합니다.");
+            Debug.LogFormat("몬스터 능력치 설정 에셋의 갱신을 종료합니다.");
         }
 
         protected override void CreateAll()

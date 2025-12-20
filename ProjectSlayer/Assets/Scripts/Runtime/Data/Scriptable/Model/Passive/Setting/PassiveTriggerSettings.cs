@@ -25,14 +25,14 @@ namespace TeamSuneat.Data
 
         // 기본 조건
         [FoldoutGroup("패시브 발동 조건")]
-        [GUIColor("GetPassiveTriggerFieldColor")]
+        [GUIColor("GetPassiveTriggerColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건")]
         [InfoBox("$TriggerMessege")]
         public PassiveTriggers Trigger;
 
         [FoldoutGroup("패시브 발동 조건")]
-        [GUIColor("GetPassiveTriggerConditionFieldColor")]
+        [GUIColor("GetPassiveTriggerConditionColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("생성시 패시브 발동")]
         public PassiveTriggerCondition InitTriggerCondition;
@@ -43,56 +43,56 @@ namespace TeamSuneat.Data
         public TriggerCheckerTypes TriggerCheckType;
 
         [FoldoutGroup("패시브 발동 조건")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("최대 스택일때만 작동할지 여부*")]
         public bool TriggerMaxStack;
 
         [FoldoutGroup("패시브 발동 조건")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("패시브 발동 시 유휴 상태를 확인할지 여부")]
         public bool TriggerCheckPassiveRestTime;
 
         [FoldoutGroup("패시브 발동 조건")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [SuffixLabel("패시브 역실행 검사시 조건 발동을 실행검사와 똑같이 확인할지 여부")]
         public bool IsReleaseCheckSameBuffType;
 
         // 기술
 
         [FoldoutGroup("패시브 발동 조건/기술")]
-        [GUIColor("GetTriggerSkillElementsFieldColor")]
+        [GUIColor("GetTriggerSkillElementsColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 기술 속성들")]
         public GameElements[] TriggerSkillElements;
 
         // 피해
         [FoldoutGroup("패시브 발동 조건/피해")]
-        [GUIColor("GetTriggerDamageTypesFieldColor")]
+        [GUIColor("GetTriggerDamageTypesColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 피해 종류")]
         public DamageTypes[] TriggerDamageTypes;
 
         [FoldoutGroup("패시브 발동 조건/피해")]
-        [GUIColor("GetTriggerHitmarksFieldColor")]
+        [GUIColor("GetTriggerHitmarksColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 히트마크")]
         public HitmarkNames[] TriggerHitmarks;
 
         [FoldoutGroup("패시브 발동 조건/피해")]
-        [GUIColor("GetTriggerIgnoreHitmarksFieldColor")]
+        [GUIColor("GetTriggerIgnoreHitmarksColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 무시 히트마크")]
         public HitmarkNames[] TriggerIgnoreHitmarks;
 
         [FoldoutGroup("패시브 발동 조건/피해")]
-        [GUIColor("GetTriggerIgnoreDamageTypesFieldColor")]
+        [GUIColor("GetTriggerIgnoreDamageTypesColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 무시 피해 종류들")]
         public DamageTypes[] TriggerIgnoreDamageTypes;
 
         // 대상
         [FoldoutGroup("패시브 발동 조건/대상")]
-        [GUIColor("GetPassiveTargetTypeFieldColor")]
+        [GUIColor("GetPassiveTargetTypeColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 소유 캐릭터")]
         public PassiveTargetTypes TriggerOwner;
@@ -100,73 +100,73 @@ namespace TeamSuneat.Data
         [FoldoutGroup("패시브 발동 조건/대상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 능력치")]
-        [GUIColor("GetTriggerStatsFieldColor")]
+        [GUIColor("GetTriggerStatsColor")]
         public StatNames[] TriggerStats;
 
         [FoldoutGroup("패시브 발동 조건/대상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 아이템 등급")]
-        [GUIColor("GetTriggerGradesFieldColor")]
+        [GUIColor("GetTriggerGradesColor")]
         public GradeNames[] TriggerGrades;
 
         // 환경 조건
         [FoldoutGroup("패시브 발동 조건/환경 조건")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 맵 오브젝트")]
-        [GUIColor("GetTriggerMapObjectsFieldColor")]
+        [GUIColor("GetTriggerMapObjectsColor")]
         public MapObjectNames[] TriggerMapObjects;
 
         [FoldoutGroup("패시브 발동 조건/환경 조건")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 맵 지역")]
-        [GUIColor("GetTriggerMapTypesFieldColor")]
+        [GUIColor("GetTriggerMapTypesColor")]
         public MapTypes[] TriggerMapTypes;
 
         [FoldoutGroup("패시브 발동 조건/환경 조건")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 재화")]
-        [GUIColor("GetTriggerCurrenciesFieldColor")]
+        [GUIColor("GetTriggerCurrenciesColor")]
         public CurrencyNames[] TriggerCurrencies;
 
         // 버프 및 상태이상
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 버프")]
-        [GUIColor("GetTriggerBuffsFieldColor")]
+        [GUIColor("GetTriggerBuffsColor")]
         public BuffNames[] TriggerBuffs;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 버프 종류")]
-        [GUIColor("GetBuffTypeFieldColor")]
+        [GUIColor("GetBuffTypeColor")]
         public BuffTypes TriggerBuffType;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 무시 버프 종류")]
-        [GUIColor("GetBuffTypeFieldColor")]
+        [GUIColor("GetBuffTypeColor")]
         public BuffTypes TriggerIgnoreBuffOnHit;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 상태이상들")]
-        [GUIColor("GetTriggerStateEffectsFieldColor")]
+        [GUIColor("GetTriggerStateEffectsColor")]
         public StateEffects[] TriggerStateEffects;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 무시 상태이상")]
-        [GUIColor("GetStateEffectFieldColor")]
+        [GUIColor("GetStateEffectColor")]
         public StateEffects TriggerIgnoreStateEffectOnHit;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 몬스터의 상태이상")]
-        [GUIColor("GetTriggerMonsterCountStateEffectsFieldColor")]
+        [GUIColor("GetTriggerMonsterCountStateEffectsColor")]
         public StateEffects[] TriggerMonsterCountStateEffects;
 
         [FoldoutGroup("패시브 발동 조건/버프 및 상태이상")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [SuffixLabel("서로 다른 속성 상태이상의 수")]
         public int DifferentElementalStateEffectCount;
 
@@ -190,7 +190,7 @@ namespace TeamSuneat.Data
         public PassiveOperator TriggerOperator;
 
         [FoldoutGroup("패시브 발동 조건/자원 조건")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0f, 1f)]
         [SuffixLabel("패시브 발동 조건 자원 비율")]
         public float TriggerPercent;
@@ -199,7 +199,7 @@ namespace TeamSuneat.Data
         [FoldoutGroup("패시브 발동 조건/능력치 조건")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 능력치")]
-        [GUIColor("GetTriggerOperatorStatsFieldColor")]
+        [GUIColor("GetTriggerOperatorStatsColor")]
         public StatNames[] TriggerOperatorStats;
 
         [FoldoutGroup("패시브 발동 조건/능력치 조건")]
@@ -208,13 +208,13 @@ namespace TeamSuneat.Data
         public PassiveOperator TriggerStatOperator;
 
         [FoldoutGroup("패시브 발동 조건/능력치 조건")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [SuffixLabel("패시브 발동 조건 능력치 비율")]
         public int TriggerStatValue;
 
         // 몬스터 조건
         [FoldoutGroup("패시브 발동 조건/몬스터 조건")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 조건 몬스터 수")]
         public int TriggerMonsterCount;
@@ -225,19 +225,19 @@ namespace TeamSuneat.Data
         public PassiveOperator TriggerMonsterCountOperator;
 
         [FoldoutGroup("패시브 발동 조건/몬스터 조건")]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [SuffixLabel("패시브 발동 몬스터와의  거리")]
         public float TriggerMonsterRange;
 
         // 발동 횟수
         [FoldoutGroup("패시브 발동 조건/발동 횟수")]
-        [GUIColor("GetIntFieldColor")]
+        [GUIColor("GetIntColor")]
         [Tooltip("설정된 발동 횟수만큼 발동했을 때 패시브를 적용합니다.")]
         [SuffixLabel("패시브 적용 제한 발동 횟수*")]
         public int TriggerCount;
 
         [FoldoutGroup("패시브 발동 조건/발동 횟수")]
-        [GUIColor("GetBoolFieldColor")]
+        [GUIColor("GetBoolColor")]
         [Tooltip("적용 제한 발동 횟수를 스테이지 이동 시에 저장하지 않을지 여부입니다.")]
         [SuffixLabel("패시브 적용 제한 발동 횟수 저장하지 않을지 여부*")]
         public bool TriggerCountDontSave;
@@ -245,20 +245,20 @@ namespace TeamSuneat.Data
         // 확률
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)")]
-        [GUIColor("GetTriggerChanceFieldColor")]
+        [GUIColor("GetTriggerChanceColor")]
         [SuffixLabel("패시브 발동 확률 타입")]
         public PassiveTriggerChanceCalcType TriggerChanceCalcType;
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)/Fixed")]
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.Fixed)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0, 1)]
         [SuffixLabel("패시브 발동 확률")]
         public float TriggerChance;
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)/Fixed")]
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.Fixed)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0, 1)]
         [SuffixLabel("레벨별 패시브 발동 확률")]
         public float TriggerChanceByLevel;
@@ -267,26 +267,26 @@ namespace TeamSuneat.Data
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.FromStat)]
         [EnableIf("IsChangingAsset")]
         [SuffixLabel("패시브 발동 확률 능력치")]
-        [GUIColor("GetStatNameFieldColor")]
+        [GUIColor("GetStatNameColor")]
         public StatNames TriggerChanceByStat;
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)/FromOptionRange")]
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.FromOptionRange)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0, 1)]
         [SuffixLabel("전설 장비 옵션으로 설정되는 패시브 발동 확률의 최소 범위")]
         public float TriggerChanceOptionMinRange;
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)/FromOptionRange")]
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.FromOptionRange)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0, 1)]
         [SuffixLabel("전설 장비 옵션으로 설정되는 패시브 발동 확률의 최대 범위")]
         public float TriggerChanceOptionMaxRange;
 
         [FoldoutGroup("패시브 발동 조건/확률 (Chance)/FromOptionRange")]
         [EnableIf("TriggerChanceCalcType", PassiveTriggerChanceCalcType.FromOptionRange)]
-        [GUIColor("GetFloatFieldColor")]
+        [GUIColor("GetFloatColor")]
         [Range(0, 1)]
         [SuffixLabel("전설 장비 옵션에 의해 설정되는 패시브 발동 확률 증가 단위")]
         public float TriggerChanceOptionStep;
@@ -802,7 +802,7 @@ namespace TeamSuneat.Data
 
         #region GUI-Color
 
-        protected Color GetPassiveTriggerFieldColor(PassiveTriggers triggerName)
+        protected Color GetPassiveTriggerColor(PassiveTriggers triggerName)
         {
             if (triggerName == 0)
             {
@@ -814,7 +814,7 @@ namespace TeamSuneat.Data
             }
         }
 
-        protected Color GetPassiveTargetTypeFieldColor(PassiveTargetTypes triggerName)
+        protected Color GetPassiveTargetTypeColor(PassiveTargetTypes triggerName)
         {
             if (triggerName == 0)
             {
@@ -826,7 +826,7 @@ namespace TeamSuneat.Data
             }
         }
 
-        protected Color GetPassiveTriggerConditionFieldColor(PassiveTriggerCondition triggerCondition)
+        protected Color GetPassiveTriggerConditionColor(PassiveTriggerCondition triggerCondition)
         {
             if (triggerCondition == 0)
             {
@@ -838,7 +838,7 @@ namespace TeamSuneat.Data
             }
         }
 
-        private Color GetTriggerHitmarksFieldColor()
+        private Color GetTriggerHitmarksColor()
         {
             if (TriggerHitmarks.IsValidArray())
             {
@@ -847,7 +847,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetTriggerIgnoreHitmarksFieldColor()
+        private Color GetTriggerIgnoreHitmarksColor()
         {
             if (TriggerIgnoreHitmarks.IsValidArray())
             {
@@ -856,7 +856,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerSkillElementsFieldColor()
+        protected Color GetTriggerSkillElementsColor()
         {
             if (TriggerSkillElements.IsValidArray())
             {
@@ -865,7 +865,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerDamageTypesFieldColor()
+        protected Color GetTriggerDamageTypesColor()
         {
             if (TriggerDamageTypes.IsValidArray())
             {
@@ -874,7 +874,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerStatsFieldColor()
+        protected Color GetTriggerStatsColor()
         {
             if (TriggerStats.IsValidArray())
             {
@@ -883,7 +883,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerGradesFieldColor()
+        protected Color GetTriggerGradesColor()
         {
             if (TriggerGrades.IsValidArray())
             {
@@ -892,7 +892,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerMapObjectsFieldColor()
+        protected Color GetTriggerMapObjectsColor()
         {
             if (TriggerMapObjects.IsValidArray())
             {
@@ -901,7 +901,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerMapTypesFieldColor()
+        protected Color GetTriggerMapTypesColor()
         {
             if (TriggerMapTypes.IsValidArray())
             {
@@ -910,7 +910,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerCurrenciesFieldColor()
+        protected Color GetTriggerCurrenciesColor()
         {
             if (TriggerCurrencies.IsValidArray())
             {
@@ -919,7 +919,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerBuffsFieldColor()
+        protected Color GetTriggerBuffsColor()
         {
             if (TriggerBuffs.IsValidArray())
             {
@@ -928,7 +928,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerMonsterCountStateEffectsFieldColor()
+        protected Color GetTriggerMonsterCountStateEffectsColor()
         {
             if (TriggerMonsterCountStateEffects.IsValidArray())
             {
@@ -937,7 +937,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerStateEffectsFieldColor()
+        protected Color GetTriggerStateEffectsColor()
         {
             if (TriggerStateEffects.IsValidArray())
             {
@@ -946,7 +946,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerIgnoreDamageTypesFieldColor()
+        protected Color GetTriggerIgnoreDamageTypesColor()
         {
             if (TriggerIgnoreDamageTypes.IsValidArray())
             {
@@ -955,7 +955,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        protected Color GetTriggerOperatorStatsFieldColor()
+        protected Color GetTriggerOperatorStatsColor()
         {
             if (TriggerOperatorStats.IsValidArray())
             {
@@ -964,7 +964,7 @@ namespace TeamSuneat.Data
             return GameColors.DarkGray;
         }
 
-        private Color GetTriggerChanceFieldColor()
+        private Color GetTriggerChanceColor()
         {
             switch (TriggerChanceCalcType)
             {

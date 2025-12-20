@@ -22,6 +22,7 @@ namespace TeamSuneat.Data
             else if (!_buffAssets.IsValid()) { return false; }
             else if (!_stateEffectAssets.IsValid()) { return false; }
             else if (!_passiveAssets.IsValid()) { return false; }
+            else if (!_skillAssets.IsValid()) { return false; }
             else if (!_hitmarkAssets.IsValid()) { return false; }
             else if (!_fontAssets.IsValid()) { return false; }
             else if (!_floatyAssets.IsValid()) { return false; }
@@ -64,8 +65,17 @@ namespace TeamSuneat.Data
             // 경험치 설정 데이터 OnLoadData() 메서드 호출
             _experienceConfigAsset?.OnLoadData();
 
-            // 몬스터 스탯 설정 데이터 OnLoadData() 메서드 호출
+            // 몬스터 능력치 설정 데이터 OnLoadData() 메서드 호출
             _monsterStatConfigAsset?.OnLoadData();
+
+            // 플레이어 캐릭터 능력치 데이터 OnLoadData() 메서드 호출
+            _playerCharacterStatAsset?.OnLoadData();
+
+            // 스킬 에셋 OnLoadData() 메서드 호출
+            foreach (var skillAsset in _skillAssets.Values)
+            {
+                skillAsset?.OnLoadData();
+            }
         }
 
         public void LoadScriptableAssets()
@@ -97,6 +107,10 @@ namespace TeamSuneat.Data
                     count += 1;
                 }
                 else if (LoadPassiveSync(path))
+                {
+                    count += 1;
+                }
+                else if (LoadSkillSync(path))
                 {
                     count += 1;
                 }
@@ -141,6 +155,10 @@ namespace TeamSuneat.Data
                     count += 1;
                 }
                 else if (LoadMonsterStatConfigSync(path))
+                {
+                    count += 1;
+                }
+                else if (LoadPlayerCharacterStatSync(path))
                 {
                     count += 1;
                 }
@@ -258,13 +276,44 @@ namespace TeamSuneat.Data
             {
                 if (_monsterStatConfigAsset != null)
                 {
-                    Log.Warning(LogTags.ScriptableData, "몬스터 스탯 설정 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                    Log.Warning(LogTags.ScriptableData, "몬스터 능력치 설정 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
                         _monsterStatConfigAsset.name, asset.name);
                 }
                 else
                 {
                     Log.Progress("스크립터블 데이터를 읽어왔습니다. Path: {0}", filePath);
                     _monsterStatConfigAsset = asset;
+                }
+
+                return true;
+            }
+            else
+            {
+                Log.Warning("스크립터블 데이터를 읽을 수 없습니다. Path: {0}", filePath);
+            }
+
+            return false;
+        }
+
+        private bool LoadPlayerCharacterStatSync(string filePath)
+        {
+            if (!filePath.Contains("PlayerCharacterStat"))
+            {
+                return false;
+            }
+
+            PlayerCharacterStatAsset asset = ResourcesManager.LoadResource<PlayerCharacterStatAsset>(filePath);
+            if (asset != null)
+            {
+                if (_playerCharacterStatAsset != null)
+                {
+                    Log.Warning(LogTags.ScriptableData, "플레이어 캐릭터 능력치 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                        _playerCharacterStatAsset.name, asset.name);
+                }
+                else
+                {
+                    Log.Progress("스크립터블 데이터를 읽어왔습니다. Path: {0}", filePath);
+                    _playerCharacterStatAsset = asset;
                 }
 
                 return true;
@@ -411,6 +460,14 @@ namespace TeamSuneat.Data
                         }
                         break;
 
+                    case SkillAsset skill:
+                        if (!_skillAssets.ContainsKey(skill.TID))
+                        {
+                            _skillAssets[skill.TID] = skill;
+                            count++;
+                        }
+                        break;
+
                     case HitmarkAsset hitmark:
                         if (!_hitmarkAssets.ContainsKey(hitmark.TID))
                         {
@@ -480,6 +537,14 @@ namespace TeamSuneat.Data
                         if (_monsterStatConfigAsset == null)
                         {
                             _monsterStatConfigAsset = monsterStatConfig;
+                            count++;
+                        }
+                        break;
+
+                    case PlayerCharacterStatAsset playerCharacterStat:
+                        if (_playerCharacterStatAsset == null)
+                        {
+                            _playerCharacterStatAsset = playerCharacterStat;
                             count++;
                         }
                         break;

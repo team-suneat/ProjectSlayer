@@ -167,13 +167,13 @@ namespace TeamSuneat
                         continue;
                     }
 
-                    Log.Error("스탯 이름을 변환할 수 없습니다. {0}", match.Value);
+                    Log.Error("능력치 이름을 변환할 수 없습니다. {0}", match.Value);
                 }
             }
 
             if (input.Contains("[Stat."))
             {
-                Log.Error("치환되지 않은 스탯 이름이 남아있습니다. {0}", input);
+                Log.Error("치환되지 않은 능력치 이름이 남아있습니다. {0}", input);
             }
 
             return input;
