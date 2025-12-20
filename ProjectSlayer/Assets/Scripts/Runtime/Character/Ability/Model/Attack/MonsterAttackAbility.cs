@@ -5,8 +5,8 @@ namespace TeamSuneat
 {
     public class MonsterAttackAbility : CharacterAbility
     {
-        [SerializeField] private HitmarkNames _hitmarkOverride = HitmarkNames.None;
-        [SerializeField] private SpriteRenderer _attackReadyIconRenderer;
+        [SerializeField]
+        private HitmarkNames _hitmarkOverride = HitmarkNames.None;
 
         private CharacterManager _characterManager;
         private MonsterCharacter _monster;
@@ -16,16 +16,9 @@ namespace TeamSuneat
         {
             base.Initialization();
             EnsureReferences();
-
-            if (_attackReadyIconRenderer != null)
-            {
-                _attackReadyIconRenderer.gameObject.SetActive(false);
-            }
-
-            UpdateAttackReadyIcon();
         }
 
-        public bool CanAttackPlayerNextTurn()
+        public bool CanAttackPlayer()
         {
             if (!EnsureReferences())
             {
@@ -36,22 +29,11 @@ namespace TeamSuneat
             {
                 return false;
             }
-        
+
             return true;
         }
 
-        public void UpdateAttackReadyIcon()
-        {
-            if (_attackReadyIconRenderer == null)
-            {
-                return;
-            }
-
-            bool canAttack = CanAttackPlayerNextTurn();
-            _attackReadyIconRenderer.gameObject.SetActive(canAttack);
-        }
-
-        public bool TryAttackPlayerOnBottomRow()
+        public bool TryAttackPlayer()
         {
             if (_monster != null && _monster.ConditionState.Compare(CharacterConditions.Stunned))
             {
@@ -59,7 +41,7 @@ namespace TeamSuneat
                 return false;
             }
 
-            if (!CanAttackPlayerNextTurn())
+            if (!CanAttackPlayer())
             {
                 return false;
             }

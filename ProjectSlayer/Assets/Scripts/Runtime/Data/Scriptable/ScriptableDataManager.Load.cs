@@ -33,6 +33,7 @@ namespace TeamSuneat.Data
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
             else if (_monsterStatConfigAsset == null) { return false; }
+            else if (_playerCharacterStatAsset == null) { return false; }
 
             return true;
         }

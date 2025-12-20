@@ -10,6 +10,7 @@ namespace TeamSuneat.Data
 
         private ExperienceConfigAsset _experienceConfigAsset; // 캐릭터 경험치
         private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 스탯
+        private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 스탯
         private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
         private GrowthDataAsset _growthDataAsset; // 캐릭터 성장
 
@@ -43,6 +44,7 @@ namespace TeamSuneat.Data
             _growthDataAsset = null;
             _experienceConfigAsset = null;
             _monsterStatConfigAsset = null;
+            _playerCharacterStatAsset = null;
         }
 
         public void RefreshAll()
@@ -60,6 +62,7 @@ namespace TeamSuneat.Data
             RefreshAllGrowth();
             RefreshAllExperienceConfig();
             RefreshAllMonsterStatConfig();
+            RefreshAllPlayerCharacterStat();
         }
     }
 }

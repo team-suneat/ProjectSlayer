@@ -75,34 +75,35 @@ namespace TeamSuneat
             string format = JsonDataManager.FindStringClone("LevelUpFormat");
             string content = string.Format(format, addedLevel);
 
-            _ = ResourcesManager.SpawnFloatyText(content, true, transform);
+            ResourcesManager.SpawnFloatyText(content, true, transform);
         }
 
         public override void AddCharacterStats()
         {
-            //  PlayerCharacterData data = JsonDataManager.FindPlayerCharacterDataClone(Name);
-            //  if (data != null)
-            //  {
-            //      // 기본 스탯 적용
-            //      ApplyBaseStats(data);
-            //
-            //      LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
-            //  }
+            PlayerCharacterStatAsset asset = ScriptableDataManager.Instance.FindPlayerCharacterStatAssetClone(Name);
+            if (asset != null)
+            {
+                // 기본 스탯 적용
+                ApplyBaseStats(asset);
+
+                LogInfo("캐릭터 스탯이 스크립터블 데이터에서 적용되었습니다. 캐릭터: {0}, 레벨: {1}", Name, Level);
+            }
         }
 
-        // private void ApplyBaseStats(PlayerCharacterData data)
-        // {
-        //     if (!data.IsValid()) return;
-        //     for (int i = 0; i < data.BaseStats.Length; i++)
-        //     {
-        //         StatNames baseStatName = data.BaseStats[i];
-        //         float baseStatValue = data.BaseStatValues[i];
-        //
-        //         if (baseStatName == StatNames.None || baseStatValue.IsZero()) continue;
-        //
-        //         Stat.AddWithSourceInfo(baseStatName, baseStatValue, this, NameString, "CharacterBase");
-        //     }
-        // }
+        private void ApplyBaseStats(PlayerCharacterStatAsset asset)
+        {
+            if (!asset.IsValid()) return;
+            Stat.AddWithSourceInfo(StatNames.Health, asset.BaseHealth, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.Attack, asset.BaseAttack, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.HealthRegen, asset.BaseHealthRegen, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.CriticalChance, asset.BaseCriticalChance, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.CriticalDamage, asset.BaseCriticalDamage, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.Mana, asset.BaseMana, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.ManaRegen, asset.BaseManaRegen, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.AccuracyChance, asset.BaseAccuracyChance, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.GoldGain, asset.BaseGoldGain, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.XPGain, asset.BaseXPGain, this, NameString, "CharacterBase");
+        }
 
         //
 
