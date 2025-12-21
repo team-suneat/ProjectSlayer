@@ -16,6 +16,7 @@ namespace TeamSuneat.Data.Game
 
         public VCharacterStage Stage;
         public VCharacterSlot Slot;
+        public VCharacterSkill Skill;
         public VStatistics Statistics;
 
         public void OnLoadGameData()
@@ -29,6 +30,7 @@ namespace TeamSuneat.Data.Game
 
             Stage.OnLoadGameData();
             Slot.OnLoadGameData();
+            Skill.OnLoadGameData();
             Enhancement.OnLoadGameData();
             Growth.OnLoadGameData();
             Statistics.OnLoadGameData();
@@ -43,6 +45,7 @@ namespace TeamSuneat.Data.Game
             Currency ??= VCurrency.CreateDefault();
             Stage ??= VCharacterStage.CreateDefault();
             Slot ??= VCharacterSlot.CreateDefault();
+            Skill ??= VCharacterSkill.CreateDefault();
             Enhancement ??= VCharacterEnhancement.CreateDefault();
             Growth ??= VCharacterGrowth.CreateDefault();
             Statistics ??= VStatistics.CreateDefault();

@@ -38,8 +38,9 @@ namespace TeamSuneat.Data
             }
             else
             {
-                foreach (var data in UnlockDataList)
+                for (int i = 0; i < UnlockDataList.Count; i++)
                 {
+                    SkillCardUnlockAssetData data = UnlockDataList[i];
                     data?.Validate();
                 }
             }
@@ -49,8 +50,9 @@ namespace TeamSuneat.Data
         {
             if (UnlockDataList != null)
             {
-                foreach (var data in UnlockDataList)
+                for (int i = 0; i < UnlockDataList.Count; i++)
                 {
+                    SkillCardUnlockAssetData data = UnlockDataList[i];
                     data?.Refresh();
                 }
             }
@@ -70,8 +72,9 @@ namespace TeamSuneat.Data
                 return 0;
             }
 
-            foreach (var data in UnlockDataList)
+            for (int i = 0; i < UnlockDataList.Count; i++)
             {
+                SkillCardUnlockAssetData data = UnlockDataList[i];
                 if (data.SkillName == skillName)
                 {
                     return data.UnlockLevel;
