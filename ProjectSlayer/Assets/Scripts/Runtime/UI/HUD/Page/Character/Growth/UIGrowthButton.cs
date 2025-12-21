@@ -50,6 +50,16 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
+            TryPerformLevelUp();
+        }
+
+        protected override void OnButtonHold()
+        {
+            TryPerformLevelUp();
+        }
+
+        private void TryPerformLevelUp()
+        {
             if (_data == null)
             {
                 return;

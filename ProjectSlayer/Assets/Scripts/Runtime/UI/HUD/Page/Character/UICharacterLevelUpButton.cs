@@ -33,6 +33,16 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
+            TryPerformLevelUp();
+        }
+
+        protected override void OnButtonHold()
+        {
+            TryPerformLevelUp();
+        }
+
+        private void TryPerformLevelUp()
+        {
             VProfile profile = GetProfile();
             if (profile == null)
             {

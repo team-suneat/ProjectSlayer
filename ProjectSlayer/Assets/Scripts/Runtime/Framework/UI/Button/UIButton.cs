@@ -1,12 +1,14 @@
+using System.Collections;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace TeamSuneat
 {
-    public class UIButton : UIInteractiveElement
+    public class UIButton : UIInteractiveElement, IPointerDownHandler, IPointerUpHandler
     {
         [FoldoutGroup("#UIButton")]
         [SerializeField] private Button _button;
@@ -14,7 +16,12 @@ namespace TeamSuneat
         [FoldoutGroup("#UIButton")]
         [SerializeField] private float _buttonImageAlphaDuration = 0.15f;
 
+        [FoldoutGroup("#UIButton")]
+        [SerializeField] private float _holdInterval = 0.1f;
+
         private Tween _alphaTween;
+        private Coroutine _holdCoroutine;
+        private bool _isHolding;
 
         public Button Button => _button;
 
@@ -60,12 +67,14 @@ namespace TeamSuneat
                 _button.onClick.RemoveListener(OnButtonClicked);
             }
 
+            StopHoldCoroutine();
             KillAllTweens();
         }
 
         protected override void OnRelease()
         {
             base.OnRelease();
+            StopHoldCoroutine();
             KillAllTweens();
         }
 
@@ -83,6 +92,11 @@ namespace TeamSuneat
         protected virtual void OnButtonClick()
         {
             // 자식 클래스에서 오버라이드하여 클릭 이벤트 구현
+        }
+
+        protected virtual void OnButtonHold()
+        {
+            // 자식 클래스에서 오버라이드하여 홀드 이벤트 구현
         }
 
         private void PlayClickAnimation()
@@ -156,6 +170,51 @@ namespace TeamSuneat
             {
                 _button.onClick.RemoveAllListeners();
                 _button.onClick.AddListener(OnButtonClicked);
+            }
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (!_isClickable)
+            {
+                return;
+            }
+
+            _isHolding = true;
+            StartHoldCoroutine();
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            StopHoldCoroutine();
+            _isHolding = false;
+        }
+
+        private void StartHoldCoroutine()
+        {
+            StopHoldCoroutine();
+            _holdCoroutine = StartCoroutine(HoldCoroutine());
+        }
+
+        private void StopHoldCoroutine()
+        {
+            if (_holdCoroutine != null)
+            {
+                StopCoroutine(_holdCoroutine);
+                _holdCoroutine = null;
+            }
+        }
+
+        private IEnumerator HoldCoroutine()
+        {
+            while (_isHolding && _isClickable)
+            {
+                yield return new WaitForSeconds(_holdInterval);
+
+                if (_isHolding && _isClickable)
+                {
+                    OnButtonHold();
+                }
             }
         }
     }
