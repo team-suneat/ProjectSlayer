@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50660d23962ca2b4fae6acc47986400c, type: 3}
-  m_Name: Floaty_PlayerDamaged
+  m_Name: Floaty_Damage
   m_EditorClassIdentifier: Assembly-CSharp:TeamSuneat.Data:FloatyAssetAsset
-  NameString: PlayerDamaged
+  NameString: Damage
   IsChangingAsset: 0
-  Name: 3
+  Name: 1
   FontType: 2
-  TextColor: {r: 1, g: 0, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
   SpawnArea: {x: 0, y: 0}
   SpawnOffset: {x: 0, y: 0, z: 0}
   Type: 1

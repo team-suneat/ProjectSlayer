@@ -78,7 +78,7 @@ namespace TeamSuneat
 
             if (Vital != null)
             {
-                _ = SpawnFloatyText(content, DamageTextPoint, UIFloatyMoveNames.Shield);
+                _ = SpawnFloatyText(content, DamageTextPoint, UIFloatyMoveNames.ChargeShield);
             }
         }
     }

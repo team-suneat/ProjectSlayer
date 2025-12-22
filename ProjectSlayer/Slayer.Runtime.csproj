@@ -128,6 +128,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.Stat.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\BGMPlayer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Async.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Skill.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Handlers\StatLogHandler.cs" />

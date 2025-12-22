@@ -21,9 +21,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FlameSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 35
     UnlockLevel: 10
@@ -31,9 +31,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: EarthBlessing
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 16
     UnlockLevel: 15
@@ -41,9 +41,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FlowingBlade
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 27
     UnlockLevel: 15
@@ -51,9 +51,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: AccelerationSword
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 2
     UnlockLevel: 20
@@ -61,9 +61,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FireSword
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 34
     UnlockLevel: 20
@@ -71,9 +71,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: StoneStrike
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 17
     UnlockLevel: 25
@@ -81,9 +81,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: WindingBlade
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 23
     UnlockLevel: 25
@@ -91,9 +91,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: LightningSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 5
     UnlockLevel: 30
@@ -101,9 +101,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 6
     RequiredCurrencyCount: 10
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: BurningSword
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneFire
   - IsChangingAsset: 0
     SkillName: 38
     UnlockLevel: 30
@@ -111,9 +111,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: EarthWill
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 12
     UnlockLevel: 35
@@ -121,9 +121,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: IceStone
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 29
     UnlockLevel: 35
@@ -131,9 +131,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: WindSword
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 3
     UnlockLevel: 40
@@ -141,9 +141,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: HeatWave
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 28
     UnlockLevel: 40
@@ -151,9 +151,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: LightningFast
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 15
     UnlockLevel: 45
@@ -161,9 +161,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: WaveSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 24
     UnlockLevel: 50
@@ -171,9 +171,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: ThunderStrike
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 39
     UnlockLevel: 50
@@ -181,9 +181,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 8
     RequiredCurrencyCount: 20
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: SteelWill
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneEarth
   - IsChangingAsset: 0
     SkillName: 14
     UnlockLevel: 60
@@ -191,9 +191,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 7
     RequiredCurrencyCount: 20
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: IceShower
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneWater
   - IsChangingAsset: 0
     SkillName: 36
     UnlockLevel: 60
@@ -201,9 +201,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 8
     RequiredCurrencyCount: 20
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: PowerStrike
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneEarth
   - IsChangingAsset: 0
     SkillName: 4
     UnlockLevel: 70
@@ -211,9 +211,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 6
     RequiredCurrencyCount: 20
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FireSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneFire
   - IsChangingAsset: 0
     SkillName: 26
     UnlockLevel: 70
@@ -221,9 +221,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 9
     RequiredCurrencyCount: 20
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: ThunderSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneWind
   - IsChangingAsset: 0
     SkillName: 18
     UnlockLevel: 80
@@ -231,9 +231,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: DancingWave
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 6
     UnlockLevel: 90
@@ -241,9 +241,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FireWave
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 25
     UnlockLevel: 90
@@ -251,9 +251,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: HighSpeedMovement
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 20
     UnlockLevel: 100
@@ -261,9 +261,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 7
     RequiredCurrencyCount: 50
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Meditation
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneWater
   - IsChangingAsset: 0
     SkillName: 37
     UnlockLevel: 100
@@ -271,9 +271,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: PowerImpact
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 7
     UnlockLevel: 120
@@ -281,9 +281,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 6
     RequiredCurrencyCount: 300
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: HellfireSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneFire
   - IsChangingAsset: 0
     SkillName: 30
     UnlockLevel: 140
@@ -291,9 +291,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 9
     RequiredCurrencyCount: 300
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: AsuraLightningSlash
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneWind
   - IsChangingAsset: 0
     SkillName: 40
     UnlockLevel: 140
@@ -301,9 +301,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 8
     RequiredCurrencyCount: 50
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: LifeMana
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneEarth
   - IsChangingAsset: 0
     SkillName: 19
     UnlockLevel: 160
@@ -311,9 +311,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 7
     RequiredCurrencyCount: 300
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: IceTime
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneWater
   - IsChangingAsset: 0
     SkillName: 41
     UnlockLevel: 180
@@ -321,9 +321,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 8
     RequiredCurrencyCount: 300
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: GigaStrike
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneEarth
   - IsChangingAsset: 0
     SkillName: 9
     UnlockLevel: 200
@@ -331,9 +331,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 6
     RequiredCurrencyCount: 100
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Rage
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: AttributeStoneFire
   - IsChangingAsset: 0
     SkillName: 31
     UnlockLevel: 200
@@ -341,9 +341,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: RedThunder
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 13
     UnlockLevel: 250
@@ -351,9 +351,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: ManaBlessing
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 8
     UnlockLevel: 300
@@ -361,9 +361,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: TrueHeatWave
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 33
     UnlockLevel: 300
@@ -371,9 +371,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: ThunderGod
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 21
     UnlockLevel: 350
@@ -381,9 +381,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Blizzard
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 10
     UnlockLevel: 400
@@ -391,9 +391,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: FirePillar
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 32
     UnlockLevel: 450
@@ -401,9 +401,9 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Swiftness
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 43
     UnlockLevel: 500
@@ -411,66 +411,66 @@ MonoBehaviour:
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: BeastHunt
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 42
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: GigaImpact
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 11
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: WarriorBurn
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 22
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Torrent
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 44
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: SuperhumanStrength
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 45
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Rave
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None
   - IsChangingAsset: 0
     SkillName: 46
-    UnlockLevel: 0
+    UnlockLevel: 500
     RequiredItemName: 0
     RequiredItemCount: 0
     RequiredCurrencyName: 0
     RequiredCurrencyCount: 0
-    SkillNameAsString: 
-    RequiredItemNameAsString: 
-    RequiredCurrencyNameAsString: 
+    SkillNameAsString: Mantra
+    RequiredItemNameAsString: None
+    RequiredCurrencyNameAsString: None

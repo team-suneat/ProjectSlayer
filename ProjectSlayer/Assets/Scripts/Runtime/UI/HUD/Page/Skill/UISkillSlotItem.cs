@@ -1,7 +1,6 @@
 using Sirenix.OdinInspector;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,9 @@ namespace TeamSuneat.UserInterface
     {
         [FoldoutGroup("#UISkillSlotItem-Image")]
         [SerializeField] private Image _skillIconImage;
+
+        [FoldoutGroup("#UISkillSlotItem-Image")]
+        [SerializeField] private Image _skillFrameImage;
 
         [FoldoutGroup("#UISkillSlotItem-Image")]
         [SerializeField] private GameObject _unknownImage;
@@ -42,6 +44,7 @@ namespace TeamSuneat.UserInterface
             base.AutoGetComponents();
 
             _skillIconImage ??= this.FindComponent<Image>("Skill Icon Image");
+            _skillFrameImage ??= this.FindComponent<Image>("Skill Frame Image");
             _skillNameText ??= this.FindComponent<UILocalizedText>("Skill Name Text");
             _skillCountGauge ??= this.FindComponent<UIGauge>("Skill Count Gauge");
             _equippedText ??= this.FindComponent<UILocalizedText>("Skill Equipped Text");
@@ -73,6 +76,7 @@ namespace TeamSuneat.UserInterface
             SkillSlotState state = GetSkillSlotState();
             RefreshSkillState(state);
             RefreshSkillIcon(state);
+            RefreshSkillFrame();
             RefreshSkillName(state);
 
             if (state != SkillSlotState.Unknown)
@@ -160,6 +164,20 @@ namespace TeamSuneat.UserInterface
             }
         }
 
+        private void RefreshSkillFrame()
+        {
+            if (_skillFrameImage == null)
+            {
+                return;
+            }
+
+            if (_skillAsset?.Data?.Grade != null)
+            {
+                Color color = _skillAsset.Data.Grade.GetGradeColor();
+                _skillFrameImage.SetColor(color);
+            }
+        }
+
         private void RefreshSkillName(SkillSlotState state)
         {
             if (_skillNameText == null)
@@ -175,7 +193,7 @@ namespace TeamSuneat.UserInterface
 
             if (_skillName != SkillNames.None)
             {
-                _skillNameText.SetText(_skillName.ToString());
+                _skillNameText.SetText(_skillName.GetLocalizedString());
             }
             else
             {
@@ -274,13 +292,15 @@ namespace TeamSuneat.UserInterface
 
             if (requiredCount <= 0)
             {
-                _skillCountGauge.ResetFrontValue();
-                return;
+                _skillCountGauge.SetFrontValue(0);
+                _skillCountGauge.SetValueText($"0 / {requiredCount}");
             }
-
-            float fillAmount = Mathf.Clamp01((float)currentCount / requiredCount);
-            _skillCountGauge.SetFrontValue(fillAmount);
-            _skillCountGauge.SetValueText($"{currentCount} / {requiredCount}");
+            else
+            {
+                float fillAmount = Mathf.Clamp01((float)currentCount / requiredCount);
+                _skillCountGauge.SetFrontValue(fillAmount);
+                _skillCountGauge.SetValueText($"{currentCount} / {requiredCount}");
+            }
         }
 
         private void ClearSkillCount()

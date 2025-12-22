@@ -14,27 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:TeamSuneat.Data:FloatyAssetAsset
   NameString: HealHealth
   IsChangingAsset: 0
-  Name: 9
-  FontSize: 0
-  FontType: 0
-  TextColor: {r: 0, g: 0, b: 0, a: 0}
+  Name: 5
+  FontType: 2
+  TextColor: {r: 0, g: 1, b: 0, a: 1}
   SpawnArea: {x: 0, y: 0}
   SpawnOffset: {x: 0, y: 0, z: 0}
-  Type: 0
+  Type: 1
   RandomFace: 0
-  DelayTime: 0
-  Duration: 0
-  Velocity: {x: 0, y: 0, z: 0}
+  DelayTime: 0.1
+  Duration: 0.5
+  Velocity: {x: 0, y: 100, z: 0}
   JumpEndValue: {x: 0, y: 0, z: 0}
   JumpPower: 0
   NumberOfJumps: 0
-  UseFadeOut: 0
-  FadeDuration: 0
-  FadeDelayTime: 0
-  FadeTargetAlpha: 0
-  UsePunchScale: 0
-  PunchScale: {x: 0, y: 0}
-  PunchScaleDuration: 0
-  PunchScaleVibrato: 0
-  TypeString: 
-  FontTypeString: 
+  UseFadeOut: 1
+  FadeDuration: 0.4
+  FadeDelayTime: 0.1
+  FadeTargetAlpha: 0.1
+  UsePunchScale: 1
+  PunchScale: {x: -0.1, y: -0.1}
+  PunchScaleDuration: 0.1
+  PunchScaleVibrato: 1
+  TypeString: Velocity
+  FontTypeString: Content

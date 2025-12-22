@@ -62,7 +62,7 @@ namespace TeamSuneat
 
                         if (!_floatyTexts.ContainsKey(content))
                         {
-                            UIFloatyText floatyText = SpawnFloatyText(content, UIFloatyMoveNames.StateEffect);
+                            UIFloatyText floatyText = SpawnFloatyText(content, UIFloatyMoveNames.Content);
                             if (floatyText != null)
                             {
                                 RegisterFloatyText(content, floatyText);

@@ -12,8 +12,9 @@ namespace TeamSuneat.Data
         [EnableIf("IsChangingAsset")]
         public UIFloatyMoveNames Name;
 
-        [FoldoutGroup("#Font")] public float FontSize;
-        [EnableIf("IsChangingAsset")][FoldoutGroup("#Font")] public GameFontTypes FontType;
+        
+        [EnableIf("IsChangingAsset")]
+        [FoldoutGroup("#Font")] public GameFontTypes FontType;
         [FoldoutGroup("#Font")] public Color TextColor;
 
         [FoldoutGroup("#Spawn")] public Vector2 SpawnArea;
@@ -58,19 +59,30 @@ namespace TeamSuneat.Data
             }
         }
 
-        public override void Rename()
-        {
-            Rename("Floaty");
-        }
-
         public override void Refresh()
         {
-            if (Name != 0) { NameString = Name.ToString(); }
-            if (Type != 0) { TypeString = Type.ToString(); }
-            if (FontType != 0) { FontTypeString = FontType.ToString(); }
+            if (Name != 0)
+            {
+                NameString = Name.ToString();
+            }
+
+            if (Type != 0)
+            {
+                TypeString = Type.ToString();
+            }
+
+            if (FontType != 0)
+            {
+                FontTypeString = FontType.ToString();
+            }
 
             IsChangingAsset = false;
             base.Refresh();
+        }
+
+        public override void Rename()
+        {
+            Rename("Floaty");
         }
 
 #endif

@@ -81,6 +81,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cc909dbd55810749b2736dff821e0ca
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_PlayerDamaged.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2f550f54a9b9be94288c9413c5a7cb36
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_Area01_Boss_SlimeKing.asset
     m_ReadOnly: 0
@@ -89,6 +95,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3005de02f394c444e97ed0f33b8b8cd3
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_PowerStrike.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33da283afde72b148a0eddacaa59b029
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_RestoreMana.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -177,6 +189,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 751b94256fa13af49954152221056101
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_HealHealth.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75daeb547f12df342a6016cb2a7aae06
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FirePillar.asset
     m_ReadOnly: 0
@@ -189,8 +207,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79dc1a29ae48f724f83bf23f9c361d6e
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_CriticalDamage.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b1487cc02c57e94faf7da716764cc14
     m_Address: Assets/Addressables/Scriptable/Character/PlayerCharacterStat.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e82f9aef20f96e419ffc2220569864b
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_Damage.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -219,20 +249,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d452892f14649e41b88926b8554bade
-    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_PhysicalCritical.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scriptable
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e183cbf5047abf498f4f4785c7a7b50
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_AccelerationSword.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scriptable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a6f4b923892827946a943ebaf1ecfc6d
-    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_Physical.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -255,12 +273,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ad1b6581760058e459b56aa024aaef49
-    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_PlayerDamaged.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scriptable
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae02db9debacf8c4e9939958292d7641
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FireWave.asset
     m_ReadOnly: 0
@@ -269,6 +281,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae8f3ff0034d0a04a97ffa972479f9bb
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_PowerImpact.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0fb6b5c659ddd049a3184c5cebd5133
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_ChargeShield.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -339,12 +357,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d707796b98d9c4e41a148c680c6fc49e
-    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_HealHealth.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scriptable
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9a68cc971c0c6c4b89e403dfe13dac6
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_LifeMana.asset
     m_ReadOnly: 0
@@ -395,6 +407,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3b4818f1851ae2469c2755a81cfebd8
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FlowingBlade.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6436ff00b34c524a8fd8fed3a5e92e3
+    m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_Execution.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable

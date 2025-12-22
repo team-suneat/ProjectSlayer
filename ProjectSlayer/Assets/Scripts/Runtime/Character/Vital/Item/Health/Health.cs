@@ -454,7 +454,7 @@ namespace TeamSuneat
 
         private void SpawnUseFloatyText(int useValue)
         {
-            _ = SpawnFloatyText(useValue.ToString(), DamageTextPoint, UIFloatyMoveNames.Physical);
+            _ = SpawnFloatyText(useValue.ToString(), DamageTextPoint, UIFloatyMoveNames.Damage);
         }
 
         private void SpawnDamageFloatyText(DamageResult damageResult, VitalResourceTypes vitalResourceType)

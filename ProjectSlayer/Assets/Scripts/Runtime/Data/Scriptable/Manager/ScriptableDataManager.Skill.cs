@@ -83,6 +83,30 @@ namespace TeamSuneat.Data
         }
 
         #endregion Skill Refresh Methods
+
+        #region SkillCardUnlock Get Methods
+
+        /// <summary>
+        /// 스킬 카드 해금 에셋을 가져옵니다.
+        /// </summary>
+        public SkillCardUnlockAsset GetSkillCardUnlockAsset()
+        {
+            return _skillCardUnlockAsset;
+        }
+
+        #endregion SkillCardUnlock Get Methods
+
+        #region SkillSlotUnlock Get Methods
+
+        /// <summary>
+        /// 스킬 슬롯 해금 에셋을 가져옵니다.
+        /// </summary>
+        public SkillSlotUnlockAsset GetSkillSlotUnlockAsset()
+        {
+            return _skillSlotUnlockAsset;
+        }
+
+        #endregion SkillSlotUnlock Get Methods
     }
 }
 

@@ -1,5 +1,8 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.Linq;
+using TeamSuneat;
+using TeamSuneat.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,19 +48,26 @@ namespace TeamSuneat.UserInterface
             _skillItemMap.Clear();
 
             SkillNames[] skillNames = EnumEx.GetValues<SkillNames>(true);
-            int itemIndex = 0;
+            List<SkillNames> validSkillNames = new List<SkillNames>();
 
+            // None 제외한 유효한 스킬 이름 수집
             for (int i = 0; i < skillNames.Length; i++)
             {
-                SkillNames skillName = skillNames[i];
-                if (skillName == SkillNames.None)
+                if (skillNames[i] != SkillNames.None)
                 {
-                    continue;
+                    validSkillNames.Add(skillNames[i]);
                 }
+            }
+
+            int itemIndex = 0;
+
+            for (int i = 0; i < validSkillNames.Count; i++)
+            {
+                SkillNames skillName = validSkillNames[i];
 
                 if (itemIndex >= _items.Length)
                 {
-                    Log.Warning(LogTags.UI_Page, "스킬 아이템 개수가 부족합니다. 필요한 개수: {0}, 현재 개수: {1}", skillNames.Length - 1, _items.Length);
+                    Log.Warning(LogTags.UI_Page, "스킬 아이템 개수가 부족합니다. 필요한 개수: {0}, 현재 개수: {1}", validSkillNames.Count, _items.Length);
                     break;
                 }
 
@@ -97,6 +107,5 @@ namespace TeamSuneat.UserInterface
         {
             return _skillItemMap.TryGetValue(skillName, out UISkillSlotItem item) ? item : null;
         }
-
     }
 }

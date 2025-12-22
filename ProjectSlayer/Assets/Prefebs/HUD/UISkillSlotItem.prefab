@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 8621567142304213665}
+  _skillFrameImage: {fileID: 7030256995655547771}
   _unknownImage: {fileID: 6629972839999621400}
   _skillNameText: {fileID: 7124060154041426895}
   _equippedText: {fileID: 8994506431952473904}

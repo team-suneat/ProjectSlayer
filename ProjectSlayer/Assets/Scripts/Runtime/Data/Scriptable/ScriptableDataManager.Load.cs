@@ -35,6 +35,8 @@ namespace TeamSuneat.Data
             else if (_experienceConfigAsset == null) { return false; }
             else if (_monsterStatConfigAsset == null) { return false; }
             else if (_playerCharacterStatAsset == null) { return false; }
+            else if (_skillCardUnlockAsset == null) { return false; }
+            else if (_skillSlotUnlockAsset == null) { return false; }
 
             return true;
         }
@@ -70,6 +72,12 @@ namespace TeamSuneat.Data
 
             // 플레이어 캐릭터 능력치 데이터 OnLoadData() 메서드 호출
             _playerCharacterStatAsset?.OnLoadData();
+
+            // 스킬 카드 해금 데이터 OnLoadData() 메서드 호출
+            _skillCardUnlockAsset?.OnLoadData();
+
+            // 스킬 슬롯 해금 데이터 OnLoadData() 메서드 호출
+            _skillSlotUnlockAsset?.OnLoadData();
 
             // 스킬 에셋 OnLoadData() 메서드 호출
             foreach (var skillAsset in _skillAssets.Values)
@@ -545,6 +553,22 @@ namespace TeamSuneat.Data
                         if (_playerCharacterStatAsset == null)
                         {
                             _playerCharacterStatAsset = playerCharacterStat;
+                            count++;
+                        }
+                        break;
+
+                    case SkillCardUnlockAsset skillCardUnlock:
+                        if (_skillCardUnlockAsset == null)
+                        {
+                            _skillCardUnlockAsset = skillCardUnlock;
+                            count++;
+                        }
+                        break;
+
+                    case SkillSlotUnlockAsset skillSlotUnlock:
+                        if (_skillSlotUnlockAsset == null)
+                        {
+                            _skillSlotUnlockAsset = skillSlotUnlock;
                             count++;
                         }
                         break;

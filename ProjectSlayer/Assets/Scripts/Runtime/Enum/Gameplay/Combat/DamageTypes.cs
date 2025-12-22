@@ -22,7 +22,7 @@
         RestoreMana, // 마나 회복
         RestoreManaOverTime, // 마나 지속 회복
 
-        Charge, // 보호막 충전
+        ChargeShield, // 보호막 충전
 
         #endregion 회복
     }
@@ -100,7 +100,7 @@
         {
             switch (key)
             {
-                case DamageTypes.Charge:
+                case DamageTypes.ChargeShield:
                     {
                         return true;
                     }

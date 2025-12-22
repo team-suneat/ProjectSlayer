@@ -13,32 +13,32 @@ namespace TeamSuneat.Data
         public SkillNames SkillName;
 
         [GUIColor("GetIntColor")]
-        [SuffixLabel("·¹º§")]
+        [SuffixLabel("í•´ê¸ˆ ë ˆë²¨")]
         public int UnlockLevel;
 
         [FoldoutGroup("#RequiredItem")]
         [EnableIf("IsChangingAsset")]
         [GUIColor("GetItemNameColor")]
-        [SuffixLabel("ÇÊ¿ä ¾ÆÀÌÅÛ (None °¡´É)")]
-        [InfoBox("½ºÅ³ ÇĞ½À¿¡ ÇÊ¿äÇÑ ¾ÆÀÌÅÛÀÔ´Ï´Ù. ¹«±â/¾Ç¼¼»ç¸® ¶Ç´Â ¼Ó¼º¼®À» ¼³Á¤ÇÕ´Ï´Ù.")]
+        [SuffixLabel("í•„ìš” ì•„ì´í…œ (None ê°€ëŠ¥)")]
+        [InfoBox("ìŠ¤í‚¬ í•™ìŠµì— í•„ìš”í•œ ì•„ì´í…œì…ë‹ˆë‹¤. ë¬´ê¸°/ì•…ì„¸ì‚¬ë¦¬ ë˜ëŠ” ì†ì„±ì„ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.")]
         public ItemNames RequiredItemName = ItemNames.None;
 
         [FoldoutGroup("#RequiredItem")]
         [GUIColor("GetIntColor")]
-        [SuffixLabel("ÇÊ¿ä °³¼ö")]
+        [SuffixLabel("í•„ìš” ê°œìˆ˜")]
         [ShowIf("RequiredItemName", ItemNames.None, false)]
         public int RequiredItemCount;
 
         [FoldoutGroup("#RequiredCurrency")]
         [EnableIf("IsChangingAsset")]
         [GUIColor("GetCurrencyNameColor")]
-        [SuffixLabel("ÇÊ¿ä ¼Ó¼º¼® (None °¡´É)")]
-        [InfoBox("½ºÅ³ ÇĞ½À¿¡ ÇÊ¿äÇÑ ¼Ó¼º¼®ÀÔ´Ï´Ù. CurrencyNames enumÀ» »ç¿ëÇÕ´Ï´Ù.")]
+        [SuffixLabel("í•„ìš” ì†ì„±ì„ (None ê°€ëŠ¥)")]
+        [InfoBox("ìŠ¤í‚¬ í•™ìŠµì— í•„ìš”í•œ ì†ì„±ì„ì…ë‹ˆë‹¤. CurrencyNames enumì„ ì‚¬ìš©í•©ë‹ˆë‹¤.")]
         public CurrencyNames RequiredCurrencyName = CurrencyNames.None;
 
         [FoldoutGroup("#RequiredCurrency")]
         [GUIColor("GetIntColor")]
-        [SuffixLabel("ÇÊ¿ä °³¼ö")]
+        [SuffixLabel("í•„ìš” ê°œìˆ˜")]
         [ShowIf("RequiredCurrencyName", CurrencyNames.None, false)]
         public int RequiredCurrencyCount;
 
@@ -74,15 +74,15 @@ namespace TeamSuneat.Data
 
             if (!EnumEx.ConvertTo(ref SkillName, SkillNameAsString))
             {
-                Log.Error("SkillCardUnlockAssetData ³» SkillName º¯¼ö º¯È¯¿¡ ½ÇÆĞÇß½À´Ï´Ù. {0}", SkillNameAsString);
+                Log.Error("SkillCardUnlockAssetDataì—ì„œ SkillName enum ë³€í™˜ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. {0}", SkillNameAsString);
             }
             if (!EnumEx.ConvertTo(ref RequiredItemName, RequiredItemNameAsString))
             {
-                Log.Error("SkillCardUnlockAssetData ³» RequiredItemName º¯¼ö º¯È¯¿¡ ½ÇÆĞÇß½À´Ï´Ù. {0}", RequiredItemNameAsString);
+                Log.Error("SkillCardUnlockAssetDataì—ì„œ RequiredItemName enum ë³€í™˜ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. {0}", RequiredItemNameAsString);
             }
             if (!EnumEx.ConvertTo(ref RequiredCurrencyName, RequiredCurrencyNameAsString))
             {
-                Log.Error("SkillCardUnlockAssetData ³» RequiredCurrencyName º¯¼ö º¯È¯¿¡ ½ÇÆĞÇß½À´Ï´Ù. {0}", RequiredCurrencyNameAsString);
+                Log.Error("SkillCardUnlockAssetDataì—ì„œ RequiredCurrencyName enum ë³€í™˜ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. {0}", RequiredCurrencyNameAsString);
             }
         }
 

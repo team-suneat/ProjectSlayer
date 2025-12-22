@@ -65,6 +65,8 @@ namespace TeamSuneat.Data
             Rename("SkillCardUnlock");
         }
 
+#endif
+
         public int GetUnlockLevel(SkillNames skillName)
         {
             if (UnlockDataList == null)
@@ -83,7 +85,5 @@ namespace TeamSuneat.Data
 
             return 0;
         }
-
-#endif
     }
 }

@@ -52,7 +52,7 @@ namespace TeamSuneat
                 case DamageTypes.HealOverTime: { ComputeHealValue(damageAsset, ReferenceValue, ref damageResult); } break;
                 case DamageTypes.RestoreMana:
                 case DamageTypes.RestoreManaOverTime: { ComputeRestoreManaValue(damageAsset, ReferenceValue, ref damageResult); } break;
-                case DamageTypes.Charge: { ComputeChargeValue(damageAsset, ReferenceValue, ref damageResult); } break;
+                case DamageTypes.ChargeShield: { ComputeChargeValue(damageAsset, ReferenceValue, ref damageResult); } break;
                 case DamageTypes.Normal: { HandleComputeDamage(damageAsset, ref damageResult); } break;
                 case DamageTypes.Thorns: { HandleComputeThorns(damageAsset, ref damageResult); } break;
                 case DamageTypes.DamageOverTime: { HandleComputeDamageOverTime(damageAsset, ref damageResult); } break;

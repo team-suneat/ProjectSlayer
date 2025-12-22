@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Lean.Pool;
-using Sirenix.OdinInspector;
 using TeamSuneat.Data;
 using TeamSuneat.Setting;
 using UnityEngine;
@@ -13,53 +12,42 @@ namespace TeamSuneat.UserInterface
     {
         public UILocalizedText Text;
         public Image TextImage;
-
         public AutoDespawn Despawner;
         public UIFollowObject FollowObject;
-
-        [FoldoutGroup("Sprite-Damage")] public Sprite PhysicalCritialSprite;
-        [FoldoutGroup("Sprite-Damage")] public Sprite MagicalCriticalSprite;
-        [FoldoutGroup("Sprite-Currency")] public Sprite GoldSprite;
-        [FoldoutGroup("Sprite-Currency")] public Sprite DiamondSprite;
-        [FoldoutGroup("Sprite-Currency")] public Sprite EmeraldSprite;
 
         private Tweener _moveTweener;
         private Tweener _scaleTweener;
         private Tweener _fadeTextTweener;
         private Tweener _fadeTextImageTweener;
         private Sequence _sequence;
+        private bool _isFacingRight;
+        private FloatyAsset _asset;
+        private UnityAction<UIFloatyText> _despawnCallback;
 
-        public string Content => Text.Content;
-
-        private FloatyAsset Asset { get; set; }
-
-        private UnityAction<UIFloatyText> DespawnCallback { get; set; }
+        public string Content => Text != null ? Text.Content : string.Empty;
 
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
 
-            Despawner = GetComponent<AutoDespawn>();
-            FollowObject = GetComponent<UIFollowObject>();
-
-            Text = GetComponentInChildren<UILocalizedText>();
-            TextImage = Text?.GetComponentInChildren<Image>(true);
+            Despawner ??= GetComponent<AutoDespawn>();
+            FollowObject ??= GetComponent<UIFollowObject>();
+            Text ??= GetComponentInChildren<UILocalizedText>();
+            TextImage ??= GetComponentInChildren<Image>();
         }
 
         public static UIFloatyMoveNames ConvertToName(DamageResult damageResult, VitalResourceTypes vitalResourceType)
         {
-            if (damageResult.TargetCharacter != null)
+            if (damageResult.TargetCharacter != null && damageResult.TargetCharacter.IsPlayer)
             {
-                if (damageResult.TargetCharacter.IsPlayer)
+                if (vitalResourceType == VitalResourceTypes.Health)
                 {
-                    if (vitalResourceType == VitalResourceTypes.Health)
-                    {
-                        return UIFloatyMoveNames.PlayerDamaged;
-                    }
-                    else if (vitalResourceType == VitalResourceTypes.Shield)
-                    {
-                        return UIFloatyMoveNames.Shield;
-                    }
+                    return UIFloatyMoveNames.PlayerDamaged;
+                }
+
+                if (vitalResourceType == VitalResourceTypes.Shield)
+                {
+                    return UIFloatyMoveNames.ChargeShield;
                 }
             }
 
@@ -67,71 +55,37 @@ namespace TeamSuneat.UserInterface
             {
                 case DamageTypes.Heal:
                 case DamageTypes.HealOverTime:
-                    {
-                        return UIFloatyMoveNames.HealHealth;
-                    }
+                    return UIFloatyMoveNames.HealHealth;
 
                 case DamageTypes.RestoreMana:
                 case DamageTypes.RestoreManaOverTime:
-                    {
-                        return UIFloatyMoveNames.RestoreMana;
-                    }
+                    return UIFloatyMoveNames.RestoreMana;
 
-                case DamageTypes.Charge:
-                    {
-                        return UIFloatyMoveNames.Shield;
-                    }
+                case DamageTypes.ChargeShield:
+                    return UIFloatyMoveNames.ChargeShield;
 
                 case DamageTypes.Normal:
-                    {
-                        if (damageResult.DamageValue == float.MaxValue)
-                        {
-                            return UIFloatyMoveNames.Execution;
-                        }
-                        else if (damageResult.IsCritical)
-                        {
-                            return UIFloatyMoveNames.PhysicalCritical;
-                        }
-                        else
-                        {
-                            return UIFloatyMoveNames.Physical;
-                        }
-                    }
-
-                case DamageTypes.Thorns:
-                    {
-                        return UIFloatyMoveNames.Thorns;
-                    }
-
                 case DamageTypes.DamageOverTime:
-                    {
-                        if (damageResult.DamageValue == float.MaxValue)
-                        {
-                            return UIFloatyMoveNames.Execution;
-                        }
-                        else if (damageResult.IsCritical)
-                        {
-                            return UIFloatyMoveNames.Bleeding;
-                        }
-                        else
-                        {
-                            return UIFloatyMoveNames.Bleeding;
-                        }
-                    }
-
-                case DamageTypes.Execution:
+                case DamageTypes.Thorns:
+                    if (damageResult.DamageValue == float.MaxValue)
                     {
                         return UIFloatyMoveNames.Execution;
                     }
 
-                default:
+                    if (damageResult.IsCritical)
                     {
-                        return UIFloatyMoveNames.Content;
+                        return UIFloatyMoveNames.CriticalDamage;
                     }
+
+                    return UIFloatyMoveNames.Damage;
+
+                case DamageTypes.Execution:
+                    return UIFloatyMoveNames.Execution;
+
+                default:
+                    return UIFloatyMoveNames.Content;
             }
         }
-
-        //
 
         protected override void OnDisabled()
         {
@@ -159,15 +113,15 @@ namespace TeamSuneat.UserInterface
 
         public void RegisterDespawnEvent(UnityAction<UIFloatyText> onDespawn)
         {
-            DespawnCallback = onDespawn;
+            _despawnCallback = onDespawn;
         }
 
         private void CallDespawnEvent()
         {
-            if (DespawnCallback != null)
+            if (_despawnCallback != null)
             {
-                DespawnCallback.Invoke(this);
-                DespawnCallback = null;
+                _despawnCallback.Invoke(this);
+                _despawnCallback = null;
             }
         }
 
@@ -175,21 +129,17 @@ namespace TeamSuneat.UserInterface
 
         public void Setup(string content, UIFloatyMoveNames moveType)
         {
-            Asset = ScriptableDataManager.Instance.FindFloaty(moveType);
-            if (!Asset.IsValid())
+            _asset = ScriptableDataManager.Instance.FindFloaty(moveType);
+            if (!_asset.IsValid())
             {
                 Log.Warning("Float 에셋을 찾을 수 없습니다: {0}", moveType);
                 return;
             }
 
             SetText(content);
-            SetImage(moveType);
-
             ApplyFontColor();
             ApplyFont();
-
             ApplySpawnPosition();
-
             FadeOut();
             StartPunchScale();
         }
@@ -212,72 +162,20 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        private void SetImage(UIFloatyMoveNames moveType)
-        {
-            if (TextImage != null)
-            {
-                switch (moveType)
-                {
-                    case UIFloatyMoveNames.PhysicalCritical:
-                        {
-                            TextImage.SetSprite(PhysicalCritialSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    case UIFloatyMoveNames.MagicalCritical:
-                        {
-                            TextImage.SetSprite(MagicalCriticalSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    case UIFloatyMoveNames.Gold:
-                        {
-                            TextImage.SetSprite(GoldSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    case UIFloatyMoveNames.Diamond:
-                        {
-                            TextImage.SetSprite(DiamondSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    case UIFloatyMoveNames.Emerald:
-                        {
-                            TextImage.SetSprite(EmeraldSprite, true);
-                            TextImage.gameObject.SetActive(true);
-                        }
-                        break;
-
-                    default:
-                        {
-                            TextImage.gameObject.SetActive(false);
-                        }
-                        break;
-                }
-            }
-        }
-
         private void ApplyFontColor()
         {
-            if (Text != null && Asset != null)
+            if (Text != null && _asset != null)
             {
-                Text.SetTextColor(Asset.TextColor);
+                Text.SetTextColor(_asset.TextColor);
             }
         }
 
         private void ApplyFont()
         {
-            if (Text != null && Asset != null)
+            if (Text != null && _asset != null)
             {
-                Text.FontType = Asset.FontType;
-                Text.FontTypeString = Asset.FontTypeString;
-                Text.SetDefaultFontSize(Asset.FontSize);
-
+                Text.FontType = _asset.FontType;
+                Text.FontTypeString = _asset.FontTypeString;
                 Text.Refresh(GameSetting.Instance.Language.Name);
             }
         }
@@ -288,17 +186,17 @@ namespace TeamSuneat.UserInterface
 
         private void ApplySpawnPosition()
         {
-            if (FollowObject != null && Asset != null)
+            if (FollowObject == null || _asset == null)
             {
-                if (!Asset.SpawnArea.IsZero())
-                {
-                    Vector3 offset;
+                return;
+            }
 
-                    offset = RandomEx.GetVector3Value(Asset.SpawnArea);
-                    offset += Asset.SpawnOffset;
+            if (!_asset.SpawnArea.IsZero())
+            {
+                Vector3 offset = RandomEx.GetVector3Value(_asset.SpawnArea);
+                offset += _asset.SpawnOffset;
 
-                    FollowObject.SetWorldOffset(offset);
-                }
+                FollowObject.SetWorldOffset(offset);
             }
         }
 
@@ -306,15 +204,20 @@ namespace TeamSuneat.UserInterface
 
         #region Move
 
-        private bool _isFacingRight;
-
         public void SetFacingRight(Vector3 damageDirection)
         {
-            if (Asset.RandomFace)
+            if (_asset == null)
+            {
+                return;
+            }
+
+            if (_asset.RandomFace)
             {
                 _isFacingRight = RandomEx.GetBoolValue();
+                return;
             }
-            else if (damageDirection.x > 0)
+
+            if (damageDirection.x > 0)
             {
                 _isFacingRight = true;
             }
@@ -324,14 +227,18 @@ namespace TeamSuneat.UserInterface
             }
             else
             {
-                // default
                 _isFacingRight = true;
             }
         }
 
         public void SetFacingRight(bool isFacingRight)
         {
-            if (Asset.RandomFace)
+            if (_asset == null)
+            {
+                return;
+            }
+
+            if (_asset.RandomFace)
             {
                 _isFacingRight = RandomEx.GetBoolValue();
             }
@@ -343,41 +250,47 @@ namespace TeamSuneat.UserInterface
 
         public void StartMove()
         {
-            if (_moveTweener == null && _sequence == null)
+            if (_moveTweener != null || _sequence != null)
             {
-                ResetTextPosition();
+                return;
+            }
 
-                if (Asset == null)
-                {
-                    Log.Warning("UIFloatyText의 Asset을 찾을 수 없습니다.");
-                    return;
-                }
-                else if (Asset.Type == UIFloatyMoveTypes.Velocity)
-                {
-                    StartVelocityMove(GetVelocity(), Asset.Duration);
-                }
-                else if (Asset.Type == UIFloatyMoveTypes.Jump)
-                {
-                    StartJumpMove();
-                }
+            ResetTextPosition();
+
+            if (_asset == null)
+            {
+                Log.Warning("UIFloatyText의 Asset을 찾을 수 없습니다.");
+                return;
+            }
+
+            if (_asset.Type == UIFloatyMoveTypes.Velocity)
+            {
+                StartVelocityMove(GetVelocity(), _asset.Duration);
+            }
+            else if (_asset.Type == UIFloatyMoveTypes.Jump)
+            {
+                StartJumpMove();
             }
         }
 
         private Vector2 GetVelocity()
         {
+            if (_asset == null)
+            {
+                return Vector2.zero;
+            }
+
             if (_isFacingRight)
             {
-                return new Vector2(Mathf.Abs(Asset.Velocity.x), Asset.Velocity.y);
+                return new Vector2(Mathf.Abs(_asset.Velocity.x), _asset.Velocity.y);
             }
-            else
-            {
-                return new Vector2(-Mathf.Abs(Asset.Velocity.x), Asset.Velocity.y);
-            }
+
+            return new Vector2(-Mathf.Abs(_asset.Velocity.x), _asset.Velocity.y);
         }
 
         private void StartVelocityMove(Vector2 velocity, float duration)
         {
-            if (velocity.IsZero())
+            if (velocity.IsZero() || Text == null || _asset == null)
             {
                 return;
             }
@@ -386,30 +299,29 @@ namespace TeamSuneat.UserInterface
             if (_moveTweener != null)
             {
                 _moveTweener.onComplete += OnMoved;
-                if (Asset.DelayTime > 0)
+                if (_asset.DelayTime > 0)
                 {
-                    _moveTweener.SetDelay(Asset.DelayTime);
+                    _moveTweener.SetDelay(_asset.DelayTime);
                 }
             }
         }
 
         private void StartJumpMove()
         {
-            if (_isFacingRight)
+            if (Text == null || _asset == null)
             {
-                _sequence = Text.transform.DOLocalJump(Asset.JumpEndValue, Asset.JumpPower, Asset.NumberOfJumps, Asset.Duration);
+                return;
             }
-            else
-            {
-                _sequence = Text.transform.DOLocalJump(Asset.JumpEndValue.FlipX(), Asset.JumpPower, Asset.NumberOfJumps, Asset.Duration);
-            }
+
+            Vector3 jumpEndValue = _isFacingRight ? _asset.JumpEndValue : _asset.JumpEndValue.FlipX();
+            _sequence = Text.transform.DOLocalJump(jumpEndValue, _asset.JumpPower, _asset.NumberOfJumps, _asset.Duration);
 
             if (_sequence != null)
             {
                 _sequence.onComplete += OnMoved;
-                if (Asset.DelayTime > 0)
+                if (_asset.DelayTime > 0)
                 {
-                    _sequence.SetDelay(Asset.DelayTime);
+                    _sequence.SetDelay(_asset.DelayTime);
                 }
             }
         }
@@ -447,21 +359,27 @@ namespace TeamSuneat.UserInterface
 
         private void FadeOut()
         {
-            if (!Asset.UseFadeOut)
+            if (_asset == null || !_asset.UseFadeOut)
             {
                 return;
             }
 
             if (Text != null)
             {
-                _fadeTextTweener = Text.FadeOut(Asset.FadeTargetAlpha, Asset.Duration, Asset.DelayTime);
-                _fadeTextTweener.onComplete = () => { _fadeTextTweener = null; };
+                _fadeTextTweener = Text.FadeOut(_asset.FadeTargetAlpha, _asset.Duration, _asset.DelayTime);
+                if (_fadeTextTweener != null)
+                {
+                    _fadeTextTweener.onComplete = () => { _fadeTextTweener = null; };
+                }
             }
 
             if (TextImage != null)
             {
-                _fadeTextImageTweener = TextImage.FadeOut(Asset.FadeTargetAlpha, Asset.Duration, Asset.DelayTime);
-                _fadeTextImageTweener.onComplete = () => { _fadeTextImageTweener = null; };
+                _fadeTextImageTweener = TextImage.FadeOut(_asset.FadeTargetAlpha, _asset.Duration, _asset.DelayTime);
+                if (_fadeTextImageTweener != null)
+                {
+                    _fadeTextImageTweener.onComplete = () => { _fadeTextImageTweener = null; };
+                }
             }
         }
 
@@ -486,13 +404,15 @@ namespace TeamSuneat.UserInterface
 
         private void StartPunchScale()
         {
-            if (Asset.UsePunchScale)
+            if (_asset == null || !_asset.UsePunchScale || _asset.PunchScaleDuration <= 0)
             {
-                if (Asset.PunchScaleDuration > 0)
-                {
-                    _scaleTweener = transform.DOPunchScale(Asset.PunchScale, Asset.PunchScaleDuration, Asset.PunchScaleVibrato);
-                    _scaleTweener.onComplete += OnCompletedPunchScale;
-                }
+                return;
+            }
+
+            _scaleTweener = transform.DOPunchScale(_asset.PunchScale, _asset.PunchScaleDuration, _asset.PunchScaleVibrato);
+            if (_scaleTweener != null)
+            {
+                _scaleTweener.onComplete += OnCompletedPunchScale;
             }
         }
 

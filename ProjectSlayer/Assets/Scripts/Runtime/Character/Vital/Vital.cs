@@ -161,7 +161,7 @@ namespace TeamSuneat
                     }
                     break;
 
-                case DamageTypes.Charge:
+                case DamageTypes.ChargeShield:
                     {
                         int chargeValue = Mathf.CeilToInt(damageResult.DamageValue);
                         targetVital.Charge(chargeValue);

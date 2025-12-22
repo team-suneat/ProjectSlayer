@@ -347,9 +347,16 @@ namespace TeamSuneat.Data.Game
                 defaultSkill.Slots.Add(new VSkillSlot
                 {
                     SlotID = i,
-                    IsUnlocked = i == 0,
+                    // IsUnlocked = i == 0,
+                    IsUnlocked = true,
                     SkillNameString = string.Empty
                 });
+            }
+
+            SkillNames[] skills = EnumEx.GetValues<SkillNames>(true);
+            for (int i = 0; i < skills.Length; i++)
+            {
+                defaultSkill.LearnSkill(skills[i]);
             }
 
             return defaultSkill;

@@ -23,18 +23,6 @@ namespace TeamSuneat.Data
             {
                 Log.Error("Skill Asset 내 Grade 변수 변환에 실패했습니다. {0}", Name.ToLogString());
             }
-            if (!EnumEx.ConvertTo(ref RequiredWeapon, RequiredWeaponAsString))
-            {
-                Log.Error("Skill Asset 내 RequiredWeapon 변수 변환에 실패했습니다. {0}", Name.ToLogString());
-            }
-            if (!EnumEx.ConvertTo(ref RequiredAccessory, RequiredAccessoryAsString))
-            {
-                Log.Error("Skill Asset 내 RequiredAccessory 변수 변환에 실패했습니다. {0}", Name.ToLogString());
-            }
-            if (!EnumEx.ConvertTo(ref MinRequiredGrade, MinRequiredGradeAsString))
-            {
-                Log.Error("Skill Asset 내 MinRequiredGrade 변수 변환에 실패했습니다. {0}", Name.ToLogString());
-            }
         }
 
         public override void Refresh()
@@ -44,9 +32,6 @@ namespace TeamSuneat.Data
             TypeAsString = Type.ToString();
             GradeAsString = Grade.ToString();
             CooldownTypeAsString = CooldownType.ToString();
-            RequiredWeaponAsString = RequiredWeapon.ToString();
-            RequiredAccessoryAsString = RequiredAccessory.ToString();
-            MinRequiredGradeAsString = MinRequiredGrade.ToString();
 
             IsChangingAsset = false;
         }
@@ -69,9 +54,6 @@ namespace TeamSuneat.Data
             UpdateIfChanged(ref TypeAsString, Type);
             UpdateIfChanged(ref GradeAsString, Grade);
             UpdateIfChanged(ref CooldownTypeAsString, CooldownType);
-            UpdateIfChanged(ref RequiredWeaponAsString, RequiredWeapon);
-            UpdateIfChanged(ref RequiredAccessoryAsString, RequiredAccessory);
-            UpdateIfChanged(ref MinRequiredGradeAsString, MinRequiredGrade);
 
             IsChangingAsset = false;
 

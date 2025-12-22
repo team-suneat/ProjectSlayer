@@ -172,33 +172,6 @@ namespace TeamSuneat.Data
 
         #endregion 특수 효과
 
-        #region 학습 재료
-
-        [FoldoutGroup("#학습 재료")]
-        [GUIColor("GetBoolColor")]
-        [SuffixLabel("스킬 카드 필요 여부")]
-        public bool RequiresSkillCard;
-
-        [FoldoutGroup("#학습 재료")]
-        [EnableIf("IsChangingAsset")]
-        [GUIColor("GetItemNameColor")]
-        [SuffixLabel("필요 무기 (None 가능)")]
-        public ItemNames RequiredWeapon;
-
-        [FoldoutGroup("#학습 재료")]
-        [EnableIf("IsChangingAsset")]
-        [GUIColor("GetItemNameColor")]
-        [SuffixLabel("필요 악세사리 (None 가능)")]
-        public ItemNames RequiredAccessory;
-
-        [FoldoutGroup("#학습 재료")]
-        [EnableIf("@IsChangingAsset && (RequiredWeapon != ItemNames.None || RequiredAccessory != ItemNames.None)")]
-        [GUIColor("GetGradeColor")]
-        [SuffixLabel("최소 필요 등급")]
-        public GradeNames MinRequiredGrade;
-
-        #endregion 학습 재료
-
         #region 레벨업 비용
 
         [FoldoutGroup("#레벨업 비용")]
@@ -225,18 +198,6 @@ namespace TeamSuneat.Data
         [FoldoutGroup("#String")]
         [EnableIf("@!IsChangingAsset")]
         public string CooldownTypeAsString;
-
-        [FoldoutGroup("#String")]
-        [EnableIf("@!IsChangingAsset")]
-        public string RequiredWeaponAsString;
-
-        [FoldoutGroup("#String")]
-        [EnableIf("@!IsChangingAsset")]
-        public string RequiredAccessoryAsString;
-
-        [FoldoutGroup("#String")]
-        [EnableIf("@!IsChangingAsset")]
-        public string MinRequiredGradeAsString;
 
         #endregion String
 
@@ -283,11 +244,6 @@ namespace TeamSuneat.Data
                 StunChance = StunChance,
                 HasTimeStop = HasTimeStop,
                 IsPiercing = IsPiercing,
-
-                RequiresSkillCard = RequiresSkillCard,
-                RequiredWeapon = RequiredWeapon,
-                RequiredAccessory = RequiredAccessory,
-                MinRequiredGrade = MinRequiredGrade,
 
                 LevelUpCosts = LevelUpCosts != null ? (int[])LevelUpCosts.Clone() : null,
             };

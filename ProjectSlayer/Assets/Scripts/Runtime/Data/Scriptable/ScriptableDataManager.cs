@@ -13,6 +13,8 @@ namespace TeamSuneat.Data
         private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 능력치
         private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
         private GrowthConfigAsset _growthDataAsset; // 캐릭터 성장
+        private SkillCardUnlockAsset _skillCardUnlockAsset; // 스킬 카드 해금
+        private SkillSlotUnlockAsset _skillSlotUnlockAsset; // 스킬 슬롯 해금
 
         private readonly Dictionary<int, HitmarkAsset> _hitmarkAssets = new();
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();
@@ -25,7 +27,7 @@ namespace TeamSuneat.Data
         private readonly Dictionary<int, SoundAsset> _soundAssets = new();
         private readonly Dictionary<int, StageAsset> _stageAssets = new();
         private readonly Dictionary<int, AreaAsset> _areaAssets = new();
-
+    
         public void Clear()
         {
             _logSetting = null;
@@ -47,6 +49,8 @@ namespace TeamSuneat.Data
             _experienceConfigAsset = null;
             _monsterStatConfigAsset = null;
             _playerCharacterStatAsset = null;
+            _skillCardUnlockAsset = null;
+            _skillSlotUnlockAsset = null;
         }
 
         public void RefreshAll()

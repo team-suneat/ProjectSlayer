@@ -4,32 +4,16 @@ namespace TeamSuneat
     {
         None,
 
-        Physical,
-        PhysicalCritical,
-        Magical,
-        MagicalCritical,
-        Thorns,
-        Bleeding,
-        Burning,
-        Poisoning,
+        Damage,
+        CriticalDamage,
+        PlayerDamaged,
+        Execution,
 
         HealHealth,
         RestoreMana,
-        RestoreBerserk,
-        RestoreEnery,
-
-        PlayerDamaged,
-        Shield,
+        ChargeShield,
 
         Content,
-        StateEffect,
 
-        Gold,
-        Diamond,
-        Emerald,
-        Potion,
-
-        Warning,
-        Execution,
     }
 }

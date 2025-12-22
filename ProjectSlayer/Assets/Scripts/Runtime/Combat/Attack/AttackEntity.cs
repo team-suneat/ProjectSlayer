@@ -221,7 +221,7 @@ namespace TeamSuneat
                 case DamageTypes.RestoreManaOverTime:
                     return ProcessRestoreManaDamage(damageResult);
 
-                case DamageTypes.Charge:
+                case DamageTypes.ChargeShield:
                     return ProcessChargeDamage(damageResult);
 
                 default:
