@@ -23,10 +23,6 @@ namespace TeamSuneat.Data
             {
                 Log.Error("Skill Asset 내 Grade 변수 변환에 실패했습니다. {0}", Name.ToLogString());
             }
-            if (!EnumEx.ConvertTo(ref CooldownType, CooldownTypeAsString))
-            {
-                Log.Error("Skill Asset 내 CooldownType 변수 변환에 실패했습니다. {0}", Name.ToLogString());
-            }
             if (!EnumEx.ConvertTo(ref RequiredWeapon, RequiredWeaponAsString))
             {
                 Log.Error("Skill Asset 내 RequiredWeapon 변수 변환에 실패했습니다. {0}", Name.ToLogString());

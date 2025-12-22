@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using TeamSuneat;
 using TeamSuneat.Data.Game;
 using UnityEngine;
 
@@ -18,16 +17,14 @@ namespace TeamSuneat.UserInterface
         {
             base.AutoGetComponents();
 
-            if (_skillSlots == null || _skillSlots.Length == 0)
+            if (!_skillSlots.IsValidArray())
             {
                 _skillSlots = this.GetComponentsInChildren<HUDSkillSlot>(true);
             }
         }
 
-        public override void Initialize()
+        public void Initialize()
         {
-            base.Initialize();
-
             InitializeSlots();
         }
 
@@ -35,16 +32,19 @@ namespace TeamSuneat.UserInterface
         {
             _slotMap.Clear();
 
-            for (int i = 0; i < _skillSlots.Length; i++)
+            if (_skillSlots.IsValid())
             {
-                HUDSkillSlot slot = _skillSlots[i];
-                if (slot == null)
+                for (int i = 0; i < _skillSlots.Length; i++)
                 {
-                    continue;
-                }
+                    HUDSkillSlot slot = _skillSlots[i];
+                    if (slot == null)
+                    {
+                        continue;
+                    }
 
-                slot.Setup(i);
-                _slotMap[i] = slot;
+                    slot.Setup(slot.SlotIndex);
+                    _slotMap.Add(slot.SlotIndex, slot);
+                }
             }
         }
 
@@ -102,4 +102,3 @@ namespace TeamSuneat.UserInterface
         }
     }
 }
-

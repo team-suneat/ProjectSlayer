@@ -165,6 +165,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b1487cc02c57e94faf7da716764cc14
+    m_Address: Assets/Addressables/Scriptable/Character/PlayerCharacterStat.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 872c280518a161d4e97f3e63cf7076cd
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_DancingWave.asset
     m_ReadOnly: 0
@@ -195,6 +201,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e183cbf5047abf498f4f4785c7a7b50
+    m_Address: Assets/Addressables/Scriptable/Skill/Skill_AccelerationSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a6f4b923892827946a943ebaf1ecfc6d
     m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_Physical.asset
     m_ReadOnly: 0
@@ -214,7 +226,7 @@ MonoBehaviour:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad054745a1ae1624aa24a4931ec339e6
-    m_Address: Assets/Addressables/Scriptable/Character/GrowthData.asset
+    m_Address: Assets/Addressables/Scriptable/Character/GrowthConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -299,12 +311,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d707796b98d9c4e41a148c680c6fc49e
     m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_HealHealth.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Scriptable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d79c0f1475e89e341a73bddab0735c88
-    m_Address: Assets/Addressables/Scriptable/Skill/Skill_AccelerationSword.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable

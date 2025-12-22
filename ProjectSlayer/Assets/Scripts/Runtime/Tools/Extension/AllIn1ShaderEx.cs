@@ -103,11 +103,11 @@ namespace TeamSuneat
             {
                 if (value)
                 {
-                    renderer.material.EnableKeyword("INNEROUTLINE_ON");                    
+                    renderer.material.EnableKeyword("INNEROUTLINE_ON");
                 }
                 else
                 {
-                    renderer.material.DisableKeyword("INNEROUTLINE_ON");                    
+                    renderer.material.DisableKeyword("INNEROUTLINE_ON");
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace TeamSuneat
         {
             if (renderer != null)
             {
-                renderer.material.SetFloat("_InnerOutlineAlpha", alpha);                
+                renderer.material.SetFloat("_InnerOutlineAlpha", alpha);
             }
         }
 
@@ -143,7 +143,7 @@ namespace TeamSuneat
 
         #region Hue Shift
 
-        public static void SetHueShift(this SpriteRenderer renderer,  float value)
+        public static void SetHueShift(this SpriteRenderer renderer, float value)
         {
             if (renderer != null)
             {
@@ -221,5 +221,39 @@ namespace TeamSuneat
         }
 
         #endregion HitEffect
+
+        #region GreyScale
+
+        public static void SetGreyScale(this SpriteRenderer renderer, bool value)
+        {
+            if (renderer != null)
+            {
+                if (value)
+                {
+                    renderer.material.EnableKeyword("GREYSCALE_ON");
+                }
+                else
+                {
+                    renderer.material.DisableKeyword("GREYSCALE_ON");
+                }
+            }
+        }
+
+        public static void SetGreyScale(this UnityEngine.UI.Image image, bool value)
+        {
+            if (image != null)
+            {
+                if (value)
+                {
+                    image.material.EnableKeyword("GREYSCALE_ON");
+                }
+                else
+                {
+                    image.material.DisableKeyword("GREYSCALE_ON");
+                }
+            }
+        }
+
+        #endregion GreyScale
     }
 }

@@ -103,6 +103,7 @@ MonoBehaviour:
   _punchScale: {x: -0.1, y: -0.1, z: -0.1}
   _button: {fileID: 603791274469559028}
   _buttonImageAlphaDuration: 0.15
+  _holdInterval: 0.1
   _earnAmount: 100
 --- !u!1 &2134634435004185815
 GameObject:
@@ -346,7 +347,7 @@ GameObject:
   - component: {fileID: 6489996251902749658}
   - component: {fileID: 4617356268630319329}
   m_Layer: 5
-  m_Name: Background Image
+  m_Name: Frame Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,14 +393,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08271027, g: 0.15423359, b: 0.21383637, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 92ca4b1729e1ddd4d992144aa89f9be5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f61a1a97b4bba64fbfb788af1cea9e6, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -708,6 +709,7 @@ MonoBehaviour:
   _punchScale: {x: -0.1, y: -0.1, z: -0.1}
   _button: {fileID: 9168520452028430074}
   _buttonImageAlphaDuration: 0.15
+  _holdInterval: 0.1
   OnLevelUpSuccess:
     m_PersistentCalls:
       m_Calls: []

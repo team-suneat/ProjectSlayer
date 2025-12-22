@@ -33,11 +33,13 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
+            base.OnButtonClick();
             TryPerformLevelUp();
         }
 
         protected override void OnButtonHold()
         {
+            base.OnButtonHold();
             TryPerformLevelUp();
         }
 

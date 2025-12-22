@@ -8,4 +8,3 @@ namespace TeamSuneat.Data.Game
         public string SkillNameString; // 스킬 이름
     }
 }
-

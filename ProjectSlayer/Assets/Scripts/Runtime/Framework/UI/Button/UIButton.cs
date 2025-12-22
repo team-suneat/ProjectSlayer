@@ -6,26 +6,24 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace TeamSuneat
+namespace TeamSuneat.UserInterface
 {
     public class UIButton : UIInteractiveElement, IPointerDownHandler, IPointerUpHandler
     {
+        private const float ALPHA_TRANSPARENT = 0f;
+        private const float ALPHA_SEMI_TRANSPARENT = 0.5f;
+        private const float ALPHA_ANIMATION_DURATION_RATIO = 0.5f;
+        private const float DEFAULT_HOLD_INTERVAL = 0.1f;
+        private const float DEFAULT_BUTTON_IMAGE_ALPHA_DURATION = 0.15f;
+
         [FoldoutGroup("#UIButton")]
         [SerializeField] private Button _button;
-
-        [FoldoutGroup("#UIButton")]
-        [SerializeField] private float _buttonImageAlphaDuration = 0.15f;
-
-        [FoldoutGroup("#UIButton")]
-        [SerializeField] private float _holdInterval = 0.1f;
 
         private Tween _alphaTween;
         private Coroutine _holdCoroutine;
         private bool _isHolding;
 
         public Button Button => _button;
-
-
 
         public override void AutoGetComponents()
         {
@@ -45,7 +43,7 @@ namespace TeamSuneat
             if (_buttonImage != null)
             {
                 Color color = _buttonImage.color;
-                color.a = 0f;
+                color.a = ALPHA_TRANSPARENT;
                 _buttonImage.color = color;
             }
         }
@@ -85,21 +83,16 @@ namespace TeamSuneat
                 return;
             }
 
-            PlayClickAnimation();
             OnButtonClick();
         }
 
         protected virtual void OnButtonClick()
         {
-            // 자식 클래스에서 오버라이드하여 클릭 이벤트 구현
+            PlayPunchScaleAnimation();
+            PlayButtonImageAlphaAnimation();
         }
 
         protected virtual void OnButtonHold()
-        {
-            // 자식 클래스에서 오버라이드하여 홀드 이벤트 구현
-        }
-
-        private void PlayClickAnimation()
         {
             PlayPunchScaleAnimation();
             PlayButtonImageAlphaAnimation();
@@ -111,13 +104,14 @@ namespace TeamSuneat
 
             if (_buttonImage != null)
             {
-                _alphaTween = _buttonImage.DOFade(0.5f, _buttonImageAlphaDuration * 0.5f)
+                float halfDuration = DEFAULT_BUTTON_IMAGE_ALPHA_DURATION * ALPHA_ANIMATION_DURATION_RATIO;
+                _alphaTween = _buttonImage.DOFade(ALPHA_SEMI_TRANSPARENT, halfDuration)
                     .SetEase(Ease.OutQuad)
                     .OnComplete(() =>
                     {
                         if (_buttonImage != null)
                         {
-                            _buttonImage.DOFade(0f, _buttonImageAlphaDuration * 0.5f)
+                            _buttonImage.DOFade(ALPHA_TRANSPARENT, halfDuration)
                                 .SetEase(Ease.InQuad);
                         }
                     });
@@ -209,7 +203,7 @@ namespace TeamSuneat
         {
             while (_isHolding && _isClickable)
             {
-                yield return new WaitForSeconds(_holdInterval);
+                yield return new WaitForSeconds(DEFAULT_HOLD_INTERVAL);
 
                 if (_isHolding && _isClickable)
                 {

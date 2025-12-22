@@ -1,7 +1,5 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using TeamSuneat;
-using TeamSuneat.Data.Game;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,41 +9,27 @@ namespace TeamSuneat.UserInterface
     public class UISkillPage : UIPage
     {
         [Title("#UISkillPage")]
-        [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private Transform _contentParent;
-        [SerializeField] private UISkillSlotItem _itemPrefab;
-
-        private readonly List<UISkillSlotItem> _items = new();
+        [SerializeField] private UISkillSlotItem[] _items;
         private readonly Dictionary<SkillNames, UISkillSlotItem> _skillItemMap = new();
 
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
 
-            _scrollRect ??= GetComponentInChildren<ScrollRect>();
-            if (_scrollRect != null)
-            {
-                _contentParent ??= _scrollRect.content;
-            }
+            _items = GetComponentsInChildren<UISkillSlotItem>(true);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            if (_itemPrefab == null)
+            if (_items == null || _items.Length == 0)
             {
-                Log.Warning(LogTags.UI_Page, "UISkillSlotItem 프리팹이 설정되지 않았습니다.");
+                Log.Warning(LogTags.UI_Page, "UISkillSlotItem을 찾을 수 없습니다.");
                 return;
             }
 
-            if (_contentParent == null)
-            {
-                Log.Warning(LogTags.UI_Page, "Content Parent가 설정되지 않았습니다.");
-                return;
-            }
-
-            CreateSkillItems();
+            SetupSkillItems();
             RefreshAllItems();
         }
 
@@ -56,11 +40,13 @@ namespace TeamSuneat.UserInterface
             Refresh();
         }
 
-        private void CreateSkillItems()
+        private void SetupSkillItems()
         {
-            ClearItems();
+            _skillItemMap.Clear();
 
-            SkillNames[] skillNames = EnumEx.GetValues<SkillNames>();
+            SkillNames[] skillNames = EnumEx.GetValues<SkillNames>(true);
+            int itemIndex = 0;
+
             for (int i = 0; i < skillNames.Length; i++)
             {
                 SkillNames skillName = skillNames[i];
@@ -69,42 +55,21 @@ namespace TeamSuneat.UserInterface
                     continue;
                 }
 
-                UISkillSlotItem item = CreateItem(skillName);
-                if (item != null)
+                if (itemIndex >= _items.Length)
                 {
-                    _items.Add(item);
-                    _skillItemMap[skillName] = item;
+                    Log.Warning(LogTags.UI_Page, "스킬 아이템 개수가 부족합니다. 필요한 개수: {0}, 현재 개수: {1}", skillNames.Length - 1, _items.Length);
+                    break;
+                }
+
+                if (_items[itemIndex] != null)
+                {
+                    _items[itemIndex].Setup(skillName);
+                    _skillItemMap.Add(skillName, _items[itemIndex]);
+                    itemIndex++;
                 }
             }
 
-            Log.Info(LogTags.UI_Page, "스킬 아이템 {0}개 생성 완료", _items.Count);
-        }
-
-        private UISkillSlotItem CreateItem(SkillNames skillName)
-        {
-            if (_itemPrefab == null || _contentParent == null)
-            {
-                return null;
-            }
-
-            UISkillSlotItem item = Instantiate(_itemPrefab, _contentParent);
-            item.gameObject.SetActive(true);
-            item.Setup(skillName);
-
-            return item;
-        }
-
-        private void ClearItems()
-        {
-            for (int i = 0; i < _items.Count; i++)
-            {
-                if (_items[i] != null)
-                {
-                    Destroy(_items[i].gameObject);
-                }
-            }
-            _items.Clear();
-            _skillItemMap.Clear();
+            Log.Info(LogTags.UI_Page, "스킬 아이템 {0}개 설정 완료", itemIndex);
         }
 
         public void Refresh()
@@ -114,7 +79,12 @@ namespace TeamSuneat.UserInterface
 
         public void RefreshAllItems()
         {
-            for (int i = 0; i < _items.Count; i++)
+            if (_items == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _items.Length; i++)
             {
                 if (_items[i] != null)
                 {
@@ -128,10 +98,5 @@ namespace TeamSuneat.UserInterface
             return _skillItemMap.TryGetValue(skillName, out UISkillSlotItem item) ? item : null;
         }
 
-        private void OnDestroy()
-        {
-            ClearItems();
-        }
     }
 }
-

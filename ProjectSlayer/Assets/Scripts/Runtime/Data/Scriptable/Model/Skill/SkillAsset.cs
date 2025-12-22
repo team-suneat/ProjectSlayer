@@ -33,9 +33,9 @@ namespace TeamSuneat.Data
             }
             else
             {
-                if (Data.Name != Name)
+                if (Data.Name == SkillNames.None)
                 {
-                    Log.Error("스킬의 이름과 Data의 이름이 같지 않습니다. {0} != {1}, Asset: {2}", Data.Name, Name, name);
+                    Log.Error("스킬의 이름이 설정되지 않았습니다: {0}", name);
                 }
                 if (Data.MaxLevel == 0)
                 {

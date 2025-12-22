@@ -53,6 +53,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\AreaNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Notice\UICurrencyShortageNotice.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Prototype\NodeTypes.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\UISkillSlotItem.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Character.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Passive\BuffReleaseApplications.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\TurnState.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\Text\StringColorTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\FadeEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Stat\StatNames.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Skill\VSkill.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Hitmark.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\Select\Button\ButtonStateEffectType.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Editor.cs" />
@@ -118,13 +120,16 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Resolver\PrivateSetterContractResolver.cs" />
     <Compile Include="Assets\Scripts\Runtime\Object\DropEXP.cs" />
     <Compile Include="Assets\Scripts\Runtime\Feedbacks\GameFeedBack.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillCardUnlockAsset.Default.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Renderer\VFXSpriteRenderer.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAssetData.Editor.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Button\UIExperienceButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\Popup\UIPopupNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.Stat.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\BGMPlayer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Async.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Log.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Handlers\StatLogHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioManager.Static.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\String\ColorStringEx.cs" />
@@ -154,11 +159,15 @@
     <Compile Include="Assets\Scripts\Runtime\UI\Notice\UIStageTitleNotice.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\UICharacterLevelUpButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Multiplier.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillCardUnlockAssetData.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Ability\Model\Attack\MonsterAttackAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\AttackAreaShape.cs" />
     <Compile Include="Assets\Scripts\Runtime\Animation\AnimatorStateMachine.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAssetData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Log\Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\SortStrategy\NotShuffleDeckSortStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Enhancement\UIEnhancementPage.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAsset.CreateSkillData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\World\AreaAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Buff\BuffAssetData.Method.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\Handler\Interface\IUIPopupCallbackHandler.cs" />
@@ -166,6 +175,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Character\CharacterTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Growth\UIGrowthPage.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\PlayerCharacterStatAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Scene\Loader\FadeSceneLoader.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\BuffSystem.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Editor.cs" />
@@ -206,7 +216,6 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Character\FaceTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\BossCharacter.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\SaveSlot\VProfile.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Growth\GrowthDataAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Stat\StatEnumChecker.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Implementations\CameraZoom.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Currency\VCurrency.cs" />
@@ -245,6 +254,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Character\CharacterState.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Particle\ParticleEffect2DGroup.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Health\Health.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Growth\GrowthConfigAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Attack\AttackEntity.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Entity\SID.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Enhancement.cs" />
@@ -254,6 +264,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Load.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Character\CharacterStyles.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\MapObjectNames.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\HUDSkillSlot.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Implementations\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\TransformEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Gauge\UIGaugePoolHandler.cs" />
@@ -327,6 +338,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Passive\PassiveSystem.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Character\CharacterNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Camera\ImpulsePreset.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Growth\GrowthConfigData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Enhancement\EnhancementDataAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Toggle\UIToggle.cs" />
@@ -351,9 +363,9 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Item\GradeNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Trigger\TriggerTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.UINotice.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Tools\Object\ObjectPaddingInOrder.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Prefs\GamePrefs.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.UI.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Tools\Object\ObjectPaddingInOrder.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.Stack.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Passive\PassiveTargetTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\AnimatorEx.cs" />
@@ -364,6 +376,7 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\LayerEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Sheet.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillSlotUnlockAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraRenderController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Get.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\AllIn1ShaderEx.cs" />
@@ -376,8 +389,10 @@
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Currency\HUDCurrency.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Style.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Font\FontAssetData.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillCardUnlockAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Flicker\FlickerAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAssetData.Method.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Log\Tags\LogTags.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Animation\Physics\JumpTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\Sprite\SpriteEx.cs" />
@@ -385,6 +400,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\SlotMachineEnums.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Item\VItem.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\SortStrategy\NearestSortStrategy.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\UISkillAutoUseToggle.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Buff\BuffAssetData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\StageMoveTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Sound.cs" />
@@ -401,7 +417,9 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\ComponentEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Stage\StageLoader.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.Field.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Ability\Model\Attack\PlayerAttackAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Log\System\LogSystem.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.VFX.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Character\CharacterGrowthTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\Parent\ParentPositionGroup.cs" />
@@ -430,6 +448,7 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\Deck.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Format.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\MapTypes.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\HUDSkillSlotGroup.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Layer\GameLayers.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Setting\PassiveTriggerSettings.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Floaty.cs" />
@@ -448,11 +467,13 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Setting\PassiveEffectSettings.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\CharacterInfo\UIStatDisplayGroup.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\UIPreviewImage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\Model\StringData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\CoroutineEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Setting\Model\GameInput.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Animation.cs" />
     <Compile Include="Assets\Scripts\Runtime\Animation\IAnimatorStateMachine.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Enum\Skill\CooldownTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Currency\HUDCurrencyButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Text\IUITextLocalizable.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Level\VCharacterLevel.cs" />
@@ -460,8 +481,11 @@
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Button\UIInteractiveElement.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\Handler\UIPopupFloatyHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\UITextManager.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Toggle\UIToggleGroup.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.PlayerCharacterStat.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Growth\UIGrowthResetButton.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillAttributeTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\Enum\EnumColorEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Setting\Effect\PassiveRewardCurrency.cs" />
     <Compile Include="Assets\Scripts\Runtime\Global\GlobalEventType.cs" />
@@ -479,7 +503,6 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\LogSettingAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\SortStrategy\DeckSortStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Behaviour\XBehaviourGroup.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Character\Ability\Model\SlotMachine\MonsterAttackAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Condition.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\Data\DamageResult.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\ConditionalOperators.cs" />
@@ -498,7 +521,6 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\World\StageAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioObject.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Path\PathManager.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Growth\GrowthData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Editor\PassiveEditorWindow.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraSettingsController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Trigger\TriggerCheckerTypes.cs" />
@@ -513,6 +535,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Item\EquipmentSlotTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.Feedback.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Text\UITextFontLocalizer.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillLevelUpCostAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Growth\UIGrowthItem.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Handlers\StatEventHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Growth\VCharacterGrowth.cs" />
@@ -532,6 +555,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Audio\AudioTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\Canvas\CanvasOrderNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Weapon\VCharacterWeapon.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Skill\VSkillSlot.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Particle\ParticleEffect2D.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\VFX.Enum.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\StatEx.cs" />
@@ -541,11 +565,13 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Ability\CharacterAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\SetMultiMap.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\GameData.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Skill.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Passive\PassiveNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Renderer\VFXHitRenderer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Base\ScriptableData.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\SoliloquyTypes.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Skill\VCharacterSkill.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Canvas\CanvasOrder.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Stage\VCharacterStage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Renderer\CharacterRenderer.cs" />
@@ -566,6 +592,7 @@
     <Compile Include="Assets\Scripts\Runtime\External\GoogleSheets\GameGoogleSheetLoader.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Item\ItemAssingedSlots.cs" />
     <Compile Include="Assets\Scripts\Runtime\Setting\GameSetting.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\UISkillPage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.Stat.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\MonsterStatConfigAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Page\UIPageGroup.cs" />

@@ -41,6 +41,18 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
+            base.OnButtonClick();
+            AddCurrency();
+        }
+
+        protected override void OnButtonHold()
+        {
+            base.OnButtonHold();
+            AddCurrency();
+        }
+
+        private void AddCurrency()
+        {
             if (_currencyName == CurrencyNames.None)
             {
                 Log.Warning(LogTags.UI, "재화 타입이 설정되지 않았습니다.");
@@ -59,4 +71,3 @@ namespace TeamSuneat.UserInterface
         }
     }
 }
-

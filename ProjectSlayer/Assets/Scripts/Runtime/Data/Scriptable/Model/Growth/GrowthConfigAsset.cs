@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "GrowthData", menuName = "TeamSuneat/Scriptable/GrowthData")]
-    public class GrowthDataAsset : XScriptableObject
+    [CreateAssetMenu(fileName = "GrowthConfig", menuName = "TeamSuneat/Scriptable/GrowthConfig")]
+    public class GrowthConfigAsset : XScriptableObject
     {
         [TableList(ShowIndexLabels = true)]
         [Tooltip("성장 시스템 능력치 데이터 목록")]
-        public GrowthData[] DataArray;
+        public GrowthConfigData[] DataArray;
 
         public override void OnLoadData()
         {
@@ -30,7 +30,7 @@ namespace TeamSuneat.Data
 
             for (int i = 0; i < DataArray.Length; i++)
             {
-                GrowthData data = DataArray[i];
+                GrowthConfigData data = DataArray[i];
                 if (data == null)
                 {
                     Log.Error("성장 시스템 데이터[{0}]가 null입니다: {1}", i, name);
@@ -76,28 +76,8 @@ namespace TeamSuneat.Data
             }
 #endif
         }
-
-        // 능력치 이름으로 성장 데이터를 찾습니다.
-        public GrowthData FindGrowthData(StatNames statName)
-        {
-            if (DataArray == null)
-            {
-                return null;
-            }
-
-            for (int i = 0; i < DataArray.Length; i++)
-            {
-                if (DataArray[i] != null && DataArray[i].StatName == statName)
-                {
-                    return DataArray[i];
-                }
-            }
-
-            return null;
-        }
-
-        // 성장 타입으로 성장 데이터를 찾습니다.
-        public GrowthData FindGrowthDataByType(CharacterGrowthTypes growthType)
+        
+        public GrowthConfigData FindGrowthData(CharacterGrowthTypes growthType)
         {
             if (DataArray == null)
             {
@@ -120,11 +100,21 @@ namespace TeamSuneat.Data
         public override void Validate()
         {
             base.Validate();
+
+            for (int i = 0; i < DataArray.Length; i++)
+            {
+                DataArray[i].Validate();
+            }
         }
 
         public override void Refresh()
         {
             base.Refresh();
+
+            for (int i = 0; i < DataArray.Length; i++)
+            {
+                DataArray[i].Refresh();
+            }
         }
 
         public override bool RefreshWithoutSave()

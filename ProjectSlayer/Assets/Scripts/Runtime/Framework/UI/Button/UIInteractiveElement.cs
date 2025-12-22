@@ -8,13 +8,20 @@ namespace TeamSuneat
 {
     public abstract class UIInteractiveElement : XBehaviour
     {
+        private const float DEFAULT_CLICK_COOLDOWN = 0.15f;
+        private const float DEFAULT_PUNCH_SCALE_DURATION = 0.1f;
+        private const float DEFAULT_PUNCH_SCALE_VALUE = -0.1f;
+        private const int PUNCH_SCALE_VIBRATO = 1;
+        private const float PUNCH_SCALE_ELASTICITY = 0.5f;
+        private const float ALPHA_OPAQUE = 1f;
+        private const float DURATION_ZERO = 0f;
+
         [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected Image _frameImage;
         [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected Image _buttonImage;
         [FoldoutGroup("#UIInteractiveElement"), SerializeField] protected TextMeshProUGUI _nameText;
 
-        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected float _clickCooldown = 0.3f;
-        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected float _punchScaleDuration = 0.2f;
-        [FoldoutGroup("#UIInteractiveElement-Settings"), SerializeField] protected Vector3 _punchScale = new Vector3(-0.1f, -0.1f, -0.1f);
+        protected Vector3 _punchScale =
+            new Vector3(DEFAULT_PUNCH_SCALE_VALUE, DEFAULT_PUNCH_SCALE_VALUE, DEFAULT_PUNCH_SCALE_VALUE);
 
         protected float _lastClickTime;
         protected Tween _scaleTween;
@@ -74,7 +81,7 @@ namespace TeamSuneat
             }
 
             float currentTime = Time.time;
-            if (currentTime - _lastClickTime < _clickCooldown)
+            if (currentTime - _lastClickTime < DEFAULT_CLICK_COOLDOWN)
             {
                 return false;
             }
@@ -89,7 +96,7 @@ namespace TeamSuneat
 
             if (transform != null)
             {
-                _scaleTween = transform.DOPunchScale(_punchScale, _punchScaleDuration, 1, 0.5f)
+                _scaleTween = transform.DOPunchScale(_punchScale, DEFAULT_PUNCH_SCALE_DURATION, PUNCH_SCALE_VIBRATO, PUNCH_SCALE_ELASTICITY)
                     .SetEase(Ease.OutQuad).OnComplete(OnCompletedPunchScale);
             }
         }
@@ -125,14 +132,14 @@ namespace TeamSuneat
             _isClickable = isClickable;
         }
 
-        protected void SetNameTextColor(Color color, float duration = 0f)
+        protected void SetNameTextColor(Color color, float duration = DURATION_ZERO)
         {
             if (_nameText == null)
             {
                 return;
             }
 
-            if (duration > 0f)
+            if (duration > DURATION_ZERO)
             {
                 _nameText.DOColor(color, duration).SetEase(Ease.OutQuad);
             }
@@ -142,7 +149,7 @@ namespace TeamSuneat
             }
         }
 
-        protected void SetFrameImageColor(Color color, float alpha = 1f, float duration = 0f)
+        protected void SetFrameImageColor(Color color, float alpha = ALPHA_OPAQUE, float duration = DURATION_ZERO)
         {
             if (_frameImage == null)
             {
@@ -151,7 +158,7 @@ namespace TeamSuneat
 
             color.a = alpha;
 
-            if (duration > 0f)
+            if (duration > DURATION_ZERO)
             {
                 _frameImage.DOColor(color, duration).SetEase(Ease.OutQuad);
             }
@@ -161,7 +168,7 @@ namespace TeamSuneat
             }
         }
 
-        protected void SetButtonImageColor(Color color, float alpha = 1f, float duration = 0f)
+        protected void SetButtonImageColor(Color color, float alpha = ALPHA_OPAQUE, float duration = DURATION_ZERO)
         {
             if (_buttonImage == null)
             {
@@ -170,7 +177,7 @@ namespace TeamSuneat
 
             color.a = alpha;
 
-            if (duration > 0f)
+            if (duration > DURATION_ZERO)
             {
                 _buttonImage.DOColor(color, duration).SetEase(Ease.OutQuad);
             }

@@ -12,26 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90974ea28620a374eba2daf9138a8e1e, type: 3}
   m_Name: Skill_SuperhumanStrength
   m_EditorClassIdentifier: 
-  NameString: 
+  NameString: SuperhumanStrength
   Data:
     IsChangingAsset: 0
-    Name: 0
-    Attribute: 0
-    Type: 0
-    Grade: 0
-    MaxLevel: 0
-    Description: 
+    Name: 44
+    Attribute: 3
+    Type: 2
+    Grade: 6
+    MaxLevel: 10
+    Description: "\uC804\uD22C \uB3CC\uC785 20\uCD08 \uB4A4 5\uCD08\uAC04 \uC804\uCCB4
+      \uACF5\uACA9\uB825 \uC99D\uAC00 n%"
     Icon: {fileID: 0}
     EffectPrefab: {fileID: 0}
-    CooldownType: 0
-    BaseCooldownTime: 0
+    CooldownType: 1
+    BaseCooldownTime: 30
     CooldownTimeByLevel: 0
     BaseCooldownAttackCount: 0
     CooldownAttackCountByLevel: 0
     BaseManaCost: 0
     ManaCostByLevel: 0
-    BaseEffectValue: 0
-    EffectValueByLevel: 0
+    BaseEffectValue: 500
+    EffectValueByLevel: 25
     EffectMultiplier: 1
     BaseHitCount: 1
     HitCountByLevel: 0
@@ -48,10 +49,10 @@ MonoBehaviour:
     RequiredAccessory: 0
     MinRequiredGrade: 0
     LevelUpCosts: 
-    AttributeAsString: 
-    TypeAsString: 
-    GradeAsString: 
-    CooldownTypeAsString: 
-    RequiredWeaponAsString: 
-    RequiredAccessoryAsString: 
-    MinRequiredGradeAsString: 
+    AttributeAsString: Earth
+    TypeAsString: Passive
+    GradeAsString: Mythic
+    CooldownTypeAsString: TimeBased
+    RequiredWeaponAsString: None
+    RequiredAccessoryAsString: None
+    MinRequiredGradeAsString: None

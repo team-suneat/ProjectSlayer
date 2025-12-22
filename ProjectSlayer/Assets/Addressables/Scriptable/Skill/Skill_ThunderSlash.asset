@@ -12,31 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90974ea28620a374eba2daf9138a8e1e, type: 3}
   m_Name: Skill_ThunderSlash
   m_EditorClassIdentifier: 
-  NameString: 
+  NameString: ThunderSlash
   Data:
     IsChangingAsset: 0
-    Name: 0
-    Attribute: 0
-    Type: 0
-    Grade: 0
-    MaxLevel: 0
-    Description: 
+    Name: 26
+    Attribute: 4
+    Type: 1
+    Grade: 3
+    MaxLevel: 10
+    Description: "\uBC94\uC704 7 \u2022 12 \uC774\uB0B4\uC758 \uC801 7 \u2022 12\uAE30\uC5D0\uAC8C
+      n%\xD73 \xD73\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
     Icon: {fileID: 0}
     EffectPrefab: {fileID: 0}
-    CooldownType: 0
+    CooldownType: 2
     BaseCooldownTime: 0
     CooldownTimeByLevel: 0
-    BaseCooldownAttackCount: 0
+    BaseCooldownAttackCount: 7
     CooldownAttackCountByLevel: 0
-    BaseManaCost: 0
+    BaseManaCost: 15
     ManaCostByLevel: 0
-    BaseEffectValue: 0
-    EffectValueByLevel: 0
-    EffectMultiplier: 1
-    BaseHitCount: 1
+    BaseEffectValue: 500
+    EffectValueByLevel: 50
+    EffectMultiplier: 3
+    BaseHitCount: 3
     HitCountByLevel: 0
-    BaseRange: 0
-    RangeByLevel: 0
+    BaseRange: 7
+    RangeByLevel: 5
     HasFreezeEffect: 0
     FreezeChance: 0
     HasStunEffect: 0
@@ -48,10 +49,10 @@ MonoBehaviour:
     RequiredAccessory: 0
     MinRequiredGrade: 0
     LevelUpCosts: 
-    AttributeAsString: 
-    TypeAsString: 
-    GradeAsString: 
-    CooldownTypeAsString: 
-    RequiredWeaponAsString: 
-    RequiredAccessoryAsString: 
-    MinRequiredGradeAsString: 
+    AttributeAsString: Wind
+    TypeAsString: Active
+    GradeAsString: Rare
+    CooldownTypeAsString: AttackCountBased
+    RequiredWeaponAsString: None
+    RequiredAccessoryAsString: None
+    MinRequiredGradeAsString: None

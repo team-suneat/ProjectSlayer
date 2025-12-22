@@ -11,7 +11,7 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("#UIButton-Growth"), SerializeField]
         public UnityEvent OnLevelUpSuccess;
 
-        private GrowthData _data;
+        private GrowthConfigData _data;
         private UIGrowthItem _parentItem;
 
         public override void AutoGetComponents()
@@ -24,7 +24,7 @@ namespace TeamSuneat.UserInterface
             return GameApp.GetSelectedProfile();
         }
 
-        public void Setup(GrowthData data, UIGrowthItem parentItem)
+        public void Setup(GrowthConfigData data, UIGrowthItem parentItem)
         {
             _data = data;
             _parentItem = parentItem;
@@ -50,11 +50,13 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
+            base.OnButtonClick();
             TryPerformLevelUp();
         }
 
         protected override void OnButtonHold()
         {
+            base.OnButtonHold();
             TryPerformLevelUp();
         }
 

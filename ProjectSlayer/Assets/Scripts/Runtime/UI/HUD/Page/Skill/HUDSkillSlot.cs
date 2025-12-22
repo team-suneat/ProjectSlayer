@@ -1,8 +1,6 @@
 using Sirenix.OdinInspector;
-using TeamSuneat;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,41 +9,44 @@ namespace TeamSuneat.UserInterface
     // 인게임 스킬 슬롯 UI - 스킬 아이콘, 쿨타임, 사용 가능 여부 표시
     public class HUDSkillSlot : XBehaviour
     {
+        public enum SkillSlotState
+        {
+            None,           // 슬롯이 비어있거나 유효하지 않음
+            Locked,         // 슬롯이 잠금 상태
+            Unlockable,     // 재화 지불로 강제 해금 가능한 상태
+            Available,      // 스킬이 있고 사용 가능함
+            Cooldown        // 쿨타임 중
+        }
         [Title("#HUDSkillSlot")]
         [SerializeField] private int _slotIndex;
-
         [SerializeField] private Image _skillIconImage;
-        [SerializeField] private Image _cooldownOverlayImage;
-        [SerializeField] private Image _disabledOverlayImage;
         [SerializeField] private UIGauge _skillGauge;
-        [SerializeField] private TextMeshProUGUI _cooldownText;
-        [SerializeField] private Toggle _autoUseToggle;
         [SerializeField] private Button _skillButton;
         [SerializeField] private GameObject _passiveIndicator;
+        [SerializeField] private GameObject _unlockableIndicator;
 
         [Title("#Gauge Colors")]
-        [SerializeField] private Color _timeBasedColor = new Color(0.2f, 0.6f, 1f, 1f); // 파란색
-        [SerializeField] private Color _attackCountBasedColor = new Color(1f, 0.5f, 0f, 1f); // 주황색
+        [SerializeField] private Color _timeBasedColor;
+        [SerializeField] private Color _attackCountBasedColor;
 
-        private SkillNames _currentSkillName = SkillNames.None;
         private VSkill _currentSkill;
+        private SkillNames _currentSkillName = SkillNames.None;
         private SkillAsset _skillAsset;
+        private SkillSlotState _currentState = SkillSlotState.None;
 
         public int SlotIndex => _slotIndex;
         public SkillNames CurrentSkillName => _currentSkillName;
+        public SkillSlotState CurrentState => _currentState;
 
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
 
             _skillIconImage ??= this.FindComponent<Image>("Skill Icon Image");
-            _cooldownOverlayImage ??= this.FindComponent<Image>("Cooldown Overlay Image");
-            _disabledOverlayImage ??= this.FindComponent<Image>("Disabled Overlay Image");
             _skillGauge ??= this.FindComponent<UIGauge>("Skill Gauge");
-            _cooldownText ??= this.FindComponent<TextMeshProUGUI>("Cooldown Text");
-            _autoUseToggle ??= this.FindComponent<Toggle>("Auto Use Toggle");
             _skillButton ??= this.FindComponent<Button>("Skill Button");
             _passiveIndicator ??= this.FindGameObject("Passive Indicator");
+            _unlockableIndicator ??= this.FindGameObject("Unlockable");
         }
 
         public override void AutoNaming()
@@ -59,11 +60,6 @@ namespace TeamSuneat.UserInterface
             {
                 _skillButton.onClick.AddListener(OnSkillButtonClicked);
             }
-
-            if (_autoUseToggle != null)
-            {
-                _autoUseToggle.onValueChanged.AddListener(OnAutoUseToggleChanged);
-            }
         }
 
         public void Setup(int slotIndex)
@@ -74,43 +70,65 @@ namespace TeamSuneat.UserInterface
 
         public void Refresh()
         {
-            VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null)
+            if (!TryValidateRefresh(out VCharacterSkill characterSkill, out VSkillSlot slot, out SkillNames skillName))
             {
-                ClearSlot();
-                return;
-            }
-
-            VCharacterSkill characterSkill = profile.Skill;
-            if (!TryGetValidSlot(characterSkill, out VSkillSlot slot))
-            {
-                ClearSlot();
-                return;
-            }
-
-            if (!TryParseSkillName(slot.SkillNameString, out SkillNames skillName))
-            {
-                ClearSlot();
                 return;
             }
 
             LoadSkillData(characterSkill, skillName);
             RefreshSkillIcon();
-            RefreshAutoUseToggle();
             RefreshPassiveIndicator();
+            _currentState = SkillSlotState.Available;
         }
 
-        private bool TryGetValidSlot(VCharacterSkill characterSkill, out VSkillSlot slot)
+        private bool TryValidateRefresh(out VCharacterSkill characterSkill, out VSkillSlot slot, out SkillNames skillName)
         {
+            characterSkill = null;
             slot = null;
+            skillName = SkillNames.None;
 
+            VProfile profile = GameApp.GetSelectedProfile();
+            if (profile == null)
+            {
+                ClearSlot();
+                return false;
+            }
+
+            characterSkill = profile.Skill;
             if (characterSkill == null || !characterSkill.Slots.IsValid(_slotIndex))
             {
+                ClearSlot();
                 return false;
             }
 
             slot = characterSkill.Slots[_slotIndex];
-            return slot.IsUnlocked && !string.IsNullOrEmpty(slot.SkillNameString);
+            if (!slot.IsUnlocked)
+            {
+                int unlockedSlotCount = GetUnlockedSlotCount(characterSkill);
+                if (unlockedSlotCount == _slotIndex)
+                {
+                    SetUnlockableState();
+                }
+                else
+                {
+                    SetLockedState();
+                }
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(slot.SkillNameString))
+            {
+                ClearSlot();
+                return false;
+            }
+
+            if (!TryParseSkillName(slot.SkillNameString, out skillName))
+            {
+                ClearSlot();
+                return false;
+            }
+
+            return true;
         }
 
         private bool TryParseSkillName(string skillNameString, out SkillNames skillName)
@@ -145,28 +163,11 @@ namespace TeamSuneat.UserInterface
             {
                 _skillIconImage.sprite = icon;
                 _skillIconImage.enabled = true;
+                _skillIconImage.SetGreyScale(false);
             }
             else
             {
                 _skillIconImage.enabled = false;
-            }
-        }
-
-        private void RefreshAutoUseToggle()
-        {
-            if (_autoUseToggle == null)
-            {
-                return;
-            }
-
-            if (_currentSkill != null)
-            {
-                _autoUseToggle.isOn = _currentSkill.IsAutoUse;
-                _autoUseToggle.gameObject.SetActive(true);
-            }
-            else
-            {
-                _autoUseToggle.gameObject.SetActive(false);
             }
         }
 
@@ -185,6 +186,7 @@ namespace TeamSuneat.UserInterface
         {
             if (!IsSkillValid())
             {
+                _currentState = SkillSlotState.None;
                 HideCooldown();
                 return;
             }
@@ -192,12 +194,21 @@ namespace TeamSuneat.UserInterface
             bool isPassive = IsPassiveSkill();
             if (isPassive)
             {
+                _currentState = SkillSlotState.Available;
                 HideCooldown();
                 UpdateAvailability(isAvailable);
                 return;
             }
 
-            UpdateCooldownOverlay(currentCooldown, maxCooldown);
+            if (currentCooldown > 0f && maxCooldown > 0f)
+            {
+                _currentState = SkillSlotState.Cooldown;
+            }
+            else
+            {
+                _currentState = SkillSlotState.Available;
+            }
+
             UpdateCooldownGauge(currentCooldown, maxCooldown);
             UpdateCooldownText(currentCooldown);
             UpdateAvailability(isAvailable);
@@ -205,12 +216,9 @@ namespace TeamSuneat.UserInterface
 
         public void UpdateDuration(float currentDuration, float maxDuration)
         {
-            if (!IsSkillValid() || _skillGauge == null)
+            if (_skillGauge == null || !IsSkillValid())
             {
-                if (_skillGauge != null)
-                {
-                    _skillGauge.ResetFrontValue();
-                }
+                _skillGauge?.ResetFrontValue();
                 return;
             }
 
@@ -233,25 +241,6 @@ namespace TeamSuneat.UserInterface
         private bool IsPassiveSkill()
         {
             return _skillAsset?.Data?.Type == SkillTypes.Passive;
-        }
-
-        private void UpdateCooldownOverlay(float currentCooldown, float maxCooldown)
-        {
-            if (_cooldownOverlayImage == null)
-            {
-                return;
-            }
-
-            if (maxCooldown > 0f && currentCooldown > 0f)
-            {
-                float fillAmount = currentCooldown / maxCooldown;
-                _cooldownOverlayImage.fillAmount = fillAmount;
-                _cooldownOverlayImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                _cooldownOverlayImage.gameObject.SetActive(false);
-            }
         }
 
         private void UpdateCooldownGauge(float currentCooldown, float maxCooldown)
@@ -277,39 +266,39 @@ namespace TeamSuneat.UserInterface
 
         private void UpdateCooldownText(float currentCooldown)
         {
-            if (_cooldownText == null || _skillAsset?.Data == null)
+            if (_skillGauge == null || _skillAsset?.Data == null || currentCooldown <= 0f)
             {
-                return;
-            }
-
-            if (currentCooldown <= 0f)
-            {
-                _cooldownText.gameObject.SetActive(false);
+                _skillGauge?.ResetValueText();
                 return;
             }
 
             CooldownTypes cooldownType = _skillAsset.Data.CooldownType;
+            string text = string.Empty;
+
             if (cooldownType == CooldownTypes.TimeBased)
             {
-                _cooldownText.text = "0.0";
-                _cooldownText.gameObject.SetActive(true);
+                text = "0.0";
             }
             else if (cooldownType == CooldownTypes.AttackCountBased)
             {
-                _cooldownText.text = Mathf.CeilToInt(currentCooldown).ToString();
-                _cooldownText.gameObject.SetActive(true);
+                text = Mathf.CeilToInt(currentCooldown).ToString();
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                _skillGauge.ResetValueText();
             }
             else
             {
-                _cooldownText.gameObject.SetActive(false);
+                _skillGauge.SetValueText(text);
             }
         }
 
         private void UpdateAvailability(bool isAvailable)
         {
-            if (_disabledOverlayImage != null)
+            if (_skillIconImage != null)
             {
-                _disabledOverlayImage.gameObject.SetActive(!isAvailable);
+                _skillIconImage.SetGreyScale(!isAvailable);
             }
 
             if (_skillButton != null)
@@ -320,41 +309,90 @@ namespace TeamSuneat.UserInterface
 
         private void HideCooldown()
         {
-            if (_cooldownOverlayImage != null)
-            {
-                _cooldownOverlayImage.gameObject.SetActive(false);
-            }
-
             if (_skillGauge != null)
             {
                 _skillGauge.ResetFrontValue();
+                _skillGauge.ResetValueText();
             }
 
-            if (_cooldownText != null)
+            if (_skillIconImage != null)
             {
-                _cooldownText.gameObject.SetActive(false);
+                _skillIconImage.SetGreyScale(false);
+            }
+        }
+
+        private int GetUnlockedSlotCount(VCharacterSkill characterSkill)
+        {
+            if (characterSkill == null || !characterSkill.Slots.IsValid())
+            {
+                return 0;
             }
 
-            if (_disabledOverlayImage != null)
+            int count = 0;
+            for (int i = 0; i < characterSkill.Slots.Count; i++)
             {
-                _disabledOverlayImage.gameObject.SetActive(false);
+                if (characterSkill.Slots[i].IsUnlocked)
+                {
+                    count++;
+                }
             }
+
+            return count;
+        }
+
+        private void SetLockedState()
+        {
+            _currentState = SkillSlotState.Locked;
+            ResetSkillData();
+            ResetUIElements();
+            if (_skillButton != null)
+            {
+                _skillButton.interactable = false;
+            }
+            if (_unlockableIndicator != null)
+            {
+                _unlockableIndicator.SetActive(false);
+            }
+            HideCooldown();
+        }
+
+        private void SetUnlockableState()
+        {
+            _currentState = SkillSlotState.Unlockable;
+            ResetSkillData();
+            ResetUIElements();
+            if (_skillButton != null)
+            {
+                _skillButton.interactable = true;
+            }
+            if (_unlockableIndicator != null)
+            {
+                _unlockableIndicator.SetActive(true);
+            }
+            HideCooldown();
         }
 
         private void ClearSlot()
         {
+            _currentState = SkillSlotState.None;
+            ResetSkillData();
+            ResetUIElements();
+            _unlockableIndicator?.SetActive(false);
+            HideCooldown();
+        }
+
+        private void ResetSkillData()
+        {
             _currentSkillName = SkillNames.None;
             _currentSkill = null;
             _skillAsset = null;
+        }
 
+        private void ResetUIElements()
+        {
             if (_skillIconImage != null)
             {
                 _skillIconImage.enabled = false;
-            }
-
-            if (_autoUseToggle != null)
-            {
-                _autoUseToggle.gameObject.SetActive(false);
             }
 
             if (_passiveIndicator != null)
@@ -366,8 +404,6 @@ namespace TeamSuneat.UserInterface
             {
                 _skillGauge.ResetFrontValue();
             }
-
-            HideCooldown();
         }
 
         private void OnSkillButtonClicked()
@@ -379,19 +415,6 @@ namespace TeamSuneat.UserInterface
 
             // TODO: 스킬 사용 로직 구현
             Log.Info(LogTags.UI_Page, "스킬 사용 버튼 클릭: {0}", _currentSkillName);
-        }
-
-        private void OnAutoUseToggleChanged(bool isOn)
-        {
-            if (_currentSkill == null)
-            {
-                return;
-            }
-
-            _currentSkill.IsAutoUse = isOn;
-
-            // TODO: 세이브 데이터 저장 로직 호출
-            Log.Info(LogTags.UI_Page, "스킬 자동 사용 설정 변경: {0}, {1}", _currentSkillName, isOn);
         }
     }
 }

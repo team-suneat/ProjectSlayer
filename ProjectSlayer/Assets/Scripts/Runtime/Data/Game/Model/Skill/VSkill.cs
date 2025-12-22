@@ -12,7 +12,6 @@ namespace TeamSuneat.Data.Game
         public int Level; // 스킬 레벨
         public bool IsFirstAwakening; // 1차 각성 여부
         public bool IsSecondAwakening; // 2차 각성 여부
-        public bool IsAutoUse; // 자동 사용 여부
         public int MasteryLevel; // 숙련도 레벨
         public int MasteryProgress; // 숙련도 진행도
 
@@ -22,7 +21,6 @@ namespace TeamSuneat.Data.Game
             Level = 0;
             IsFirstAwakening = false;
             IsSecondAwakening = false;
-            IsAutoUse = false;
             MasteryLevel = 0;
             MasteryProgress = 0;
         }
@@ -34,7 +32,6 @@ namespace TeamSuneat.Data.Game
             Level = 0;
             IsFirstAwakening = false;
             IsSecondAwakening = false;
-            IsAutoUse = false;
             MasteryLevel = 0;
             MasteryProgress = 0;
         }
@@ -50,4 +47,3 @@ namespace TeamSuneat.Data.Game
         }
     }
 }
-

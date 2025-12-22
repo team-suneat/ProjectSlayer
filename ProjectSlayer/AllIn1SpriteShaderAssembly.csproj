@@ -87,8 +87,11 @@
     <None Include="Assets\Plugins\AllIn1SpriteShader\AllIn1SpriteShaderAssembly.asmdef" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_HDRP2023.txt" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_HDRP2019.txt" />
+    <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\AllIn1SpriteShader.shader" />
+    <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\AllIn1SpriteShaderScaledTime.shader" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_URP2023.txt" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_HDRP2021.txt" />
+    <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\AllIn1SpriteShaderUiMask.shader" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\2DRenderer_URP\Resources\AllIn1OneShaderFunctions.cginc" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\AllIn1SpriteShaderLit.shader" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_HDRP2020.txt" />
@@ -98,6 +101,7 @@
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_URP2019.txt" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_URP2022.txt" />
     <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\LitShaders\AllIn1SpriteShaderLit_BetterShader_URP2020.txt" />
+    <None Include="Assets\Plugins\AllIn1SpriteShader\Shaders\AllIn1OneShaderFunctions.cginc" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

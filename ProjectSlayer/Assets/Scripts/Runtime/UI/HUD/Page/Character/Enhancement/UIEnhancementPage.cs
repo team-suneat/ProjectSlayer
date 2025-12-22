@@ -2,7 +2,6 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TeamSuneat.Data;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
@@ -10,49 +9,35 @@ namespace TeamSuneat.UserInterface
     public class UIEnhancementPage : UIPage
     {
         [Title("#UIEnhancementPage")]
-        [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private Transform _contentParent;
-        [SerializeField] private UIEnhancementItem _itemPrefab;
+        [SerializeField] private UIEnhancementItem[] _items;
 
-        private readonly List<UIEnhancementItem> _items = new();
+        private readonly Dictionary<StatNames, UIEnhancementItem> _enhancementItemMap = new();
 
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
 
-            _scrollRect ??= GetComponentInChildren<ScrollRect>();
-            if (_scrollRect != null)
-            {
-                _contentParent ??= _scrollRect.content;
-            }
+            _items = GetComponentsInChildren<UIEnhancementItem>(true);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            if (_itemPrefab == null)
+            if (_items == null || _items.Length == 0)
             {
-                Log.Warning(LogTags.UI_Page, "UIEnhancementItem 프리팹이 설정되지 않았습니다.");
+                Log.Warning(LogTags.UI_Page, "UIEnhancementItem을 찾을 수 없습니다.");
                 return;
             }
 
-            if (_contentParent == null)
-            {
-                Log.Warning(LogTags.UI_Page, "Content Parent가 설정되지 않았습니다.");
-                return;
-            }
-
-            CreateEnhancementItems();
+            SetupEnhancementItems();
             RefreshAllItems();
         }
 
-        private void CreateEnhancementItems()
+        private void SetupEnhancementItems()
         {
-            // 기존 아이템 제거
-            ClearItems();
+            _enhancementItemMap.Clear();
 
-            // 강화 데이터 에셋 가져오기
             EnhancementDataAsset asset = ScriptableDataManager.Instance?.GetEnhancementDataAsset();
             if (asset == null || asset.DataArray == null)
             {
@@ -60,7 +45,8 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            // 각 강화 타입에 대해 아이템 생성
+            int itemIndex = 0;
+
             for (int i = 0; i < asset.DataArray.Length; i++)
             {
                 EnhancementData data = asset.DataArray[i];
@@ -69,47 +55,32 @@ namespace TeamSuneat.UserInterface
                     continue;
                 }
 
-                UIEnhancementItem item = CreateItem(data);
-                if (item != null)
+                if (itemIndex >= _items.Length)
                 {
-                    _items.Add(item);
+                    Log.Warning(LogTags.UI_Page, "강화 아이템 개수가 부족합니다. 필요한 개수: {0}, 현재 개수: {1}", asset.DataArray.Length, _items.Length);
+                    break;
+                }
+
+                if (_items[itemIndex] != null)
+                {
+                    _items[itemIndex].Setup(data);
+                    _items[itemIndex].OnLevelUpSuccess.AddListener(OnItemLevelUpSuccess);
+                    _enhancementItemMap.Add(data.StatName, _items[itemIndex]);
+                    itemIndex++;
                 }
             }
 
-            Log.Info(LogTags.UI_Page, "강화 아이템 {0}개 생성 완료", _items.Count);
-        }
-
-        private UIEnhancementItem CreateItem(EnhancementData data)
-        {
-            if (_itemPrefab == null || _contentParent == null)
-            {
-                return null;
-            }
-
-            UIEnhancementItem item = Instantiate(_itemPrefab, _contentParent);
-            item.gameObject.SetActive(true);
-            item.Setup(data);
-            item.OnLevelUpSuccess.AddListener(OnItemLevelUpSuccess);
-
-            return item;
-        }
-
-        private void ClearItems()
-        {
-            for (int i = 0; i < _items.Count; i++)
-            {
-                if (_items[i] != null)
-                {
-                    _items[i].OnLevelUpSuccess.RemoveListener(OnItemLevelUpSuccess);
-                    Destroy(_items[i].gameObject);
-                }
-            }
-            _items.Clear();
+            Log.Info(LogTags.UI_Page, "강화 아이템 {0}개 설정 완료", itemIndex);
         }
 
         public void RefreshAllItems()
         {
-            for (int i = 0; i < _items.Count; i++)
+            if (_items == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _items.Length; i++)
             {
                 if (_items[i] != null)
                 {
@@ -126,19 +97,7 @@ namespace TeamSuneat.UserInterface
 
         public UIEnhancementItem FindItem(StatNames statName)
         {
-            for (int i = 0; i < _items.Count; i++)
-            {
-                if (_items[i] != null && _items[i].GetStatName() == statName)
-                {
-                    return _items[i];
-                }
-            }
-            return null;
-        }
-
-        private void OnDestroy()
-        {
-            ClearItems();
+            return _enhancementItemMap.TryGetValue(statName, out UIEnhancementItem item) ? item : null;
         }
     }
 }

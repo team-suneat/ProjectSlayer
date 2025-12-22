@@ -12,7 +12,7 @@ namespace TeamSuneat.Data
         private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 능력치
         private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 능력치
         private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
-        private GrowthDataAsset _growthDataAsset; // 캐릭터 성장
+        private GrowthConfigAsset _growthDataAsset; // 캐릭터 성장
 
         private readonly Dictionary<int, HitmarkAsset> _hitmarkAssets = new();
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();

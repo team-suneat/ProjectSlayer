@@ -4,6 +4,9 @@ namespace TeamSuneat
     {
         None,
 
+        /// <summary> 무 속성 </summary>
+        Neutral,
+
         /// <summary> 불 속성 </summary>
         Fire,
 

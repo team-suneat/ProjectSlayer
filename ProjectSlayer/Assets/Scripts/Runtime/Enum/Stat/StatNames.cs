@@ -13,6 +13,7 @@ namespace TeamSuneat
         Mana,                    // 마나
         ManaRegen,               // 마나 회복량
         AccuracyChance,          // 명중률(%)
+        DodgeChance,             // 회피율(%)
         GoldGain,                // 추가 골드 획득량(%)
         XPGain,                  // 추가 경험치(%)
         DamageReduction,         // 피해 감소(%)
@@ -22,7 +23,8 @@ namespace TeamSuneat
         DevastatingStrikeChance, // 회심의 일격 확률(%)
 
         // 성장 시스템 능력치
-        DodgeChance,             // 회피율(%)
+        Accuracy,                // 명중
+        Dodge,                   // 회피
 
         // 보호막 능력치
         Shield,                  // 보호막

@@ -12,26 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90974ea28620a374eba2daf9138a8e1e, type: 3}
   m_Name: Skill_WindingBlade
   m_EditorClassIdentifier: 
-  NameString: 
+  NameString: WindingBlade
   Data:
     IsChangingAsset: 0
-    Name: 0
-    Attribute: 0
-    Type: 0
-    Grade: 0
-    MaxLevel: 0
-    Description: 
+    Name: 17
+    Attribute: 2
+    Type: 2
+    Grade: 4
+    MaxLevel: 10
+    Description: "\uC804\uD22C \uB3CC\uC785 \uD6C4, 4\uCD08\uB9C8\uB2E4 \uACF5\uACA9\uC18D\uB3C4
+      +n% (\uCD5C\uB300 10\uD68C)"
     Icon: {fileID: 0}
     EffectPrefab: {fileID: 0}
-    CooldownType: 0
-    BaseCooldownTime: 0
+    CooldownType: 1
+    BaseCooldownTime: 4
     CooldownTimeByLevel: 0
     BaseCooldownAttackCount: 0
     CooldownAttackCountByLevel: 0
     BaseManaCost: 0
     ManaCostByLevel: 0
-    BaseEffectValue: 0
-    EffectValueByLevel: 0
+    BaseEffectValue: 18
+    EffectValueByLevel: 0.9
     EffectMultiplier: 1
     BaseHitCount: 1
     HitCountByLevel: 0
@@ -48,10 +49,10 @@ MonoBehaviour:
     RequiredAccessory: 0
     MinRequiredGrade: 0
     LevelUpCosts: 
-    AttributeAsString: 
-    TypeAsString: 
-    GradeAsString: 
-    CooldownTypeAsString: 
-    RequiredWeaponAsString: 
-    RequiredAccessoryAsString: 
-    MinRequiredGradeAsString: 
+    AttributeAsString: Water
+    TypeAsString: Passive
+    GradeAsString: Epic
+    CooldownTypeAsString: TimeBased
+    RequiredWeaponAsString: None
+    RequiredAccessoryAsString: None
+    MinRequiredGradeAsString: None

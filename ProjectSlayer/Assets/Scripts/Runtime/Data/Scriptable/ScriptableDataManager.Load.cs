@@ -209,7 +209,7 @@ namespace TeamSuneat.Data
                 return false;
             }
 
-            GrowthDataAsset asset = ResourcesManager.LoadResource<GrowthDataAsset>(filePath);
+            GrowthConfigAsset asset = ResourcesManager.LoadResource<GrowthConfigAsset>(filePath);
             if (asset != null)
             {
                 if (_growthDataAsset != null)
@@ -517,7 +517,7 @@ namespace TeamSuneat.Data
                         }
                         break;
 
-                    case GrowthDataAsset growthData:
+                    case GrowthConfigAsset growthData:
                         if (_growthDataAsset == null)
                         {
                             _growthDataAsset = growthData;

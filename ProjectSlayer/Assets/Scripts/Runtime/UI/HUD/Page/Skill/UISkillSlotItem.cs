@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using TeamSuneat;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using TMPro;
@@ -11,14 +10,20 @@ namespace TeamSuneat.UserInterface
     // 스킬 슬롯 아이템 - 스킬 페이지 내 개별 스킬 카드 표시
     public class UISkillSlotItem : XBehaviour
     {
-        [Title("#UISkillSlotItem")]
+        [FoldoutGroup("#UISkillSlotItem-Image")]
         [SerializeField] private Image _skillIconImage;
-        [SerializeField] private TextMeshProUGUI _skillNameText;
-        [SerializeField] private TextMeshProUGUI _skillCountText;
-        [SerializeField] private UIGauge _skillCountGauge;
-        [SerializeField] private Image _grayOverlayImage;
-        [SerializeField] private TextMeshProUGUI _equippedText;
+
+        [FoldoutGroup("#UISkillSlotItem-Image")]
         [SerializeField] private GameObject _unknownImage;
+
+        [FoldoutGroup("#UISkillSlotItem-Text")]
+        [SerializeField] private UILocalizedText _skillNameText;
+
+        [FoldoutGroup("#UISkillSlotItem-Text")]
+        [SerializeField] private UILocalizedText _equippedText;
+
+        [FoldoutGroup("#UISkillSlotItem-Gauge")]
+        [SerializeField] private UIGauge _skillCountGauge;
 
         private SkillNames _skillName = SkillNames.None;
         private SkillAsset _skillAsset;
@@ -37,11 +42,9 @@ namespace TeamSuneat.UserInterface
             base.AutoGetComponents();
 
             _skillIconImage ??= this.FindComponent<Image>("Skill Icon Image");
-            _skillNameText ??= this.FindComponent<TextMeshProUGUI>("Skill Name Text");
-            _skillCountText ??= this.FindComponent<TextMeshProUGUI>("Skill Count Text");
+            _skillNameText ??= this.FindComponent<UILocalizedText>("Skill Name Text");
             _skillCountGauge ??= this.FindComponent<UIGauge>("Skill Count Gauge");
-            _grayOverlayImage ??= this.FindComponent<Image>("Gray Overlay Image");
-            _equippedText ??= this.FindComponent<TextMeshProUGUI>("Equipped Text");
+            _equippedText ??= this.FindComponent<UILocalizedText>("Skill Equipped Text");
             _unknownImage ??= this.FindGameObject("Unknown Image");
         }
 
@@ -71,7 +74,7 @@ namespace TeamSuneat.UserInterface
             RefreshSkillState(state);
             RefreshSkillIcon(state);
             RefreshSkillName(state);
-            
+
             if (state != SkillSlotState.Unknown)
             {
                 RefreshSkillCount();
@@ -102,22 +105,22 @@ namespace TeamSuneat.UserInterface
                 return SkillSlotState.Unknown;
             }
 
-            bool isEquipped = characterSkill.SlotSkillNames.Contains(_skillName);
+            bool isEquipped = characterSkill.ContainsSkillSlot(_skillName);
             return isEquipped ? SkillSlotState.Equipped : SkillSlotState.Learned;
         }
 
         private void RefreshSkillState(SkillSlotState state)
         {
-            if (_grayOverlayImage != null)
+            if (_skillIconImage != null)
             {
-                _grayOverlayImage.gameObject.SetActive(state == SkillSlotState.Equipped);
+                _skillIconImage.SetGreyScale(state == SkillSlotState.Equipped);
             }
 
             if (_equippedText != null)
             {
                 if (state == SkillSlotState.Equipped)
                 {
-                    _equippedText.text = "E";
+                    _equippedText.SetText("E");
                     _equippedText.gameObject.SetActive(true);
                 }
                 else
@@ -166,17 +169,17 @@ namespace TeamSuneat.UserInterface
 
             if (state == SkillSlotState.Unknown)
             {
-                _skillNameText.text = string.Empty;
+                _skillNameText.ResetText();
                 return;
             }
 
             if (_skillName != SkillNames.None)
             {
-                _skillNameText.text = _skillName.ToString();
+                _skillNameText.SetText(_skillName.ToString());
             }
             else
             {
-                _skillNameText.text = string.Empty;
+                _skillNameText.ResetText();
             }
         }
 
@@ -198,8 +201,6 @@ namespace TeamSuneat.UserInterface
 
             int currentCount = GetCurrentSkillCardCount(characterSkill);
             int requiredCount = GetRequiredSkillCardCount();
-
-            RefreshSkillCountText(currentCount, requiredCount);
             RefreshSkillCountGauge(currentCount, requiredCount);
         }
 
@@ -264,22 +265,6 @@ namespace TeamSuneat.UserInterface
             return 0;
         }
 
-        private void RefreshSkillCountText(int currentCount, int requiredCount)
-        {
-            if (_skillCountText == null)
-            {
-                return;
-            }
-
-            if (requiredCount <= 0)
-            {
-                _skillCountText.text = string.Empty;
-                return;
-            }
-
-            _skillCountText.text = $"{currentCount} / {requiredCount}";
-        }
-
         private void RefreshSkillCountGauge(int currentCount, int requiredCount)
         {
             if (_skillCountGauge == null)
@@ -295,20 +280,16 @@ namespace TeamSuneat.UserInterface
 
             float fillAmount = Mathf.Clamp01((float)currentCount / requiredCount);
             _skillCountGauge.SetFrontValue(fillAmount);
+            _skillCountGauge.SetValueText($"{currentCount} / {requiredCount}");
         }
 
         private void ClearSkillCount()
         {
-            if (_skillCountText != null)
-            {
-                _skillCountText.text = string.Empty;
-            }
-
             if (_skillCountGauge != null)
             {
                 _skillCountGauge.ResetFrontValue();
+                _skillCountGauge.ResetValueText();
             }
         }
     }
 }
-

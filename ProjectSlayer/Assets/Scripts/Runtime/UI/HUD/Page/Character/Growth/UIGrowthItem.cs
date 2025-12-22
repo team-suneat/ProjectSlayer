@@ -23,7 +23,7 @@ namespace TeamSuneat.UserInterface
         [Title("#LevelUp Button")]
         [SerializeField] private UIGrowthButton _levelUpButton;
 
-        private GrowthData _growthData;
+        private GrowthConfigData _growthData;
 
         public UnityEvent OnLevelUpSuccess;
 
@@ -53,7 +53,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        public void Setup(GrowthData data)
+        public void Setup(GrowthConfigData data)
         {
             _growthData = data;
 

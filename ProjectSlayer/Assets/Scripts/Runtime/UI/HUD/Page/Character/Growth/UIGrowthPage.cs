@@ -11,41 +11,29 @@ namespace TeamSuneat.UserInterface
     public class UIGrowthPage : UIPage
     {
         [Title("#UIGrowthPage")]
-        [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private Transform _contentParent;
-        [SerializeField] private UIGrowthItem _itemPrefab;
+        [SerializeField] private UIGrowthItem[] _items;
         [SerializeField] private UILocalizedText _statPointText;
 
-        private readonly List<UIGrowthItem> _items = new();
+        private readonly Dictionary<StatNames, UIGrowthItem> _growthItemMap = new();
 
         public override void AutoGetComponents()
         {
             base.AutoGetComponents();
 
-            _scrollRect ??= GetComponentInChildren<ScrollRect>();
-            if (_scrollRect != null)
-            {
-                _contentParent ??= _scrollRect.content;
-            }
+            _items = GetComponentsInChildren<UIGrowthItem>(true);
         }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            if (_itemPrefab == null)
+            if (_items == null || _items.Length == 0)
             {
-                Log.Warning(LogTags.UI_Page, "UIGrowthItem 프리팹이 설정되지 않았습니다.");
+                Log.Warning(LogTags.UI_Page, "UIGrowthItem을 찾을 수 없습니다.");
                 return;
             }
 
-            if (_contentParent == null)
-            {
-                Log.Warning(LogTags.UI_Page, "Content Parent가 설정되지 않았습니다.");
-                return;
-            }
-
-            CreateGrowthItems();
+            SetupGrowthItems();
             RefreshAllItems();
         }
 
@@ -56,64 +44,43 @@ namespace TeamSuneat.UserInterface
             Refresh();
         }
 
-        private void CreateGrowthItems()
+        private void SetupGrowthItems()
         {
-            // 기존 아이템 제거
-            ClearItems();
+            _growthItemMap.Clear();
 
-            // 성장 데이터 에셋 가져오기
-            GrowthDataAsset asset = ScriptableDataManager.Instance?.GetGrowthDataAsset();
+            GrowthConfigAsset asset = ScriptableDataManager.Instance?.GetGrowthDataAsset();
             if (asset == null || asset.DataArray == null)
             {
                 Log.Warning(LogTags.UI_Page, "성장 데이터 에셋을 찾을 수 없습니다.");
                 return;
             }
 
-            // 각 성장 타입에 대해 아이템 생성
+            int itemIndex = 0;
+
             for (int i = 0; i < asset.DataArray.Length; i++)
             {
-                GrowthData data = asset.DataArray[i];
+                GrowthConfigData data = asset.DataArray[i];
                 if (data == null || data.StatName == StatNames.None)
                 {
                     continue;
                 }
 
-                UIGrowthItem item = CreateItem(data);
-                if (item != null)
+                if (itemIndex >= _items.Length)
                 {
-                    _items.Add(item);
+                    Log.Warning(LogTags.UI_Page, "성장 아이템 개수가 부족합니다. 필요한 개수: {0}, 현재 개수: {1}", asset.DataArray.Length, _items.Length);
+                    break;
+                }
+
+                if (_items[itemIndex] != null)
+                {
+                    _items[itemIndex].Setup(data);
+                    _items[itemIndex].OnLevelUpSuccess.AddListener(OnItemLevelUpSuccess);
+                    _growthItemMap.Add(data.StatName, _items[itemIndex]);
+                    itemIndex++;
                 }
             }
 
-            Log.Info(LogTags.UI_Page, "성장 아이템 {0}개 생성 완료", _items.Count);
-        }
-
-        private UIGrowthItem CreateItem(GrowthData data)
-        {
-            if (_itemPrefab == null || _contentParent == null)
-            {
-                return null;
-            }
-
-            UIGrowthItem item = Instantiate(_itemPrefab, _contentParent);
-            item.gameObject.SetActive(true);
-            item.Setup(data);
-            item.OnLevelUpSuccess.AddListener(OnItemLevelUpSuccess);
-
-            return item;
-        }
-
-        private void ClearItems()
-        {
-            for (int i = 0; i < _items.Count; i++)
-            {
-                if (_items[i] != null)
-                {
-                    _items[i].OnLevelUpSuccess.RemoveListener(OnItemLevelUpSuccess);
-                    Destroy(_items[i].gameObject);
-                }
-            }
-            _items.Clear();
+            Log.Info(LogTags.UI_Page, "성장 아이템 {0}개 설정 완료", itemIndex);
         }
 
         public void Refresh()
@@ -143,7 +110,12 @@ namespace TeamSuneat.UserInterface
 
         public void RefreshAllItems()
         {
-            for (int i = 0; i < _items.Count; i++)
+            if (_items == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _items.Length; i++)
             {
                 if (_items[i] != null)
                 {
@@ -162,19 +134,7 @@ namespace TeamSuneat.UserInterface
 
         public UIGrowthItem FindItem(StatNames statName)
         {
-            for (int i = 0; i < _items.Count; i++)
-            {
-                if (_items[i] != null && _items[i].GetStatName() == statName)
-                {
-                    return _items[i];
-                }
-            }
-            return null;
-        }
-
-        private void OnDestroy()
-        {
-            ClearItems();
+            return _growthItemMap.TryGetValue(statName, out UIGrowthItem item) ? item : null;
         }
     }
 }

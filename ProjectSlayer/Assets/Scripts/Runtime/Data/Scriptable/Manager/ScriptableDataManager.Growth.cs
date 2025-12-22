@@ -10,7 +10,7 @@ namespace TeamSuneat.Data
         /// <summary>
         /// 성장 시스템 데이터 에셋을 가져옵니다.
         /// </summary>
-        public GrowthDataAsset GetGrowthDataAsset()
+        public GrowthConfigAsset GetGrowthDataAsset()
         {
             return _growthDataAsset;
         }
@@ -18,14 +18,14 @@ namespace TeamSuneat.Data
         /// <summary>
         /// 능력치 이름으로 성장 데이터를 가져옵니다.
         /// </summary>
-        public GrowthData GetGrowthData(StatNames statName)
+        public GrowthConfigData GetGrowthData(CharacterGrowthTypes growthType)
         {
             if (_growthDataAsset == null)
             {
                 return null;
             }
 
-            return _growthDataAsset.FindGrowthData(statName);
+            return _growthDataAsset.FindGrowthData(growthType);
         }
 
         #endregion Growth Get Methods

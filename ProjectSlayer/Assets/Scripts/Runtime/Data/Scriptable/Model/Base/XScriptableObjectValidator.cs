@@ -11,7 +11,7 @@
 
             if (string.IsNullOrEmpty(scriptableObject.NameString))
             {
-                Log.Error($"Scriptable Object가 유효하지 않습니다. ({scriptableObject.name})");
+                Log.Warning($"Scriptable Object가 유효하지 않습니다. ({scriptableObject.name})");
                 return false;
             }
 

@@ -8,7 +8,7 @@ namespace TeamSuneat
         Vitality,
         Critical,
         Luck,
-        AccuracyStat,
+        Accuracy,
         Dodge,
     }
 
@@ -23,8 +23,8 @@ namespace TeamSuneat
                 CharacterGrowthTypes.Vitality => StatNames.HealthRegen,
                 CharacterGrowthTypes.Critical => StatNames.CriticalDamage,
                 CharacterGrowthTypes.Luck => StatNames.GoldGain,
-                CharacterGrowthTypes.AccuracyStat => StatNames.AccuracyChance,
-                CharacterGrowthTypes.Dodge => StatNames.DodgeChance,
+                CharacterGrowthTypes.Accuracy => StatNames.Accuracy,
+                CharacterGrowthTypes.Dodge => StatNames.Dodge,
                 _ => StatNames.None
             };
         }

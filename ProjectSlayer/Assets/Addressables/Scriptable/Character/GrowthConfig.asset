@@ -10,35 +10,56 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d633955ffa4d7d84aa28c09197115cba, type: 3}
-  m_Name: GrowthData
+  m_Name: GrowthConfig
   m_EditorClassIdentifier: 
   NameString: GrowthData
   DataArray:
-  - GrowthType: 1
+  - IsChangingAsset: 0
+    GrowthType: 1
     StatName: 1
     MaxLevel: 1000
     StatIncreasePerLevel: 5
-  - GrowthType: 2
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 0
+    GrowthType: 2
     StatName: 2
     MaxLevel: 1000
     StatIncreasePerLevel: 30
-  - GrowthType: 3
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 0
+    GrowthType: 3
     StatName: 3
     MaxLevel: 1000
     StatIncreasePerLevel: 5
-  - GrowthType: 4
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 0
+    GrowthType: 4
     StatName: 5
     MaxLevel: 200
     StatIncreasePerLevel: 0.03
-  - GrowthType: 5
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 0
+    GrowthType: 5
     StatName: 9
     MaxLevel: 1000
     StatIncreasePerLevel: 0.005
-  - GrowthType: 6
-    StatName: 8
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 1
+    GrowthType: 6
+    StatName: 15
     MaxLevel: 200
     StatIncreasePerLevel: 3
-  - GrowthType: 7
-    StatName: 14
+    GrowthTypeAsString: 
+    StatNameAsString: 
+  - IsChangingAsset: 1
+    GrowthType: 7
+    StatName: 16
     MaxLevel: 200
     StatIncreasePerLevel: 1
+    GrowthTypeAsString: 
+    StatNameAsString: 
