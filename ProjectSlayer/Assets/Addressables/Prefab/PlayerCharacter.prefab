@@ -128,6 +128,11 @@ MonoBehaviour:
       CurrentWave: 0
     Slot:
       Slots: []
+    Skill:
+      Slots: []
+      UnlockedCards: []
+      ObtainedCards: []
+      IsAutoUse: 0
 --- !u!114 &4019903911228680404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +257,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Owner: {fileID: 8104928105376297841}
+--- !u!1 &2511980614616809282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7984668616385361088}
+  - component: {fileID: 1157367886671260249}
+  m_Layer: 0
+  m_Name: PlayerAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7984668616385361088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511980614616809282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3013145815858104219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1157367886671260249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511980614616809282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b584208d12a5b2e4da0813e804c9e752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: {fileID: 8104928105376297841}
+  Name: 1
+  NameString: PlayerAttack
+  AttackStartFeedback: {fileID: 0}
+  AttackUsedFeedback: {fileID: 0}
+  AttackStopFeedback: {fileID: 0}
+  AttackReloadFeedback: {fileID: 0}
+  AttackReloadNeededFeedback: {fileID: 0}
+  AttackOnMissFeedback: {fileID: 0}
+  AttackOnHitDamageableFeedback: {fileID: 0}
+  AttackOnHitNonDamageableFeedback: {fileID: 0}
+  AttackOnKillFeedback: {fileID: 0}
 --- !u!1 &3088723855079260648
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6407280222153680891}
   - component: {fileID: 8104928105376297841}
+  - component: {fileID: 8483741623329746120}
   - component: {fileID: 4265882746871484011}
   m_Layer: 0
   m_Name: PlayerCharacter
@@ -306,15 +368,16 @@ MonoBehaviour:
   Name: 1
   NameString: Player
   FixedTargetCharacterCamp: 0
-  CharacterAnimator: {fileID: 0}
+  CharacterAnimator: {fileID: 1661594269216860683}
   CharacterRenderer: {fileID: 0}
-  Animator: {fileID: 0}
+  Animator: {fileID: 4864121802283129653}
   Attack: {fileID: 1697486467625059401}
   Buff: {fileID: 8750212393736829919}
   Passive: {fileID: 6880563101487074629}
   Stat: {fileID: 1212042058377572754}
   MyVital: {fileID: 3203837397065189325}
-  Abilities: []
+  Abilities:
+  - {fileID: 8483741623329746120}
   ShieldPoint: {fileID: 0}
   WarningTextPoint: {fileID: 0}
   MinimapPoint: {fileID: 0}
@@ -322,17 +385,31 @@ MonoBehaviour:
   UseCustomBuffVFXPosition: 0
   OnBattleFeedbacks: {fileID: 0}
   OnLevelUpFeedbacks: {fileID: 0}
-  CharacterModel: {fileID: 0}
+  CharacterModel: {fileID: 5818957589073881166}
   CameraTarget: {fileID: 0}
   CameraTargetSpeed: 5
   SendStateChangeEvents: 1
   SendStateUpdateEvents: 1
-  MovementState:
-    PreviousStateString: 
-    CurrentStateString: 
   ConditionState:
     PreviousStateString: 
     CurrentStateString: 
+--- !u!114 &8483741623329746120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088723855079260648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab43c8455662cc4ba925d34b24cef27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  Owner: {fileID: 8104928105376297841}
+  Vital: {fileID: 3203837397065189325}
+  Animator: {fileID: 4864121802283129653}
 --- !u!114 &4265882746871484011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +433,8 @@ GameObject:
   - component: {fileID: 4934299490406734366}
   - component: {fileID: 4864121802283129653}
   - component: {fileID: 5134121946865671141}
+  - component: {fileID: 1661594269216860683}
+  - component: {fileID: 1023493482590861132}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -442,19 +521,45 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1694831465
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9120184264762944097, guid: 27f72b29eec47fd488c61d6dae3ea1ec, type: 3}
+  m_Sprite: {fileID: -8019716754878475418, guid: 8b7f75d3e5bca3e418a66616daf75b57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1661594269216860683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818957589073881166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972982ab6b04704429dfafacb0764020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ownerCharacter: {fileID: 8104928105376297841}
+  _animator: {fileID: 4864121802283129653}
+--- !u!114 &1023493482590861132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818957589073881166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c961e0c1e8032e4b93795c10990a165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7833646667016376824
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +634,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7984668616385361088}
   m_Father: {fileID: 6407280222153680891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1697486467625059401
@@ -544,6 +650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0e0237622775442b0a106ef70ee5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basicAttackHitmark: 0
-  _basicAttackHitmarkString: None
+  _basicAttackHitmark: 1
+  _basicAttackHitmarkString: PlayerAttack
   _ownerCharacter: {fileID: 8104928105376297841}

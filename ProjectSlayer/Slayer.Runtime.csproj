@@ -198,6 +198,7 @@
     <Compile Include="Assets\Scripts\Runtime\Scene\Loader\ISceneLoader.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Dialogue\DialogueTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\HUDManager.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Stat\Strategies\Combat\AttackSpeedUpdateStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Excel\IData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\ArrayBuilder.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Component\UICanvasGroupFader.cs" />
@@ -513,6 +514,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Buff\BuffAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\ScriptableDataManager.Load.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Gauge\UIGauge.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Renderer\Event\CharacterAttackAnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Base\XScriptableObjectValidator.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\UICharacterLevelGroup.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\Order.cs" />

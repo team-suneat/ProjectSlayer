@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ec05e0a24d20948857e8774530c790, type: 3}
   m_Name: PlayerCharacterStat
   m_EditorClassIdentifier: 
-  NameString: 
+  NameString: PlayerCharacterStat
   BaseAttack: 1
   BaseHealth: 12
   BaseHealthRegen: 1
-  BaseCriticalChance: 0
-  BaseCriticalDamage: 0
+  BaseAttackSpeed: 1
+  BaseCriticalChance: 0.001
+  BaseCriticalDamage: 0.01
   BaseMana: 100
   BaseManaRegen: 10
-  BaseAccuracyChance: 0.3
+  BaseAccuracyChance: 0.75
   BaseDodgeChance: 0.1
   BaseGoldGain: 1
   BaseXPGain: 1

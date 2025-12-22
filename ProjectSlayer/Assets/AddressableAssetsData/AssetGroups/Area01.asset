@@ -63,12 +63,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Area01
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 32e8cb98e0671774099324ff6ad2ae16
-    m_Address: Assets/Addressables/Atlas/atlas_area01.spriteatlasv2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Area01
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 32fe91bd34d29244694d0abc5384da10
     m_Address: Assets/Addressables/Scriptable/World/Area01/Stage_Area01_StartForest1.asset
     m_ReadOnly: 0

@@ -127,6 +127,11 @@ MonoBehaviour:
       CurrentWave: 0
     Slot:
       Slots: []
+    Skill:
+      Slots: []
+      UnlockedCards: []
+      ObtainedCards: []
+      IsAutoUse: 0
 --- !u!1 &307939843724824249
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +261,7 @@ MonoBehaviour:
   NameString: Area01_Mushroom
   FixedTargetCharacterCamp: 0
   CharacterAnimator: {fileID: 2009631598904865162}
-  CharacterRenderer: {fileID: 0}
+  CharacterRenderer: {fileID: 3911599086777595489}
   Animator: {fileID: 1338539347564495384}
   Attack: {fileID: 0}
   Buff: {fileID: 6266194990852304890}
@@ -276,9 +281,6 @@ MonoBehaviour:
   CameraTargetSpeed: 5
   SendStateChangeEvents: 1
   SendStateUpdateEvents: 1
-  MovementState:
-    PreviousStateString: 
-    CurrentStateString: 
   ConditionState:
     PreviousStateString: 
     CurrentStateString: 
@@ -397,6 +399,7 @@ GameObject:
   - component: {fileID: 1338539347564495384}
   - component: {fileID: 2555591640752497129}
   - component: {fileID: 2009631598904865162}
+  - component: {fileID: 3911599086777595489}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -464,7 +467,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fab45e408703fd94f9fada8e66e6c9bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -482,8 +485,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1173537187
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326329809
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300024, guid: bd44a2f193c813a4dab84fff506336d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -510,3 +513,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ownerCharacter: {fileID: 3658666244350377799}
   _animator: {fileID: 1338539347564495384}
+--- !u!114 &3911599086777595489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020076596732676091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1366419bb7e9ba4b9a62bf730363162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 2555591640752497129}
