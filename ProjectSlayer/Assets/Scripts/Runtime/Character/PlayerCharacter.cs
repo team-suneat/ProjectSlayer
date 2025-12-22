@@ -96,12 +96,13 @@ namespace TeamSuneat
             Stat.AddWithSourceInfo(StatNames.Health, asset.BaseHealth, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.Attack, asset.BaseAttack, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.HealthRegen, asset.BaseHealthRegen, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.AttackSpeed, asset.BaseAttackSpeed, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.CriticalChance, asset.BaseCriticalChance, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.CriticalDamage, asset.BaseCriticalDamage, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.Mana, asset.BaseMana, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.ManaRegen, asset.BaseManaRegen, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.AccuracyChance, asset.BaseAccuracyChance, this, NameString, "CharacterBase");
-            Stat.AddWithSourceInfo(StatNames.DodgeChance, asset.BaseDodgeChance, this, NameString, "CharacterBase");            
+            Stat.AddWithSourceInfo(StatNames.DodgeChance, asset.BaseDodgeChance, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.GoldGain, asset.BaseGoldGain, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.XPGain, asset.BaseXPGain, this, NameString, "CharacterBase");
         }

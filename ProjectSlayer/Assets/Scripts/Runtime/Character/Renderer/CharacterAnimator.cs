@@ -1,9 +1,10 @@
-﻿using TeamSuneat.Data;
+﻿using Sirenix.OdinInspector;
+using TeamSuneat.Data;
 using UnityEngine;
 
 namespace TeamSuneat
 {
-    public partial class CharacterAnimator : XBehaviour, IAnimatorStateMachine
+    public partial class CharacterAnimator : MonoBehaviour, IAnimatorStateMachine
     {
         [SerializeField]
         protected Character _ownerCharacter;
@@ -25,10 +26,10 @@ namespace TeamSuneat
 
         //
 
-        public override void AutoGetComponents()
+        [FoldoutGroup("#Buttons")]
+        [Button(ButtonSizes.Medium)]
+        public void AutoGetComponents()
         {
-            base.AutoGetComponents();
-
             _ownerCharacter = this.FindFirstParentComponent<Character>();
             _animator = GetComponent<Animator>();
         }
@@ -50,6 +51,16 @@ namespace TeamSuneat
         {
         }
 
+        internal void PlayAttackAnimation()
+        {
+            _animator.UpdateAnimatorTrigger(ANIMATOR_IS_ATTACKING_PARAMETER_ID, AnimatorParameters);
+        }
+
+        internal void PlayAttackAnimationByHitmark(HitmarkNames hitmarkName)
+        {
+            _animator.Play(hitmarkName.ToString(), 0);
+        }
+
         internal bool PlayDamageAnimation(HitmarkAssetData asset)
         {
             return false;
@@ -62,22 +73,18 @@ namespace TeamSuneat
 
         //
 
-        internal void SetAttackSpeed(float attackSpeed)
-        {
-        }
-
-        internal void SetDamageTriggerIndex(int targetVitalColliderIndex)
-        {
-        }
-
-        internal void SetDamageTypeParameter(bool isPowerfulAttack)
-        {
-        }
-
-        //
-
         internal void StopAttacking()
         {
+        }
+
+        internal void UpdateAttackSpeed(float value)
+        {
+            _animator.UpdateAnimatorFloat(ANIMATOR_ATTACK_SPEED_PARAMETER_ID, value, AnimatorParameters);
+        }
+
+        internal void UpdateAnimatorBool(int parameterId, bool value)
+        {
+            _animator.UpdateAnimatorBool(parameterId, value, AnimatorParameters);
         }
     }
 }

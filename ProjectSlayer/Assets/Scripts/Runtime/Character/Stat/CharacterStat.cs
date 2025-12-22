@@ -84,7 +84,7 @@ namespace TeamSuneat
             {
                 string stateText = isDirty ? "갱신 필요" : "최신 상태";
                 string reasonText = string.IsNullOrEmpty(reason) ? "사유 미기재" : reason;
-                Log.Info(LogTags.Stat, "{0} 능력치 캐시 상태 변경: {1} (사유: {2})", Name.ToLogString(), stateText, reasonText);
+                Log.Info(LogTags.Stat, "{0} 능력치 캐시 상태 변경: {1} (사유: {2}) >> {3}", Name.ToLogString(), stateText, reasonText, CalculateFinalValue());
             }
         }
 

@@ -41,7 +41,9 @@ namespace TeamSuneat.Stage
             InitializeMonster();
             RegisterCurrentStage();
             RegisterGlobalEvents();
+
             Log.Info(LogTags.Stage, "스테이지 초기화 완료: {0}", Name);
+
             StartCoroutine(StartStageFlow());
         }
 
@@ -121,8 +123,12 @@ namespace TeamSuneat.Stage
                 if (_monsterSpawner != null)
                 {
                     _monsterSpawner.SpawnWave(currentWave);
+                    SetPlayerTargetToFirstMonster();
                 }
             }
+
+            // 스테이지 시작 글로벌 이벤트 전송
+            GlobalEvent<StageNames>.Send(GlobalEventType.STAGE_SPAWNED, Name);
         }
 
         private void RegisterGlobalEvents()
@@ -163,6 +169,34 @@ namespace TeamSuneat.Stage
             if (_monsterSpawner != null)
             {
                 _monsterSpawner.SpawnWave(profile.Stage.CurrentWave);
+                SetPlayerTargetToFirstMonster();
+            }
+        }
+
+        private void SetPlayerTargetToFirstMonster()
+        {
+            if (_monsterSpawner == null || _monsterSpawner.SpawnedMonsters == null || _monsterSpawner.SpawnedMonsters.Count == 0)
+            {
+                Log.Warning(LogTags.Stage, "스폰된 몬스터가 없어 플레이어 타겟을 설정할 수 없습니다.");
+                return;
+            }
+
+            PlayerCharacter player = CharacterManager.Instance.Player;
+            if (player == null)
+            {
+                Log.Warning(LogTags.Stage, "플레이어가 없어 타겟을 설정할 수 없습니다.");
+                return;
+            }
+
+            MonsterCharacter firstMonster = _monsterSpawner.SpawnedMonsters[0];
+            if (firstMonster != null && firstMonster.IsAlive)
+            {
+                player.SetTarget(firstMonster);
+                Log.Info(LogTags.Stage, "플레이어 타겟을 첫 번째 몬스터로 설정했습니다: {0}", firstMonster.Name.ToLogString());
+            }
+            else
+            {
+                Log.Warning(LogTags.Stage, "첫 번째 몬스터가 유효하지 않아 타겟을 설정할 수 없습니다.");
             }
         }
     }

@@ -431,8 +431,6 @@ namespace TeamSuneat
                 return false;
             }
 
-            Vital.Owner.CharacterAnimator.SetDamageTypeParameter(damageResult.Asset.IsPowerfulAttack);
-
             return Vital.Owner.CharacterAnimator.PlayDamageAnimation(damageResult.Asset);
         }
 

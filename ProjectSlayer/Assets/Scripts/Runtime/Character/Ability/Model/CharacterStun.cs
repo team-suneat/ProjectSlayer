@@ -135,14 +135,36 @@ namespace TeamSuneat
 
         protected override void InitializeAnimatorParameters()
         {
-            Animator?.AddAnimatorParameterIfExists(_stunnedAnimationParameterName, out _stunnedAnimationParameter, AnimatorControllerParameterType.Bool, Owner.AnimatorParameters);
+            base.InitializeAnimatorParameters();
+
+            if (Owner == null)
+            {
+                return;
+            }
+
+            if (Owner.CharacterAnimator == null)
+            {
+                return;
+            }
+
+            Owner.CharacterAnimator.AddAnimatorParameterIfExists(_stunnedAnimationParameterName, out _stunnedAnimationParameter, AnimatorControllerParameterType.Bool);
         }
 
         public override void UpdateAnimator()
         {
-            bool isStunned = _conditionState.CurrentState == CharacterConditions.Stunned;
+            base.UpdateAnimator();
+            if (Owner == null)
+            {
+                return;
+            }
 
-            Animator?.UpdateAnimatorBool(_stunnedAnimationParameter, isStunned, Owner.AnimatorParameters);
+            if (Owner.CharacterAnimator == null)
+            {
+                return;
+            }
+
+            bool isStunned = _conditionState.CurrentState == CharacterConditions.Stunned;
+            Owner.CharacterAnimator.UpdateAnimatorBool(_stunnedAnimationParameter, isStunned);
         }
     }
 }

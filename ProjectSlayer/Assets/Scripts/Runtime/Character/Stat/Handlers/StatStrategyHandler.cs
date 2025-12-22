@@ -122,6 +122,7 @@ namespace TeamSuneat
         {
             _strategies[StatNames.Health] = new HealthUpdateStrategy();
             _strategies[StatNames.Attack] = new AttackUpdateStrategy();
+            _strategies[StatNames.AttackSpeed] = new AttackSpeedUpdateStrategy();
             _strategies[StatNames.CriticalChance] = new CriticalUpdateStrategy();
             _strategies[StatNames.CriticalDamage] = new CriticalUpdateStrategy();
         }

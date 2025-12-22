@@ -11,10 +11,6 @@ namespace TeamSuneat.Data
             {
                 Log.Error("스킬의 최대 레벨이 설정되지 않았습니다: {0}", Name);
             }
-            if (CooldownType == CooldownTypes.None)
-            {
-                Log.Error("스킬의 쿨타임 타입이 설정되지 않았습니다: {0}", Name);
-            }
             if (CooldownType == CooldownTypes.TimeBased && BaseCooldownTime <= 0)
             {
                 Log.Error("시간 기반 쿨타임인데 기본 대기 시간이 설정되지 않았습니다: {0}", Name);

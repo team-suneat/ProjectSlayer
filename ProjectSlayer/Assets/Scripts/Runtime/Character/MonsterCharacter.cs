@@ -62,10 +62,14 @@ namespace TeamSuneat
         public override void AddCharacterStats()
         {
             MonsterStatConfigAsset monsterStatConfigAsset = ScriptableDataManager.Instance.GetMonsterStatConfigAsset();
-            if (monsterStatConfigAsset != null)
+            if (monsterStatConfigAsset.IsValid())
             {
                 Stat.AddWithSourceInfo(StatNames.Health, monsterStatConfigAsset.GetHealth(Level, IsBoss), this, NameString, "CharacterBase");
                 Stat.AddWithSourceInfo(StatNames.Attack, monsterStatConfigAsset.GetAttack(Level, IsBoss), this, NameString, "CharacterBase");
+            }
+            else
+            {
+                Log.Error("몬스터의 능력치를 불러올 수 없습니다.");
             }
         }
 

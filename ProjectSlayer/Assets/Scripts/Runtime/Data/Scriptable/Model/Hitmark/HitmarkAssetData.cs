@@ -39,24 +39,9 @@ namespace TeamSuneat.Data
 
         [FoldoutGroup("#피해 정보 - 토글/애니메이션", true)]
         [GUIColor("GetBoolColor")]
-        [SuffixLabel("피격자의 피격 애니메이션 종류 : 강한 공격 여부")]
-        public bool IsPowerfulAttack;
-
-        [FoldoutGroup("#피해 정보 - 토글/애니메이션", true)]
-        [GUIColor("GetBoolColor")]
-        [SuffixLabel("피격 역방향 적용")]
-        public bool IsReverseDamageDirection;
-
-        [FoldoutGroup("#피해 정보 - 토글/애니메이션", true)]
-        [GUIColor("GetBoolColor")]
         [Tooltip("피격 애니메이션을 재생하지 않으면 피격 FV 또한 적용하지 않습니다.")]
         [SuffixLabel("피격 애니메이션 사용 안함*")]
         public bool NotPlayDamageAnimation;
-
-        [FoldoutGroup("#피해 정보 - 토글/애니메이션", true)]
-        [GUIColor("GetIntColor")]
-        [SuffixLabel("이 공격에 비롯된 피격 애니메이션의 우선순위")]
-        public int DamageAnimationPriority;
 
         [FoldoutGroup("#피해 정보 - 토글")]
         [GUIColor("GetBoolColor")]
@@ -315,10 +300,7 @@ namespace TeamSuneat.Data
 
                 DamageType = DamageType,
                 IgnoreEvasion = IgnoreEvasion,
-                IsPowerfulAttack = IsPowerfulAttack,
-                IsReverseDamageDirection = IsReverseDamageDirection,
                 NotPlayDamageAnimation = NotPlayDamageAnimation,
-                DamageAnimationPriority = DamageAnimationPriority,
                 ApplyToSelf = ApplyToSelf,
                 ApplyMultiplierToSelf = ApplyMultiplierToSelf,
 
@@ -429,10 +411,7 @@ namespace TeamSuneat.Data
             if (LinkedHitmarkMagnification != another.LinkedHitmarkMagnification) { return false; }
             if (LinkedValueMagnificationByLevel != another.LinkedValueMagnificationByLevel) { return false; }
             if (LinkedValueMagnificationByStack != another.LinkedValueMagnificationByStack) { return false; }
-            if (IsPowerfulAttack != another.IsPowerfulAttack) { return false; }
-            if (IsReverseDamageDirection != another.IsReverseDamageDirection) { return false; }
             if (NotPlayDamageAnimation != another.NotPlayDamageAnimation) { return false; }
-            if (DamageAnimationPriority != another.DamageAnimationPriority) { return false; }
 
             return true;
         }

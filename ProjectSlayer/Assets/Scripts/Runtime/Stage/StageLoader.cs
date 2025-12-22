@@ -44,7 +44,7 @@ namespace TeamSuneat
                 AreaNames currentArea = profileInfo.Stage.CurrentArea;
                 int areaIndex = (int)currentArea;
                 string label = string.Format(AddressableLabels.AreaFormat, areaIndex);
-                
+
                 await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(label);
                 await ResourcesManager.LoadResourcesByLabelAsync<SpriteAtlas>(label);
                 await ResourcesManager.LoadResourcesByLabelAsync<ScriptableObject>(label);

@@ -115,7 +115,7 @@ namespace TeamSuneat.Data.Game
             {
                 if (string.IsNullOrEmpty(Data.Profile.Stage.CurrentAreaString))
                 {
-                    Log.Error("현재 지역의 스트링이 유효하지 않습니다.");
+                    Log.Warning("현재 지역의 스트링이 유효하지 않습니다.");
                     return null;
                 }
                 chunk = SerializeObject(Data);

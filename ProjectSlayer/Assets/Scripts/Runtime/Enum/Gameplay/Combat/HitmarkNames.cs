@@ -4,20 +4,21 @@
     {
         None,
 
-        WarriorSword = 1001,    // 전사의 검
-        ExecutionerDagger,      // 처형의 단검
-        CrimsonAxe,             // 피의 도끼
-        LightningSpear,         // 번개의 창
-        FlameMace,              // 화염 방망이
-        Pineapple,              // 파인애플
-        PaladinShield,          // 성기사 방패
-        Stone,                  // 돌
-        Shovel,                 // 삽
+        #region Player
 
-        AshGrayInfantry = 2001, // 잿빛 보병
-        MaceWraith,             // 철퇴 망령
-        BoneGeneral,            // 뼈다귀 장군
-        AshBeast,               // 재더미 짐승
-        HeartoftheLegion,       // 군단의 심장
+        PlayerAttack = 1,
+
+        #endregion Player
+
+        #region Area01
+
+        // 보스 몬스터 (5종)
+        Area01_Boss_MushroomKingAttack = 1051,  // 버섯 대왕 (1~5 스테이지)
+        Area01_Boss_SlimeKingAttack = 1052,     // 슬라임 킹 (6~10 스테이지)
+        Area01_Boss_GoblinChiefAttack = 1053,   // 고블린 대장 (11~15 스테이지)
+        Area01_Boss_BoarLordAttack = 1054,      // 멧돼지 군주 (16~19 스테이지)
+        Area01_Boss_WolfKingAttack = 1055,      // 늑대 왕 (20 스테이지)
+
+        #endregion Area01
     }
 }

@@ -90,7 +90,7 @@ namespace TeamSuneat
 
             if (!_stats.ContainsKey(statName))
             {
-                CharacterStat characterStat = new(statName, modifier.Value);
+                CharacterStat characterStat = new(statName, statData.DefaultValue);
                 characterStat.AddModifier(modifier);
                 _stats.Add(characterStat.Name, characterStat);
             }

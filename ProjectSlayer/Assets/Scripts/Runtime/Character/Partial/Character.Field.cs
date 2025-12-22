@@ -7,7 +7,7 @@ namespace TeamSuneat
     public partial class Character
     {
         [FoldoutGroup("#Character")] public CharacterNames Name;
-        [FoldoutGroup("#Character")] public string NameString;        
+        [FoldoutGroup("#Character")] public string NameString;
         [FoldoutGroup("#Character")] public bool FixedTargetCharacterCamp;
 
         // ───────────────────────────────────────────────────────────────────────────────────────────────────────────────

@@ -8,6 +8,7 @@ namespace TeamSuneat.Data
         public int BaseAttack = 1; // 기본 공격력 (1)
         public int BaseHealth = 10; // 기본 체력 (10)
         public int BaseHealthRegen = 1; // 기본 체력 회복량 (1초에 1만큼 회복)
+        public float BaseAttackSpeed = 1.0f; // 기본 공격 속도 (100%)
         public float BaseCriticalChance = 0.001f; // 기본 치명타 확률 (0.1%)
         public float BaseCriticalDamage = 0.01f; // 기본 치명타 피해 (1%)
         public int BaseMana = 100; // 기본 마나 (100)

@@ -5,22 +5,14 @@ namespace TeamSuneat
 {
     public class PlayerCharacterSpawner : XBehaviour
     {
-        #region Private Fields
 
         [SerializeField]
         private Transform _spawnPoint;
 
         private XScene _parentScene;
 
-        #endregion Private Fields
-
-        #region Properties
-
         public PlayerCharacter SpawnedPlayer { get; private set; }
 
-        #endregion Properties
-
-        #region Public Methods
 
         public void Initialize(XScene parentScene)
         {
@@ -67,9 +59,6 @@ namespace TeamSuneat
             }
         }
 
-        #endregion Public Methods
-
-        #region Private Methods
 
         private Vector3 GetSpawnPosition()
         {
@@ -81,6 +70,5 @@ namespace TeamSuneat
             return transform.position;
         }
 
-        #endregion Private Methods
     }
 }
