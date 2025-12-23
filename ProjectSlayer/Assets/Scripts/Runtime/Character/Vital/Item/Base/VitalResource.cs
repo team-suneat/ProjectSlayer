@@ -1,5 +1,5 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+using System;
 using TeamSuneat.Data;
 using TeamSuneat.Setting;
 using TeamSuneat.UserInterface;
@@ -47,7 +47,6 @@ namespace TeamSuneat
         public virtual void Initialize()
         {
             LoadMaxValue();
-
             LoadCurrentValue();
         }
 
@@ -286,7 +285,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Info(LogTags.BattleResource, addString + content);
                 }
                 else
@@ -303,7 +302,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Info(LogTags.BattleResource, addString + format, args);
                 }
                 else
@@ -320,7 +319,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Warning(LogTags.BattleResource, addString + content);
                 }
                 else
@@ -337,7 +336,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Warning(LogTags.BattleResource, addString + format, args);
                 }
                 else
@@ -354,7 +353,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Error(addString + content);
                 }
                 else
@@ -371,7 +370,7 @@ namespace TeamSuneat
             {
                 if (Vital.Owner != null)
                 {
-                    string addString = Vital.Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Vital.Owner.Name.ToLogString()}({Vital.SID}), ";
                     Log.Error(addString + format, args);
                 }
                 else

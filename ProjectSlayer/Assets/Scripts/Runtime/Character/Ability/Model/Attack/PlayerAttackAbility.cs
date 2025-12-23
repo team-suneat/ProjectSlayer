@@ -4,11 +4,11 @@ namespace TeamSuneat
 {
     public class PlayerAttackAbility : CharacterAbility
     {
-        private const float BASE_ATTACK_INTERVAL = 1.0f;
+        private const float BASE_ATTACK_INTERVAL = 0.3f;
 
         private PlayerCharacter _player;
-        private float _attackInterval = 1.0f;
-        private float _lastAttackTime = 0.0f;
+        private float _attackInterval;
+        private float _lastAttackTime;
 
         private int _attackAnimationParameter;
 
@@ -43,11 +43,6 @@ namespace TeamSuneat
 
         public bool CanAttackTarget()
         {
-            if (!EnsureReferences())
-            {
-                return false;
-            }
-
             if (IsTargetValid(_player.TargetCharacter))
             {
                 return true;
@@ -203,7 +198,7 @@ namespace TeamSuneat
         private void UpdateAttackInterval(float attackSpeed)
         {
             if (attackSpeed <= 0.0f)
-            {            
+            {
                 return;
             }
 

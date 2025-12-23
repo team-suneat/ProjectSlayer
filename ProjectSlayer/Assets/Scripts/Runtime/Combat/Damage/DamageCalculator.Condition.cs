@@ -118,12 +118,16 @@ namespace TeamSuneat
 
         private bool DetermineExecute(DamageResult damageResult)
         {
-            if (damageResult.TargetVital != null)
+            float conditionRate = damageResult.Asset.ExecutionConditionalTargetHealthRate;
+            if (conditionRate > 0)
             {
-                if (damageResult.TargetVital.HealthRate <= damageResult.Asset.ExecutionConditionalTargetHealthRate)
+                if (damageResult.TargetVital != null)
                 {
-                    LogExecutionApplied(damageResult.TargetVital.HealthRate, damageResult.Asset.ExecutionConditionalTargetHealthRate);
-                    return true;
+                    if (damageResult.TargetVital.HealthRate <= conditionRate)
+                    {
+                        LogExecutionApplied(damageResult.TargetVital.HealthRate, conditionRate);
+                        return true;
+                    }
                 }
             }
 

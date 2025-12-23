@@ -6,7 +6,7 @@ namespace TeamSuneat.Data
     {
         private void CustomLog()
         {
-#if UNITY_EDITOR           
+#if UNITY_EDITOR
             if (MaxLevel == 0)
             {
                 Log.Error("스킬의 최대 레벨이 설정되지 않았습니다: {0}", Name);
@@ -33,11 +33,6 @@ namespace TeamSuneat.Data
                 return GameColors.DarkGray;
             }
             return GameColors.GreenYellow;
-        }
-
-        protected Color GetSkillNameColor(SkillNames key)
-        {
-            return GetFieldColor(key);
         }
 
         protected Color GetSkillAttributeColor(SkillAttributeTypes key)

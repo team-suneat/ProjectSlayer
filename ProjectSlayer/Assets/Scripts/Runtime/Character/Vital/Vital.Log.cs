@@ -10,7 +10,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Progress(LogTags.Vital, addString + format);
                 }
                 else
@@ -27,7 +27,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Info(LogTags.Vital, addString + format);
                 }
                 else
@@ -44,7 +44,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Warning(LogTags.Vital, addString + format);
                 }
                 else
@@ -61,7 +61,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Error(addString + format);
                 }
                 else
@@ -78,7 +78,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Progress(LogTags.Vital, addString + format, args);
                 }
                 else
@@ -95,7 +95,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Info(LogTags.Vital, addString + format, args);
                 }
                 else
@@ -112,7 +112,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Warning(LogTags.Vital, addString + format, args);
                 }
                 else
@@ -129,7 +129,7 @@ namespace TeamSuneat
             {
                 if (Owner != null)
                 {
-                    string addString = Owner.Name.ToLogString() + ", ";
+                    string addString = $"{Owner.Name.ToLogString()}({SID}), ";
                     Log.Error(addString + format, args);
                 }
                 else

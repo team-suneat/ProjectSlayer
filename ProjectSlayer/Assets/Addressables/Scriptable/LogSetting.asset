@@ -23,13 +23,13 @@ MonoBehaviour:
   Animation: 1
   Renderer: 1
   Attack: 1
-  BattleResource: 1
   Buff: 1
   Damage: 1
   Effect: 1
   Passive: 1
   Stat: 1
   Vital: 1
+  BattleResource: 1
   Skill: 1
   Currency: 1
   Item: 1

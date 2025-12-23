@@ -1,8 +1,7 @@
-﻿using Sirenix.OdinInspector;
+﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TeamSuneat.Audio;
-using TeamSuneat.Data.Game;
-using TeamSuneat.Feedbacks;
 using TeamSuneat.Setting;
 using TeamSuneat.UserInterface;
 using UnityEngine;
@@ -42,11 +41,6 @@ namespace TeamSuneat
         public bool ImmuneToDamage = false;
 
         [FoldoutGroup("#Toggle")]
-        [Tooltip("이것이 사실이면 피해 값이 Intensity 매개변수로 GameFeedbacks에 전달되어 피해값이 증가함에 따라 더 강렬한 피드백을 트리거할 수 있습니다")]
-        [SuffixLabel("피해 비례 피드백")]
-        public bool FeedbackIsProportionalToDamage;
-
-        [FoldoutGroup("#Toggle")]
         [Tooltip("이것이 사실이면 피해 시 Lit 타입의 매터리얼을 사용하여 히트이펙트를 보여지게합니다.")]
         [SuffixLabel("피해시 Lit 타입 매터리얼 히트이펙트")]
         public bool DrawFlashLitOnDamage;
@@ -76,45 +70,12 @@ namespace TeamSuneat
         [SuffixLabel("초기 위치 부활")]
         public bool RespawnAtInitialLocation = false;
 
-        #region Feedbacks
-
-        [FoldoutGroup("#Feedback")] public GameFeedbacks HealFeedbacks;
-
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamagePhysicalFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageMagicalFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageFireFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageColdFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageLightningFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamagePoisonFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageDarknessFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageHolyFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageBloodFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageOverTimeFeedbacks;
-        [FoldoutGroup("#Feedback")] public DamageTypes[] DamageOverTimeFeedbackParameters;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DamageZeroFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks BlockDamageFeedbacks;
-
-        [FoldoutGroup("#Feedback")] public GameFeedbacks DeathFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks KilledFeedbacks;
-        [FoldoutGroup("#Feedback")] public GameFeedbacks SuicideFeedbacks;
-
-        #endregion Feedbacks
-
         #endregion Field
 
         #region Parameter
 
-        /// <summary>
-        /// 생명력 타입을 반환합니다.
-        /// </summary>
         public override VitalResourceTypes Type => VitalResourceTypes.Health;
 
-        public VProfile ProfileInfo = GameApp.GetSelectedProfile();
-
-        /// <summary>
-        /// 캐릭터가 피해를 입었는지 여부를 나타냅니다.
-        /// </summary>
         public bool IsDamaged { get; set; }
 
         #endregion Parameter
@@ -318,7 +279,6 @@ namespace TeamSuneat
             else
             {
                 SetTargetAttacker(attacker);
-
                 EnablePostDamageInvulnerability(InvincibilityDurationOnDamage);
             }
 
@@ -374,14 +334,27 @@ namespace TeamSuneat
 
                 if (Vital.Owner != null)
                 {
-                    _ = TryPlayDamageAnimation(damageResult);
+                    TryPlayDamageAnimation(damageResult);
                 }
 
                 EnablePostDamageInvulnerability(InvincibilityDurationOnDamage);
+
                 if (Vital.EnemyGauge == null && Vital.PlayerGauge == null)
                 {
                     Vital.SpawnCharacterGauge();
                 }
+
+                if (_tweener != null)
+                {
+                    _tweener.Kill();
+                    _tweener = null;
+                }
+                _tweener = CameraManager.Instance.MainCamera.transform.DOShakePosition(ShakeDuration, ShakeStrength)
+                    .OnComplete(() =>
+                    {
+                        CameraManager.Instance.MainCamera.transform.localPosition = Vector3.zero;
+                        _tweener = null;
+                    });
             }
 
             RefreshGauge();
@@ -395,9 +368,11 @@ namespace TeamSuneat
 
             SpawnDamageFloatyText(damageResult, Type);
             PlayDamageSFX(damageResult);
-            PlayElementDamageFeedbacks(damageResult, damageResult.DamagePosition);
-            PlayDamageOverTimeFeedbacks(damageResult, damageResult.DamagePosition);
         }
+
+        public float ShakeDuration;
+        public float ShakeStrength;
+        private Tweener _tweener;
 
         private void SetTargetAttacker(Character attacker)
         {
@@ -675,144 +650,6 @@ namespace TeamSuneat
             {
             }
         }
-
-        #region Feedback
-
-        private void GetFeedbackComponents()
-        {
-            Transform parentTransform = GetParentTransform();
-            if (parentTransform == null)
-            {
-                return;
-            }
-
-            Transform feedbackParent = GetFeedbackParentTransform(parentTransform);
-            if (feedbackParent == null)
-            {
-                return;
-            }
-
-            HealFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Heal");
-            DamageFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage");
-            DamagePhysicalFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Physical)");
-            DamageMagicalFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Magical)");
-            DamageFireFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Fire)");
-            DamageColdFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Cold)");
-            DamageLightningFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Lightning)");
-            DamagePoisonFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Poison)");
-            DamageDarknessFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Darkness)");
-            DamageHolyFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Holy)");
-            DamageBloodFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Blood)");
-            DamageZeroFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Damage(Zero)");
-            BlockDamageFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("BlockDamage");
-            DeathFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Death");
-            KilledFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Killed");
-            SuicideFeedbacks = feedbackParent.FindComponent<GameFeedbacks>("Suicide");
-        }
-
-        private Transform GetParentTransform()
-        {
-            return Vital.Owner != null ? Vital.Owner.transform : null;
-        }
-
-        private Transform GetFeedbackParentTransform(Transform parentTransform)
-        {
-            Transform feedbackParent = parentTransform.FindTransform("#Feedbacks");
-            if (feedbackParent == null)
-            {
-                feedbackParent = parentTransform.FindTransform("Model/#Feedbacks");
-            }
-
-            return feedbackParent;
-        }
-
-        private void PlayHealFeedbacks(float damageValue)
-        {
-            if (FeedbackIsProportionalToDamage)
-            {
-                HealFeedbacks?.PlayFeedbacks(position, 0, damageValue);
-            }
-            else
-            {
-                HealFeedbacks?.PlayFeedbacks(position, 0);
-            }
-        }
-
-        private void PlayDamageFeedbacks(float damageValue)
-        {
-            if (FeedbackIsProportionalToDamage)
-            {
-                DamageFeedbacks?.PlayFeedbacks(position, 0, damageValue);
-            }
-            else
-            {
-                DamageFeedbacks?.PlayFeedbacks(position, 0);
-            }
-        }
-
-        private void PlayDeathFeedback()
-        {
-            DeathFeedbacks?.PlayFeedbacks();
-        }
-
-        private void PlayKilledFeedbacks()
-        {
-            KilledFeedbacks?.PlayFeedbacks();
-        }
-
-        private void PlaySuicideFeedbacks()
-        {
-            SuicideFeedbacks?.PlayFeedbacks();
-        }
-
-        private void PlayElementDamageFeedbacks(DamageResult damageResult, Vector3 damagePosition)
-        {
-            switch (damageResult.DamageType)
-            {
-                case DamageTypes.Normal:
-                    DamagePhysicalFeedbacks?.PlayFeedbacks(damagePosition, 0);
-                    break;
-
-                case DamageTypes.Thorns:
-                    DamagePhysicalFeedbacks?.PlayFeedbacks(damagePosition, 0);
-                    break;
-
-                case DamageTypes.DamageOverTime:
-                    DamageBloodFeedbacks?.PlayFeedbacks(damagePosition, 0);
-                    break;
-            }
-        }
-
-        private void PlayDamageOverTimeFeedbacks(DamageResult damageResult, Vector3 damagePosition)
-        {
-            if (damageResult.DamageType.IsDamageOverTime())
-            {
-                int parameter = GetDamageOverTimeFeedbackParameter(damageResult.DamageType);
-                if (FeedbackIsProportionalToDamage)
-                {
-                    DamageOverTimeFeedbacks?.PlayFeedbacks(position, parameter, damageResult.DamageValue);
-                }
-                else
-                {
-                    DamageOverTimeFeedbacks?.PlayFeedbacks(position, parameter);
-                }
-            }
-        }
-
-        private int GetDamageOverTimeFeedbackParameter(DamageTypes damageType)
-        {
-            for (int i = 0; i < DamageOverTimeFeedbackParameters.Length; i++)
-            {
-                if (DamageOverTimeFeedbackParameters[i] == damageType)
-                {
-                    return i;
-                }
-            }
-
-            return 999;
-        }
-
-        #endregion Feedback
 
         #region Gauge
 

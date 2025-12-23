@@ -32,6 +32,7 @@ MonoBehaviour:
   FadeDelayTime: 0.1
   FadeTargetAlpha: 0.1
   UsePunchScale: 1
+  PunchEase: 1
   PunchScale: {x: -0.1, y: -0.1}
   PunchScaleDuration: 0.1
   PunchScaleVibrato: 1

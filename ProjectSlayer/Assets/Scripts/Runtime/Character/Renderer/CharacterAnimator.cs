@@ -63,7 +63,12 @@ namespace TeamSuneat
 
         internal bool PlayDamageAnimation(HitmarkAssetData asset)
         {
-            return false;
+            if (asset.NotPlayDamageAnimation)
+            {
+                return false;
+            }
+
+            return _animator.UpdateAnimatorTrigger(ANIMATOR_DAMAGE_PARAMETER_ID, AnimatorParameters);
         }
 
         public virtual void PlayDeathAnimation()

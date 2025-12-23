@@ -26,13 +26,13 @@ namespace TeamSuneat
         [FoldoutGroup("[캐릭터 랜더러]")][SuffixLabel("랜더러")] public bool Renderer;
 
         [FoldoutGroup("[전투]")][SuffixLabel("공격")] public bool Attack;
-        [FoldoutGroup("[전투]")][SuffixLabel("전투자원")] public bool BattleResource;
         [FoldoutGroup("[전투]")][SuffixLabel("버프")] public bool Buff;
         [FoldoutGroup("[전투]")][SuffixLabel("피해량 계산")] public bool Damage;
         [FoldoutGroup("[전투]")][SuffixLabel("이펙트")] public bool Effect;
         [FoldoutGroup("[전투]")][SuffixLabel("패시브")] public bool Passive;
         [FoldoutGroup("[전투]")][SuffixLabel("능력치")] public bool Stat;
         [FoldoutGroup("[전투]")][SuffixLabel("캐릭터 전투자원")] public bool Vital;
+        [FoldoutGroup("[전투]")][SuffixLabel("전투자원")] public bool BattleResource;
 
         [FoldoutGroup("[기술]")][SuffixLabel("기술")] public bool Skill;
 

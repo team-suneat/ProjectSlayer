@@ -55,7 +55,7 @@ namespace TeamSuneat
 
         private void RefreshTarget()
         {
-            if (_damageInfo.TargetVital != null)
+            if (_damageInfo.TargetVital != null && _damageInfo.TargetVital.IsAlive)
             {
                 return;
             }

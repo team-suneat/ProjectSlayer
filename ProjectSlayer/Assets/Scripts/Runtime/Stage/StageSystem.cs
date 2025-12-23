@@ -133,17 +133,17 @@ namespace TeamSuneat.Stage
 
         private void RegisterGlobalEvents()
         {
-            GlobalEvent.Register(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
-            GlobalEvent.Register(GlobalEventType.BOSS_CHARACTER_DEATH, OnMonsterDeath);
+            GlobalEvent<Character>.Register(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
+            GlobalEvent<Character>.Register(GlobalEventType.BOSS_CHARACTER_DEATH, OnMonsterDeath);
         }
 
         private void UnregisterGlobalEvents()
         {
-            GlobalEvent.Unregister(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
-            GlobalEvent.Unregister(GlobalEventType.BOSS_CHARACTER_DEATH, OnMonsterDeath);
+            GlobalEvent<Character>.Unregister(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
+            GlobalEvent<Character>.Unregister(GlobalEventType.BOSS_CHARACTER_DEATH, OnMonsterDeath);
         }
 
-        private void OnMonsterDeath()
+        private void OnMonsterDeath(Character character)
         {
             if (_monsterSpawner != null && _monsterSpawner.IsAllMonstersDefeated)
             {

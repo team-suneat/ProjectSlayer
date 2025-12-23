@@ -16,8 +16,7 @@ namespace TeamSuneat
 
         public CameraAsset CameraAsset;
         public Camera MainCamera;
-        public Camera UICamera;
-        public Camera MinimapCamera;
+        public Camera UICamera;        
 
         // 직접 컴포넌트 참조 (Controller 대체)
         public CinemachineBrain BrainCamera;
@@ -39,8 +38,7 @@ namespace TeamSuneat
 
             // 기본 카메라 컴포넌트들
             MainCamera = this.FindComponent<Camera>("MainCamera");
-            UICamera = this.FindComponent<Camera>("UICamera");
-            MinimapCamera = this.FindComponent<Camera>("Minimap Camera");
+            UICamera = this.FindComponent<Camera>("UICamera");            
 
             // 직접 컴포넌트 참조
             BrainCamera = GetComponentInChildren<CinemachineBrain>();

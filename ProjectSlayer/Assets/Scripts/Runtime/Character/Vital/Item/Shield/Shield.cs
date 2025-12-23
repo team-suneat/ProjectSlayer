@@ -1,6 +1,5 @@
 ﻿using Sirenix.OdinInspector;
 using TeamSuneat.Feedbacks;
-using TeamSuneat.UserInterface;
 using UnityEngine;
 
 namespace TeamSuneat

@@ -29,6 +29,8 @@ namespace TeamSuneat.Data.Game
             EnumEx.ConvertTo(ref CurrentArea, CurrentAreaString);
             EnumEx.ConvertTo(ref MaxReachedStage, MaxReachedStageString);
             EnumEx.ConvertTo(ref MaxReachedArea, MaxReachedAreaString);
+
+            CurrentWave = 0;
         }
 
         public void SelectStage(StageNames stageName)

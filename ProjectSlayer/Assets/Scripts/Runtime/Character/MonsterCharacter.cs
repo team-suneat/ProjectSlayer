@@ -81,6 +81,15 @@ namespace TeamSuneat
 
             _dropObjectSpawner?.SpawnDropEXP(position);
             CharacterAnimator?.PlayDeathAnimation();
+
+            if (IsBoss)
+            {
+                GlobalEvent<Character>.Send(GlobalEventType.BOSS_CHARACTER_DEATH, this);
+            }
+            else
+            {
+                GlobalEvent<Character>.Send(GlobalEventType.MONSTER_CHARACTER_DEATH, this);
+            }
         }
     }
 }

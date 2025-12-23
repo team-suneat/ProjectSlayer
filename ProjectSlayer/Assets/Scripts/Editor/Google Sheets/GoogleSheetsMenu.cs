@@ -46,25 +46,24 @@ namespace TeamSuneat
         #region Convert Sheet To Json
 
         [MenuItem("Tools/Google Sheets/Convert To Json/All")]
-        public static async void ConvertAllToJson()
+        public static void ConvertAllToJson()
         {
             ConvertStatToJson();
             ConvertStringToJson();
         }
 
-
         [MenuItem("Tools/Google Sheets/Convert To Json/Stat")]
-        public static async void ConvertStatToJson()
+        public static void ConvertStatToJson()
         {
             ConvertCacheToJson<StatData>("Stat", GoogleSheetDatasetGids.Stat);
         }
 
-
         [MenuItem("Tools/Google Sheets/Convert To Json/String")]
-        public static async void ConvertStringToJson()
+        public static void ConvertStringToJson()
         {
             ConvertCacheToJson<StringData>("String", GoogleSheetDatasetGids.String);
         }
+
         private static async void ConvertCacheToJson<IData>(string key, string gid)
         {
             string url = GameGoogleSheetLoader.BuildPublishedTSVUrlForGid(gid);

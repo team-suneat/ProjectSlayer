@@ -271,7 +271,6 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\TransformEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Gauge\UIGaugePoolHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\InteractionEnums.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Camera\MinimapCamera.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Mover\VFXMover.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Serialization.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Details\UIDetails.cs" />
@@ -458,6 +457,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\System\BuffSystem.Editor.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Animator\VFXAnimator.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Hitmark\HitmarkAssetData.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Health\Health.Feedback.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Button\UIButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Object\CameraBoundingCollider.cs" />
     <Compile Include="Assets\Scripts\Runtime\Stage\StageSystem.cs" />
@@ -467,6 +467,7 @@
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\Handler\Interface\IUIPopupFeedbackHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Reference.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Shield\ShieldCalculationData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Setting\PassiveEffectSettings.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\CharacterInfo\UIStatDisplayGroup.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\UIPreviewImage.cs" />

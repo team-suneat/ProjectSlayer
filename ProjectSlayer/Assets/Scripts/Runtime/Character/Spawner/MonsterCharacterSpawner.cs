@@ -60,6 +60,9 @@ namespace TeamSuneat
                 return;
             }
 
+            // 이전 웨이브의 죽은 몬스터들을 리스트에서 제거
+            CleanupDeadMonsters();
+
             List<CharacterNames> monstersToSpawn = DetermineMonstersForWave(waveIndex);
 
             if (monstersToSpawn.Count == 0)
@@ -180,6 +183,23 @@ namespace TeamSuneat
 
             CharacterManager.Instance.Unregister(monster);
             Destroy(monster.gameObject);
+        }
+
+        private void CleanupDeadMonsters()
+        {
+            if (SpawnedMonsters == null || SpawnedMonsters.Count == 0)
+            {
+                return;
+            }
+
+            for (int i = SpawnedMonsters.Count - 1; i >= 0; i--)
+            {
+                MonsterCharacter monster = SpawnedMonsters[i];
+                if (monster == null || !monster.IsAlive)
+                {
+                    SpawnedMonsters.RemoveAt(i);
+                }
+            }
         }
 
         #endregion Private Methods

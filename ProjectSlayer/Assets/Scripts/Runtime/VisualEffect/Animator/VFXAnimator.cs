@@ -13,8 +13,6 @@ namespace TeamSuneat
 
         public bool UseDespawnAnimation;
 
-        public string DespawnAnimationParameterName = "Despawn";
-
         [LabelText("무작위 파라메터 사용")]
         public bool UseRandomParameter;
 
@@ -88,7 +86,7 @@ namespace TeamSuneat
 
             for (int i = 0; i < _animators.Length; i++)
             {
-                if (_animators[i].UpdateAnimatorTriggerIfExists(DespawnAnimationParameterName))
+                if (_animators[i].UpdateAnimatorTriggerIfExists("Despawn"))
                 {
                     _isDespawning = true;
                 }

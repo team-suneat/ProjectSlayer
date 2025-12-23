@@ -104,12 +104,5 @@ namespace TeamSuneat
                 OnGainShield();
             }
         }
-
-        /// <summary> 보호막 계산에 필요한 데이터를 담는 구조체입니다. </summary>
-        private struct ShieldCalculationData
-        {
-            public float Multiplier;
-            public float FixedValue;
-        }
     }
 }

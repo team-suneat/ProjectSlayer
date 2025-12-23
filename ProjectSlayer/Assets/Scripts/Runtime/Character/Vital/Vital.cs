@@ -21,17 +21,17 @@ namespace TeamSuneat
 
         public virtual void OnBattleReady()
         {
-            if (Health != null)
-            {
-                Health.Initialize();
-            }
+            Generate();
+
+            Health?.Initialize();
+            Mana?.Initialize();
+            Shield?.Initialize();
 
             if (UseSpawnGaugeOnInit)
             {
                 SpawnCharacterGauge();
             }
 
-            Generate();
             RegisterVital();
             StartRegenerate();
         }
@@ -99,10 +99,12 @@ namespace TeamSuneat
         {
             if (CurrentHealth <= 0)
             {
+                LogWarning("캐릭터의 현재 체력이 0입니다. 피해를 받지 않습니다.");
                 return false;
             }
             else if (damageResult.DamageValue <= 0)
             {
+                LogWarning("설정된 피해가 0 또는 음수입니다. 피해를 받지 않습니다.");
                 return false;
             }
             else if (damageResult.DamageValue > 0)

@@ -21,19 +21,20 @@ MonoBehaviour:
   SpawnOffset: {x: 0, y: 0, z: 0}
   Type: 1
   RandomFace: 0
-  DelayTime: 0.1
-  Duration: 0.5
+  DelayTime: 0.5
+  Duration: 1
   Velocity: {x: 0, y: 100, z: 0}
   JumpEndValue: {x: 0, y: 0, z: 0}
   JumpPower: 0
   NumberOfJumps: 0
   UseFadeOut: 1
   FadeDuration: 0.4
-  FadeDelayTime: 0.1
-  FadeTargetAlpha: 0.1
+  FadeDelayTime: 0.2
+  FadeTargetAlpha: 0.01
   UsePunchScale: 1
-  PunchScale: {x: -0.1, y: -0.1}
-  PunchScaleDuration: 0.1
+  PunchEase: 15
+  PunchScale: {x: 1, y: 1}
+  PunchScaleDuration: 0.2
   PunchScaleVibrato: 1
   TypeString: Velocity
   FontTypeString: Content

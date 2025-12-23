@@ -13,22 +13,16 @@ namespace TeamSuneat
             Health = GetComponent<Health>();
             Shield = GetComponent<Shield>();
             Mana = GetComponent<Mana>();
+
+            AutoGetPointComponents();
+        }
+
+        private void AutoGetPointComponents()
+        {
             GaugePoint = this.FindTransform("Point-Gauge");
             if (GaugePoint == null)
             {
                 GaugePoint = transform;
-            }
-
-            Transform parentTransform = GetParentTransform();
-            if (parentTransform == null)
-            {
-                return;
-            }
-
-            Transform feedbackParent = GetFeedbackParentTransform(parentTransform);
-            if (feedbackParent == null)
-            {
-                return;
             }
         }
 

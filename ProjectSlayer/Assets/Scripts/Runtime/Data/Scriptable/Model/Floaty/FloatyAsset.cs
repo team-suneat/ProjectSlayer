@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using TeamSuneat.Setting;
 using UnityEngine;
 
@@ -36,6 +37,7 @@ namespace TeamSuneat.Data
         [FoldoutGroup("#Fade")][EnableIf("UseFadeOut")][Range(0f, 1f)] public float FadeTargetAlpha;
 
         [FoldoutGroup("#PunchScale")] public bool UsePunchScale;
+        [FoldoutGroup("#PunchScale")][EnableIf("UsePunchScale")] public Ease PunchEase = Ease.Linear;
         [FoldoutGroup("#PunchScale")][EnableIf("UsePunchScale")] public Vector2 PunchScale;
         [FoldoutGroup("#PunchScale")][EnableIf("UsePunchScale")] public float PunchScaleDuration;
         [FoldoutGroup("#PunchScale")][EnableIf("UsePunchScale")] public int PunchScaleVibrato;
