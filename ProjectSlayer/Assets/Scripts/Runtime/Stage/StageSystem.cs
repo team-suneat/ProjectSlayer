@@ -160,6 +160,9 @@ namespace TeamSuneat.Stage
             }
 
             profile.Stage.AddCurrentWave();
+
+            UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(profile.Stage.CurrentWave / (float)_currentStageAsset.WaveCount);
+
             if (_currentStageAsset != null && profile.Stage.CurrentWave > _currentStageAsset.WaveCount)
             {
                 Log.Info(LogTags.Stage, "모든 웨이브 완료: {0}", Name);

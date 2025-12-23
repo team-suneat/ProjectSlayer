@@ -20,6 +20,11 @@
 
         #endregion Player
 
+        #region  Common
+        TreasureChest = 101, // 보물 상자
+
+        #endregion  Common
+
         #region Area01
 
         Area01_Mushroom = 1001,           // 버섯

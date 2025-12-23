@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6200502625781952186}
   - component: {fileID: 3017048405064946088}
   m_Layer: 0
-  m_Name: Vital(Area01_Mushroom)
+  m_Name: Vital(TreasureChest)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1934023510411979472}
   - component: {fileID: 6298908268744996890}
   m_Layer: 0
-  m_Name: '#Passive(Area01_Mushroom)'
+  m_Name: '#Passive(TreasureChest)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 3658666244350377799}
   - component: {fileID: 1319074278682660514}
   m_Layer: 0
-  m_Name: Area01_Mushroom
+  m_Name: TreasureChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,8 +205,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 188738163432412958}
-  - {fileID: 1169747926651733622}
   - {fileID: 1934023510411979472}
+  - {fileID: 1169747926651733622}
   - {fileID: 4669585933846421284}
   - {fileID: 766765906974473907}
   m_Father: {fileID: 0}
@@ -223,11 +223,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2cf90d6b75924cab87018af6ba10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 1001
-  NameString: Area01_Mushroom
+  Name: 101
+  NameString: TreasureChest
   FixedTargetCharacterCamp: 0
   CharacterAnimator: {fileID: 2009631598904865162}
-  CharacterRenderer: {fileID: 8680571352019604429}
+  CharacterRenderer: {fileID: 6175874501214657526}
   Animator: {fileID: 1338539347564495384}
   Attack: {fileID: 0}
   Buff: {fileID: 6266194990852304890}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 4669585933846421284}
   - component: {fileID: 117045554598245975}
   m_Layer: 0
-  m_Name: Stat(Area01_Mushroom)
+  m_Name: Stat(TreasureChest)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 188738163432412958}
   - component: {fileID: 6266194990852304890}
   m_Layer: 0
-  m_Name: '#Buff(Area01_Mushroom)'
+  m_Name: '#Buff(TreasureChest)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ Transform:
   - {fileID: 9019509274363014242}
   m_Father: {fileID: 766765906974473907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4773302740475480310
+--- !u!1 &5919157932125849661
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,9 +394,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1867732498856197457}
-  - component: {fileID: 5955929835858535227}
-  - component: {fileID: 8680571352019604429}
+  - component: {fileID: 9123702022499045547}
+  - component: {fileID: 2114446296852753346}
+  - component: {fileID: 6175874501214657526}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -404,28 +404,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1867732498856197457
+--- !u!4 &9123702022499045547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773302740475480310}
+  m_GameObject: {fileID: 5919157932125849661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1169747926651733622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5955929835858535227
+--- !u!212 &2114446296852753346
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773302740475480310}
+  m_GameObject: {fileID: 5919157932125849661}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -463,7 +463,7 @@ SpriteRenderer:
   m_SortingLayerID: 1784797227
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300024, guid: bd44a2f193c813a4dab84fff506336d3, type: 3}
+  m_Sprite: {fileID: -387750673, guid: 6ea1d14a27369dd43b55983379e894fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -474,19 +474,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8680571352019604429
+--- !u!114 &6175874501214657526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4773302740475480310}
+  m_GameObject: {fileID: 5919157932125849661}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1366419bb7e9ba4b9a62bf730363162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 0}
+  _renderer: {fileID: 2114446296852753346}
 --- !u!1 &7020076596732676091
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1867732498856197457}
+  - {fileID: 9123702022499045547}
   m_Father: {fileID: 7673471702492736139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1338539347564495384
@@ -531,7 +531,7 @@ Animator:
   m_GameObject: {fileID: 7020076596732676091}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 23191c682068b864c9682c3178c4ec8b, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4541656c1376a2e4d8cb96db6b7f9f3a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

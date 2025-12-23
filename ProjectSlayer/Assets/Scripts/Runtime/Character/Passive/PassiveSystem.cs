@@ -1,34 +1,26 @@
-using System;
-using System.Collections;
-using UnityEngine;
-
 namespace TeamSuneat
 {
     public class PassiveSystem : XBehaviour
     {
-        internal void Add(PassiveNames vulnerableAttack, int v)
+        public Character Owner;
+
+        public override void AutoGetComponents()
         {
+            base.AutoGetComponents();
+
+            Owner = this.FindFirstParentComponent<Character>();
         }
 
-        internal void Clear()
+        public override void AutoNaming()
         {
+            SetGameObjectName(string.Format("#Passive({0})", Owner.Name));
         }
 
         internal void LogicUpdate()
         {
         }
 
-        internal void Remove(PassiveNames vulnerableAttack)
-        {
-        }
-
-        // Use this for initialization
-        private void Start()
-        {
-        }
-
-        // Update is called once per frame
-        private void Update()
+        internal void Clear()
         {
         }
     }

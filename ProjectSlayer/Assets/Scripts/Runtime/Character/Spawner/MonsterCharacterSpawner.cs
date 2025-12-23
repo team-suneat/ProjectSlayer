@@ -139,12 +139,27 @@ namespace TeamSuneat
         {
             List<CharacterNames> result = new List<CharacterNames>();
 
-            for (int i = 0; i < _currentStageAsset.MonsterCountPerWave; i++)
+            // 마지막 웨이브인지 확인
+            bool isLastWave = _currentStageAsset != null && waveIndex == _currentStageAsset.WaveCount - 1;
+
+            if (isLastWave)
             {
-                CharacterNames normalMonster = GetRandomNormalMonster();
-                if (normalMonster != CharacterNames.None)
+                // 마지막 웨이브면 모든 몬스터를 보물 상자로 교체
+                for (int i = 0; i < _currentStageAsset.MonsterCountPerWave; i++)
                 {
-                    result.Add(normalMonster);
+                    result.Add(CharacterNames.TreasureChest);
+                }
+            }
+            else
+            {
+                // 일반 웨이브는 기존 로직 유지
+                for (int i = 0; i < _currentStageAsset.MonsterCountPerWave; i++)
+                {
+                    CharacterNames normalMonster = GetRandomNormalMonster();
+                    if (normalMonster != CharacterNames.None)
+                    {
+                        result.Add(normalMonster);
+                    }
                 }
             }
 

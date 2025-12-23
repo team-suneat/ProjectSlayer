@@ -64,8 +64,11 @@ namespace TeamSuneat
             MonsterStatConfigAsset monsterStatConfigAsset = ScriptableDataManager.Instance.GetMonsterStatConfigAsset();
             if (monsterStatConfigAsset.IsValid())
             {
-                Stat.AddWithSourceInfo(StatNames.Health, monsterStatConfigAsset.GetHealth(Level, IsBoss), this, NameString, "CharacterBase");
-                Stat.AddWithSourceInfo(StatNames.Attack, monsterStatConfigAsset.GetAttack(Level, IsBoss), this, NameString, "CharacterBase");
+                bool isTreasureChest = Name == CharacterNames.TreasureChest;
+                int health = monsterStatConfigAsset.GetHealth(Level, IsBoss, isTreasureChest);
+                int attack = monsterStatConfigAsset.GetAttack(Level, IsBoss, isTreasureChest);
+                Stat.AddWithSourceInfo(StatNames.Health, health, this, NameString, "CharacterBase");
+                Stat.AddWithSourceInfo(StatNames.Attack, attack, this, NameString, "CharacterBase");
             }
             else
             {
