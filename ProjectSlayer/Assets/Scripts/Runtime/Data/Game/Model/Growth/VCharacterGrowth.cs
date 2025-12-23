@@ -30,17 +30,6 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData_Character, "성장 능력치 레벨 및 능력치 포인트 데이터를 초기화합니다.");
         }
 
-        public int GetLevel(StatNames statName)
-        {
-            if (GrowthLevels == null)
-            {
-                return 0;
-            }
-
-            string key = statName.ToString();
-            return GrowthLevels.TryGetValue(key, out int level) ? level : 0;
-        }
-
         public int GetLevel(CharacterGrowthTypes growthType)
         {
             if (growthType == CharacterGrowthTypes.None)
@@ -48,20 +37,16 @@ namespace TeamSuneat.Data.Game
                 return 0;
             }
 
-            StatNames statName = growthType.ConvertToStatName();
-            return GetLevel(statName);
+            if (GrowthLevels == null)
+            {
+                return 0;
+            }
+
+            string key = growthType.ToString();
+            return GrowthLevels.TryGetValue(key, out int level) ? level : 0;
         }
 
-        public void SetLevel(StatNames statName, int level)
-        {
-            GrowthLevels ??= new Dictionary<string, int>();
-
-            string key = statName.ToString();
-            GrowthLevels[key] = level;
-            Log.Info(LogTags.GameData_Character, "성장 능력치 {0}의 레벨을 {1}로 설정합니다.", statName, level);
-        }
-
-        public void SetLevel(CharacterGrowthTypes growthType, int level)
+        private void SetLevel(CharacterGrowthTypes growthType, int level)
         {
             if (growthType == CharacterGrowthTypes.None)
             {
@@ -69,28 +54,26 @@ namespace TeamSuneat.Data.Game
                 return;
             }
 
-            StatNames statName = growthType.ConvertToStatName();
-            SetLevel(statName, level);
+            GrowthLevels ??= new Dictionary<string, int>();
+
+            string key = growthType.ToString();
+            GrowthLevels[key] = level;
+
+            Log.Info(LogTags.GameData_Character, "성장 능력치 {0}의 레벨을 {1}로 설정합니다.", growthType, level);
+
+            GlobalEvent<CharacterGrowthTypes, int>.Send(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_LEVEL_CHANGED, growthType, level);
         }
 
-        public int AddLevel(StatNames statName, int addLevel = 1)
-        {
-            int currentLevel = GetLevel(statName);
-            int newLevel = currentLevel + addLevel;
-            SetLevel(statName, newLevel);
-            return newLevel;
-        }
-
-        public int AddLevel(CharacterGrowthTypes growthType, int addLevel = 1)
+        public void AddLevel(CharacterGrowthTypes growthType, int addLevel = 1)
         {
             if (growthType == CharacterGrowthTypes.None)
             {
                 Log.Warning(LogTags.GameData_Character, "잘못된 성장 타입입니다: {0}", growthType);
-                return 0;
+                return;
             }
 
-            StatNames statName = growthType.ConvertToStatName();
-            return AddLevel(statName, addLevel);
+            int currentLevel = GetLevel(growthType);
+            SetLevel(growthType, addLevel);
         }
 
         //
@@ -99,6 +82,7 @@ namespace TeamSuneat.Data.Game
         {
             StatPoint += addPoint;
             Log.Info(LogTags.GameData_Character, "능력치 포인트를 {0} 추가합니다. 총 능력치 포인트: {1}", addPoint, StatPoint);
+            GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED, StatPoint);
             return StatPoint;
         }
 
@@ -127,6 +111,8 @@ namespace TeamSuneat.Data.Game
 
             StatPoint -= consumePoint;
             Log.Info(LogTags.GameData_Character, "능력치 포인트를 {0} 소비합니다. 남은 능력치 포인트: {1}", consumePoint, StatPoint);
+
+            GlobalEvent<int>.Send(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED, StatPoint);
             return true;
         }
 

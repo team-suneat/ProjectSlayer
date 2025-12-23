@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0684958f3cda5c438b130e71df3d3e8, type: 3}
+  m_Name: MonsterExperienceDropConfig
+  m_EditorClassIdentifier: 
+  NameString: MonsterExperienceDropConfig
+  BaseExp: 15
+  ExpGrowthRate: 1.05
+  BaseMinGold: 13
+  BaseMaxGold: 15
+  GoldGrowthRate: 1.05
+  BaseCube: 15
+  CubeGrowthRate: 1.03
+  CubeDropChance: 0.3

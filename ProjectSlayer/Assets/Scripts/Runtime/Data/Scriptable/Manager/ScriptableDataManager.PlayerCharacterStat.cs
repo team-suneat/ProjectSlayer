@@ -10,7 +10,7 @@ namespace TeamSuneat.Data
         /// <summary>
         /// 플레이어 캐릭터 능력치 에셋을 가져옵니다.
         /// </summary>
-        public PlayerCharacterStatAsset GetPlayerCharacterStatAsset()
+        public PlayerCharacterStatConfigAsset GetPlayerCharacterStatAsset()
         {
             return _playerCharacterStatAsset;
         }

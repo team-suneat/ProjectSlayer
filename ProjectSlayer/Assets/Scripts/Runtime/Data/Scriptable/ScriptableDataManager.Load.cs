@@ -34,6 +34,7 @@ namespace TeamSuneat.Data
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
             else if (_monsterStatConfigAsset == null) { return false; }
+            else if (_monsterExperienceDropConfigAsset == null) { return false; }
             else if (_playerCharacterStatAsset == null) { return false; }
             else if (_skillCardUnlockAsset == null) { return false; }
             else if (_skillSlotUnlockAsset == null) { return false; }
@@ -69,6 +70,9 @@ namespace TeamSuneat.Data
 
             // 몬스터 능력치 설정 데이터 OnLoadData() 메서드 호출
             _monsterStatConfigAsset?.OnLoadData();
+
+            // 몬스터 경험치 드랍 설정 데이터 OnLoadData() 메서드 호출
+            _monsterExperienceDropConfigAsset?.OnLoadData();
 
             // 플레이어 캐릭터 능력치 데이터 OnLoadData() 메서드 호출
             _playerCharacterStatAsset?.OnLoadData();
@@ -166,6 +170,10 @@ namespace TeamSuneat.Data
                 {
                     count += 1;
                 }
+                else if (LoadMonsterExperienceDropConfigSync(path))
+                {
+                    count += 1;
+                }
                 else if (LoadPlayerCharacterStatSync(path))
                 {
                     count += 1;
@@ -186,7 +194,7 @@ namespace TeamSuneat.Data
                 return false;
             }
 
-            EnhancementDataAsset asset = ResourcesManager.LoadResource<EnhancementDataAsset>(filePath);
+            EnhancementConfigAsset asset = ResourcesManager.LoadResource<EnhancementConfigAsset>(filePath);
             if (asset != null)
             {
                 if (_enhancementDataAsset != null)
@@ -303,6 +311,37 @@ namespace TeamSuneat.Data
             return false;
         }
 
+        private bool LoadMonsterExperienceDropConfigSync(string filePath)
+        {
+            if (!filePath.Contains("MonsterExperienceDropConfig"))
+            {
+                return false;
+            }
+
+            MonsterExperienceDropConfigAsset asset = ResourcesManager.LoadResource<MonsterExperienceDropConfigAsset>(filePath);
+            if (asset != null)
+            {
+                if (_monsterExperienceDropConfigAsset != null)
+                {
+                    Log.Warning(LogTags.ScriptableData, "몬스터 경험치 드랍 설정 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
+                        _monsterExperienceDropConfigAsset.name, asset.name);
+                }
+                else
+                {
+                    Log.Progress("스크립터블 데이터를 읽어왔습니다. Path: {0}", filePath);
+                    _monsterExperienceDropConfigAsset = asset;
+                }
+
+                return true;
+            }
+            else
+            {
+                Log.Warning("스크립터블 데이터를 읽을 수 없습니다. Path: {0}", filePath);
+            }
+
+            return false;
+        }
+
         private bool LoadPlayerCharacterStatSync(string filePath)
         {
             if (!filePath.Contains("PlayerCharacterStat"))
@@ -310,7 +349,7 @@ namespace TeamSuneat.Data
                 return false;
             }
 
-            PlayerCharacterStatAsset asset = ResourcesManager.LoadResource<PlayerCharacterStatAsset>(filePath);
+            PlayerCharacterStatConfigAsset asset = ResourcesManager.LoadResource<PlayerCharacterStatConfigAsset>(filePath);
             if (asset != null)
             {
                 if (_playerCharacterStatAsset != null)
@@ -517,7 +556,7 @@ namespace TeamSuneat.Data
                         }
                         break;
 
-                    case EnhancementDataAsset enhancementData:
+                    case EnhancementConfigAsset enhancementData:
                         if (_enhancementDataAsset == null)
                         {
                             _enhancementDataAsset = enhancementData;
@@ -549,7 +588,15 @@ namespace TeamSuneat.Data
                         }
                         break;
 
-                    case PlayerCharacterStatAsset playerCharacterStat:
+                    case MonsterExperienceDropConfigAsset monsterExperienceDropConfig:
+                        if (_monsterExperienceDropConfigAsset == null)
+                        {
+                            _monsterExperienceDropConfigAsset = monsterExperienceDropConfig;
+                            count++;
+                        }
+                        break;
+
+                    case PlayerCharacterStatConfigAsset playerCharacterStat:
                         if (_playerCharacterStatAsset == null)
                         {
                             _playerCharacterStatAsset = playerCharacterStat;

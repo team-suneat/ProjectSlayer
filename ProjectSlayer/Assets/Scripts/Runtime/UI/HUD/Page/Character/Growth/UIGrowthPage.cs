@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
@@ -21,6 +20,45 @@ namespace TeamSuneat.UserInterface
             base.AutoGetComponents();
 
             _items = GetComponentsInChildren<UIGrowthItem>(true);
+        }
+
+        protected override void RegisterGlobalEvent()
+        {
+            base.RegisterGlobalEvent();
+
+            GlobalEvent<int>.Register(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, OnPlayerCharacterLevelChange);
+
+            GlobalEvent<CharacterGrowthTypes, int>.Register(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_LEVEL_CHANGED, OnGrowthLevelChanged);
+            GlobalEvent<int>.Register(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED, OnStatPointChanged);
+        }
+
+        protected override void UnregisterGlobalEvent()
+        {
+            base.UnregisterGlobalEvent();
+
+            GlobalEvent<int>.Unregister(GlobalEventType.GAME_DATA_CHARACTER_LEVEL_CHANGED, OnPlayerCharacterLevelChange);
+            GlobalEvent<CharacterGrowthTypes, int>.Register(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_LEVEL_CHANGED, OnGrowthLevelChanged);
+            GlobalEvent<int>.Register(GlobalEventType.GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED, OnStatPointChanged);
+        }
+
+        private void OnPlayerCharacterLevelChange(int level)
+        {
+            RefreshAllItems();
+        }
+
+        private void OnGrowthLevelChanged(CharacterGrowthTypes growthType, int level)
+        {
+            if (growthType == CharacterGrowthTypes.None)
+            {
+                return;
+            }
+
+            Refresh();
+        }
+
+        private void OnStatPointChanged(int statPoint)
+        {
+            RefreshStatPoint();
         }
 
         public override void Initialize()

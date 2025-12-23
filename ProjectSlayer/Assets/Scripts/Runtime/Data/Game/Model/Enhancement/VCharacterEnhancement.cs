@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TeamSuneat;
 
 namespace TeamSuneat.Data.Game
 {
@@ -66,6 +67,7 @@ namespace TeamSuneat.Data.Game
             int currentLevel = GetLevel(statName);
             int newLevel = currentLevel + addLevel;
             SetLevel(statName, newLevel);
+            GlobalEvent<StatNames, int>.Send(GlobalEventType.GAME_DATA_CHARACTER_ENHANCEMENT_LEVEL_CHANGED, statName, newLevel);
             return newLevel;
         }
 

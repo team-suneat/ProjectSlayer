@@ -81,6 +81,13 @@ namespace TeamSuneat.Data
             CustomLog();
         }
 
+        public float CalculateStatValue(int level)
+        {
+            return level * StatIncreasePerLevel;
+        }
+
+
+
 #if UNITY_EDITOR
 
         private bool _hasChangedWhiteRefreshAll = false;

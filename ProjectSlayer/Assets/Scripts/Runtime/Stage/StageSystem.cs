@@ -13,26 +13,26 @@ namespace TeamSuneat.Stage
         [SerializeField]
         private MonsterCharacterSpawner _monsterSpawner;
 
+        [SerializeField]
+        private float _nextWaveDelay = 3f;
+
         private StageAsset _currentStageAsset;
         private AreaAsset _currentAreaAsset;
-
-        // private StageData _currentStageData;
 
         public override void AutoSetting()
         {
             base.AutoSetting();
-
             NameString = Name.ToString();
-        }
-
-        private void OnValidate()
-        {
-            EnumEx.ConvertTo(ref Name, NameString);
         }
 
         public override void AutoNaming()
         {
             SetGameObjectName(NameString);
+        }
+
+        private void OnValidate()
+        {
+            EnumEx.ConvertTo(ref Name, NameString);
         }
 
         public void Initialize()
@@ -43,8 +43,13 @@ namespace TeamSuneat.Stage
             RegisterGlobalEvents();
 
             Log.Info(LogTags.Stage, "스테이지 초기화 완료: {0}", Name);
-
             StartCoroutine(StartStageFlow());
+        }
+
+        public void CleanupStage()
+        {
+            UnregisterGlobalEvents();
+            _monsterSpawner?.CleanupAllMonsters();
         }
 
         private void LoadStageData()
@@ -66,69 +71,79 @@ namespace TeamSuneat.Stage
 
         private void InitializeMonster()
         {
-            if (_monsterSpawner != null)
-            {
-                _monsterSpawner.Initialize(_currentStageAsset, _currentAreaAsset);
-            }
-            else
+            if (_monsterSpawner == null)
             {
                 Log.Warning(LogTags.Stage, "MonsterCharacterSpawner가 설정되지 않았습니다.");
+                return;
             }
+
+            _monsterSpawner.Initialize(_currentStageAsset, _currentAreaAsset);
         }
 
         private void RegisterCurrentStage()
         {
-            if (GameApp.Instance != null && GameApp.Instance.gameManager != null)
+            if (GameApp.Instance?.gameManager == null)
             {
-                GameApp.Instance.gameManager.CurrentStageSystem = this;
+                return;
             }
-        }
 
-        public void CleanupStage()
-        {
-            UnregisterGlobalEvents();
-            _monsterSpawner?.CleanupAllMonsters();
-            // _currentStageData = null;
-        }
-
-        private UIStageTitleNotice SpawnStageTitleNotice()
-        {
-            return ResourcesManager.SpawnStageTitleNotice(Name);
+            GameApp.Instance.gameManager.CurrentStageSystem = this;
         }
 
         private IEnumerator StartStageFlow()
         {
-            UIStageTitleNotice stageNotice = SpawnStageTitleNotice();
-            if (stageNotice != null)
-            {
-                bool isCompleted = false;
-                stageNotice.OnCompleted += () => isCompleted = true;
+            yield return WaitForStageTitleNotice();
 
-                while (!isCompleted)
-                {
-                    yield return null;
-                }
+            Data.Game.VProfile profile = GetSelectedProfile();
+            if (profile?.Stage == null)
+            {
+                GlobalEvent<StageNames>.Send(GlobalEventType.STAGE_SPAWNED, Name);
+                yield break;
             }
 
-            Data.Game.VProfile profile = GameApp.GetSelectedProfile();
-            if (profile != null && profile.Stage != null)
-            {
-                int currentWave = profile.Stage.CurrentWave;
-                if (currentWave <= 0)
-                {
-                    currentWave = 1;
-                    profile.Stage.ResetCurrentWave();
-                }
-
-                if (_monsterSpawner != null)
-                {
-                    _monsterSpawner.SpawnWave(currentWave);
-                    SetPlayerTargetToFirstMonster();
-                }
-            }
-
-            // 스테이지 시작 글로벌 이벤트 전송
+            StartFirstWave(profile);
             GlobalEvent<StageNames>.Send(GlobalEventType.STAGE_SPAWNED, Name);
+        }
+
+        private IEnumerator WaitForStageTitleNotice()
+        {
+            UIStageTitleNotice stageNotice = SpawnStageTitleNotice();
+            if (stageNotice == null)
+            {
+                yield break;
+            }
+
+            bool isCompleted = false;
+            stageNotice.OnCompleted += () => isCompleted = true;
+
+            while (!isCompleted)
+            {
+                yield return null;
+            }
+        }
+
+        private void StartFirstWave(Data.Game.VProfile profile)
+        {
+            if (_currentStageAsset == null)
+            {
+                Log.Warning(LogTags.Stage, "스테이지 에셋이 없어 첫 웨이브를 시작할 수 없습니다.");
+                return;
+            }
+
+            int currentWave = profile.Stage.CurrentWave;
+            if (currentWave < 0 || currentWave >= _currentStageAsset.WaveCount)
+            {
+                currentWave = 0;
+                profile.Stage.ResetCurrentWave();
+            }
+
+            if (_monsterSpawner != null)
+            {
+                _monsterSpawner.SpawnWave(currentWave);
+                SetPlayerTargetToFirstMonster();
+            }
+
+            UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(currentWave + 1, _currentStageAsset.WaveCount);
         }
 
         private void RegisterGlobalEvents()
@@ -145,29 +160,39 @@ namespace TeamSuneat.Stage
 
         private void OnMonsterDeath(Character character)
         {
-            if (_monsterSpawner != null && _monsterSpawner.IsAllMonstersDefeated)
+            if (_monsterSpawner == null || !_monsterSpawner.IsAllMonstersDefeated)
             {
-                StartNextWave();
+                return;
             }
+
+            StartCoroutine(StartNextWaveWithDelay());
+        }
+
+        private IEnumerator StartNextWaveWithDelay()
+        {
+            yield return new WaitForSeconds(_nextWaveDelay);
+            StartNextWave();
         }
 
         private void StartNextWave()
         {
-            Data.Game.VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null || profile.Stage == null)
+            Data.Game.VProfile profile = GetSelectedProfile();
+            if (profile?.Stage == null || _currentStageAsset == null)
             {
                 return;
             }
 
-            profile.Stage.AddCurrentWave();
+            int nextWaveIndex = profile.Stage.CurrentWave + 1;
 
-            UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(profile.Stage.CurrentWave / (float)_currentStageAsset.WaveCount);
-
-            if (_currentStageAsset != null && profile.Stage.CurrentWave > _currentStageAsset.WaveCount)
+            if (nextWaveIndex >= _currentStageAsset.WaveCount)
             {
-                Log.Info(LogTags.Stage, "모든 웨이브 완료: {0}", Name);
-                return;
+                Log.Info(LogTags.Stage, "모든 웨이브 완료: {0}. 첫 웨이브부터 반복합니다.", Name);
+                nextWaveIndex = 0;
             }
+
+            profile.Stage.CurrentWave = nextWaveIndex;
+
+            UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(nextWaveIndex + 1, _currentStageAsset.WaveCount);
 
             if (_monsterSpawner != null)
             {
@@ -178,7 +203,7 @@ namespace TeamSuneat.Stage
 
         private void SetPlayerTargetToFirstMonster()
         {
-            if (_monsterSpawner == null || _monsterSpawner.SpawnedMonsters == null || _monsterSpawner.SpawnedMonsters.Count == 0)
+            if (_monsterSpawner?.SpawnedMonsters == null || _monsterSpawner.SpawnedMonsters.Count == 0)
             {
                 Log.Warning(LogTags.Stage, "스폰된 몬스터가 없어 플레이어 타겟을 설정할 수 없습니다.");
                 return;
@@ -192,15 +217,24 @@ namespace TeamSuneat.Stage
             }
 
             MonsterCharacter firstMonster = _monsterSpawner.SpawnedMonsters[0];
-            if (firstMonster != null && firstMonster.IsAlive)
-            {
-                player.SetTarget(firstMonster);
-                Log.Info(LogTags.Stage, "플레이어 타겟을 첫 번째 몬스터로 설정했습니다: {0}", firstMonster.Name.ToLogString());
-            }
-            else
+            if (firstMonster == null || !firstMonster.IsAlive)
             {
                 Log.Warning(LogTags.Stage, "첫 번째 몬스터가 유효하지 않아 타겟을 설정할 수 없습니다.");
+                return;
             }
+
+            player.SetTarget(firstMonster);
+            Log.Info(LogTags.Stage, "플레이어 타겟을 첫 번째 몬스터로 설정했습니다: {0}", firstMonster.Name.ToLogString());
+        }
+
+        private UIStageTitleNotice SpawnStageTitleNotice()
+        {
+            return ResourcesManager.SpawnStageTitleNotice(Name);
+        }
+
+        private Data.Game.VProfile GetSelectedProfile()
+        {
+            return GameApp.GetSelectedProfile();
         }
     }
 }

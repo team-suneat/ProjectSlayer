@@ -10,63 +10,77 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9224e92eed4e5b748a46f4ecbf77ac54, type: 3}
-  m_Name: EnhancementData
+  m_Name: EnhancementConfig
   m_EditorClassIdentifier: 
-  NameString: EnhancementData
+  NameString: EnhancementConfig
   DataArray:
-  - StatName: 1
+  - IsChangingAsset: 0
+    StatName: 1
     MaxLevel: 1900000
-    InitialValue: 0
-    GrowthValue: 2
+    GrowthValue: 1
     InitialCost: 100
     CostGrowthRate: 1.1
     RequiredStatName: 0
     RequiredStatLevel: 0
-  - StatName: 2
+    StatNameAsString: Attack
+    RequiredStatNameAsString: None
+  - IsChangingAsset: 0
+    StatName: 2
     MaxLevel: 1900000
-    InitialValue: 0
-    GrowthValue: 20
+    GrowthValue: 10
     InitialCost: 100
     CostGrowthRate: 1.1
     RequiredStatName: 0
     RequiredStatLevel: 0
-  - StatName: 3
+    StatNameAsString: Health
+    RequiredStatNameAsString: None
+  - IsChangingAsset: 0
+    StatName: 3
     MaxLevel: 1900000
-    InitialValue: 0
-    GrowthValue: 2
+    GrowthValue: 1
     InitialCost: 100
     CostGrowthRate: 1.1
     RequiredStatName: 0
     RequiredStatLevel: 0
-  - StatName: 4
+    StatNameAsString: HealthRegen
+    RequiredStatNameAsString: None
+  - IsChangingAsset: 0
+    StatName: 6
     MaxLevel: 10000
-    InitialValue: 0
-    GrowthValue: 0.001
-    InitialCost: 100
-    CostGrowthRate: 1.1
-    RequiredStatName: 0
-    RequiredStatLevel: 0
-  - StatName: 5
-    MaxLevel: 1000
-    InitialValue: 0
     GrowthValue: 0.01
     InitialCost: 100
     CostGrowthRate: 1.1
     RequiredStatName: 0
     RequiredStatLevel: 0
-  - StatName: 12
+    StatNameAsString: CriticalDamage
+    RequiredStatNameAsString: None
+  - IsChangingAsset: 0
+    StatName: 5
+    MaxLevel: 1000
+    GrowthValue: 0.001
+    InitialCost: 100
+    CostGrowthRate: 1.1
+    RequiredStatName: 0
+    RequiredStatLevel: 0
+    StatNameAsString: CriticalChance
+    RequiredStatNameAsString: None
+  - IsChangingAsset: 0
+    StatName: 14
     MaxLevel: 4000
-    InitialValue: 0
     GrowthValue: 0.01
     InitialCost: 100
     CostGrowthRate: 1.1
-    RequiredStatName: 4
+    RequiredStatName: 5
     RequiredStatLevel: 1000
-  - StatName: 13
+    StatNameAsString: DevastatingStrike
+    RequiredStatNameAsString: CriticalChance
+  - IsChangingAsset: 0
+    StatName: 15
     MaxLevel: 1000
-    InitialValue: 0
     GrowthValue: 0.001
     InitialCost: 100
     CostGrowthRate: 1.1
-    RequiredStatName: 4
+    RequiredStatName: 5
     RequiredStatLevel: 1000
+    StatNameAsString: DevastatingStrikeChance
+    RequiredStatNameAsString: CriticalChance

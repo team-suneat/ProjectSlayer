@@ -145,7 +145,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            _valueText.text = amount.ToString("N0");
+            _valueText.SetText(amount.ToString("N0"));
         }
     }
 }

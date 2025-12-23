@@ -250,7 +250,6 @@ MonoBehaviour:
   ConditionState:
     PreviousStateString: 
     CurrentStateString: 
-  _dropObjectSpawner: {fileID: 0}
 --- !u!114 &1319074278682660514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1366419bb7e9ba4b9a62bf730363162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 0}
+  _renderer: {fileID: 5955929835858535227}
 --- !u!1 &7020076596732676091
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TeamSuneat.UserInterface
@@ -20,8 +19,8 @@ namespace TeamSuneat.UserInterface
             StatNames.CriticalDamage,
             StatNames.Mana,
             StatNames.ManaRegen,
-            StatNames.Accuracy,
-            StatNames.Dodge,
+            StatNames.AccuracyChance,
+            StatNames.DodgeChance,
             StatNames.GoldGain,
             StatNames.XPGain,
         };

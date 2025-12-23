@@ -20,6 +20,28 @@ namespace TeamSuneat.UserInterface
             _items = GetComponentsInChildren<UIEnhancementItem>(true);
         }
 
+        protected override void RegisterGlobalEvent()
+        {
+            base.RegisterGlobalEvent();
+            GlobalEvent<CurrencyNames, int>.Register(GlobalEventType.CURRENCY_EARNED, OnCurrencyChanged);
+            GlobalEvent<CurrencyNames, int>.Register(GlobalEventType.CURRENCY_PAYED, OnCurrencyChanged);
+        }
+
+        protected override void UnregisterGlobalEvent()
+        {
+            base.UnregisterGlobalEvent();
+            GlobalEvent<CurrencyNames, int>.Unregister(GlobalEventType.CURRENCY_EARNED, OnCurrencyChanged);
+            GlobalEvent<CurrencyNames, int>.Unregister(GlobalEventType.CURRENCY_PAYED, OnCurrencyChanged);
+        }
+
+        private void OnCurrencyChanged(CurrencyNames currencyName, int amount)
+        {
+            if (currencyName == CurrencyNames.Gold)
+            {
+                RefreshAllItems();
+            }
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -38,7 +60,7 @@ namespace TeamSuneat.UserInterface
         {
             _enhancementItemMap.Clear();
 
-            EnhancementDataAsset asset = ScriptableDataManager.Instance?.GetEnhancementDataAsset();
+            EnhancementConfigAsset asset = ScriptableDataManager.Instance?.GetEnhancementDataAsset();
             if (asset == null || asset.DataArray == null)
             {
                 Log.Warning(LogTags.UI_Page, "강화 데이터 에셋을 찾을 수 없습니다.");
@@ -49,7 +71,7 @@ namespace TeamSuneat.UserInterface
 
             for (int i = 0; i < asset.DataArray.Length; i++)
             {
-                EnhancementData data = asset.DataArray[i];
+                EnhancementConfigData data = asset.DataArray[i];
                 if (data == null || data.StatName == StatNames.None)
                 {
                     continue;

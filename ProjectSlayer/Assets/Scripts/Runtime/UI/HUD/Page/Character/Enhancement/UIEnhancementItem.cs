@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
@@ -22,13 +23,17 @@ namespace TeamSuneat.UserInterface
         [Title("#LevelUp Button")]
         [SerializeField] private UIEnhancementButton _levelUpButton;
 
-        private EnhancementData _enhancementData;
+        private EnhancementConfigData _enhancementData;
 
         public UnityEvent OnLevelUpSuccess;
 
         private void Awake()
         {
             AutoGetComponents();
+            if (_statValueText != null)
+            {
+                _originalScale = _statValueText.transform.localScale;
+            }
         }
 
         public override void AutoGetComponents()
@@ -49,7 +54,7 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        public void Setup(EnhancementData data)
+        public void Setup(EnhancementConfigData data)
         {
             _enhancementData = data;
 
@@ -117,23 +122,52 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            float currentValue = CalculateStatValue(currentLevel);
-            float nextValue = CalculateStatValue(currentLevel + 1);
+            float currentValue = _enhancementData.CalculateStatValue(currentLevel);
+            float nextValue = _enhancementData.CalculateStatValue(currentLevel + 1);
 
             string currentContent = _enhancementData.StatName.GetStatValueString(currentValue);
             string nextContent = _enhancementData.StatName.GetStatValueString(nextValue);
             _statValueText.SetText($"{currentContent} → {nextContent}");
+
         }
 
-        private float CalculateStatValue(int level)
+        #region Punch Scale
+
+        public void StartPunchScale()
         {
-            // 능력치 값 = 초기값 + (레벨 × 성장값)
-            return _enhancementData.InitialValue + (level * _enhancementData.GrowthValue);
+            if (_statValueText == null)
+            {
+                return;
+            }
+
+            if (_scaleTween != null)
+            {
+                _scaleTween.Kill();
+                _scaleTween = null;
+            }
+
+            _scaleTween = _statValueText.transform.DOPunchScale(_punchScale,
+                DEFAULT_PUNCH_SCALE_DURATION, PUNCH_SCALE_VIBRATO, PUNCH_SCALE_ELASTICITY)
+                .SetEase(Ease.OutQuad).OnComplete(OnCompletedPunchScale);
         }
 
-        public StatNames GetStatName()
+        private void OnCompletedPunchScale()
         {
-            return _enhancementData?.StatName ?? StatNames.None;
+            _statValueText.transform.localScale = _originalScale;
+            _scaleTween = null;
         }
+
+        protected Tween _scaleTween;
+        private const float DEFAULT_PUNCH_SCALE_DURATION = 0.1f;
+        private const int PUNCH_SCALE_VIBRATO = 1;
+        private const float PUNCH_SCALE_ELASTICITY = 0.5f;
+        private const float DEFAULT_PUNCH_SCALE_VALUE = -0.1f;
+
+        protected Vector3 _punchScale =
+            new Vector3(DEFAULT_PUNCH_SCALE_VALUE, DEFAULT_PUNCH_SCALE_VALUE, DEFAULT_PUNCH_SCALE_VALUE);
+
+        private Vector3 _originalScale;
+
+        #endregion Punch Scale
     }
 }

@@ -15,6 +15,10 @@ MonoBehaviour:
   NameString: MonsterStatConfig
   BaseHealth: 8
   BaseAttack: 1
+  BaseBossHealth: 200
+  BaseBossAttack: 20
+  BaseTreasureChestHealth: 42
+  BaseTreasureChestAttack: 15
   NormalStageHealthGrowthRate: 1.05
   NormalStageAttackGrowthRate: 1.03
   BossStageHealthGrowthRate: 1.1

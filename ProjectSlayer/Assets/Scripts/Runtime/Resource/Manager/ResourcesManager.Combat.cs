@@ -29,10 +29,5 @@ namespace TeamSuneat
 
             return player;
         }
-
-        internal static DropEXP SpawnDropExp(Vector3 spawnPosition)
-        {
-            return SpawnPrefab<DropEXP>("DropEXP", spawnPosition);
-        }
     }
 }

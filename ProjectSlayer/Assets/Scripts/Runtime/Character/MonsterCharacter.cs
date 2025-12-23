@@ -1,25 +1,13 @@
-﻿using Sirenix.OdinInspector;
-using TeamSuneat.Data;
+﻿using TeamSuneat.Data;
 using UnityEngine;
 
 namespace TeamSuneat
 {
     public class MonsterCharacter : Character
     {
-        [FoldoutGroup("#Character/Component/Monster")]
-        [ChildGameObjectsOnly]
-        [SerializeField] private DropObjectSpawner _dropObjectSpawner;
-
         public override Transform Target => null;
 
         public override LogTags LogTag => LogTags.Monster;
-
-        public override void AutoGetComponents()
-        {
-            base.AutoGetComponents();
-
-            _dropObjectSpawner = GetComponentInChildren<DropObjectSpawner>();
-        }
 
         public override void Initialize()
         {
@@ -82,8 +70,8 @@ namespace TeamSuneat
         {
             base.OnDeath(damageResult);
 
-            _dropObjectSpawner?.SpawnDropEXP(position);
             CharacterAnimator?.PlayDeathAnimation();
+            AddDropItems();
 
             if (IsBoss)
             {
@@ -93,6 +81,27 @@ namespace TeamSuneat
             {
                 GlobalEvent<Character>.Send(GlobalEventType.MONSTER_CHARACTER_DEATH, this);
             }
+        }
+
+        private void AddDropItems()
+        {
+            if (ProfileInfo == null) return;
+
+            MonsterExperienceDropConfigAsset config = ScriptableDataManager.Instance.GetMonsterExperienceDropConfigAsset();
+            if (config == null) return;
+
+            bool isTreasure = Name == CharacterNames.TreasureChest;
+            int gold = config.GetGoldDrop(Level, IsBoss, isTreasure);
+            ProfileInfo.Currency.Add(CurrencyNames.Gold, gold);
+
+            if (config.TryDropEnhancementCube())
+            {
+                int cube = config.GetCubeDrop(Level, IsBoss, isTreasure);
+                ProfileInfo.Currency.Add(CurrencyNames.EnhancementCube, cube);
+            }
+
+            int exp = config.GetExpDrop(Level, IsBoss, isTreasure);
+            ProfileInfo.Level.AddExperience(exp);
         }
     }
 }

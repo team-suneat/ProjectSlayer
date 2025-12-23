@@ -13,15 +13,15 @@ namespace TeamSuneat.UserInterface
             _gauge ??= GetComponentInChildren<UIGauge>();
         }
 
-        public void SetProgress(float progress)
+        public void SetProgress(int currentWave, int totalWave)
         {
             if (_gauge == null)
             {
                 return;
             }
 
-            _gauge.SetFrontValue(progress);
-            _gauge.SetValueText(ValueStringEx.GetPercentString(progress));
+            _gauge.SetFrontValue(currentWave.SafeDivide01(totalWave));
+            _gauge.SetValueText($"{currentWave}/{totalWave}");
         }
     }
 }

@@ -1,11 +1,10 @@
 using Sirenix.OdinInspector;
-using TeamSuneat;
 using UnityEditor;
 using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "MonsterStatConfig", menuName = "TeamSuneat/Scriptable/MonsterStatConfig")]
+    [CreateAssetMenu(fileName = "MonsterStatConfig", menuName = "TeamSuneat/Scriptable/Monster/Stat")]
     public class MonsterStatConfigAsset : XScriptableObject
     {
         [Title("기본 능력치")]

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "PlayerCharacterStat", menuName = "TeamSuneat/Scriptable/PlayerCharacterStat")]
-    public class PlayerCharacterStatAsset : XScriptableObject
+    [CreateAssetMenu(fileName = "PlayerCharacterStatConfig", menuName = "TeamSuneat/Scriptable/PlayerCharacterStatConfig")]
+    public class PlayerCharacterStatConfigAsset : XScriptableObject
     {
         public int BaseAttack = 1; // 기본 공격력 (1)
         public int BaseHealth = 10; // 기본 체력 (10)
@@ -21,7 +21,7 @@ namespace TeamSuneat.Data
         public override void Rename()
         {
 #if UNITY_EDITOR
-            PerformRename("PlayerCharacterStat");
+            PerformRename("PlayerCharacterStatConfig");
 #endif
         }
     }

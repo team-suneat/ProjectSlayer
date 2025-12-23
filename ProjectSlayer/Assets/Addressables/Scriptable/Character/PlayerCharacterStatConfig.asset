@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ec05e0a24d20948857e8774530c790, type: 3}
-  m_Name: PlayerCharacterStat
+  m_Script: {fileID: 11500000, guid: 383f15eb344fc90428a6ccd7b91665c8, type: 3}
+  m_Name: PlayerCharacterStatConfig
   m_EditorClassIdentifier: 
-  NameString: PlayerCharacterStat
+  NameString: PlayerCharacterStatConfig
   BaseAttack: 1
-  BaseHealth: 12
+  BaseHealth: 10
   BaseHealthRegen: 1
   BaseAttackSpeed: 1
   BaseCriticalChance: 0.001
   BaseCriticalDamage: 0.01
   BaseMana: 100
-  BaseManaRegen: 10
+  BaseManaRegen: 1
   BaseAccuracyChance: 0.75
   BaseDodgeChance: 0.1
   BaseGoldGain: 1

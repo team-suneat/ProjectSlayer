@@ -10,8 +10,9 @@ namespace TeamSuneat.Data
 
         private ExperienceConfigAsset _experienceConfigAsset; // 캐릭터 경험치
         private MonsterStatConfigAsset _monsterStatConfigAsset; // 몬스터 능력치
-        private PlayerCharacterStatAsset _playerCharacterStatAsset; // 플레이어 캐릭터 능력치
-        private EnhancementDataAsset _enhancementDataAsset; // 캐릭터 강화
+        private MonsterExperienceDropConfigAsset _monsterExperienceDropConfigAsset; // 몬스터 경험치 드랍
+        private PlayerCharacterStatConfigAsset _playerCharacterStatAsset; // 플레이어 캐릭터 능력치
+        private EnhancementConfigAsset _enhancementDataAsset; // 캐릭터 강화
         private GrowthConfigAsset _growthDataAsset; // 캐릭터 성장
         private SkillCardUnlockAsset _skillCardUnlockAsset; // 스킬 카드 해금
         private SkillSlotUnlockAsset _skillSlotUnlockAsset; // 스킬 슬롯 해금
@@ -48,6 +49,7 @@ namespace TeamSuneat.Data
             _growthDataAsset = null;
             _experienceConfigAsset = null;
             _monsterStatConfigAsset = null;
+            _monsterExperienceDropConfigAsset = null;
             _playerCharacterStatAsset = null;
             _skillCardUnlockAsset = null;
             _skillSlotUnlockAsset = null;
@@ -69,6 +71,7 @@ namespace TeamSuneat.Data
             RefreshAllGrowth();
             RefreshAllExperienceConfig();
             RefreshAllMonsterStatConfig();
+            RefreshAllMonsterExperienceDropConfig();
             RefreshAllPlayerCharacterStat();
         }
     }

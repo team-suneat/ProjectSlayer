@@ -37,7 +37,7 @@ namespace TeamSuneat.UserInterface
         {
             if (_valueText != null)
             {
-                string formattedValue = FormatStatValue(_statName, value);
+                string formattedValue = _statName.GetStatValueString(value);
                 _valueText.SetText(formattedValue);
             }
         }
@@ -62,25 +62,5 @@ namespace TeamSuneat.UserInterface
                 _valueText.SetText(string.Empty);
             }
         }
-
-        private static string FormatStatValue(StatNames statName, float value)
-        {
-            // 퍼센트 표시가 필요한 스탯들
-            bool isPercentStat = statName is StatNames.CriticalChance
-                or StatNames.CriticalDamage
-                or StatNames.DevastatingStrike
-                or StatNames.DevastatingStrikeChance
-                or StatNames.DamageReduction
-                or StatNames.GoldGain
-                or StatNames.XPGain;
-
-            if (isPercentStat)
-            {
-                return $"{value:F1}%";
-            }
-
-            return $"{value:N0}";
-        }
     }
 }
-

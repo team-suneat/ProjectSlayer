@@ -25,7 +25,7 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("#UIButton-Enhancement"), SerializeField]
         public UnityEvent OnLevelUpSuccess;
 
-        private EnhancementData _data;
+        private EnhancementConfigData _data;
         private UIEnhancementItem _parentItem;
 
         public override void AutoGetComponents()
@@ -37,7 +37,7 @@ namespace TeamSuneat.UserInterface
             _costText ??= this.FindComponent<TextMeshProUGUI>("LevelUp Cost Text");
         }
 
-        public void Setup(EnhancementData data, UIEnhancementItem parentItem)
+        public void Setup(EnhancementConfigData data, UIEnhancementItem parentItem)
         {
             _data = data;
             _parentItem = parentItem;
@@ -102,7 +102,13 @@ namespace TeamSuneat.UserInterface
                 _data.StatName, currentLevel, newLevel, cost);
 
             Refresh();
-            _parentItem?.Refresh();
+
+            if (_parentItem != null)
+            {
+                _parentItem.Refresh();
+                _parentItem.StartPunchScale();
+            }
+
             OnLevelUpSuccess?.Invoke();
         }
 

@@ -12,7 +12,7 @@ namespace TeamSuneat.Data
         /// <summary>
         /// 강화 시스템 데이터 에셋을 가져옵니다.
         /// </summary>
-        public EnhancementDataAsset GetEnhancementDataAsset()
+        public EnhancementConfigAsset GetEnhancementDataAsset()
         {
             return _enhancementDataAsset;
         }
@@ -20,7 +20,7 @@ namespace TeamSuneat.Data
         /// <summary>
         /// 능력치 이름으로 강화 데이터를 가져옵니다.
         /// </summary>
-        public EnhancementData GetEnhancementData(StatNames statName)
+        public EnhancementConfigData GetEnhancementData(StatNames statName)
         {
             if (_enhancementDataAsset == null)
             {
@@ -78,7 +78,7 @@ namespace TeamSuneat.Data
                     continue;
                 }
 
-                EnhancementData data = _enhancementDataAsset.FindEnhancementData(keys[i]);
+                EnhancementConfigData data = _enhancementDataAsset.FindEnhancementData(keys[i]);
                 if (data == null)
                 {
                     Log.Warning(LogTags.ScriptableData, "강화 시스템 데이터가 설정되지 않았습니다. {0}({1})", keys[i], keys[i].ToLogString());

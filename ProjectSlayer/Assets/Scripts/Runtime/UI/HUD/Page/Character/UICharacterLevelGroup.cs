@@ -20,13 +20,18 @@ namespace TeamSuneat.UserInterface
         private void Awake()
         {
             AutoGetComponents();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
             RegisterEvents();
+            Refresh();
         }
 
         protected override void OnRelease()
         {
             base.OnRelease();
-
             UnregisterEvents();
         }
 

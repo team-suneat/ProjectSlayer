@@ -14,11 +14,6 @@ namespace TeamSuneat.UserInterface
         private GrowthConfigData _data;
         private UIGrowthItem _parentItem;
 
-        public override void AutoGetComponents()
-        {
-            base.AutoGetComponents();
-        }
-
         private VProfile GetProfile()
         {
             return GameApp.GetSelectedProfile();
@@ -44,7 +39,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            int currentLevel = profile.Growth.GetLevel(_data.StatName);
+            int currentLevel = profile.Growth.GetLevel(_data.GrowthType);
             RefreshLevelUpButton(profile, currentLevel);
         }
 
@@ -73,11 +68,17 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            int currentLevel = profile.Growth.GetLevel(_data.StatName);
+            int currentLevel = profile.Growth.GetLevel(_data.GrowthType);
             if (TryLevelUp(profile, currentLevel))
             {
                 Refresh();
-                _parentItem?.Refresh();
+                
+                if (_parentItem != null)
+                {
+                    _parentItem.Refresh();
+                    _parentItem.StartPunchScale();
+                }
+
                 OnLevelUpSuccess?.Invoke();
             }
         }
@@ -119,7 +120,7 @@ namespace TeamSuneat.UserInterface
             }
 
             profile.Growth.ConsumeStatPoint(cost);
-            profile.Growth.AddLevel(_data.StatName);
+            profile.Growth.AddLevel(_data.GrowthType);
 
             return true;
         }

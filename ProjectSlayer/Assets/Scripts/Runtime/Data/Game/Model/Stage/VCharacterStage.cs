@@ -74,7 +74,7 @@ namespace TeamSuneat.Data.Game
 
         public void ResetCurrentWave()
         {
-            CurrentWave = 1;
+            CurrentWave = 0;
         }
 
         public static VCharacterStage CreateDefault()

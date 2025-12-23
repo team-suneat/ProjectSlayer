@@ -104,6 +104,7 @@ namespace TeamSuneat
         private void OnCompletedPunchScale()
         {
             transform.localScale = _originalScale;
+            _scaleTween = null;
         }
 
         protected virtual void KillAllTweens()

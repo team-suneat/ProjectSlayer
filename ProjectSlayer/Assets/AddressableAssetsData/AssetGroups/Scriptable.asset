@@ -214,7 +214,7 @@ MonoBehaviour:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b1487cc02c57e94faf7da716764cc14
-    m_Address: Assets/Addressables/Scriptable/Character/PlayerCharacterStat.asset
+    m_Address: Assets/Addressables/Scriptable/Character/PlayerCharacterStatConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -393,6 +393,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea96c92820bd27a4a9144454a9875c61
+    m_Address: Assets/Addressables/Scriptable/Character/MonsterExperienceDropConfig.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef05a843586c67049a01f2555910cd1b
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_Area01_Boss_GoblinChief.asset
     m_ReadOnly: 0
@@ -400,7 +406,7 @@ MonoBehaviour:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2af02920d7351a418b549673dc864c5
-    m_Address: Assets/Addressables/Scriptable/Character/EnhancementData.asset
+    m_Address: Assets/Addressables/Scriptable/Character/EnhancementConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable

@@ -19,47 +19,47 @@ MonoBehaviour:
     StatName: 1
     MaxLevel: 1000
     StatIncreasePerLevel: 5
-    GrowthTypeAsString: 
-    StatNameAsString: 
+    GrowthTypeAsString: Strength
+    StatNameAsString: Attack
   - IsChangingAsset: 0
     GrowthType: 2
     StatName: 2
     MaxLevel: 1000
     StatIncreasePerLevel: 30
-    GrowthTypeAsString: 
-    StatNameAsString: 
+    GrowthTypeAsString: HealthPoint
+    StatNameAsString: Health
   - IsChangingAsset: 0
     GrowthType: 3
     StatName: 3
     MaxLevel: 1000
     StatIncreasePerLevel: 5
-    GrowthTypeAsString: 
-    StatNameAsString: 
+    GrowthTypeAsString: Vitality
+    StatNameAsString: HealthRegen
   - IsChangingAsset: 0
     GrowthType: 4
-    StatName: 5
+    StatName: 6
     MaxLevel: 200
     StatIncreasePerLevel: 0.03
-    GrowthTypeAsString: 
-    StatNameAsString: 
+    GrowthTypeAsString: Critical
+    StatNameAsString: CriticalDamage
   - IsChangingAsset: 0
     GrowthType: 5
-    StatName: 9
+    StatName: 11
     MaxLevel: 1000
     StatIncreasePerLevel: 0.005
-    GrowthTypeAsString: 
-    StatNameAsString: 
-  - IsChangingAsset: 1
+    GrowthTypeAsString: Luck
+    StatNameAsString: GoldGain
+  - IsChangingAsset: 0
     GrowthType: 6
     StatName: 16
     MaxLevel: 200
     StatIncreasePerLevel: 3
-    GrowthTypeAsString: 
-    StatNameAsString: 
-  - IsChangingAsset: 1
+    GrowthTypeAsString: Accuracy
+    StatNameAsString: Accuracy
+  - IsChangingAsset: 0
     GrowthType: 7
     StatName: 17
     MaxLevel: 200
     StatIncreasePerLevel: 1
-    GrowthTypeAsString: 
-    StatNameAsString: 
+    GrowthTypeAsString: Dodge
+    StatNameAsString: Dodge
