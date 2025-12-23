@@ -114,13 +114,21 @@ namespace TeamSuneat.UserInterface
 
         public void SetFrontValue(float currentValue)
         {
-            FrontValue = Mathf.Clamp01(currentValue);
+            float previousFrontValue = FrontValue;
+            float newFrontValue = Mathf.Clamp01(currentValue);
+
+            // FrontValue가 감소하면 이전 값을 BackValue로 설정
+            if (BackSlider != null && newFrontValue < previousFrontValue)
+            {
+                SetBackValue(previousFrontValue);
+            }
+
+            FrontValue = newFrontValue;
 
             if (FrontSlider != null)
             {
                 FrontSlider.value = FrontValue;
             }
-
         }
 
         public void ResetFrontValue()

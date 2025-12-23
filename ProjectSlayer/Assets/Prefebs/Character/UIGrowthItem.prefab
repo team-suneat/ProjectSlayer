@@ -423,7 +423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f61a1a97b4bba64fbfb788af1cea9e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59c551d751f412747bc7b6d935ad741f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1153,12 +1153,7 @@ MonoBehaviour:
   _frameImage: {fileID: 8224351694112535844}
   _buttonImage: {fileID: 4405713268920225297}
   _nameText: {fileID: 9213289975802800758}
-  _clickCooldown: 0.3
-  _punchScaleDuration: 0.2
-  _punchScale: {x: -0.1, y: -0.1, z: -0.1}
   _button: {fileID: 5092226355727687973}
-  _buttonImageAlphaDuration: 0.15
-  _holdInterval: 0.1
   OnLevelUpSuccess:
     m_PersistentCalls:
       m_Calls: []
@@ -1509,7 +1504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f61a1a97b4bba64fbfb788af1cea9e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 59c551d751f412747bc7b6d935ad741f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
