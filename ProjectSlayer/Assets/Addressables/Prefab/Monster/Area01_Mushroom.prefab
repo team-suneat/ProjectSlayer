@@ -54,8 +54,8 @@ MonoBehaviour:
   Health: {fileID: 3017048405064946088}
   Shield: {fileID: 0}
   Mana: {fileID: 0}
-  UseGauge: 0
-  UseSpawnGaugeOnInit: 0
+  UseGauge: 1
+  UseSpawnGaugeOnInit: 1
   DieEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 307939843724824249}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -52,7 +52,7 @@ namespace TeamSuneat.UserInterface
         {
             if (OrderName == CanvasOrderNames.IngameWorldSpace)
             {
-                rectTransform.position = new Vector3(960f, 540f);
+                rectTransform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
             }
         }
 

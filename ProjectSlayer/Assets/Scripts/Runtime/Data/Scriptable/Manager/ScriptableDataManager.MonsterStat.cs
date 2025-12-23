@@ -84,3 +84,4 @@ namespace TeamSuneat.Data
         #endregion MonsterStatConfig Validation Methods
     }
 }
+

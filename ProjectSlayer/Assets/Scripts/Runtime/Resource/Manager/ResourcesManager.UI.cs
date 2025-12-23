@@ -212,7 +212,7 @@ namespace TeamSuneat
                 return null;
             }
 
-            GameObject spawnedObject = SpawnPrefab("UIMonsterGauge", canvasOrder.transform);
+            GameObject spawnedObject = SpawnPrefab("UIEnemyGauge", canvasOrder.transform);
             if (spawnedObject == null)
             {
                 return null;

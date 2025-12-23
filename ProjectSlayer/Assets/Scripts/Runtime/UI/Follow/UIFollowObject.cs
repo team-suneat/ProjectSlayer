@@ -15,7 +15,10 @@ namespace TeamSuneat.UserInterface
         [ReadOnly]
         public Transform FollowingPoint;
 
+        public Transform ClonePoint;
+
         public bool IsWorldSpaceCanvas { get; set; }
+        public bool UseFollowPointClone;
 
         [Tooltip("반드시 캔버스 내부에 있습니다.")]
         public bool IsMustBeInsideTheCanvas;
@@ -25,6 +28,7 @@ namespace TeamSuneat.UserInterface
         private Camera _mainCamera;
         private Vector3 _worldPosition;
         private Vector3 _screenPosition;
+        private Vector2 _resolutionRate;
 
         private readonly float _worldSpaceByScaleValue = 0.0125f;
 
@@ -45,6 +49,7 @@ namespace TeamSuneat.UserInterface
         {
             base.AutoGetComponents();
             Rect = this.FindComponent<RectTransform>("Rect");
+            ClonePoint = this.FindTransform("ClonePoint");
         }
 
         protected void Awake()
@@ -63,50 +68,7 @@ namespace TeamSuneat.UserInterface
             IsWorldSpaceCanvas = false;
         }
 
-        public void SetWorldOffset(Vector3 offset)
-        {
-            WorldOffset = offset;
-        }
-
-        private void FixedUpdate()
-        {
-            UpdatePosition();
-        }
-
-        public void UpdatePosition()
-        {
-            if (MainCamera == null || FollowingPoint == null)
-            {
-                return;
-            }
-
-            if (IsWorldSpaceCanvas)
-            {
-                _worldPosition = FollowingPoint.position + WorldOffset;
-                anchoredPosition3D = _worldPosition;
-            }
-            else
-            {
-                _worldPosition = FollowingPoint.position + WorldOffset;
-
-                _screenPosition = MainCamera.WorldToScreenPoint(_worldPosition);
-                _screenPosition /= GameDefine.DEFAULT_SCREEN_RATE;
-                _screenPosition += ScreenOffset;
-                _screenPosition.z = 0f;
-
-                anchoredPosition3D = _screenPosition;
-            }
-        }
-
-        public void StartFollowing(Transform point)
-        {
-            FollowingPoint = point;
-        }
-
-        public void StopFollowing()
-        {
-            FollowingPoint = null;
-        }
+        //
 
         public void Setup(Transform point)
         {
@@ -123,26 +85,74 @@ namespace TeamSuneat.UserInterface
             UpdatePosition();
         }
 
-        public void Setup(Vector3 worldPosition)
+        //
+
+        private void FixedUpdate()
         {
-            if (!IsWorldSpaceCanvas)
+            UpdateResolutionRate();
+            UpdatePosition();
+        }
+
+        private void UpdateResolutionRate()
+        {
+            float rateX = 1080f.SafeDivide(Screen.width);
+            float rateY = 1920f.SafeDivide(Screen.height);
+            _resolutionRate = new Vector2(rateX, rateY);
+        }
+
+        private void UpdatePosition()
+        {
+            if (MainCamera == null || FollowingPoint == null)
             {
-                _worldPosition = worldPosition + WorldOffset;
+                return;
+            }
+
+            if (IsWorldSpaceCanvas)
+            {
+                _worldPosition = FollowingPoint.position + WorldOffset;
+                anchoredPosition3D = _worldPosition;
+            }
+            else
+            {
+                _worldPosition = FollowingPoint.position + WorldOffset;
 
                 _screenPosition = MainCamera.WorldToScreenPoint(_worldPosition);
-                _screenPosition *= GameDefine.DEFAULT_SCREEN_RATE;
+                _screenPosition /= _resolutionRate;
                 _screenPosition += ScreenOffset;
                 _screenPosition.z = 0f;
 
                 anchoredPosition3D = _screenPosition;
             }
+        }
+
+        //
+        public void SetWorldOffset(Vector3 offset)
+        {
+            WorldOffset = offset;
+        }
+
+        public void StartFollowing(Transform point)
+        {
+            if (UseFollowPointClone && ClonePoint != null)
+            {
+                ClonePoint.SetParent(null);
+                ClonePoint.position = point.position;
+                FollowingPoint = ClonePoint;
+            }
             else
             {
-                _worldPosition = worldPosition + WorldOffset;
-                _worldPosition.z = 0f;
-
-                anchoredPosition3D = _worldPosition;
+                FollowingPoint = point;
             }
+        }
+
+        public void StopFollowing()
+        {
+            if (ClonePoint != null)
+            {
+                ClonePoint.SetParent(transform);
+            }
+
+            FollowingPoint = null;
         }
     }
 }

@@ -409,7 +409,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            _scaleTweener = transform.DOPunchScale(_asset.PunchScale, _asset.PunchScaleDuration, _asset.PunchScaleVibrato);
+            _scaleTweener = Text.transform.DOPunchScale(_asset.PunchScale, _asset.PunchScaleDuration, _asset.PunchScaleVibrato);
             if (_scaleTweener != null)
             {
                 _scaleTweener.onComplete += OnCompletedPunchScale;

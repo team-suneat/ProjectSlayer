@@ -139,11 +139,6 @@ MonoBehaviour:
   TextImage: {fileID: 7172300044918415611}
   Despawner: {fileID: 8160366878333662034}
   FollowObject: {fileID: 1457800311649378844}
-  PhysicalCritialSprite: {fileID: 0}
-  MagicalCriticalSprite: {fileID: 0}
-  GoldSprite: {fileID: 0}
-  DiamondSprite: {fileID: 0}
-  EmeraldSprite: {fileID: 0}
 --- !u!114 &8160366878333662034
 MonoBehaviour:
   m_ObjectHideFlags: 0
