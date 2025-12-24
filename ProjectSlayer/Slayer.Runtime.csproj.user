@@ -8,6 +8,9 @@
     <Compile Update="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.UINotice.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Assets\Scripts\Runtime\UI\HUD\Button\HUDBossButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Assets\Scripts\Runtime\UI\Popup\Purchase\UIPurchasePopup.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -20,6 +20,8 @@ namespace TeamSuneat
 
         public List<MonsterCharacter> SpawnedMonsters { get; private set; }
 
+        public PositionGroup SpawnPositionGroup => _spawnPositionGroup;
+
         public bool IsAllMonstersDefeated
         {
             get

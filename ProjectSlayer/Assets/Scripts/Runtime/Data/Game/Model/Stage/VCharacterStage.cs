@@ -39,6 +39,8 @@ namespace TeamSuneat.Data.Game
             CurrentStageString = stageName.ToString();
 
             Log.Info(LogTags.GameData_Stage, "현재 스테이지를 선택합니다. {0}, {1}", stageName.ToLogString(), CurrentStageString);
+
+            GlobalEvent.Send(GlobalEventType.GAME_DATA_STAGE_SET);
         }
 
         public void SelectArea(AreaNames areaName)

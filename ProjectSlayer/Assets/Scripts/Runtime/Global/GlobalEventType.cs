@@ -258,8 +258,12 @@ namespace TeamSuneat
         ///<summary> 기술 포인트를 사용합니다. </summary>
         GAME_DATA_PLAYER_USE_SKILL_REMAININGPOINT,
 
+        ///<summary> 스테이지를 설정합니다. </summary>
+        GAME_DATA_STAGE_SET,
+
         /// <summary> 게임 데이터를 저장합니다. </summary>
         SAVE_GAME_DATA,
+
 
         #endregion 게임 데이터 GAME DATA
 
@@ -335,12 +339,6 @@ namespace TeamSuneat
 
         ///<summary> 스테이지가 생성되었습니다. </summary>
         STAGE_SPAWNED,
-
-        ///<summary> 스테이지가 완료되었습니다. </summary>
-        STAGE_COMPLETED,
-
-        ///<summary> 스테이지의 보상을 얻었습니다. </summary>
-        STAGE_REWARDED,
 
         #endregion 스테이지 STAGE
 

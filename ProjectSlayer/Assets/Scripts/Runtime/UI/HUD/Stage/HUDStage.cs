@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TeamSuneat.UserInterface
 {
-    public class HUDStage : MonoBehaviour
+    public class HUDStage : XBehaviour
     {
         [SerializeField]
         private UILocalizedText _indexText;
@@ -12,9 +12,22 @@ namespace TeamSuneat.UserInterface
         [SerializeField]
         private UILocalizedText _nameText;
 
-        private void Start()
+        protected override void OnStart()
         {
+            base.OnStart();
             Refresh();
+        }
+
+        protected override void RegisterGlobalEvent()
+        {
+            base.RegisterGlobalEvent();
+            GlobalEvent.Register(GlobalEventType.GAME_DATA_STAGE_SET, Refresh);
+        }
+
+        protected override void UnregisterGlobalEvent()
+        {
+            base.UnregisterGlobalEvent();
+            GlobalEvent.Unregister(GlobalEventType.GAME_DATA_STAGE_SET, Refresh);
         }
 
         private void Refresh()

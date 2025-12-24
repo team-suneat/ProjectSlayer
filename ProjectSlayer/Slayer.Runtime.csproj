@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Renderer\CharacterAnimator.Paramater.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Buff\BuffStateEffectAssetData.cs" />
     <Compile Include="Assets\Scripts\Runtime\External\GoogleSheets\Converters\StatRowConverter.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\Component\UIScreenFader.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Define\GameDefine.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Gauge\Character\UIPlayerGauge.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Backup.cs" />
@@ -399,6 +400,7 @@
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Skill\UISkillAutoUseToggle.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Buff\BuffAssetData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\StageMoveTypes.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Button\HUDBossButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Sound.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Enhancement\UIEnhancementItem.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\Handler\Interface\IUIPopupInputBlockHandler.cs" />

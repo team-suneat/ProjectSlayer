@@ -40,6 +40,11 @@ namespace TeamSuneat
             }
         }
 
+        private void OnValidate()
+        {
+            EnumEx.ConvertTo(ref Name, NameString);
+        }
+
         private void RefreshNameString()
         {
             if (Name != 0)
