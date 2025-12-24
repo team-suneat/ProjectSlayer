@@ -6,6 +6,11 @@ namespace TeamSuneat
 {
     public static partial class StringGetter
     {
+        public static string GetStringKey(this StageNames key)
+        {
+            return $"Stage_Name_{key}";
+        }
+
         public static string GetLocalizedString(this StageNames key)
         {
             return GetLocalizedString(key, GameSetting.Instance.Language.Name);
@@ -13,21 +18,13 @@ namespace TeamSuneat
 
         public static string GetLocalizedString(this StageNames key, LanguageNames languageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Stage_Name_");
-            stringBuilder.Append(key.ToString());
-
-            string stringKey = stringBuilder.ToString();
+            string stringKey = GetStringKey(key);
             return JsonDataManager.FindStringClone(stringKey, languageName);
         }
 
         public static string GetNotStyleString(this StageNames stageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Stage_Name_");
-            stringBuilder.Append(stageName.ToString());
-
-            string key = stringBuilder.ToString();
+            string key = GetStringKey(stageName);
             string value = JsonDataManager.FindStringClone(key);
 
             return ConvertStyleToColorString(value);
@@ -74,7 +71,7 @@ namespace TeamSuneat
             {
                 content = ReplaceAreaName(content);
                 content = ReplaceStageName(content);
-                
+
                 content = ReplaceMonsterName(content);
             }
 
@@ -93,7 +90,7 @@ namespace TeamSuneat
             {
                 content = ReplaceAreaName(content);
                 content = ReplaceStageName(content);
-                
+
                 content = ReplaceMonsterName(content);
             }
 
@@ -112,7 +109,7 @@ namespace TeamSuneat
             {
                 content = ReplaceAreaName(content);
                 content = ReplaceStageName(content);
-                
+
                 content = ReplaceMonsterName(content);
             }
 
@@ -131,7 +128,7 @@ namespace TeamSuneat
             {
                 content = ReplaceAreaName(content);
                 content = ReplaceStageName(content);
-                
+
                 content = ReplaceMonsterName(content);
             }
 
