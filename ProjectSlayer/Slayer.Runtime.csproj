@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\HitmarkNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Light\LightEffect2DGroup.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\String\FormatStringEx.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Player.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Localized\UILocalizedText.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\PlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\StateEffects.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\System\BuffSystem.Collection.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\Valid\DataValidator.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Statistics\VStatistics.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.MonsterStat.cs" />
     <Compile Include="Assets\Scripts\Runtime\External\GoogleSheets\IGoogleSheetRowConverter.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\ValueEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Cipher\Cipher.Int64x.cs" />
@@ -254,7 +254,6 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Health\Health.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Attack\AttackEntity.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Entity\SID.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Enhancement.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\PassiveAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Passive\PassiveOperator.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Item\DropSpawnerNames.cs" />
@@ -267,12 +266,13 @@
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Gauge\UIGaugePoolHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\InteractionEnums.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Mover\VFXMover.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\MonsterDropConfigAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Serialization.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Details\UIDetails.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Behaviour\XStaticBehaiour.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Passive.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Character\Spawner\PlayerCharacterSpawner.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\Growth\GrowthConfigAsset.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Spawner\PlayerCharacterSpawner.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Crypto.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Migration.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\CharacterStat.cs" />
@@ -327,7 +327,6 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Passive\PassiveApplyPoints.cs" />
     <Compile Include="Assets\Scripts\Runtime\Scene\XScene.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\AttackTargetTypes.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.MonsterExperienceDrop.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\WaveTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Compute.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.Regenerate.cs" />
@@ -342,7 +341,6 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\PositionGroupManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Stat\DecrescenceTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Game\CurrencyNames.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Experience.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\LinkedDamageTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Cipher\Cipher.AES.cs" />
@@ -407,7 +405,6 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Strategies\Combat\CriticalUpdateStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.Combat.cs" />
     <Compile Include="Assets\Scripts\Runtime\Application\GameApp.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Growth.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.Stage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\ComponentEx.cs" />
@@ -427,7 +424,6 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.FileIO.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Passive.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Item\VCharacterItem.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\MonsterExperienceDropConfigAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\StageNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Page\UITogglePageController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\Enhancement\EnhancementConfigAsset.cs" />
@@ -485,7 +481,6 @@
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\UITextManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillAsset.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Toggle\UIToggleGroup.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.PlayerCharacterStat.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Growth\UIGrowthResetButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillAttributeTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\Enum\EnumColorEx.cs" />
@@ -565,6 +560,7 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\StatEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Behaviour\XBehaviour.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.UI.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Monster.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\RandomEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Ability\CharacterAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\SetMultiMap.cs" />

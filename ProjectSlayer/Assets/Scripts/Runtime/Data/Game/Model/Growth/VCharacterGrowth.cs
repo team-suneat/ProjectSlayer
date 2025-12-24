@@ -73,7 +73,8 @@ namespace TeamSuneat.Data.Game
             }
 
             int currentLevel = GetLevel(growthType);
-            SetLevel(growthType, addLevel);
+            int newLevel = currentLevel + addLevel;
+            SetLevel(growthType, newLevel);
         }
 
         //

@@ -189,20 +189,34 @@
 ### 4.2 능력치 포인트 획득
 - 레벨업 시 능력치 포인트 3개 획득
 - 능력치 포인트는 능력치 레벨업에 사용
+- 레벨업 비용: 항상 능력치 포인트 1개 고정 (레벨에 관계없이 동일)
+
+### 4.2.1 CharacterGrowthTypes Enum
+- 성장 시스템에서 사용하는 성장 타입 enum
+- 값: None, Strength, HealthPoint, Vitality, Critical, Luck, Accuracy, Dodge
+- GrowthTypeConverter: CharacterGrowthTypes를 StatNames로 변환하는 확장 메서드 제공
+  - Strength → Attack
+  - HealthPoint → Health
+  - Vitality → HealthRegen
+  - Critical → CriticalDamage
+  - Luck → GoldGain
+  - Accuracy → Accuracy
+  - Dodge → Dodge
 
 ### 4.3 성장 시스템 데이터 구조
-- **GrowthDataAsset**: 단일 ScriptableObject로 모든 성장 능력치 데이터 관리
+- **GrowthConfigAsset**: 단일 ScriptableObject로 모든 성장 능력치 데이터 관리
   - XScriptableObject를 상속받아 ScriptableDataManager에서 관리
-  - DataArray: GrowthData 배열로 모든 성장 능력치 데이터 포함
-  - FindGrowthData(StatNames): 스탯 이름으로 데이터 검색
+  - DataArray: GrowthConfigData 배열로 모든 성장 능력치 데이터 포함
+  - FindGrowthData(CharacterGrowthTypes): 성장 타입으로 데이터 검색
   - Editor 기능: "모든 성장 능력치 데이터 자동 생성" 버튼 제공
-  - 성장 시스템 능력치만 자동 생성 (Strength, HealthPoint, Vitality, Critical, Luck, AccuracyStat, Dodge)
-- **GrowthData**: 개별 성장 능력치 데이터
-  - StatName: 능력치 종류
+  - 성장 시스템 능력치만 자동 생성 (Strength, HealthPoint, Vitality, Critical, Luck, Accuracy, Dodge)
+- **GrowthConfigData**: 개별 성장 능력치 데이터
+  - GrowthType: 성장 타입 (CharacterGrowthTypes enum)
+  - StatName: 능력치 종류 (StatNames enum)
   - MaxLevel: 최대 레벨
-  - InitialCost: 능력치 포인트 초기 비용
-  - CostGrowthRate: 비용 성장률
   - StatIncreasePerLevel: 레벨당 스탯 증가량
+  - CalculateStatValue(int level): 레벨에 따른 능력치 값 계산 (레벨 × StatIncreasePerLevel)
+  - 비용: 레벨업 비용은 항상 능력치 포인트 1개로 고정 (레벨에 관계없이 동일)
 
 ## 5. 계산 공식 상세
 
@@ -301,34 +315,38 @@
 **VCharacterGrowth**
 - StatPoint: 능력치 포인트
 - GrowthLevels: 성장 능력치별 레벨 저장 (Dictionary<string, int>)
-- GetLevel(StatNames): 특정 성장 능력치의 레벨 가져오기
-- SetLevel(StatNames, int): 특정 성장 능력치의 레벨 설정
-- AddLevel(StatNames, int): 특정 성장 능력치의 레벨 증가
+- GetLevel(CharacterGrowthTypes): 특정 성장 능력치의 레벨 가져오기
+- SetLevel(CharacterGrowthTypes, int): 특정 성장 능력치의 레벨 설정 (private)
+- AddLevel(CharacterGrowthTypes, int): 특정 성장 능력치의 레벨 증가
 - AddStatPoint(int): 능력치 포인트 추가
 - ConsumeStatPoint(int): 능력치 포인트 소비
 - CanConsumeStatPoint(int): 능력치 포인트 소비 가능 여부 확인
 - CanConsumeStatPointOrNotify(int): 능력치 포인트 소비 가능 여부 확인 및 부족 시 알림 표시
+- GetTotalConsumedStatPoints(): 소비한 총 능력치 포인트 계산
+- ResetGrowthLevels(): 성장 레벨 초기화 및 반환될 능력치 포인트 반환
 - ClearIngameData(): 인게임 데이터 초기화
 
 ### 6.2 데이터 안정성
 - Dictionary 키를 string으로 저장하여 enum 순서 변경에 영향받지 않도록 구현
-- StatNames enum을 ToString()으로 변환하여 저장
-- VCharacterEnhancement, VCharacterGrowth의 메서드는 StatNames를 받아 내부에서 string으로 변환
+- VCharacterEnhancement: StatNames enum을 ToString()으로 변환하여 저장
+- VCharacterGrowth: CharacterGrowthTypes enum을 ToString()으로 변환하여 저장
+- VCharacterEnhancement의 메서드는 StatNames를 받아 내부에서 string으로 변환
+- VCharacterGrowth의 메서드는 CharacterGrowthTypes를 받아 내부에서 string으로 변환
 
 ### 6.3 ScriptableObject 관리
 - **ScriptableDataManager**: 모든 ScriptableObject 에셋을 중앙에서 관리
   - EnhancementDataAsset: 단일 에셋으로 강화 시스템 데이터 관리
-  - GrowthDataAsset: 단일 에셋으로 성장 시스템 데이터 관리
+  - GrowthConfigAsset: 단일 에셋으로 성장 시스템 데이터 관리
   - ExperienceConfigAsset: 단일 에셋으로 경험치 설정 관리
   - GetEnhancementDataAsset(): 강화 데이터 에셋 가져오기
   - GetEnhancementData(StatNames): 스탯 이름으로 강화 데이터 가져오기
-  - GetGrowthDataAsset(): 성장 데이터 에셋 가져오기
-  - GetGrowthData(StatNames): 스탯 이름으로 성장 데이터 가져오기
+  - GetGrowthDataAsset(): 성장 데이터 에셋 가져오기 (GrowthConfigAsset 반환)
+  - GetGrowthData(CharacterGrowthTypes): 성장 타입으로 성장 데이터 가져오기
   - GetExperienceConfigAsset(): 경험치 설정 에셋 가져오기
 - **CharacterSystemAssetCreator**: Editor 스크립트로 기본값이 적용된 에셋 자동 생성
   - Unity 메뉴: TeamSuneat → Create Character System Assets
   - 생성 경로: Assets/Addressables/Scriptable/Character
-  - EnhancementData.asset, GrowthData.asset, ExperienceConfig.asset 자동 생성
+  - EnhancementData.asset, GrowthConfig.asset, ExperienceConfig.asset 자동 생성
 
 ## 7. 캐릭터 페이지 UI 구조
 
@@ -412,7 +430,62 @@
 - 강화 레벨업 성공 시
 - 재화 변경 시
 
-### 7.5 UI 계층 구조
+### 7.5 성장 페이지 (Growth Page)
+
+**페이지 구조**
+- **UITogglePageController**의 두 번째 페이지 (인덱스 1)
+- 성장 토글 클릭 시 표시
+
+**성장 아이템 스크롤 뷰 (Character Growth Group)**
+- Scroll View 컴포넌트를 사용하여 스크롤 가능한 목록 표시
+- 성장할 수 있는 모든 타입(STR, HP, VIT, CRI, LUK, ACC, DODGE)에 대해 하나씩 아이템 생성
+
+**성장 아이템 (UIGrowthItem) 구성 요소**
+- **배경 이미지**: 아이템의 배경
+- **프레임 이미지**: 아이템의 테두리
+- **성장 아이콘 이미지**: 해당 성장 타입의 아이콘
+- **성장 타입 텍스트**: 성장 타입 이름 (예: "STR", "HP")
+- **최대 레벨 텍스트**: "Max Lv.{최대 레벨}" 형식으로 최대 레벨 표시
+- **성장 레벨 텍스트**: "Lv.{현재 레벨}" 형식으로 현재 성장 레벨 표시
+- **능력치 값 텍스트**: "{능력치 이름} {현재값} → {다음값}" 형식으로 성장 시 능력치 변화 표시
+  - 현재값: 현재 레벨의 능력치 값 (레벨 × StatIncreasePerLevel)
+  - 다음값: 다음 레벨의 능력치 값 ((레벨 + 1) × StatIncreasePerLevel)
+- **레벨업 버튼** (UIGrowthButton):
+  - 프레임 이미지: 버튼의 테두리 (색상으로 활성화 상태 표시)
+  - 활성화 색상: SteelBlue (레벨업 가능)
+  - 비활성화 색상: IndianRed (레벨업 불가)
+  - 클릭/홀드 시 동작:
+    - 최대 레벨 도달 여부 확인 (GrowthConfigData.MaxLevel)
+    - 능력치 포인트 충분 여부 확인 (VCharacterGrowth.CanConsumeStatPointOrNotify)
+    - 조건 충족 시 성장 레벨 1 증가 (VCharacterGrowth.AddLevel) 및 능력치 포인트 1개 소비 (VCharacterGrowth.ConsumeStatPoint)
+    - UI 갱신 (GAME_DATA_CHARACTER_GROWTH_LEVEL_CHANGED, GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED 이벤트 발생)
+    - 레벨업 성공 시 능력치 값 텍스트에 펀치 스케일 애니메이션 재생
+
+**성장 페이지 추가 구성 요소**
+- **능력치 포인트 텍스트**: "능력치 포인트: {현재 포인트}" 형식으로 표시
+- 전역 이벤트 구독:
+  - GAME_DATA_CHARACTER_LEVEL_CHANGED: 캐릭터 레벨 변경 시 모든 아이템 갱신
+  - GAME_DATA_CHARACTER_GROWTH_LEVEL_CHANGED: 성장 레벨 변경 시 페이지 갱신
+  - GAME_DATA_CHARACTER_GROWTH_STAT_POINT_CHANGED: 능력치 포인트 변경 시 포인트 텍스트 갱신
+
+### 7.6 성장 아이템 데이터 바인딩
+
+**데이터 소스**
+- GrowthConfigAsset: 성장 능력치의 고정 데이터 (최대 레벨, 레벨당 증가량 등)
+- VCharacterGrowth: 저장된 성장 레벨 데이터 및 능력치 포인트
+
+**표시 데이터 계산**
+- 현재 능력치 값: 현재 레벨 × StatIncreasePerLevel
+- 다음 능력치 값: (현재 레벨 + 1) × StatIncreasePerLevel
+- 레벨업 비용: 항상 능력치 포인트 1개 고정
+
+**UI 갱신 시점**
+- 페이지 열릴 때
+- 성장 레벨업 성공 시
+- 능력치 포인트 변경 시
+- 캐릭터 레벨 변경 시
+
+### 7.7 UI 계층 구조
 
 ```
 UIPageGroup
@@ -454,5 +527,14 @@ UIPageGroup
 │       └── Scroll View
 │           └── Viewport
 │               └── Content
-│                   └── UIGrowthItem (성장 타입별 생성, 향후 구현)
+│                   └── UIGrowthItem (성장 타입별 생성)
+│                       ├── Background Image
+│                       ├── Frame Image
+│                       ├── Stat Icon Image
+│                       ├── Growth Type Text
+│                       ├── Growth MaxLevel Text
+│                       ├── Growth Level Text
+│                       ├── Growth Stat Text (현재값 → 다음값 형식)
+│                       └── LevelUp Button (UIGrowthButton)
+│                           └── Frame Image (색상으로 활성화 상태 표시)
 ```

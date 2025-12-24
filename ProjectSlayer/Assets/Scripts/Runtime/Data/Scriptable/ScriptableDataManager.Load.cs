@@ -34,7 +34,7 @@ namespace TeamSuneat.Data
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
             else if (_monsterStatConfigAsset == null) { return false; }
-            else if (_monsterExperienceDropConfigAsset == null) { return false; }
+            else if (_monsterDropConfigAsset == null) { return false; }
             else if (_playerCharacterStatAsset == null) { return false; }
             else if (_skillCardUnlockAsset == null) { return false; }
             else if (_skillSlotUnlockAsset == null) { return false; }
@@ -72,7 +72,7 @@ namespace TeamSuneat.Data
             _monsterStatConfigAsset?.OnLoadData();
 
             // 몬스터 경험치 드랍 설정 데이터 OnLoadData() 메서드 호출
-            _monsterExperienceDropConfigAsset?.OnLoadData();
+            _monsterDropConfigAsset?.OnLoadData();
 
             // 플레이어 캐릭터 능력치 데이터 OnLoadData() 메서드 호출
             _playerCharacterStatAsset?.OnLoadData();
@@ -318,18 +318,18 @@ namespace TeamSuneat.Data
                 return false;
             }
 
-            MonsterExperienceDropConfigAsset asset = ResourcesManager.LoadResource<MonsterExperienceDropConfigAsset>(filePath);
+            MonsterDropConfigAsset asset = ResourcesManager.LoadResource<MonsterDropConfigAsset>(filePath);
             if (asset != null)
             {
-                if (_monsterExperienceDropConfigAsset != null)
+                if (_monsterDropConfigAsset != null)
                 {
                     Log.Warning(LogTags.ScriptableData, "몬스터 경험치 드랍 설정 에셋이 중복으로 로드 되고 있습니다. 기존: {0}, 새로운: {1}",
-                        _monsterExperienceDropConfigAsset.name, asset.name);
+                        _monsterDropConfigAsset.name, asset.name);
                 }
                 else
                 {
                     Log.Progress("스크립터블 데이터를 읽어왔습니다. Path: {0}", filePath);
-                    _monsterExperienceDropConfigAsset = asset;
+                    _monsterDropConfigAsset = asset;
                 }
 
                 return true;
@@ -588,10 +588,10 @@ namespace TeamSuneat.Data
                         }
                         break;
 
-                    case MonsterExperienceDropConfigAsset monsterExperienceDropConfig:
-                        if (_monsterExperienceDropConfigAsset == null)
+                    case MonsterDropConfigAsset monsterExperienceDropConfig:
+                        if (_monsterDropConfigAsset == null)
                         {
-                            _monsterExperienceDropConfigAsset = monsterExperienceDropConfig;
+                            _monsterDropConfigAsset = monsterExperienceDropConfig;
                             count++;
                         }
                         break;

@@ -78,70 +78,11 @@ namespace TeamSuneat.Data
 
 #if UNITY_EDITOR
 
-        public override void Validate()
-        {
-            base.Validate();
-        }
-
-        public override void Refresh()
-        {
-            base.Refresh();
-        }
-
-        public override bool RefreshWithoutSave()
-        {
-            bool hasChanged = base.RefreshWithoutSave();
-            return hasChanged;
-        }
-
         public override void Rename()
         {
-            Rename("ExperienceConfig");
-        }
-
-        protected override void RefreshAll()
-        {
-#if UNITY_EDITOR
-            if (Selection.objects.Length > 1)
-            {
-                Debug.LogWarning("여러 개의 스크립터블 오브젝트가 선택되었습니다. 하나만 선택한 상태에서 실행하세요.");
-                return;
-            }
-#endif
-            Debug.LogFormat("경험치 설정 에셋의 갱신을 시작합니다.");
-
-            base.RefreshAll();
-            OnRefreshAll();
-
-            Debug.LogFormat("경험치 설정 에셋의 갱신을 종료합니다.");
-        }
-
-        protected override void CreateAll()
-        {
-            base.CreateAll();
-            PathManager.UpdatePathMetaData();
-        }
-
-        [FoldoutGroup("#Button", false, 7)]
-        [Button("검증 데이터 출력", ButtonSizes.Large)]
-        private void PrintValidationData()
-        {
-            Debug.Log("=== 경험치 계산 검증 데이터 ===");
-            Debug.LogFormat("초기 경험치: {0}", InitialExperienceRequired);
-            Debug.LogFormat("증가 배율: {0}", ExperienceGrowthRate);
-            Debug.LogFormat("레벨업 시 능력치 포인트: {0}", StatPointPerLevel);
-            Debug.Log("");
-
-            int[] testLevels = new int[] { 1, 30, 31, 32, 33, 69, 801 };
-            foreach (int level in testLevels)
-            {
-                long totalExp = GetTotalExperienceRequired(level);
-                int nextLevelExp = GetExperienceRequiredForNextLevel(level);
-                Debug.LogFormat("레벨 {0}: 다음 레벨 필요 경험치 = {1}, 총 경험치 = {2}", level, nextLevelExp, totalExp);
-            }
+            PerformRename("ExperienceConfig");
         }
 
 #endif
     }
 }
-

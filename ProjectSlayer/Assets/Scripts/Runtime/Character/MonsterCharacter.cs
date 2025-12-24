@@ -87,7 +87,7 @@ namespace TeamSuneat
         {
             if (ProfileInfo == null) return;
 
-            MonsterExperienceDropConfigAsset config = ScriptableDataManager.Instance.GetMonsterExperienceDropConfigAsset();
+            MonsterDropConfigAsset config = ScriptableDataManager.Instance.GetMonsterDropConfigAsset();
             if (config == null) return;
 
             bool isTreasure = Name == CharacterNames.TreasureChest;

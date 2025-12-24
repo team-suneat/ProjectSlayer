@@ -76,7 +76,7 @@ namespace TeamSuneat.Data
             }
 #endif
         }
-        
+
         public GrowthConfigData FindGrowthData(CharacterGrowthTypes growthType)
         {
             if (DataArray == null)
@@ -117,38 +117,9 @@ namespace TeamSuneat.Data
             }
         }
 
-        public override bool RefreshWithoutSave()
-        {
-            bool hasChanged = base.RefreshWithoutSave();
-            return hasChanged;
-        }
-
         public override void Rename()
         {
-            Rename("GrowthData");
-        }
-
-        protected override void RefreshAll()
-        {
-#if UNITY_EDITOR
-            if (Selection.objects.Length > 1)
-            {
-                Debug.LogWarning("여러 개의 스크립터블 오브젝트가 선택되었습니다. 하나만 선택한 상태에서 실행하세요.");
-                return;
-            }
-#endif
-            Debug.LogFormat("성장 시스템 데이터 에셋의 갱신을 시작합니다.");
-
-            base.RefreshAll();
-            OnRefreshAll();
-
-            Debug.LogFormat("성장 시스템 데이터 에셋의 갱신을 종료합니다.");
-        }
-
-        protected override void CreateAll()
-        {
-            base.CreateAll();
-            PathManager.UpdatePathMetaData();
+            PerformRename("GrowthConfig");
         }
 
 #endif

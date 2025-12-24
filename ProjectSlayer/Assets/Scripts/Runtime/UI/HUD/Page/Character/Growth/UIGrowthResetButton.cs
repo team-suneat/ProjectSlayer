@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,15 +8,17 @@ namespace TeamSuneat.UserInterface
     public class UIGrowthResetButton : UIButton
     {
         [FoldoutGroup("#UIButton-GrowthReset"), SerializeField]
+        private UIGrowthPage _parentPage;
+
+        [FoldoutGroup("#UIButton-GrowthReset"), SerializeField]
         public UnityEvent OnResetSuccess;
 
         private const int RESET_COST_DIAMOND = 3000;
-        private UIGrowthPage _parentPage;
 
-        public void Setup(UIGrowthPage parentPage)
+        public override void AutoGetComponents()
         {
-            _parentPage = parentPage;
-            Refresh();
+            base.AutoGetComponents();
+            _parentPage = this.FindFirstParentComponent<UIGrowthPage>();
         }
 
         public void Refresh()

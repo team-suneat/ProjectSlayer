@@ -1,11 +1,10 @@
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "MonsterExperienceDropConfig", menuName = "TeamSuneat/Scriptable/Monster/ExperienceDrop")]
-    public class MonsterExperienceDropConfigAsset : XScriptableObject
+    [CreateAssetMenu(fileName = "MonsterDropConfig", menuName = "TeamSuneat/Scriptable/Monster/Drop")]
+    public class MonsterDropConfigAsset : XScriptableObject
     {
         [Title("경험치")]
         [SuffixLabel("레벨 1 일반 몬스터의 경험치")]
@@ -24,14 +23,14 @@ namespace TeamSuneat.Data
         [SuffixLabel("일반 몬스터 골드 증가 배율 (레벨마다 이전 레벨 대비 증가 배율)")]
         public float GoldGrowthRate = 1.05f;
 
-        [Title("강화 규브")]
-        [SuffixLabel("레벨 1 일반 몬스터의 강화큐브")]
+        [Title("강화 큐브")]
+        [SuffixLabel("레벨 1 일반 몬스터의 강화 큐브")]
         public int BaseCube = 15;
 
-        [SuffixLabel("일반 몬스터 강화큐브 증가 배율 (레벨마다 이전 레벨 대비 증가 배율)")]
+        [SuffixLabel("일반 몬스터 강화 큐브 증가 배율 (레벨마다 이전 레벨 대비 증가 배율)")]
         public float CubeGrowthRate = 1.03f;
 
-        [SuffixLabel("일반 몬스터 강화큐브 드랍 확률")]
+        [SuffixLabel("일반 몬스터 강화 큐브 드랍 확률")]
         public float CubeDropChance = 0.3f;
 
         public override void OnLoadData()
@@ -114,50 +113,9 @@ namespace TeamSuneat.Data
 
 #if UNITY_EDITOR
 
-        public override void Validate()
-        {
-            base.Validate();
-        }
-
-        public override void Refresh()
-        {
-            base.Refresh();
-        }
-
-        public override bool RefreshWithoutSave()
-        {
-            bool hasChanged = base.RefreshWithoutSave();
-            return hasChanged;
-        }
-
         public override void Rename()
         {
-#if UNITY_EDITOR
-            PerformRename("MonsterExperienceDropConfig");
-#endif
-        }
-
-        protected override void RefreshAll()
-        {
-#if UNITY_EDITOR
-            if (Selection.objects.Length > 1)
-            {
-                Debug.LogWarning("여러 개의 스크립터블 오브젝트가 선택되었습니다. 하나만 선택한 상태에서 실행하세요.");
-                return;
-            }
-#endif
-            Debug.LogFormat("몬스터 경험치 드랍 설정 에셋의 갱신을 시작합니다.");
-
-            base.RefreshAll();
-            OnRefreshAll();
-
-            Debug.LogFormat("몬스터 경험치 드랍 설정 에셋의 갱신을 종료합니다.");
-        }
-
-        protected override void CreateAll()
-        {
-            base.CreateAll();
-            PathManager.UpdatePathMetaData();
+            PerformRename("MonsterDropConfig");
         }
 
 #endif
