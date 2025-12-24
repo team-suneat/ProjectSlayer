@@ -171,7 +171,69 @@ namespace TeamSuneat.Stage
         private IEnumerator StartNextWaveWithDelay()
         {
             yield return new WaitForSeconds(_nextWaveDelay);
-            StartNextWave();
+
+            Data.Game.VProfile profile = GetSelectedProfile();
+            if (profile?.Stage == null || _currentStageAsset == null)
+            {
+                yield break;
+            }
+
+            int nextWaveIndex = profile.Stage.CurrentWave + 1;
+            if (nextWaveIndex >= _currentStageAsset.WaveCount)
+            {
+                yield return StartWaveResetWithFade();
+            }
+            else
+            {
+                StartNextWave();
+            }
+        }
+
+        private IEnumerator StartWaveResetWithFade()
+        {
+            Log.Info(LogTags.Stage, "모든 웨이브 완료: {0}. 첫 웨이브부터 반복합니다.", Name);
+
+            if (UIManager.Instance?.ScreenFader != null)
+            {
+                // 페이드 인/아웃 효과 적용
+                UIManager.Instance.ScreenFader.FadeInOut(Color.black, 0.5f, 0, 0.3f);
+
+                // 페이드 인 완료 대기 (페이드 인 시간 + 유지 시간)
+                yield return new WaitForSeconds(0.5f + 0.3f);
+
+                // 웨이브 리셋 및 첫 웨이브 시작
+                Data.Game.VProfile profile = GetSelectedProfile();
+                if (profile?.Stage != null)
+                {
+                    profile.Stage.CurrentWave = 0;
+                    UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(1, _currentStageAsset.WaveCount);
+
+                    if (_monsterSpawner != null)
+                    {
+                        _monsterSpawner.SpawnWave(0);
+                        SetPlayerTargetToFirstMonster();
+                    }
+                }
+
+                // 페이드 아웃 완료 대기
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                // ScreenFader가 없을 경우 일반 처리
+                Data.Game.VProfile profile = GetSelectedProfile();
+                if (profile?.Stage != null)
+                {
+                    profile.Stage.CurrentWave = 0;
+                    UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(1, _currentStageAsset.WaveCount);
+
+                    if (_monsterSpawner != null)
+                    {
+                        _monsterSpawner.SpawnWave(0);
+                        SetPlayerTargetToFirstMonster();
+                    }
+                }
+            }
         }
 
         private void StartNextWave()
@@ -183,13 +245,6 @@ namespace TeamSuneat.Stage
             }
 
             int nextWaveIndex = profile.Stage.CurrentWave + 1;
-
-            if (nextWaveIndex >= _currentStageAsset.WaveCount)
-            {
-                Log.Info(LogTags.Stage, "모든 웨이브 완료: {0}. 첫 웨이브부터 반복합니다.", Name);
-                nextWaveIndex = 0;
-            }
-
             profile.Stage.CurrentWave = nextWaveIndex;
 
             UIManager.Instance.HUDManager.StageProgressGauge.SetProgress(nextWaveIndex + 1, _currentStageAsset.WaveCount);

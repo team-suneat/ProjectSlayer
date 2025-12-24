@@ -6,15 +6,14 @@ namespace TeamSuneat.UserInterface
 {
     public partial class UIManager : XStaticBehaviour<UIManager>
     {
-        [Title("Manager")]
-        public UICanvasManager CanvasManager;
-        public UIGaugeManager GaugeManager;
-        public UITextManager TextManager;
-
-        public HUDManager HUDManager;
-        public UIPopupManager PopupManager;
-        public UIDetailsManager DetailsManager;
-        public UINoticeManager NoticeManager;
+        [FoldoutGroup("Manager")] public UICanvasManager CanvasManager;
+        [FoldoutGroup("Manager")] public UIGaugeManager GaugeManager;
+        [FoldoutGroup("Manager")] public UITextManager TextManager;
+        [FoldoutGroup("Manager")] public HUDManager HUDManager;
+        [FoldoutGroup("Manager")] public UIPopupManager PopupManager;
+        [FoldoutGroup("Manager")] public UIDetailsManager DetailsManager;
+        [FoldoutGroup("Manager")] public UINoticeManager NoticeManager;
+        public UIScreenFader ScreenFader;
 
         public Vector3 WorldPositionMin { get; set; }
         public Vector3 WorldPositionMax { get; set; }
@@ -36,6 +35,7 @@ namespace TeamSuneat.UserInterface
             DetailsManager = GetComponentInChildren<UIDetailsManager>();
             NoticeManager = GetComponentInChildren<UINoticeManager>();
             TextManager = GetComponentInChildren<UITextManager>();
+            ScreenFader = GetComponentInChildren<UIScreenFader>();
         }
 
         public void Clear()
