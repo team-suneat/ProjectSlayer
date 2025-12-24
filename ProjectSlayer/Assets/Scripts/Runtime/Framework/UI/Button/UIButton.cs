@@ -14,6 +14,7 @@ namespace TeamSuneat.UserInterface
         private const float ALPHA_SEMI_TRANSPARENT = 0.5f;
         private const float ALPHA_ANIMATION_DURATION_RATIO = 0.5f;
         private const float DEFAULT_HOLD_INTERVAL = 0.1f;
+        private const float DEFAULT_HOLD_DELAY = 0.3f;
         private const float DEFAULT_BUTTON_IMAGE_ALPHA_DURATION = 0.15f;
 
         [FoldoutGroup("#UIButton")]
@@ -201,6 +202,9 @@ namespace TeamSuneat.UserInterface
 
         private IEnumerator HoldCoroutine()
         {
+            // 첫 터치 후 홀드 시작까지 대기
+            yield return new WaitForSeconds(DEFAULT_HOLD_DELAY);
+
             while (_isHolding && _isClickable)
             {
                 yield return new WaitForSeconds(DEFAULT_HOLD_INTERVAL);
