@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\StateEffects.cs" />
     <Compile Include="Assets\Scripts\Runtime\External\GoogleSheets\GoogleSheetDatasetId.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Attack\AttackEntityRegistry.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\Popup\Purchase\UIPurchasePopup.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Page\Character\Growth\UIGrowthButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Prefs\GamePrefTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\DetailsStringNames.cs" />
@@ -374,6 +375,7 @@
     <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraRenderController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Get.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\AllIn1ShaderEx.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Framework\UI\Button\UIPurchaseButton.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Spawner\MonsterCharacterSpawner.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Define.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Addressable\GameAddressableAssetManager.cs" />
@@ -576,6 +578,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Stage\VCharacterStage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Renderer\CharacterRenderer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Setting\Model\GameLanguage.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Stage\HUDStage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Position\SortStrategy\Base\IPositionGroupSortStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Layer\GameMaskNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\CharacterInfo\UICharacterAppearancePage.cs" />

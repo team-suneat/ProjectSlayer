@@ -128,11 +128,6 @@ namespace TeamSuneat
             }
         }
 
-        public virtual void SetClickable(bool isClickable)
-        {
-            _isClickable = isClickable;
-        }
-
         protected void SetNameTextColor(Color color, float duration = DURATION_ZERO)
         {
             if (_nameText == null)

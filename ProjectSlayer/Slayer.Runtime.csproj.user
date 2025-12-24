@@ -2,7 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Assets\Scripts\Runtime\Framework\UI\Button\UIPurchaseButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.UINotice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Assets\Scripts\Runtime\UI\Popup\Purchase\UIPurchasePopup.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -1,10 +1,11 @@
+using Lean.Pool;
 using System;
 using UnityEngine;
 
 namespace TeamSuneat.UserInterface
 {
     // Notice UI 기본 클래스 - 공통 기능 제공
-    public abstract class UINoticeBase : XBehaviour
+    public abstract class UINoticeBase : XBehaviour, IPoolable
     {
         [SerializeField]
         protected UILocalizedText _titleText;
@@ -13,6 +14,17 @@ namespace TeamSuneat.UserInterface
         protected UICanvasGroupFader _fader;
 
         public event Action OnCompleted;
+
+        public void OnSpawn()
+        { }
+
+        public void OnDespawn()
+        { }
+
+        public void Despawn()
+        {
+            ResourcesManager.Despawn(gameObject);
+        }
 
         public override void AutoGetComponents()
         {

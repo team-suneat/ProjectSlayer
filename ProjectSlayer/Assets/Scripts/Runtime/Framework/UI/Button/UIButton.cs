@@ -20,6 +20,12 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("#UIButton")]
         [SerializeField] private Button _button;
 
+        [FoldoutGroup("#UIButton/Event")]
+        public UnityEvent OnClickSuccess;
+
+        [FoldoutGroup("#UIButton/Event")]
+        public UnityEvent OnClickFailure;
+
         private Tween _alphaTween;
         private Coroutine _holdCoroutine;
         private bool _isHolding;
@@ -32,6 +38,8 @@ namespace TeamSuneat.UserInterface
 
             _button ??= GetComponent<Button>();
         }
+
+        //
 
         protected override void OnStart()
         {
@@ -54,7 +62,7 @@ namespace TeamSuneat.UserInterface
             base.OnEnabled();
             if (_button != null)
             {
-                _button.onClick.AddListener(OnButtonClicked);
+                _button.onClick.AddListener(OnButtonClick);
             }
         }
 
@@ -63,7 +71,7 @@ namespace TeamSuneat.UserInterface
             base.OnDisabled();
             if (_button != null)
             {
-                _button.onClick.RemoveListener(OnButtonClicked);
+                _button.onClick.RemoveListener(OnButtonClick);
             }
 
             StopHoldCoroutine();
@@ -77,26 +85,57 @@ namespace TeamSuneat.UserInterface
             KillAllTweens();
         }
 
-        private void OnButtonClicked()
-        {
-            if (!CheckClickCooldown())
-            {
-                return;
-            }
-
-            OnButtonClick();
-        }
+        //
 
         protected virtual void OnButtonClick()
         {
-            PlayPunchScaleAnimation();
-            PlayButtonImageAlphaAnimation();
+            if (CheckClickable())
+            {
+                PlayPunchScaleAnimation();
+                PlayButtonImageAlphaAnimation();
+                OnClickSucceeded();
+            }
+            else
+            {
+                OnClickFailed();
+            }
         }
 
         protected virtual void OnButtonHold()
         {
-            PlayPunchScaleAnimation();
-            PlayButtonImageAlphaAnimation();
+            if (CheckClickable())
+            {
+                PlayPunchScaleAnimation();
+                PlayButtonImageAlphaAnimation();
+                OnHoldSucceeded();
+            }
+            else
+            {
+                OnHoldFailed();
+            }
+        }
+
+        protected virtual bool CheckClickable()
+        {
+            return CheckClickCooldown();
+        }
+
+        protected virtual void OnClickSucceeded()
+        {
+            OnClickSuccess?.Invoke();
+        }
+
+        protected virtual void OnClickFailed()
+        {
+            OnClickFailure?.Invoke();
+        }
+
+        protected virtual void OnHoldSucceeded()
+        {
+        }
+
+        protected virtual void OnHoldFailed()
+        {
         }
 
         private void PlayButtonImageAlphaAnimation()
@@ -131,42 +170,31 @@ namespace TeamSuneat.UserInterface
             _alphaTween = null;
         }
 
-        public override void SetClickable(bool isClickable)
-        {
-            base.SetClickable(isClickable);
+        #region Click Events
 
-            if (_button != null)
-            {
-                _button.interactable = isClickable;
-            }
+        public void RegisterClickSuccessEvent(UnityAction action)
+        {
+            OnClickSuccess.AddListener(action);
         }
 
-        public void AddListener(UnityAction action)
+        public void UnregisterClickSuccessEvent(UnityAction action)
         {
-            AutoGetComponents();
-
-            if (_button != null)
-            {
-                _button.onClick.AddListener(action);
-            }
+            OnClickSuccess.RemoveListener(action);
         }
 
-        public void RemoveListener(UnityAction action)
+        public void RegisterClickFailureEvent(UnityAction action)
         {
-            if (_button != null)
-            {
-                _button.onClick.RemoveListener(action);
-            }
+            OnClickFailure.AddListener(action);
         }
 
-        public void RemoveAllListeners()
+        public void UnregisterClickFailureEvent(UnityAction action)
         {
-            if (_button != null)
-            {
-                _button.onClick.RemoveAllListeners();
-                _button.onClick.AddListener(OnButtonClicked);
-            }
+            OnClickFailure.RemoveListener(action);
         }
+
+        #endregion Click Events
+
+        #region Pointer Event
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -184,6 +212,10 @@ namespace TeamSuneat.UserInterface
             StopHoldCoroutine();
             _isHolding = false;
         }
+
+        #endregion Pointer Event
+
+        #region Hold
 
         private void StartHoldCoroutine()
         {
@@ -215,6 +247,7 @@ namespace TeamSuneat.UserInterface
                 }
             }
         }
+
+        #endregion Hold
     }
 }
-

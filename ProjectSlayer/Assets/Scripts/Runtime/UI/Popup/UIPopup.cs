@@ -17,10 +17,10 @@ namespace TeamSuneat.UserInterface
         public UILocalizedText TitleText;
 
         [FoldoutGroup("#UIPopup")]
-        public Image DeactiveImage;
+        public Button CancelButton;
 
         [FoldoutGroup("#UIPopup")]
-        public Button CancelButton;
+        public Button BackdropButton;
 
         // 핸들러들
 
@@ -49,7 +49,7 @@ namespace TeamSuneat.UserInterface
             // 핵심 UI 컴포넌트 자동 찾기
             TitleText ??= this.FindComponent<UILocalizedText>("Rect/Title Text");
             CancelButton ??= this.FindComponent<Button>("Rect/Cancel Button");
-            DeactiveImage ??= this.FindComponent<Image>("Rect/Deactive Image");
+            BackdropButton ??= this.FindComponent<Button>("Backdrop Button");
         }
 
         public override void AutoNaming()
@@ -61,7 +61,12 @@ namespace TeamSuneat.UserInterface
         {
             if (CancelButton != null)
             {
-                CancelButton.onClick.AddListener(CloseWithFailure);
+                CancelButton.onClick.AddListener(OnClickCancelButton);
+            }
+
+            if (BackdropButton != null)
+            {
+                BackdropButton.onClick.AddListener(CloseWithFailure);
             }
 
             InitializeHandlers();
@@ -170,6 +175,11 @@ namespace TeamSuneat.UserInterface
             _inputBlockHandler?.ConfigurePopupSettings(isOpening);
         }
 
+        private void OnClickCancelButton()
+        {
+            CoroutineNextTimer(0.3f, CloseWithFailure);
+        }
+
         /// <summary>
         /// 모든 팝업을 닫습니다.
         /// </summary>
@@ -230,25 +240,7 @@ namespace TeamSuneat.UserInterface
         /// </summary>
         public virtual void Activate()
         {
-            if (DeactiveImage != null)
-            {
-                DeactiveImage.raycastTarget = false;
-                DeactiveImage.SetAlpha(0f);
-            }
-
             SelectFirstSlotEvent();
-        }
-
-        /// <summary>
-        /// 팝업을 비활성화합니다.
-        /// </summary>
-        public virtual void Deactivate()
-        {
-            if (DeactiveImage != null)
-            {
-                DeactiveImage.raycastTarget = true;
-                DeactiveImage.SetAlpha(0.6f);
-            }
         }
 
         #region 핸들러 위임 메서드들

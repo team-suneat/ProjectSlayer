@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,9 +31,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            bool canReset = CanReset(profile);
-
-            if (canReset)
+            if (CanReset(profile))
             {
                 SetFrameImageColor(GameColors.SteelBlue);
             }
@@ -50,7 +49,7 @@ namespace TeamSuneat.UserInterface
             }
 
             // 다이아몬드 보유 여부 확인
-            if (!profile.Currency.CanUseOrNotify(CurrencyNames.Diamond, RESET_COST_DIAMOND))
+            if (!profile.Currency.CanUse(CurrencyNames.Diamond, RESET_COST_DIAMOND))
             {
                 return false;
             }
@@ -67,38 +66,47 @@ namespace TeamSuneat.UserInterface
 
         protected override void OnButtonClick()
         {
-            VProfile profile = GameApp.GetSelectedProfile();
-            if (profile == null)
+            SpawnPurchasePopup();
+        }
+
+        private void SpawnPurchasePopup()
+        {
+            var popup = UIManager.Instance.PopupManager.SpawnCenterPopup(UIPopupNames.Purchase, OnDespawnPurchasePopup);
+            if (popup != null)
             {
-                return;
+                string content = JsonDataManager.FindStringClone("Popup_Content_Growth_Reset");
+                _purchasePopup = popup as UIPurchasePopup;
+                _purchasePopup.Setup(content, CurrencyNames.Diamond, RESET_COST_DIAMOND);
             }
+        }
 
-            // 리셋 가능 여부 확인
-            if (!CanReset(profile))
+        private UIPurchasePopup _purchasePopup = null;
+
+        private void OnDespawnPurchasePopup(bool result)
+        {
+            if (result)
             {
-                Log.Warning(LogTags.UI_Page, "성장 시스템 리셋 조건을 충족하지 못했습니다.");
-                return;
+                VProfile profile = GameApp.GetSelectedProfile();
+                if (profile != null)
+                {
+                    // 소비한 능력치 포인트 계산
+                    int totalConsumed = profile.Growth.GetTotalConsumedStatPoints();
+                    if (totalConsumed <= 0)
+                    {
+                        return;
+                    }
+
+                    // 모든 성장 능력치 레벨 초기화 및 소비한 포인트 반환
+                    int returnedPoints = profile.Growth.ResetGrowthLevels();
+
+                    profile.Growth.AddStatPoint(returnedPoints);
+                }
+                Refresh();
+                _parentPage?.Refresh();
+
+                // 리셋 성공 이벤트 발생
+                OnResetSuccess?.Invoke();
             }
-
-            // 소비한 능력치 포인트 계산
-            int totalConsumed = profile.Growth.GetTotalConsumedStatPoints();
-
-            // 다이아몬드 소비
-            profile.Currency.Use(CurrencyNames.Diamond, RESET_COST_DIAMOND);
-
-            // 모든 성장 능력치 레벨 초기화 및 소비한 포인트 반환
-            int returnedPoints = profile.Growth.ResetGrowthLevels();
-            profile.Growth.AddStatPoint(returnedPoints);
-
-            Log.Info(LogTags.UI_Page, "성장 시스템 리셋 완료! 다이아몬드 {0} 소비, 능력치 포인트 {1} 반환",
-                RESET_COST_DIAMOND, returnedPoints);
-
-            // UI 갱신
-            Refresh();
-            _parentPage?.Refresh();
-
-            // 리셋 성공 이벤트 발생
-            OnResetSuccess?.Invoke();
         }
     }
 }

@@ -81,6 +81,7 @@ namespace TeamSuneat.UserInterface
             }
 
             int currentLevel = profile.Enhancement.GetLevel(_enhancementData.StatName);
+            int cost = CalculateCost(currentLevel);
 
             RefreshStatName();
             RefreshLevel(currentLevel);
@@ -88,7 +89,7 @@ namespace TeamSuneat.UserInterface
 
             if (_levelUpButton != null)
             {
-                _levelUpButton.Refresh();
+                _levelUpButton.Setup(CurrencyNames.Gold, cost);
             }
         }
 
@@ -129,6 +130,17 @@ namespace TeamSuneat.UserInterface
             string nextContent = _enhancementData.StatName.GetStatValueString(nextValue);
             _statValueText.SetText($"{currentContent} → {nextContent}");
 
+        }
+
+        private int CalculateCost(int level)
+        {
+            if (level <= 0)
+            {
+                return _enhancementData.InitialCost;
+            }
+
+            // 비용 = 초기 비용 × 비용 성장률^(레벨-1)
+            return Mathf.RoundToInt(_enhancementData.InitialCost * Mathf.Pow(_enhancementData.CostGrowthRate, level - 1));
         }
 
         #region Punch Scale

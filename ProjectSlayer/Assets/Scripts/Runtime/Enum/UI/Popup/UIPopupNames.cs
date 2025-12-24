@@ -6,5 +6,6 @@ namespace TeamSuneat
 
         GameStartSelection,
         CharacterInfo,
+        Purchase,
     }
 }

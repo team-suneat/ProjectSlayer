@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bdae017423ab2743b7fb486cbaf31bd
+    m_Address: Assets/Addressables/Prefab/UI/Popup/UIPurchasePopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Ingame
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a10b5cf9a5d42346b2d7f8146343699
     m_Address: Assets/Addressables/Prefab/PlayerCharacter.prefab
     m_ReadOnly: 0
