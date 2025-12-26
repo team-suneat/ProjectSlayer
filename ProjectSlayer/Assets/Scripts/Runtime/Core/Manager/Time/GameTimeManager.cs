@@ -18,11 +18,6 @@ namespace TeamSuneat
 
         #region Public Methods
 
-        /// <summary>
-        /// 시간 스케일 팩터를 설정합니다.
-        /// </summary>
-        /// <param name="factor">시간 스케일 팩터</param>
-        /// <param name="useSetScale">Time.timeScale을 설정할지 여부</param>
         public void SetFactor(float factor, bool useSetScale = true)
         {
             _factor = factor;
@@ -34,13 +29,6 @@ namespace TeamSuneat
             }
         }
 
-        /// <summary>
-        /// 슬로우 모션을 활성화합니다.
-        /// </summary>
-        /// <param name="duration">지속 시간</param>
-        /// <param name="factor">슬로우 모션 팩터</param>
-        /// <param name="onCompleted">완료 시 호출될 콜백</param>
-        /// <returns>슬로우 모션 코루틴</returns>
         public IEnumerator ActivateSlowMotion(float duration, float factor, UnityAction onCompleted)
         {
             Time.timeScale = factor;

@@ -61,6 +61,9 @@
 
         public const int CHARACTER_MAX_LEVEL = 1000;
 
+        /// <summary> 보스 모드 시간 제한 (초) </summary>
+        public const float BOSS_MODE_TIME_LIMIT = 30f;
+
         #endregion 게임 설정
 
         #region 개발자 설정

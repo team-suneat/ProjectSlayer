@@ -55,8 +55,8 @@ MonoBehaviour:
   Health: {fileID: 3017048405064946088}
   Shield: {fileID: 0}
   Mana: {fileID: 0}
-  UseGauge: 1
-  UseSpawnGaugeOnInit: 1
+  UseGauge: 0
+  UseSpawnGaugeOnInit: 0
   DieEvent:
     m_PersistentCalls:
       m_Calls: []

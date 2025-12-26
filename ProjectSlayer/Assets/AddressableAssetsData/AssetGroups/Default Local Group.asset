@@ -51,12 +51,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Ingame
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a68a848799a9ea14abdc039295509d2c
-    m_Address: Assets/Addressables/Prefab/Monster/Area01_Boss_MushroomKing.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Area01
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7125cbb71e3107449098bdcc3818625
     m_Address: Assets/Addressables/Prefab/UI/Follow/UIFloatyText.prefab
     m_ReadOnly: 0

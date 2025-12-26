@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Area01
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53a9ba1f772954242b394912614f53e2
+    m_Address: Assets/Addressables/Prefab/Stage/Area01_BeginnerHuntingGround1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Area01
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57a4e240661f02c468334c9cd1bf89d6
     m_Address: Assets/Addressables/Scriptable/World/Area01/Stage_Area01_BeginnerHuntingGround5.asset
     m_ReadOnly: 0
@@ -107,6 +113,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a185dd626a4d6b64ab4e47225e9a92ac
     m_Address: Assets/Addressables/Scriptable/World/Area01/Stage_Area01_BeginnerHuntingGround3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Area01
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a68a848799a9ea14abdc039295509d2c
+    m_Address: Assets/Addressables/Prefab/Monster/Area01_Boss_MushroomKing.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - Area01

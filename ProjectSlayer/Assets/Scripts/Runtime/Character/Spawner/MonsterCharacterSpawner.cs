@@ -197,9 +197,7 @@ namespace TeamSuneat
             {
                 return;
             }
-
-            CharacterManager.Instance.Unregister(monster);
-            Destroy(monster.gameObject);
+            monster.Despawn();
         }
 
         private void CleanupDeadMonsters()

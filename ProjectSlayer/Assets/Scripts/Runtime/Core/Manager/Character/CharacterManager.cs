@@ -155,6 +155,9 @@ namespace TeamSuneat
             }
         }
 
+        /// <summary>
+        /// 모든 몬스터를 자살시킵니다.
+        /// </summary>
         public void SuicideAllMonsters(Character caster)
         {
             if (Monsters.IsValid())
@@ -324,10 +327,12 @@ namespace TeamSuneat
             };
 
             // 강제로 피해를 입힙니다.
-            // if(targetCharacter.MyVital.TryTakeDamage(damageResult))
-            _ = targetCharacter.MyVital.TakeDamage(damageResult);
+            targetCharacter.MyVital.TakeDamage(damageResult);
         }
 
+        /// <summary>
+        /// 플레이어가 죽였다는 판정으로 모든 몬스터를 처치합니다.
+        /// </summary>
         public void KillAllMonsters()
         {
             if (_waitKillTime < 1.5f)

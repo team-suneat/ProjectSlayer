@@ -1565,6 +1565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7081466467026647980}
   - component: {fileID: 9207018559370677026}
+  - component: {fileID: 2875109172315484665}
   m_Layer: 0
   m_Name: Area01_StartForest1
   m_TagString: Untagged
@@ -1604,6 +1605,20 @@ MonoBehaviour:
   Name: 1
   NameString: Area01_StartForest1
   _monsterSpawner: {fileID: 3463707952498819006}
+  _bossModeHandler: {fileID: 2875109172315484665}
+  _nextWaveDelay: 3
+--- !u!114 &2875109172315484665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255272123003397461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b47b9d9115c7b4a95bfa4775b50dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8384412948983783055
 GameObject:
   m_ObjectHideFlags: 0

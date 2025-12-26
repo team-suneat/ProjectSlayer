@@ -19,12 +19,13 @@ namespace TeamSuneat
             CharacterManager.Instance.Register(this);
         }
 
-        //
-
-        public override void ResetTarget()
+        public override void OnDespawn()
         {
-            base.ResetTarget();
+            base.OnDespawn();
+            CharacterManager.Instance.Unregister(this);
         }
+
+        //
 
         public override void SetTarget(Vital targetVital)
         {

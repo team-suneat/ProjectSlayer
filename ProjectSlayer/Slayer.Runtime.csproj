@@ -132,6 +132,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Async.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Skill.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Log.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Core\Manager\Time\Timer\GameTimerLabels.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Skill\SkillNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Handlers\StatLogHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioManager.Static.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\UINoticeManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Vital.Parameter.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.FloatyText.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Core\Manager\Time\Timer\GameTimer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\Enum\EnumEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.StatHelper.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Buff\Entity\BuffEntity.Time.cs" />
@@ -269,6 +271,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\InteractionEnums.cs" />
     <Compile Include="Assets\Scripts\Runtime\VisualEffect\Mover\VFXMover.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Character\MonsterDropConfigAsset.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Gauge\HUDBossTimerGauge.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.Serialization.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Details\UIDetails.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Behaviour\XStaticBehaiour.cs" />
@@ -284,6 +287,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Partial\Character.Ability.cs" />
     <Compile Include="Assets\Scripts\Runtime\Scene\Model\GameTitleScene.cs" />
     <Compile Include="Assets\Scripts\Runtime\Core\Manager\Time\OfflineTimeManager.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Core\Manager\Time\GameTimerManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\UIPopupManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Statistics\VStatistics.Time.cs" />
     <Compile Include="Assets\Scripts\Runtime\Application\DefaultGameApp.cs" />
@@ -346,6 +350,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\LinkedDamageTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Cipher\Cipher.AES.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\HUD\Gauge\HUDBossHealthGauge.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Game\DifficultyStepModes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\String\StringEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Amplification.cs" />
@@ -409,6 +414,7 @@
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Strategies\Combat\CriticalUpdateStrategy.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.Combat.cs" />
     <Compile Include="Assets\Scripts\Runtime\Application\GameApp.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Stage\BossModeHandler.cs" />
     <Compile Include="Assets\Scripts\Runtime\Resource\Manager\ResourcesManager.Stage.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.Log.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\ComponentEx.cs" />

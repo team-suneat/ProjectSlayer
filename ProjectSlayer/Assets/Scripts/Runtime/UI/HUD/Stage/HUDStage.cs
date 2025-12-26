@@ -18,19 +18,7 @@ namespace TeamSuneat.UserInterface
             Refresh();
         }
 
-        protected override void RegisterGlobalEvent()
-        {
-            base.RegisterGlobalEvent();
-            GlobalEvent.Register(GlobalEventType.GAME_DATA_STAGE_SET, Refresh);
-        }
-
-        protected override void UnregisterGlobalEvent()
-        {
-            base.UnregisterGlobalEvent();
-            GlobalEvent.Unregister(GlobalEventType.GAME_DATA_STAGE_SET, Refresh);
-        }
-
-        private void Refresh()
+        public void Refresh()
         {
             VProfile profileInfo = GameApp.GetSelectedProfile();
             if (profileInfo == null)

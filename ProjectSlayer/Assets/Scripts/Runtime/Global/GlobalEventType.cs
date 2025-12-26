@@ -340,6 +340,12 @@ namespace TeamSuneat
         ///<summary> 스테이지가 생성되었습니다. </summary>
         STAGE_SPAWNED,
 
+        ///<summary> 보스 모드에 진입합니다. </summary>
+        BOSS_MODE_ENTERED,
+
+        ///<summary> 보스 모드에서 종료합니다. </summary>
+        BOSS_MODE_EXITED,
+
         #endregion 스테이지 STAGE
 
         #region 난이도 DIFFICULTY
@@ -349,7 +355,7 @@ namespace TeamSuneat
 
         #endregion 난이도 DIFFICULTY
 
-        #region 씬 SENCE
+        #region 씬 SCENE
 
         ///<summary> 게임 메인 씬을 변경합니다. </summary>
         CHANGE_GAME_MAIN_SCENE,
@@ -369,7 +375,7 @@ namespace TeamSuneat
         ///<summary> 게임을 클리어합니다. </summary>
         CLEAR_GAME,
 
-        #endregion 씬 SENCE
+        #endregion 씬 SCENE
 
         #region 경고 WARNING
 

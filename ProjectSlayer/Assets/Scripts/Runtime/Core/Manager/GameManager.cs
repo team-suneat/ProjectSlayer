@@ -1,5 +1,6 @@
 using System.Collections;
 using TeamSuneat.Stage;
+using TeamSuneat.UserInterface;
 using UnityEngine;
 
 namespace TeamSuneat
@@ -34,13 +35,11 @@ namespace TeamSuneat
         private void Update()
         {
             CharacterManager.Instance.LogicUpdate();
-
-            // UIManager.Instance?.LogicUpdate();
+            UIManager.Instance?.LogicUpdate();
         }
 
         private void LateUpdate()
         {
-            // UIManager.Instance?.LateLogicUpdate();
             // PassiveManager.Instance.LateLogicUpdate();
         }
 

@@ -203,7 +203,8 @@ namespace TeamSuneat
                 }
                 else if (content == int.MaxValue.ToString())
                 {
-                    content = "999999";
+                    // 강제 처치 판정 시 플로팅 텍스트를 생성하지 않습니다.
+                    return null;
                 }
 
                 return ResourcesManager.SpawnFloatyText(content, moveType, parent);
