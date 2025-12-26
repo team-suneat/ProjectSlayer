@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using TeamSuneat.Data;
-using TeamSuneat.Data.Game;
-using UnityEngine;
 
 namespace TeamSuneat
 {
@@ -214,10 +212,11 @@ namespace TeamSuneat
 
         // Floaty Text
 
-        private void SpawnFloatyText(string content)
+        private void SpawnFloatyText(string label)
         {
             if (TargetVital != null)
             {
+                string content = Data.JsonDataManager.FindStringClone(label);
                 ResourcesManager.SpawnFloatyText(content, true, TargetVital.transform);
             }
         }

@@ -282,34 +282,12 @@ namespace TeamSuneat
                 return;
             }
 
-            try
+            for (int i = list.Count - 1; i >= 0; i--)
             {
-                HashSet<int> indicesToRemove = new HashSet<int>();
-
-                for (int i = 0; i < list.Count; i++)
+                if (list[i] == null)
                 {
-                    if (list[i] == null)
-                    {
-                        indicesToRemove.Add(i);
-                    }
-                    else if (list[i] is null)
-                    {
-                        indicesToRemove.Add(i);
-                    }
-                    else if (list[i].Equals(null))
-                    {
-                        indicesToRemove.Add(i);
-                    }
+                    list.RemoveAt(i);
                 }
-
-                foreach (int index in indicesToRemove.OrderByDescending(i => i))
-                {
-                    list.RemoveAt(index);
-                }
-            }
-            catch (System.Exception e)
-            {
-                Log.Error(e.ToString());
             }
         }
 

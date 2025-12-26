@@ -12,13 +12,25 @@ namespace TeamSuneat
         [SerializeField]
         private Animator _animator;
 
+        private bool _isSpawning;
+        private bool _isAttacking;
+
         public virtual void OnAnimatorStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
         }
 
         public virtual void OnAnimatorStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (stateInfo.IsName("Death"))
+            if (stateInfo.IsName("Spawn"))
+            {
+                _isSpawning = false;
+                _animator.UpdateAnimatorBool(ANIMATOR_IS_SPAWNED_PARAMETER_ID, true, AnimatorParameters);
+            }
+            if (stateInfo.IsName("Attack"))
+            {
+                _isAttacking = false;
+            }
+            else if (stateInfo.IsName("Death"))
             {
                 _ownerCharacter.Despawn();
             }
@@ -36,7 +48,7 @@ namespace TeamSuneat
 
         private void Awake()
         {
-            _ownerCharacter = this.FindFirstParentComponent<Character>();
+            _ownerCharacter ??= this.FindFirstParentComponent<Character>();
             _animator ??= GetComponent<Animator>();
         }
 
@@ -49,11 +61,18 @@ namespace TeamSuneat
 
         internal void PlaySpawnAnimation()
         {
+            if (_animator.UpdateAnimatorTrigger(ANIMATOR_SPAWN_PARAMETER_ID, AnimatorParameters))
+            {
+                _isSpawning = true;
+            }
         }
 
         internal void PlayAttackAnimation()
         {
-            _animator.UpdateAnimatorTrigger(ANIMATOR_IS_ATTACKING_PARAMETER_ID, AnimatorParameters);
+            if (_animator.UpdateAnimatorTrigger(ANIMATOR_ATTACK_PARAMETER_ID, AnimatorParameters))
+            {
+                _isAttacking = true;
+            }
         }
 
         internal void PlayAttackAnimationByHitmark(HitmarkNames hitmarkName)
@@ -67,11 +86,16 @@ namespace TeamSuneat
             {
                 return false;
             }
+            if (_isAttacking)
+            {
+                // 공격 중에는 피격 애니메이션을 재생하지 않음
+                return false;
+            }
 
             return _animator.UpdateAnimatorTrigger(ANIMATOR_DAMAGE_PARAMETER_ID, AnimatorParameters);
         }
 
-        public virtual void PlayDeathAnimation()
+        internal void PlayDeathAnimation()
         {
             _animator.UpdateAnimatorTrigger(ANIMATOR_DEATH_PARAMETER_ID, AnimatorParameters);
         }

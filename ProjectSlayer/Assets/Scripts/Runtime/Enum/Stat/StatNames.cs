@@ -13,8 +13,6 @@ namespace TeamSuneat
         CriticalDamage,          // 치명타 피해(%)
         Mana,                    // 마나
         ManaRegen,               // 마나 회복량
-        AccuracyChance,          // 명중률(%)
-        DodgeChance,             // 회피율(%)
         GoldGain,                // 추가 골드 획득량(%)
         XPGain,                  // 추가 경험치(%)
         DamageReduction,         // 피해 감소(%)

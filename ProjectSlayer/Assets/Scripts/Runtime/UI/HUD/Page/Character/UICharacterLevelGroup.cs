@@ -106,9 +106,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            StringData stringData = JsonDataManager.FindStringData("Format_Level");
-            string content = StringGetter.Format(stringData, level.ToString());
-            _levelText.SetText(content);
+            _levelText.SetText(level.GetLevelString());
         }
 
         private void RefreshExperienceText(float expRatio)

@@ -111,9 +111,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            StringData data = JsonDataManager.FindStringData("Format_Level");
-            string content = StringGetter.Format(data, currentLevel.ToString());
-            _levelText.SetText(content);
+            _levelText.SetText(currentLevel.GetLevelString());
         }
 
         private void RefreshStatValue(int currentLevel)

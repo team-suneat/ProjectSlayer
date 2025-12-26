@@ -94,6 +94,11 @@ namespace TeamSuneat
 
         public void UnregisterPlayer(PlayerCharacter playerCharacter)
         {
+            if (Player == null)
+            {
+                return;
+            }
+
             if (playerCharacter != null)
             {
                 if (Player == playerCharacter)
@@ -114,13 +119,15 @@ namespace TeamSuneat
 
         public void UnregisterPlayer()
         {
-            if (Player != null)
+            if (Player == null)
             {
-                Log.Info(LogTags.CharacterSpawn, "[Manager] {0}(SID:{1}) 플레이어 캐릭터를 등록 해제합니다.",
+                return;
+            }
+
+            Log.Info(LogTags.CharacterSpawn, "[Manager] {0}(SID:{1}) 플레이어 캐릭터를 등록 해제합니다.",
                     Player.Name.ToLogString(), Player.SID.ToSelectString());
 
-                Player = null;
-            }
+            Player = null;
         }
 
         #endregion Player
@@ -134,6 +141,7 @@ namespace TeamSuneat
                 if (Monsters != null && !Monsters.Contains(monsterCharacter))
                 {
                     Monsters.Add(monsterCharacter);
+                    Monsters.RemoveNull();
 
                     Log.Info(LogTags.CharacterSpawn, "[Manager] {0}(SID:{1}) 인게임 몬스터 캐릭터를 등록합니다: {2}",
                         monsterCharacter.Name.ToLogString(), monsterCharacter.SID.ToSelectString(), Monsters.Count);
@@ -143,11 +151,17 @@ namespace TeamSuneat
 
         public void Unregister(MonsterCharacter monsterCharacter)
         {
+            if (!Monsters.IsValid())
+            {
+                return;
+            }
+
             if (monsterCharacter != null)
             {
                 if (Monsters != null && Monsters.Contains(monsterCharacter))
                 {
-                    _ = Monsters.Remove(monsterCharacter);
+                    Monsters.Remove(monsterCharacter);
+                    Monsters.RemoveNull();
 
                     Log.Info(LogTags.CharacterSpawn, "[Manager] {0}(SID:{1}) 인게임 몬스터 캐릭터를 등록 해제합니다: {2}",
                         monsterCharacter.Name.ToLogString(), monsterCharacter.SID.ToSelectString(), Monsters.Count);

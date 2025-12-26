@@ -23,13 +23,6 @@ namespace TeamSuneat.Data.Game
                 GrowthLevels.Count, StatPoint);
         }
 
-        public void ClearIngameData()
-        {
-            GrowthLevels.Clear();
-            StatPoint = 0;
-            Log.Info(LogTags.GameData_Character, "성장 능력치 레벨 및 능력치 포인트 데이터를 초기화합니다.");
-        }
-
         public int GetLevel(CharacterGrowthTypes growthType)
         {
             if (growthType == CharacterGrowthTypes.None)

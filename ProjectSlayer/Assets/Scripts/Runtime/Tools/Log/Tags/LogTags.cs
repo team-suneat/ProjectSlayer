@@ -180,8 +180,6 @@
 
         Stage,
 
-        Stage_Monster,
-
         #endregion Stage
 
         #region String

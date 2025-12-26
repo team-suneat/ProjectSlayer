@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TeamSuneat;
 using TeamSuneat.Data;
 using TeamSuneat.UserInterface;
 using UnityEngine;
@@ -11,9 +10,12 @@ namespace TeamSuneat.Stage
     public class BossModeHandler : XBehaviour
     {
         private MonsterCharacterSpawner _monsterSpawner;
+        private PlayerCharacterSpawner _playerSpawner;
+
         private StageAsset _currentStageAsset;
         private AreaAsset _currentAreaAsset;
         private Transform _spawnTransform;
+        private StageLoader _stageLoader;
 
         private bool _isBossMode = false;
         private int _originalWave = 0;
@@ -54,6 +56,7 @@ namespace TeamSuneat.Stage
 
         public void Initialize(
             MonsterCharacterSpawner monsterSpawner,
+            PlayerCharacterSpawner playerSpawner,
             StageAsset stageAsset,
             AreaAsset areaAsset,
             Transform spawnTransform,
@@ -61,9 +64,11 @@ namespace TeamSuneat.Stage
             System.Action stopWaveResetFade,
             System.Action setPlayerTargetToFirstMonster,
             System.Action<int> onWaveRestore,
-            System.Action<int, int> onStageProgressUpdate)
+            System.Action<int, int> onStageProgressUpdate,
+            StageLoader stageLoader)
         {
             _monsterSpawner = monsterSpawner;
+            _playerSpawner = playerSpawner;
             _currentStageAsset = stageAsset;
             _currentAreaAsset = areaAsset;
             _spawnTransform = spawnTransform;
@@ -72,6 +77,7 @@ namespace TeamSuneat.Stage
             _setPlayerTargetToFirstMonster = setPlayerTargetToFirstMonster;
             _onWaveRestore = onWaveRestore;
             _onStageProgressUpdate = onStageProgressUpdate;
+            _stageLoader = stageLoader;
         }
 
         public void Cleanup()
@@ -84,30 +90,13 @@ namespace TeamSuneat.Stage
 
         public void EnterBossMode(int originalWave)
         {
-            if (_isBossMode)
+            if (!ValidateBossModeEntry())
             {
-                Log.Warning(LogTags.Stage, "이미 보스 모드입니다.");
                 return;
             }
 
             Data.Game.VProfile profile = GetSelectedProfile();
-            if (profile?.Stage == null || _currentStageAsset == null)
-            {
-                Log.Warning(LogTags.Stage, "프로필 또는 스테이지 에셋이 없어 보스 모드에 진입할 수 없습니다.");
-                return;
-            }
-
-            // 보스 모드 진입 전 진행 중인 코루틴 중지
-            _stopNextWaveDelay?.Invoke();
-            _stopWaveResetFade?.Invoke();
-
-            _isBossMode = true;
-            _originalWave = originalWave;
-            profile.Stage.ResetCurrentWave();
-
-            // 모든 몬스터 정리 (보스 모드 플래그 설정 후)
-            CharacterManager.Instance.ClearMonsterAndAlliance();
-
+            PrepareBossModeEntry(profile, originalWave);
             StopEnterBossModeFade();
             _enterBossModeFadeCoroutine = StartCoroutine(EnterBossModeWithFade());
         }
@@ -125,7 +114,7 @@ namespace TeamSuneat.Stage
             // HUD 그룹 전환 및 게이지 비활성화
             GlobalEvent.Send(GlobalEventType.BOSS_MODE_EXITED);
 
-            CharacterManager.Instance.ClearMonsterAndAlliance();
+            CharacterManager.Instance.SuicideAllMonsters(null);
 
             StopExitBossModeFade();
             _exitBossModeFadeCoroutine = StartCoroutine(ExitBossModeWithFade(isBossDefeated));
@@ -156,10 +145,12 @@ namespace TeamSuneat.Stage
 
         private IEnumerator ExitBossModeWithFade(bool isBossDefeated = false)
         {
-            if (UIManager.Instance?.ScreenFader != null)
+            yield return WaitForFadeOut();
+
+            PlayerCharacter player = CharacterManager.Instance.Player;
+            if (player != null)
             {
-                UIManager.Instance.ScreenFader.FadeInOut(Color.black, 0.5f, 0, 0.3f);
-                yield return new WaitForSeconds(0.5f + 0.3f);
+                RestorePlayerHealthAndMana(player);
             }
 
             Data.Game.VProfile profile = GetSelectedProfile();
@@ -167,97 +158,38 @@ namespace TeamSuneat.Stage
             {
                 if (isBossDefeated)
                 {
-                    // 보스 처치 시: 스테이지 1 증가, 웨이브 0으로 초기화
-                    StageNames nextStage = (StageNames)((int)profile.Stage.CurrentStage + 1);
-                    if (nextStage != StageNames.None)
-                    {
-                        profile.Stage.SelectStage(nextStage);
-                        profile.Stage.UpdateMaxReachedStage(nextStage);
-                    }
-                    profile.Stage.ResetCurrentWave();
-
-                    Log.Info(LogTags.Stage, "보스 처치 완료. 스테이지 증가: {0}, 웨이브 초기화", nextStage);
+                    HandleBossDefeated(profile);
                 }
                 else
                 {
-                    // 보스 처치 실패 시: 원래 웨이브로 복귀
-                    profile.Stage.CurrentWave = _originalWave;
-                }
-
-                if (_monsterSpawner != null)
-                {
-                    int waveToSpawn = isBossDefeated ? 0 : _originalWave;
-                    _monsterSpawner.SpawnWave(waveToSpawn);
-
-                    // 플레이어가 살아있을 때만 타겟 설정
-                    PlayerCharacter player = CharacterManager.Instance.Player;
-                    if (player != null && player.IsAlive)
-                    {
-                        _setPlayerTargetToFirstMonster?.Invoke();
-                    }
-
-                    _onStageProgressUpdate?.Invoke(waveToSpawn + 1, _currentStageAsset.WaveCount);
+                    HandleBossDefeatFailed(profile, player);
                 }
             }
 
-            if (UIManager.Instance?.ScreenFader != null)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
-
-            if (isBossDefeated)
-            {
-                Log.Info(LogTags.Stage, "보스 모드 종료. 다음 스테이지로 진행");
-            }
-            else
-            {
-                Log.Info(LogTags.Stage, "보스 모드 종료. 웨이브 {0}로 복귀", _originalWave);
-            }
+            yield return WaitForFadeIn();
+            LogExitBossMode(isBossDefeated);
 
             _exitBossModeFadeCoroutine = null;
         }
 
         private void SpawnBoss()
         {
-            if (_currentStageAsset == null || _currentAreaAsset == null)
+            if (!ValidateBossSpawnData())
             {
-                Log.Error(LogTags.Stage, "스테이지 또는 지역 에셋이 설정되지 않았습니다.");
                 return;
             }
 
-            int bossIndex = _currentStageAsset.BossMonsterIndex;
-            if (bossIndex < 0 || bossIndex >= _currentAreaAsset.BossMonsters.Length)
-            {
-                Log.Error(LogTags.Stage, "보스 몬스터 인덱스가 유효하지 않습니다: {0}", bossIndex);
-                return;
-            }
-
-            CharacterNames bossName = _currentAreaAsset.BossMonsters[bossIndex];
+            CharacterNames bossName = GetBossName();
             if (bossName == CharacterNames.None)
             {
-                Log.Error(LogTags.Stage, "보스 몬스터 이름이 유효하지 않습니다.");
                 return;
             }
 
-            Vector3 spawnPosition = _spawnTransform != null ? _spawnTransform.position : transform.position;
-            if (_monsterSpawner != null && _monsterSpawner.SpawnPositionGroup != null)
-            {
-                List<Vector3> positions = _monsterSpawner.SpawnPositionGroup.GetPositions(spawnPosition, 1);
-                if (positions != null && positions.Count > 0)
-                {
-                    spawnPosition = positions[0];
-                }
-            }
-
+            Vector3 spawnPosition = GetBossSpawnPosition();
             MonsterCharacter boss = _monsterSpawner?.SpawnMonster(bossName, spawnPosition);
             if (boss != null)
             {
-                _setPlayerTargetToFirstMonster?.Invoke();
-
-                // 보스 체력 게이지 바인딩 (게이지는 이미 활성화됨)
-                UIManager.Instance?.HUDManager?.OnBossSpawned(boss);
-
-                Log.Info(LogTags.Stage, "보스 스폰 완료: {0}", bossName);
+                SetupBossAfterSpawn(boss, bossName);
             }
         }
 
@@ -310,5 +242,200 @@ namespace TeamSuneat.Stage
         {
             return GameApp.GetSelectedProfile();
         }
+
+        #region Boss Mode Entry
+
+        private bool ValidateBossModeEntry()
+        {
+            if (_isBossMode)
+            {
+                Log.Warning(LogTags.Stage, "이미 보스 모드입니다.");
+                return false;
+            }
+
+            Data.Game.VProfile profile = GetSelectedProfile();
+            if (profile?.Stage == null || _currentStageAsset == null)
+            {
+                Log.Warning(LogTags.Stage, "프로필 또는 스테이지 에셋이 없어 보스 모드에 진입할 수 없습니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void PrepareBossModeEntry(Data.Game.VProfile profile, int originalWave)
+        {
+            _stopNextWaveDelay?.Invoke();
+            _stopWaveResetFade?.Invoke();
+
+            _isBossMode = true;
+            _originalWave = originalWave;
+            profile.Stage.ResetCurrentWave();
+
+            CharacterManager.Instance.SuicideAllMonsters(null);
+        }
+
+        #endregion Boss Mode Entry
+
+        #region Boss Mode Exit
+
+        private IEnumerator WaitForFadeOut()
+        {
+            if (UIManager.Instance?.ScreenFader != null)
+            {
+                UIManager.Instance.ScreenFader.FadeInOut(Color.black, 0.5f, 0, 0.3f);
+                yield return new WaitForSeconds(0.5f + 0.3f);
+            }
+        }
+
+        private IEnumerator WaitForFadeIn()
+        {
+            if (UIManager.Instance?.ScreenFader != null)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        private void RestorePlayerHealthAndMana(PlayerCharacter player)
+        {
+            if (player == null || !player.IsAlive || player.MyVital == null)
+            {
+                return;
+            }
+
+            int healthToRestore = player.MyVital.MaxHealth - player.MyVital.CurrentHealth;
+            if (healthToRestore > 0)
+            {
+                player.MyVital.Heal(healthToRestore);
+            }
+
+            if (player.MyVital.Mana != null)
+            {
+                int manaToRestore = player.MyVital.Mana.Max - player.MyVital.Mana.Current;
+                if (manaToRestore > 0)
+                {
+                    player.MyVital.RestoreMana(manaToRestore);
+                }
+            }
+
+            Log.Info(LogTags.Stage, "보스 모드 종료. 플레이어 체력 및 마나 회복 완료");
+        }
+
+        private void HandleBossDefeated(Data.Game.VProfile profile)
+        {
+            StageNames nextStage = (StageNames)((int)profile.Stage.CurrentStage + 1);
+            if (nextStage != StageNames.None)
+            {
+                profile.Stage.SelectStage(nextStage);
+                profile.Stage.UpdateMaxReachedStage(nextStage);
+            }
+
+            profile.Stage.ResetCurrentWave();
+            GameApp.Instance.SaveGameData();
+
+            Log.Info(LogTags.Stage, "보스 처치 완료. 스테이지 증가: {0}, 웨이브 초기화", nextStage);
+
+            if (_stageLoader != null)
+            {
+                _stageLoader.CleanupStage();
+                _stageLoader.LoadStage();
+            }
+        }
+
+        private void HandleBossDefeatFailed(Data.Game.VProfile profile, PlayerCharacter player)
+        {
+            profile.Stage.CurrentWave = _originalWave;
+
+            // 플레이어가 죽었다면 재생성
+            if (player == null)
+            {
+                _playerSpawner.SpawnPlayer();
+            }
+
+            if (_monsterSpawner != null)
+            {
+                _monsterSpawner.SpawnWave(_originalWave);
+
+                if (player != null && player.IsAlive)
+                {
+                    _setPlayerTargetToFirstMonster?.Invoke();
+                }
+
+                _onStageProgressUpdate?.Invoke(_originalWave + 1, _currentStageAsset.WaveCount);
+            }
+        }
+
+        private void LogExitBossMode(bool isBossDefeated)
+        {
+            if (isBossDefeated)
+            {
+                Log.Info(LogTags.Stage, "보스 모드 종료. 다음 스테이지로 진행");
+            }
+            else
+            {
+                Log.Info(LogTags.Stage, "보스 모드 종료. 웨이브 {0}로 복귀", _originalWave);
+            }
+        }
+
+        #endregion Boss Mode Exit
+
+        #region Boss Spawn
+
+        private bool ValidateBossSpawnData()
+        {
+            if (_currentStageAsset == null || _currentAreaAsset == null)
+            {
+                Log.Error(LogTags.Stage, "스테이지 또는 지역 에셋이 설정되지 않았습니다.");
+                return false;
+            }
+
+            int bossIndex = _currentStageAsset.BossMonsterIndex;
+            if (bossIndex < 0 || bossIndex >= _currentAreaAsset.BossMonsters.Length)
+            {
+                Log.Error(LogTags.Stage, "보스 몬스터 인덱스가 유효하지 않습니다: {0}", bossIndex);
+                return false;
+            }
+
+            return true;
+        }
+
+        private CharacterNames GetBossName()
+        {
+            int bossIndex = _currentStageAsset.BossMonsterIndex;
+            CharacterNames bossName = _currentAreaAsset.BossMonsters[bossIndex];
+
+            if (bossName == CharacterNames.None)
+            {
+                Log.Error(LogTags.Stage, "보스 몬스터 이름이 유효하지 않습니다.");
+                return CharacterNames.None;
+            }
+
+            return bossName;
+        }
+
+        private Vector3 GetBossSpawnPosition()
+        {
+            Vector3 spawnPosition = _spawnTransform != null ? _spawnTransform.position : transform.position;
+
+            if (_monsterSpawner != null && _monsterSpawner.SpawnPositionGroup != null)
+            {
+                List<Vector3> positions = _monsterSpawner.SpawnPositionGroup.GetPositions(spawnPosition, 1);
+                if (positions != null && positions.Count > 0)
+                {
+                    spawnPosition = positions[0];
+                }
+            }
+
+            return spawnPosition;
+        }
+
+        private void SetupBossAfterSpawn(MonsterCharacter boss, CharacterNames bossName)
+        {
+            _setPlayerTargetToFirstMonster?.Invoke();
+            UIManager.Instance?.HUDManager?.OnBossSpawned(boss);
+            Log.Info(LogTags.Stage, "보스 스폰 완료: {0}", bossName);
+        }
+
+        #endregion Boss Spawn
     }
 }

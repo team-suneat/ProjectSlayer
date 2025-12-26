@@ -1,5 +1,3 @@
-using TeamSuneat;
-
 namespace TeamSuneat.UserInterface
 {
     // 경험치 부족 알림 Notice 컴포넌트

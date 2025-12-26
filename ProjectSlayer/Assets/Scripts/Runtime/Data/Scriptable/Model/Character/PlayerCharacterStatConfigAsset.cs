@@ -13,8 +13,8 @@ namespace TeamSuneat.Data
         public float BaseCriticalDamage = 0.01f; // 기본 치명타 피해 (1%)
         public int BaseMana = 100; // 기본 마나 (100)
         public int BaseManaRegen = 1; // 기본 마나 회복량 (1초에 1만큼 회복)
-        public float BaseAccuracyChance = 0.75f; // 기본 명중률 (75%)
-        public float BaseDodgeChance = 0.1f; // 기본 회피률 (10%)
+        public int BaseAccuracy = 30; // 기본 명중
+        public int BaseDodge = 10; // 기본 회피
         public float BaseGoldGain = 1.0f; // 기본 골드 획득량 배율 (100%)
         public float BaseXPGain = 1.0f; // 기본 경험치 획득량 배율 (100%)
 
@@ -70,7 +70,7 @@ namespace TeamSuneat.Data
                 Log.Warning(LogTags.ScriptableData, "플레이어 캐릭터 스탯의 기본 치명타 피해가 음수입니다.");
             }
 
-            if (BaseAccuracyChance < 0 || BaseAccuracyChance > 1.0f)
+            if (BaseAccuracy < 0 || BaseAccuracy > 1.0f)
             {
                 Log.Warning(LogTags.ScriptableData, "플레이어 캐릭터 스탯의 기본 명중률이 0~1 범위를 벗어났습니다.");
             }

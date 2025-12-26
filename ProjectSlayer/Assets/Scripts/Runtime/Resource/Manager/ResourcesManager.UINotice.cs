@@ -1,4 +1,5 @@
-﻿using TeamSuneat.Setting;
+﻿using TeamSuneat.Data;
+using TeamSuneat.Setting;
 using TeamSuneat.UserInterface;
 using UnityEngine;
 
@@ -42,20 +43,14 @@ namespace TeamSuneat
             return notice;
         }
 
-        public static UICurrencyShortageNotice SpawnCurrencyShortageNotice(CurrencyNames currencyName)
+        public static UICurrencyShortageNotice SpawnCurrencyShortageNotice(CurrencyNames currencyName, Transform parent)
         {
             if (GameSetting.Instance.Play.HideUserInterface)
             {
                 return null;
             }
 
-            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
-            if (canvasOrder == null)
-            {
-                return null;
-            }
-
-            GameObject spawnedObject = SpawnPrefab("UICurrencyShortageNotice", canvasOrder.transform);
+            GameObject spawnedObject = SpawnPrefab("UICurrencyShortageNotice", parent);
             if (spawnedObject == null)
             {
                 return null;
@@ -73,20 +68,14 @@ namespace TeamSuneat
             return notice;
         }
 
-        public static UIStatPointShortageNotice SpawnStatPointShortageNotice()
+        public static UIStatPointShortageNotice SpawnStatPointShortageNotice(Transform parent)
         {
             if (GameSetting.Instance.Play.HideUserInterface)
             {
                 return null;
             }
 
-            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
-            if (canvasOrder == null)
-            {
-                return null;
-            }
-
-            GameObject spawnedObject = SpawnPrefab("UIStatPointShortageNotice", canvasOrder.transform);
+            GameObject spawnedObject = SpawnPrefab("UIStatPointShortageNotice", parent);
             if (spawnedObject == null)
             {
                 return null;
@@ -104,20 +93,14 @@ namespace TeamSuneat
             return notice;
         }
 
-        public static UIExperienceShortageNotice SpawnExperienceShortageNotice()
+        public static UIExperienceShortageNotice SpawnExperienceShortageNotice(Transform parent)
         {
             if (GameSetting.Instance.Play.HideUserInterface)
             {
                 return null;
             }
 
-            CanvasOrder canvasOrder = UIManager.Instance?.GetCanvas(CanvasOrderNames.Notice);
-            if (canvasOrder == null)
-            {
-                return null;
-            }
-
-            GameObject spawnedObject = SpawnPrefab("UIExperienceShortageNotice", canvasOrder.transform);
+            GameObject spawnedObject = SpawnPrefab("UIExperienceShortageNotice", parent);
             if (spawnedObject == null)
             {
                 return null;
@@ -129,6 +112,31 @@ namespace TeamSuneat
             if (notice != null)
             {
                 notice.SetStringKey();
+                notice.Show();
+            }
+
+            return notice;
+        }
+
+        public static UICurrencyObtainedNotice SpawnCurrencyObtainedNotice(CurrencyNames currencyName, int amount, Transform parent)
+        {
+            if (GameSetting.Instance.Play.HideUserInterface)
+            {
+                return null;
+            }
+
+            GameObject spawnedObject = SpawnPrefab("UICurrencyObtainedNotice", parent);
+            if (spawnedObject == null)
+            {
+                return null;
+            }
+
+            spawnedObject.ResetLocalTransform();
+
+            UICurrencyObtainedNotice notice = spawnedObject.GetComponent<UICurrencyObtainedNotice>();
+            if (notice != null)
+            {
+                notice.Setup(currencyName, amount);
                 notice.Show();
             }
 

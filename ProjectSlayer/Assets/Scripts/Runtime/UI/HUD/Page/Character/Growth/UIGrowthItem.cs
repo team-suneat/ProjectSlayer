@@ -115,9 +115,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            StringData data = JsonDataManager.FindStringData("Format_Level");
-            string content = StringGetter.Format(data, currentLevel.ToString());
-            _levelText.SetText(content);
+            _levelText.SetText(currentLevel.GetLevelString());
         }
 
         private void RefreshMaxLevel()
@@ -127,9 +125,7 @@ namespace TeamSuneat.UserInterface
                 return;
             }
 
-            StringData data = JsonDataManager.FindStringData("Format_MaxLevel");
-            string content = StringGetter.Format(data, _growthData.MaxLevel.ToString());
-            _maxLevelText.SetText(content);
+            _maxLevelText.SetText(_growthData.MaxLevel.GetMaxLevelString());
         }
 
         private void RefreshStatValue(int currentLevel)

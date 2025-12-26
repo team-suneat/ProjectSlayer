@@ -19,8 +19,7 @@ MonoBehaviour:
   EquipmentQuality: 4
   DropRate: 0.002
   ItemType: 1
-  MonsterCandidates:
-  - 0
-  - 1
+  MonsterCandidates: 0000000001000000
+  BossMonsterIndex: 0
   WaveCount: 20
-  MonsterCountPerWave: 1
+  MonsterCountPerWave: 4

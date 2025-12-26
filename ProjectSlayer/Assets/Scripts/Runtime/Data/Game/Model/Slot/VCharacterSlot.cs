@@ -22,14 +22,6 @@ namespace TeamSuneat.Data.Game
             // VCharacterSlot은 세이브 데이터에서 직접 로드되므로 추가 초기화가 필요 없습니다.
         }
 
-        /// <summary>
-        /// 인게임 데이터를 초기화합니다. 현재는 초기화할 인게임 데이터가 없습니다.
-        /// </summary>
-        public void ClearIngameData()
-        {
-            // VCharacterSlot은 영구 데이터이므로 인게임 초기화가 필요 없습니다.
-        }
-
         public void Lock(int index)
         {
             if (Slots.IsValid(index))

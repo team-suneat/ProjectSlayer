@@ -68,8 +68,7 @@ namespace TeamSuneat
         [FoldoutGroup("[게임 설정]")][SuffixLabel("글로벌 이벤트")] public bool Global;
         [FoldoutGroup("[게임 설정]")][SuffixLabel("입력")] public bool Input;
 
-        [FoldoutGroup("[지역]")][SuffixLabel("스테이지")] public bool Stage;
-        [FoldoutGroup("[지역]")][SuffixLabel("스테이지 몬스터")] public bool Stage_Monster;
+        [FoldoutGroup("[지역]")][SuffixLabel("스테이지")] public bool Stage;        
         [FoldoutGroup("[지역]")][SuffixLabel("씬")] public bool Scene;
 
         [FoldoutGroup("[글로벌]")][SuffixLabel("스트링 텍스트")] public bool String;
@@ -166,8 +165,7 @@ namespace TeamSuneat
             Global = true;
             Input = true;
 
-            Stage = true;
-            Stage_Monster = true;
+            Stage = true;            
             Scene = true;
 
             String = true;
@@ -246,7 +244,6 @@ namespace TeamSuneat
             Input = false;
 
             Stage = false;
-            Stage_Monster = false;
             Scene = false;
 
             String = false;
@@ -335,7 +332,6 @@ namespace TeamSuneat
                 LogTags.Input => Input,
 
                 LogTags.Stage => Stage,
-                LogTags.Stage_Monster => Stage_Monster,
                 LogTags.Scene => Scene,
 
                 LogTags.String => String,
@@ -419,7 +415,6 @@ namespace TeamSuneat
                 case LogTags.Input: { Input = true; } break;
 
                 case LogTags.Stage: { Stage = true; } break;
-                case LogTags.Stage_Monster: { Stage_Monster = true; } break;
                 case LogTags.Scene: { Scene = true; } break;
 
                 case LogTags.String: { String = true; } break;
@@ -501,7 +496,6 @@ namespace TeamSuneat
                 case LogTags.Input: { Input = false; } break;
 
                 case LogTags.Stage: { Stage = false; } break;
-                case LogTags.Stage_Monster: { Stage_Monster = false; } break;
                 case LogTags.Scene: { Scene = false; } break;
 
                 case LogTags.String: { String = false; } break;

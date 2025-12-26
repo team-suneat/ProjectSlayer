@@ -37,11 +37,7 @@ namespace TeamSuneat
                 return;
             }
 
-            player.transform.localPosition = Vector3.zero;
-            player.transform.localRotation = Quaternion.identity;
-            player.transform.localScale = Vector3.one;
             player.Initialize();
-
             SpawnedPlayer = player;
 
             Log.Info(LogTags.CharacterSpawn, "플레이어 캐릭터를 생성했습니다. 위치: {0}", spawnPosition);

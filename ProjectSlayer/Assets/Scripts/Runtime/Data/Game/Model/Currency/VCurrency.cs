@@ -21,10 +21,11 @@ namespace TeamSuneat.Data.Game
             return GetAmount(currencyName.ToString());
         }
 
-        public void Add(CurrencyNames currencyName, int amount)
+        public void Add(CurrencyNames currencyName, int addAmount)
         {
-            Add(currencyName.ToString(), amount);
-            GlobalEvent<CurrencyNames, int>.Send(GlobalEventType.CURRENCY_EARNED, currencyName, GetAmount(currencyName));
+            Add(currencyName.ToString(), addAmount);
+            GlobalEvent<CurrencyNames, int>.Send(GlobalEventType.CURRENCY_EARNED,
+                currencyName, addAmount);
         }
 
         public bool CanUse(CurrencyNames currencyName, int amount)
@@ -42,15 +43,15 @@ namespace TeamSuneat.Data.Game
             return canUse;
         }
 
-        public void Use(CurrencyNames currencyName, int amount)
+        public void Use(CurrencyNames currencyName, int useAmount)
         {
             int before = GetAmount(currencyName);
-            Use(currencyName.ToString(), amount);
+            Use(currencyName.ToString(), useAmount);
 
             int after = GetAmount(currencyName);
             if (after < before)
             {
-                GlobalEvent<CurrencyNames, int>.Send(GlobalEventType.CURRENCY_PAYED, currencyName, after);
+                GlobalEvent<CurrencyNames, int>.Send(GlobalEventType.CURRENCY_PAYED, currencyName, -useAmount);
             }
         }
 

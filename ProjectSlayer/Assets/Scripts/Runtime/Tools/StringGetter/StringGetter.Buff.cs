@@ -21,11 +21,7 @@ namespace TeamSuneat
             BuffAsset asset = ScriptableDataManager.Instance.FindBuff(buffName);
             if (asset != null)
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("Buff_Name_");
-                stringBuilder.Append(buffName.ToString());
-
-                string key = stringBuilder.ToString();
+                string key = $"Buff_Name_{buffName}";
                 string content = JsonDataManager.FindStringClone(key, languageName);
 
                 return content;
@@ -39,11 +35,7 @@ namespace TeamSuneat
             BuffAsset asset = ScriptableDataManager.Instance.FindBuff(buffName);
             if (asset != null)
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("Buff_Value_Desc_");
-                stringBuilder.Append(buffName.ToString());
-
-                string key = stringBuilder.ToString();
+                string key = $"Buff_Value_Desc_{buffName}";
                 string format;
                 format = JsonDataManager.FindStringClone(key);
                 format = ReplaceCharacterName(format);
@@ -62,11 +54,7 @@ namespace TeamSuneat
             BuffAsset asset = ScriptableDataManager.Instance.FindBuff(buffName);
             if (asset != null)
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("Buff_Value_Desc_");
-                stringBuilder.Append(buffName.ToString());
-
-                string key = stringBuilder.ToString();
+                string key = $"Buff_Value_Desc_{buffName}";
                 string content;
                 content = JsonDataManager.FindStringClone(key);
                 content = ReplaceCharacterName(content);
@@ -87,11 +75,7 @@ namespace TeamSuneat
 
         public static string GetLocalizedString(this StateEffects key, LanguageNames languageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Buff_State_");
-            stringBuilder.Append(key.ToString());
-
-            string stringKey = stringBuilder.ToString();
+            string stringKey = $"Buff_State_{key}";
             return JsonDataManager.FindStringClone(stringKey, languageName);
         }
 
@@ -120,11 +104,7 @@ namespace TeamSuneat
                 return string.Empty;
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Buff_State_Desc_");
-            stringBuilder.Append(stateEffect.ToString());
-
-            string key = stringBuilder.ToString();
+            string key = $"Buff_State_Desc_{stateEffect}";
             string content;
 
             content = JsonDataManager.FindStringClone(key, languageName);
@@ -142,11 +122,7 @@ namespace TeamSuneat
                 return string.Empty;
             }
 
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Buff_State_Desc_");
-            stringBuilder.Append(stateEffect.ToString());
-
-            string key = stringBuilder.ToString();
+            string key = $"Buff_State_Desc_{stateEffect}";
             string format = JsonDataManager.FindStringClone(key);
             format = ReplaceCharacterName(format);
             format = ReplaceBuffValue(format, 1, true, false);

@@ -67,8 +67,8 @@ namespace TeamSuneat.UserInterface
         protected virtual void OnFadeOutComplete()
         {
             _fader?.SetCompletedCallback(null);
-            gameObject.SetActive(false);
             OnCompleted?.Invoke();
+            Despawn();
         }
 
         protected override void OnDisabled()

@@ -94,8 +94,8 @@ MonoBehaviour:
   DamageFeedbacks: {fileID: 1962572190656928926}
   DamageZeroFeedbacks: {fileID: 0}
   BlockDamageFeedbacks: {fileID: 0}
-  DeathFeedbacks: {fileID: 3019242053400209736}
-  KilledFeedbacks: {fileID: 0}
+  DeathFeedbacks: {fileID: 0}
+  KilledFeedbacks: {fileID: 3019242053400209736}
   SuicideFeedbacks: {fileID: 0}
 --- !u!1 &307939843724824249
 GameObject:
@@ -183,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7673471702492736139}
   - component: {fileID: 3910580764602338445}
+  - component: {fileID: -7270303199790474530}
   - component: {fileID: 1319074278682660514}
   m_Layer: 0
   m_Name: Area01_Boss_MushroomKing
@@ -204,9 +205,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3657591810352238947}
   - {fileID: 188738163432412958}
-  - {fileID: 1169747926651733622}
   - {fileID: 1934023510411979472}
+  - {fileID: 1169747926651733622}
   - {fileID: 4669585933846421284}
   - {fileID: 766765906974473907}
   m_Father: {fileID: 0}
@@ -229,12 +231,13 @@ MonoBehaviour:
   CharacterAnimator: {fileID: 2009631598904865162}
   CharacterRenderer: {fileID: 8680571352019604429}
   Animator: {fileID: 1338539347564495384}
-  Attack: {fileID: 0}
+  Attack: {fileID: 4818002683153584269}
   Buff: {fileID: 6266194990852304890}
   Passive: {fileID: 6298908268744996890}
   Stat: {fileID: 117045554598245975}
   MyVital: {fileID: 6200502625781952186}
-  Abilities: []
+  Abilities:
+  - {fileID: -7270303199790474530}
   ShieldPoint: {fileID: 0}
   WarningTextPoint: {fileID: 0}
   MinimapPoint: {fileID: 0}
@@ -250,6 +253,23 @@ MonoBehaviour:
   ConditionState:
     PreviousStateString: 
     CurrentStateString: 
+--- !u!114 &-7270303199790474530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723654045900685464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c837ff3c18240e4b89660de0a82c55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  Owner: {fileID: 3910580764602338445}
+  Vital: {fileID: 6200502625781952186}
+  Animator: {fileID: 1338539347564495384}
 --- !u!114 &1319074278682660514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +506,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 5955929835858535227}
+--- !u!1 &5881630881435103781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3657591810352238947}
+  - component: {fileID: 4818002683153584269}
+  m_Layer: 0
+  m_Name: '#Attack(Area01_Boss_MushroomKing)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3657591810352238947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881630881435103781}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6021537828797646279}
+  m_Father: {fileID: 7673471702492736139}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4818002683153584269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881630881435103781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0e0237622775442b0a106ef70ee5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _basicAttackHitmark: 1051
+  _basicAttackHitmarkString: Area01_Boss_MushroomKingAttack
+  _ownerCharacter: {fileID: 3910580764602338445}
 --- !u!1 &7020076596732676091
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +565,7 @@ GameObject:
   - component: {fileID: 1169747926651733622}
   - component: {fileID: 1338539347564495384}
   - component: {fileID: 2009631598904865162}
+  - component: {fileID: 7483265508699637075}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -554,8 +623,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972982ab6b04704429dfafacb0764020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ownerCharacter: {fileID: 0}
+  _ownerCharacter: {fileID: 3910580764602338445}
   _animator: {fileID: 1338539347564495384}
+--- !u!114 &7483265508699637075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7020076596732676091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c961e0c1e8032e4b93795c10990a165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7795418797428292050
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +774,7 @@ GameObject:
   - component: {fileID: 3019242053400209736}
   - component: {fileID: 253145253046401770}
   m_Layer: 0
-  m_Name: Death
+  m_Name: Killed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,3 +887,59 @@ MonoBehaviour:
     SpawnArea: {x: 0, y: 0}
     SpawnOffset: {x: 0, y: 0, z: 0}
     SpawnPoint: {fileID: 0}
+--- !u!1 &8781688655215747676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6021537828797646279}
+  - component: {fileID: 8666180020695588102}
+  m_Layer: 0
+  m_Name: Area01_Boss_MushroomKingAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6021537828797646279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781688655215747676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3657591810352238947}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8666180020695588102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781688655215747676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b584208d12a5b2e4da0813e804c9e752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Owner: {fileID: 3910580764602338445}
+  Name: 1051
+  NameString: Area01_Boss_MushroomKingAttack
+  AttackStartFeedback: {fileID: 0}
+  AttackUsedFeedback: {fileID: 0}
+  AttackStopFeedback: {fileID: 0}
+  AttackReloadFeedback: {fileID: 0}
+  AttackReloadNeededFeedback: {fileID: 0}
+  AttackOnMissFeedback: {fileID: 0}
+  AttackOnHitDamageableFeedback: {fileID: 0}
+  AttackOnHitNonDamageableFeedback: {fileID: 0}
+  AttackOnKillFeedback: {fileID: 0}

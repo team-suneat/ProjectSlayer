@@ -199,7 +199,7 @@ namespace TeamSuneat
             {
                 if (moveType == UIFloatyMoveNames.Execution)
                 {
-                    content = JsonDataManager.FindStringClone("Execution");
+                    content = JsonDataManager.FindStringClone(StringDataLabels.FLOATY_EXECUTION);
                 }
                 else if (content == int.MaxValue.ToString())
                 {

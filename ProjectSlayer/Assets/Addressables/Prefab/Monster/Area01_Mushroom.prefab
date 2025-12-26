@@ -94,8 +94,8 @@ MonoBehaviour:
   DamageFeedbacks: {fileID: 1962572190656928926}
   DamageZeroFeedbacks: {fileID: 0}
   BlockDamageFeedbacks: {fileID: 0}
-  DeathFeedbacks: {fileID: 3019242053400209736}
-  KilledFeedbacks: {fileID: 0}
+  DeathFeedbacks: {fileID: 0}
+  KilledFeedbacks: {fileID: 3019242053400209736}
   SuicideFeedbacks: {fileID: 0}
 --- !u!1 &307939843724824249
 GameObject:
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 3019242053400209736}
   - component: {fileID: 253145253046401770}
   m_Layer: 0
-  m_Name: Death
+  m_Name: Killed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

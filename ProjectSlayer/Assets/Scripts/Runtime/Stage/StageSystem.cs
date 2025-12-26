@@ -44,11 +44,11 @@ namespace TeamSuneat.Stage
             EnumEx.ConvertTo(ref Name, NameString);
         }
 
-        public void Initialize()
+        public void Initialize(StageLoader stageLoader, PlayerCharacterSpawner playerCharacterSpawner)
         {
             LoadStageData();
             InitializeMonster();
-            InitializeBossModeHandler();
+            InitializeBossModeHandler(stageLoader, playerCharacterSpawner);
             RegisterCurrentStage();
             RegisterGlobalEvents();
 
@@ -94,7 +94,7 @@ namespace TeamSuneat.Stage
             _monsterSpawner.Initialize(_currentStageAsset, _currentAreaAsset);
         }
 
-        private void InitializeBossModeHandler()
+        private void InitializeBossModeHandler(StageLoader stageLoader, PlayerCharacterSpawner playerCharacterSpawner)
         {
             if (_bossModeHandler == null)
             {
@@ -104,6 +104,7 @@ namespace TeamSuneat.Stage
 
             _bossModeHandler.Initialize(
                 _monsterSpawner,
+                playerCharacterSpawner,
                 _currentStageAsset,
                 _currentAreaAsset,
                 transform,
@@ -111,7 +112,8 @@ namespace TeamSuneat.Stage
                 StopWaveResetFade,
                 SetPlayerTargetToFirstMonster,
                 OnWaveRestore,
-                OnStageProgressUpdate
+                OnStageProgressUpdate,
+                stageLoader
             );
         }
 
@@ -199,14 +201,14 @@ namespace TeamSuneat.Stage
         {
             GlobalEvent<Character>.Register(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
             GlobalEvent<Character>.Register(GlobalEventType.BOSS_CHARACTER_DEATH, OnBossDeath);
-            GlobalEvent.Register(GlobalEventType.PLAYER_CHARACTER_DEATH, OnPlayerDeath);
+            GlobalEvent.Register(GlobalEventType.PLAYER_CHARACTER_DESPAWNED, OnPlayerDespawn);
         }
 
         private void UnregisterGlobalEvents()
         {
             GlobalEvent<Character>.Unregister(GlobalEventType.MONSTER_CHARACTER_DEATH, OnMonsterDeath);
             GlobalEvent<Character>.Unregister(GlobalEventType.BOSS_CHARACTER_DEATH, OnBossDeath);
-            GlobalEvent.Unregister(GlobalEventType.PLAYER_CHARACTER_DEATH, OnPlayerDeath);
+            GlobalEvent.Unregister(GlobalEventType.PLAYER_CHARACTER_DESPAWNED, OnPlayerDespawn);
         }
 
         private void OnMonsterDeath(Character character)
@@ -269,7 +271,7 @@ namespace TeamSuneat.Stage
             _bossModeHandler.ExitBossMode(true);
         }
 
-        private void OnPlayerDeath()
+        private void OnPlayerDespawn()
         {
             if (_bossModeHandler == null || !_bossModeHandler.IsBossMode)
             {

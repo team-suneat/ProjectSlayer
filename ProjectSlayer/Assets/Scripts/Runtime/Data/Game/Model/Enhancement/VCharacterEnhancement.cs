@@ -24,12 +24,6 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData_Character, "강화 능력치 레벨 데이터를 불러옵니다. 총 {0}개", EnhancementLevels.Count);
         }
 
-        public void ClearIngameData()
-        {
-            EnhancementLevels.Clear();
-            Log.Info(LogTags.GameData_Character, "강화 능력치 레벨 데이터를 초기화합니다.");
-        }
-
         /// <summary>
         /// 특정 강화 능력치의 레벨을 가져옵니다.
         /// </summary>

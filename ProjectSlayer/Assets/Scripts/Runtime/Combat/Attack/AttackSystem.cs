@@ -89,6 +89,18 @@ namespace TeamSuneat
 
         //───────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+        public void ActivateBasic()
+        {
+            if (_basicAttackHitmark != HitmarkNames.None)
+            {
+                Activate(_basicAttackHitmark);
+            }
+            else
+            {
+                Log.Warning("기본 공격 히트마크가 설정되지 않았습니다.");
+            }
+        }
+
         public void Activate(string hitmarkNameString, float? weaponDamageOverride = null)
         {
             HitmarkNames hitmarkName = DataConverter.ToEnum<HitmarkNames>(hitmarkNameString);

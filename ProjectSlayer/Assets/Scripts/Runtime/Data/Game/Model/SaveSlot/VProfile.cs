@@ -51,33 +51,6 @@ namespace TeamSuneat.Data.Game
             Statistics ??= VStatistics.CreateDefault();
         }
 
-        public void ClearIngameData()
-        {
-            // 사망시 레벨과 경험치를 초기화합니다.
-            Level.ResetValues();
-
-            // 인게임 무기 정보를 초기화합니다.
-            Weapon.ClearIngameData();
-
-            // 인게임 악세사리 정보를 초기화합니다.
-            Accessory.ClearIngameData();
-
-            // 인게임 아이템 정보를 초기화합니다.
-            Item.ClearIngameData();
-
-            // 인게임 재화를 초기화합니다.
-            Currency.ClearIngameCurrencies();
-
-            // 강화 능력치 정보를 초기화합니다.
-            Enhancement.ClearIngameData();
-
-            // 성장 능력치 정보를 초기화합니다.
-            Growth.ClearIngameData();
-
-            // 인게임 통계 정보를 초기화합니다.
-            Statistics.ClearIngameData();
-        }
-
         public static VProfile CreateDefault()
         {
             Log.Info(LogTags.GameData, $"새로운 게임 데이터를 생성합니다.");

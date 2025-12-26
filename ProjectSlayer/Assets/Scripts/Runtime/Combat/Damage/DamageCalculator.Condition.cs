@@ -1,17 +1,48 @@
 ﻿using TeamSuneat.Data;
 using TeamSuneat.Setting;
+using UnityEngine;
 
 namespace TeamSuneat
 {
     public partial class DamageCalculator
     {
+        #region 치트
+
         private bool TryCheatDamage(HitmarkAssetData damageAsset, ref DamageResult damageResult)
         {
             // 치트 피해 관련 로직이 필요할 경우 여기에 구현
             return false;
         }
 
-        // 명중/회피 판정: (명중률 - 적 회피율)에 따른 판정
+        #endregion 치트
+
+        #region 명중률 계산
+
+        // 명중률 계산: ACC 스탯 기반 포화 함수 (P = ACC / (ACC + K))
+        private float CalcHitChance(float acc, float k = 100f, float min = 0.1f, float max = 0.95f)
+        {
+            if (acc <= 0f)
+            {
+                return min; // ACC가 0 이하면 최소값 반환
+            }
+
+            float pRaw = acc / (acc + k); // ACC=K에서 50%
+            float p = Mathf.Clamp(pRaw, min, max);
+            return p; // 0~1 사이
+        }
+
+        // 명중 판정: 랜덤 값과 명중률 비교
+        private bool RollHit(float hitChance)
+        {
+            float r = RandomEx.GetFloatValue(); // 0~1
+            return r <= hitChance;
+        }
+
+        #endregion 명중률 계산
+
+        #region 조건 판정
+
+        // 명중/회피 판정: ACC 스탯 기반 포화 함수 사용
         private bool DetermineEvasion(DamageResult damageResult)
         {
             if (damageResult.Asset.IgnoreEvasion)
@@ -24,24 +55,51 @@ namespace TeamSuneat
                 return false;
             }
 
-            // 공격자 명중률
-            float attackerAccuracy = Attacker.Stat.FindValueOrDefault(StatNames.AccuracyChance);
-            // 피격자 회피율
-            float targetEvasion = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.DodgeChance);
-
-            // 명중 판정: 명중률 - 적 회피율
-            float hitChance = attackerAccuracy - targetEvasion;
-
-            // 명중 실패 (회피 성공) 판정
-            if (RandomEx.GetFloatValue() >= hitChance)
+            if (!damageResult.TargetCharacter.IsBoss)
             {
-                SpawnFloatyText("Evasion");
+                // 보스 캐릭터만 회피 판정 가능
+                return false;
+            }
+
+            float attackerAccuracy = 0f;
+            float targetEvasion = 0f;
+            float chance = 0f;
+            bool isEvasion = false;
+
+            if (Attacker.IsPlayer)
+            {
+                // 공격자가 플레이어: 명중만 계산 (회피 무시)
+                attackerAccuracy = Attacker.Stat.FindValueOrDefault(StatNames.Accuracy);
+                chance = CalcHitChance(attackerAccuracy);
+
+                // 명중 실패 (회피 성공) 판정
+                if (!RollHit(chance))
+                {
+                    isEvasion = true;
+                }
+            }
+            else
+            {
+                // 공격자가 몬스터: 회피만 계산 (명중 무시)
+                targetEvasion = damageResult.TargetCharacter.Stat.FindValueOrDefault(StatNames.Dodge);
+                chance = CalcHitChance(targetEvasion); // 회피 성공 확률
+
+                // 회피 성공 판정
+                if (RollHit(chance))
+                {
+                    isEvasion = true;
+                }
+            }
+
+            if (isEvasion)
+            {
+                SpawnFloatyText(StringDataLabels.FLOATY_MISS);
                 _ = GlobalEvent<DamageResult>.Send(GlobalEventType.PLAYER_CHARACTER_DODGE, damageResult);
-                LogEvasionApplied(hitChance, attackerAccuracy, targetEvasion);
+                LogEvasionApplied(chance, attackerAccuracy, targetEvasion);
                 return true;
             }
 
-            LogEvasionNotApplied(hitChance, attackerAccuracy, targetEvasion);
+            LogEvasionNotApplied(chance, attackerAccuracy, targetEvasion);
             return false;
         }
 
@@ -51,18 +109,21 @@ namespace TeamSuneat
             {
                 return false;
             }
-            else if (TargetCharacter == null)
+
+            if (TargetCharacter == null)
             {
                 return false;
             }
-            else if (TargetCharacter.IsPlayer && GameSetting.Instance.Cheat.NotCrowdControl)
+
+            if (TargetCharacter.IsPlayer && GameSetting.Instance.Cheat.NotCrowdControl)
             {
-                SpawnFloatyText("Immune");
+                SpawnFloatyText(StringDataLabels.FLOATY_IMMUNE);
                 return true;
             }
-            else if (TargetCharacter.IgnoreCrowdControl)
+
+            if (TargetCharacter.IgnoreCrowdControl)
             {
-                SpawnFloatyText("Immune");
+                SpawnFloatyText(StringDataLabels.FLOATY_IMMUNE);
                 return true;
             }
 
@@ -83,7 +144,8 @@ namespace TeamSuneat
                     LogInfoCriticalAppliedByCheat();
                     return true;
                 }
-                else if (GameSetting.Instance.Cheat.CriticalType == GameCheat.CriticalTypes.NoCritical)
+
+                if (GameSetting.Instance.Cheat.CriticalType == GameCheat.CriticalTypes.NoCritical)
                 {
                     LogInfoNoCriticalAppliedByCheat();
                     return false;
@@ -119,16 +181,20 @@ namespace TeamSuneat
         private bool DetermineExecute(DamageResult damageResult)
         {
             float conditionRate = damageResult.Asset.ExecutionConditionalTargetHealthRate;
-            if (conditionRate > 0)
+            if (conditionRate <= 0f)
             {
-                if (damageResult.TargetVital != null)
-                {
-                    if (damageResult.TargetVital.HealthRate <= conditionRate)
-                    {
-                        LogExecutionApplied(damageResult.TargetVital.HealthRate, conditionRate);
-                        return true;
-                    }
-                }
+                return false;
+            }
+
+            if (damageResult.TargetVital == null)
+            {
+                return false;
+            }
+
+            if (damageResult.TargetVital.HealthRate <= conditionRate)
+            {
+                LogExecutionApplied(damageResult.TargetVital.HealthRate, conditionRate);
+                return true;
             }
 
             return false;
@@ -168,5 +234,7 @@ namespace TeamSuneat
             LogDevastatingStrikeNotApplied(devastatingStrikeChance);
             return false;
         }
+
+        #endregion 조건 판정
     }
 }

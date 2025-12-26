@@ -176,11 +176,18 @@ namespace TeamSuneat.UserInterface
             {
                 _textPro.SetText(content);
             }
+            else
+            {
+                return;
+            }
+
+            FontLocalizer?.RefreshTextRectSize();
         }
 
         public void SetStringKey(string stringKey)
         {
             TextLocalizer?.SetStringKey(stringKey);
+            FontLocalizer?.RefreshTextRectSize();
         }
 
         public void ResetStringKey()

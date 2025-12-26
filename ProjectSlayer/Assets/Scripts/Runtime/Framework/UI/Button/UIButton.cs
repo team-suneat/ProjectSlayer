@@ -123,6 +123,7 @@ namespace TeamSuneat.UserInterface
         protected virtual void OnClickSucceeded()
         {
             OnClickSuccess?.Invoke();
+            Log.Info(LogTags.UI_Button, "OnClickSucceeded");
         }
 
         protected virtual void OnClickFailed()

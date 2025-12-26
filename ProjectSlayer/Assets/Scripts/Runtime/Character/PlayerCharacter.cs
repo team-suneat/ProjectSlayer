@@ -6,6 +6,12 @@ namespace TeamSuneat
     {
         public override LogTags LogTag => LogTags.Player;
 
+        public override void OnDespawn()
+        {
+            base.OnDespawn();
+            GlobalEvent.Send(GlobalEventType.PLAYER_CHARACTER_DESPAWNED);
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -141,7 +147,7 @@ namespace TeamSuneat
                 return;
             }
 
-            string format = JsonDataManager.FindStringClone("LevelUpFormat");
+            string format = JsonDataManager.FindStringClone(StringDataLabels.FORMAT_LEVEL_UP);
             string content = string.Format(format, addedLevel);
 
             ResourcesManager.SpawnFloatyText(content, true, transform);
@@ -176,8 +182,8 @@ namespace TeamSuneat
             Stat.AddWithSourceInfo(StatNames.CriticalDamage, asset.BaseCriticalDamage, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.Mana, asset.BaseMana, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.ManaRegen, asset.BaseManaRegen, this, NameString, "CharacterBase");
-            Stat.AddWithSourceInfo(StatNames.AccuracyChance, asset.BaseAccuracyChance, this, NameString, "CharacterBase");
-            Stat.AddWithSourceInfo(StatNames.DodgeChance, asset.BaseDodgeChance, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.Accuracy, asset.BaseAccuracy, this, NameString, "CharacterBase");
+            Stat.AddWithSourceInfo(StatNames.Dodge, asset.BaseDodge, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.GoldGain, asset.BaseGoldGain, this, NameString, "CharacterBase");
             Stat.AddWithSourceInfo(StatNames.XPGain, asset.BaseXPGain, this, NameString, "CharacterBase");
         }
@@ -230,14 +236,8 @@ namespace TeamSuneat
             base.OnDeath(damageResult);
 
             CharacterManager.Instance.UnregisterPlayer(this);
-            GameApp.Instance.data.ClearIngameData();
 
-            CoroutineNextTimer(1f, SendGlobalEventForMoveToTitle);
-        }
-
-        private void SendGlobalEventForMoveToTitle()
-        {
-            GlobalEvent.Send(GlobalEventType.MOVE_TO_TITLE);
+            GlobalEvent.Send(GlobalEventType.PLAYER_CHARACTER_DEATH);
         }
     }
 }

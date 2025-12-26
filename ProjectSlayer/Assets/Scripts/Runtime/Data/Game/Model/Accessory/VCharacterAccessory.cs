@@ -46,16 +46,7 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData_Accessory, "[Character] 악세사리 데이터를 불러옵니다. 총 {0}개, 장착: {1}",
                 Accessories.Count, _equippedAccessoryName.ToLogString());
         }
-
-        public void ClearIngameData()
-        {
-            Log.Info(LogTags.GameData_Accessory, "인게임 악세사리를 초기화합니다. 악세사리 수: {0}개", Accessories.Count);
-            Accessories.Clear();
-            _accessoryMap.Clear();
-            _equippedAccessoryName = ItemNames.None;
-            EquippedAccessoryNameString = string.Empty;
-        }
-
+        
         public bool CheckUnlocked(ItemNames accessoryName)
         {
             return UnlockedAccessories.Contains(accessoryName.ToString());

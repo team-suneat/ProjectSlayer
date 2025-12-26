@@ -8,8 +8,14 @@ namespace TeamSuneat
     public class StageLoader : MonoBehaviour
     {
         private StageSystem _currentStageSystem;
+        private PlayerCharacterSpawner _playerCharacterSpawner;
 
         public StageSystem CurrentStageSystem => _currentStageSystem;
+
+        public void Initialize(PlayerCharacterSpawner playerCharacterSpawner)
+        {
+            _playerCharacterSpawner = playerCharacterSpawner;
+        }
 
         public void CleanupStage()
         {
@@ -78,7 +84,7 @@ namespace TeamSuneat
             _currentStageSystem = ResourcesManager.SpawnStage(stageName, transform);
             if (_currentStageSystem != null)
             {
-                _currentStageSystem.Initialize();
+                _currentStageSystem.Initialize(this, _playerCharacterSpawner);
 
                 Log.Info(LogTags.Stage, "스테이지 시스템 초기화 완료: {0}", stageName.ToLogString());
 

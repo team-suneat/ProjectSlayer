@@ -83,15 +83,6 @@ namespace TeamSuneat.Data.Game
             SyncSlotWeaponNameStrings();
         }
 
-        public void ClearIngameData()
-        {
-            Log.Info(LogTags.GameData_Weapon, "인게임 무기를 초기화합니다. 인게임 무기의 수: {0}개", Weapons.Count);
-            Weapons.Clear();
-            SlotWeaponNameStrings.Clear();
-            _slotWeaponNames.Clear();
-            _weaponMap.Clear();
-        }
-
         //
 
         public bool CheckUnlocked(ItemNames weaponName)

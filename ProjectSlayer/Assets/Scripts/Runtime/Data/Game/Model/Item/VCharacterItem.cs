@@ -33,11 +33,6 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        public void ClearIngameData()
-        {
-            Items.Clear();
-        }
-
         //
 
         public void UnlockItem(ItemNames itemName)

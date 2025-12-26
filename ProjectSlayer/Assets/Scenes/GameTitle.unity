@@ -1132,6 +1132,7 @@ MonoBehaviour:
   PopupManager: {fileID: 0}
   DetailsManager: {fileID: 0}
   NoticeManager: {fileID: 0}
+  ScreenFader: {fileID: 0}
 --- !u!1 &1652464053
 GameObject:
   m_ObjectHideFlags: 0

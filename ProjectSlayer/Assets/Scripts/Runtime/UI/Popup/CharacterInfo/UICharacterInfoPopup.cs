@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TeamSuneat.Data;
 using UnityEngine;
 
 namespace TeamSuneat.UserInterface
@@ -77,7 +78,7 @@ namespace TeamSuneat.UserInterface
         {
             if (TitleText != null)
             {
-                string title = Data.JsonDataManager.FindStringClone("CharacterInfoPopupTitle");
+                string title = Data.JsonDataManager.FindStringClone(StringDataLabels.POPUP_TITLE_CHARACTER_INFO);
                 if (string.IsNullOrEmpty(title))
                 {
                     title = "캐릭터 정보";

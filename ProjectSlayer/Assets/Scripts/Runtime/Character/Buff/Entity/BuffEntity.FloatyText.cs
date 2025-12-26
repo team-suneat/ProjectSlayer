@@ -51,7 +51,7 @@ namespace TeamSuneat
                         string content = null;
                         if (Type == BuffTypes.Immune)
                         {
-                            string format = JsonDataManager.FindStringClone("ImmuneFormat");
+                            string format = JsonDataManager.FindStringClone(StringDataLabels.FORMAT_IMMUNE);
                             content = string.Format(format, IncompatibleStateEffect.GetLocalizedString());
                         }
                         else if (Type == BuffTypes.StateEffect)

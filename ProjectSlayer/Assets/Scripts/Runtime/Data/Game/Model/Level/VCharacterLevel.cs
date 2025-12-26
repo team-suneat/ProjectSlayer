@@ -7,14 +7,6 @@ namespace TeamSuneat.Data.Game
         public int Level;
         public int Experience;
 
-        public void ResetValues()
-        {
-            Level = 1;
-            Experience = 0;
-
-            Log.Info(LogTags.GameData_Character, "플레이어 캐릭터의 레벨과 경험치를 초기화합니다.");
-        }
-
         public void AddExperience(int experience)
         {
             if (CharacterManager.Instance.Player != null)

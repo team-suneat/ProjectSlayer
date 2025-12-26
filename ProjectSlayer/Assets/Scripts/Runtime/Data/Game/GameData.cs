@@ -13,7 +13,7 @@ namespace TeamSuneat.Data
         public VProfile Profile;
 
         public GameData()
-        {            
+        {
         }
 
         public void CreateProfile()
@@ -41,13 +41,6 @@ namespace TeamSuneat.Data
             Profile = null;
 
             Debug.Log($"{index + 1}번째 프로필을 삭제합니다.");
-        }
-
-        public void ClearIngameData()
-        {
-            Profile.ClearIngameData();
-
-            GameApp.Instance.SaveGameData();
         }
 
         public static GameData CreateDefault()

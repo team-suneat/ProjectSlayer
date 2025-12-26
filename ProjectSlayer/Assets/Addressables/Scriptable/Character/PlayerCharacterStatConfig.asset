@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameString: PlayerCharacterStatConfig
   BaseAttack: 1
-  BaseHealth: 10
+  BaseHealth: 24
   BaseHealthRegen: 1
   BaseAttackSpeed: 1
   BaseCriticalChance: 0.001
   BaseCriticalDamage: 0.01
   BaseMana: 100
   BaseManaRegen: 1
-  BaseAccuracyChance: 0.75
-  BaseDodgeChance: 0.1
+  BaseAccuracy: 30
+  BaseDodge: 10
   BaseGoldGain: 1
   BaseXPGain: 1

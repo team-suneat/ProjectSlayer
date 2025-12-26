@@ -56,8 +56,10 @@ namespace TeamSuneat
                 bool isTreasureChest = Name == CharacterNames.TreasureChest;
                 int health = monsterStatConfigAsset.GetHealth(Level, IsBoss, isTreasureChest);
                 int attack = monsterStatConfigAsset.GetAttack(Level, IsBoss, isTreasureChest);
+
                 Stat.AddWithSourceInfo(StatNames.Health, health, this, NameString, "CharacterBase");
                 Stat.AddWithSourceInfo(StatNames.Attack, attack, this, NameString, "CharacterBase");
+                Stat.AddWithSourceInfo(StatNames.AttackSpeed, 1f, this, NameString, "CharacterBase");
             }
             else
             {

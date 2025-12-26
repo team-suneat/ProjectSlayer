@@ -52,13 +52,7 @@ namespace TeamSuneat.UserInterface
             }
 
             int level = profile.Level?.Level ?? 1;
-            string levelFormat = Data.JsonDataManager.FindStringClone("CharacterLevelFormat");
-            if (string.IsNullOrEmpty(levelFormat))
-            {
-                levelFormat = "Lv.{0}";
-            }
-
-            _levelText.SetText(string.Format(levelFormat, level));
+            _levelText.SetText(level.GetLevelString());
         }
 
         private void RefreshWeaponSlot(VProfile profile)

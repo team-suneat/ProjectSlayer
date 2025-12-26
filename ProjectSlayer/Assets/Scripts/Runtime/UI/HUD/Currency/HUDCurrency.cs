@@ -15,6 +15,7 @@ namespace TeamSuneat.UserInterface
         [SerializeField] private Image _iconImage;
         [SerializeField] private UILocalizedText _nameText;
         [SerializeField] private TextMeshProUGUI _valueText;
+        [SerializeField] private PunchScaler _punchScaler;
 
         public override void AutoGetComponents()
         {
@@ -23,6 +24,7 @@ namespace TeamSuneat.UserInterface
             _iconImage ??= this.FindComponent<Image>("Rect/Currency Icon Image");
             _nameText ??= this.FindComponent<UILocalizedText>("Rect/Currency Name Text");
             _valueText ??= this.FindComponent<TextMeshProUGUI>("Rect/Currency Value Text");
+            _punchScaler ??= GetComponentInChildren<PunchScaler>();
         }
 
         public override void AutoSetting()
@@ -75,14 +77,17 @@ namespace TeamSuneat.UserInterface
             RefreshValue();
         }
 
-        private void OnCurrencyChanged(CurrencyNames currencyName, int amount)
+        private void OnCurrencyChanged(CurrencyNames currencyName, int addAmount)
         {
             if (_currencyName != currencyName)
             {
                 return;
             }
-
+            VProfile profileInfo = GameApp.GetSelectedProfile();
+            int amount = profileInfo.Currency.GetAmount(_currencyName);
             SetValue(amount);
+
+            _punchScaler?.PlayPunchScaleAnimation();
         }
 
         private void RefreshIcon()
@@ -147,5 +152,7 @@ namespace TeamSuneat.UserInterface
 
             _valueText.SetText(amount.ToString("N0"));
         }
+
+        //
     }
 }

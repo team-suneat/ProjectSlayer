@@ -70,6 +70,7 @@ namespace TeamSuneat
                 yield return null;
             }
 
+            unloadAsync = null;
             yield return Resources.UnloadUnusedAssets();
 
             System.GC.Collect();
@@ -82,15 +83,18 @@ namespace TeamSuneat
 
             ActiveTargetScene(SceneManager.GetActiveScene().name);
 
-            Scenes. XScene.ResetChangeSceneCoroutine();
-
             yield return Delay(FadeDelayTime);
             yield return FadeOut(targetSceneName, FadeOutDuration);
 
-            GameSetting.Instance.Input.ResetInput();
-
             string loadingSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.UnloadSceneAsync(loadingSceneName);
+            unloadAsync = SceneManager.UnloadSceneAsync(loadingSceneName);
+            while (!loadAsync.isDone)
+            {
+                yield return null;
+            }
+
+            GameSetting.Instance.Input.ResetInput();
+            Scenes.XScene.ResetChangeSceneCoroutine();
 
             GlobalEvent.Send(GlobalEventType.CHANGE_GAME_MAIN_SCENE_COMPLETE);
         }

@@ -132,7 +132,7 @@ namespace TeamSuneat
             UIFloatyText component = spawnedObject.GetComponent<UIFloatyText>();
             if (component != null)
             {
-                string format = JsonDataManager.FindStringClone($"Currency_Format_{currencyName}");
+                string format = currencyName.GetFormatString();
                 string content = string.Format(format, amount);
 
                 UIFloatyMoveNames moveName = UIFloatyMoveNames.Content;

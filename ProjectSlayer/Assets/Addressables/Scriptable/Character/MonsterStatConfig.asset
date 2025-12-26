@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameString: MonsterStatConfig
   BaseHealth: 8
-  BaseAttack: 1
-  BaseBossHealth: 200
-  BaseBossAttack: 20
+  BaseAttack: 0
+  BaseBossHealth: 42
+  BaseBossAttack: 4
   BaseTreasureChestHealth: 42
   BaseTreasureChestAttack: 15
   NormalStageHealthGrowthRate: 1.05
   NormalStageAttackGrowthRate: 1.03
-  BossStageHealthGrowthRate: 1.1
-  BossStageAttackGrowthRate: 1.08
+  BossStageHealthGrowthRate: 11
+  BossStageAttackGrowthRate: 2

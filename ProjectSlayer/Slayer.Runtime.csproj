@@ -225,7 +225,6 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Accessory\VAccessory.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Follow\UIFollowObject.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Popup\CharacterInfo\UIEquipmentSlot.cs" />
-    <Compile Include="Assets\Scripts\Runtime\UI\Notice\UINoticeBase.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Health\Health.Event.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.DamageReduction.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Core\CameraManager.cs" />
@@ -299,6 +298,7 @@
     <Compile Include="Assets\Scripts\Runtime\Application\XGameApp.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Language\LanguageNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Vital\Item\Base\VitalResource.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\Notice\Base\UINoticeBase.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Flicker.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\UI\Text\GameFontTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\StatSystem.Events.cs" />
@@ -348,6 +348,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Stat\DecrescenceTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Game\CurrencyNames.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Manager\GameDataManager.cs" />
+    <Compile Include="Assets\Scripts\Runtime\UI\Notice\UICurrencyObtainedNotice.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Combat\LinkedDamageTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Cipher\Cipher.AES.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Gauge\HUDBossHealthGauge.cs" />
@@ -527,12 +528,14 @@
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\Enum\EnumLogEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Collections\ListMultiMap.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\World\StageAsset.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Character\Ability\Model\Attack\BossAttackAbility.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioObject.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Path\PathManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Passive\Editor\PassiveEditorWindow.cs" />
     <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraSettingsController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Trigger\TriggerCheckerTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Application\EntryPoint.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Framework\Tween\PunchScaler.cs" />
     <Compile Include="Assets\Scripts\Runtime\External\GoogleSheets\GoogleSheetRuntimeSync.cs" />
     <Compile Include="Assets\Scripts\Runtime\Scene\Model\GameSplashScene.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Serialization\XSerialization.cs" />
@@ -558,6 +561,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\Model\StatData.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\StringGetter\StringGetter.Item.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Game\DifficultyEnums.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Data\JSON\Model\String\StringDataLabels.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Manager\ScriptableDataManager.Area.cs" />
     <Compile Include="Assets\Scripts\Runtime\Combat\Damage\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Gameplay\Stage\StageProgress.cs" />

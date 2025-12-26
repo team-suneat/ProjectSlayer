@@ -34,7 +34,7 @@ namespace TeamSuneat.UserInterface
             GlobalEvent<CurrencyNames, int>.Unregister(GlobalEventType.CURRENCY_PAYED, OnCurrencyChanged);
         }
 
-        private void OnCurrencyChanged(CurrencyNames currencyName, int amount)
+        private void OnCurrencyChanged(CurrencyNames currencyName, int addAmount)
         {
             if (currencyName == CurrencyNames.Gold)
             {

@@ -570,10 +570,12 @@ namespace TeamSuneat
 
         private void PlayDeathAnimation()
         {
-            if (Vital != null && Vital.Owner != null && Vital.Owner.CharacterAnimator != null)
+            if (Vital == null || Vital.Owner == null || Vital.Owner.CharacterAnimator == null)
             {
-                Vital.Owner.CharacterAnimator.PlayDeathAnimation();
+                return;
             }
+
+            Vital.Owner.CharacterAnimator.PlayDeathAnimation();
         }
 
         private void MarkDespawnToGauge()

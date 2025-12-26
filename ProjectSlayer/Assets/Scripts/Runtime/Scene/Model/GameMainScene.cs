@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace TeamSuneat.Scenes
@@ -23,16 +24,7 @@ namespace TeamSuneat.Scenes
 
         protected override void OnEnterScene()
         {
-            if (_playerCharacterSpawner != null)
-            {
-                _playerCharacterSpawner.Initialize(this);
-                _playerCharacterSpawner.SpawnPlayer();
-            }
-
-            if (_stageLoader != null)
-            {
-                _stageLoader.LoadStage();
-            }
+            StartCoroutine(WaitForSceneChangeComplete());
         }
 
         protected override void OnExitScene()
@@ -98,5 +90,26 @@ namespace TeamSuneat.Scenes
         }
 
         #endregion Change Scene
+
+        private IEnumerator WaitForSceneChangeComplete()
+        {
+            // 씬 전환이 완료될 때까지 대기
+            while (IsChangeScene)
+            {
+                yield return null;
+            }
+
+            if (_playerCharacterSpawner != null)
+            {
+                _playerCharacterSpawner.Initialize(this);
+                _playerCharacterSpawner.SpawnPlayer();
+            }
+
+            if (_stageLoader != null)
+            {
+                _stageLoader.Initialize(_playerCharacterSpawner);
+                _stageLoader.LoadStage();
+            }
+        }
     }
 }
