@@ -61,6 +61,8 @@
 
         public const int CHARACTER_MAX_LEVEL = 1000;
 
+        public const float MONSTER_SPAWN_POSITION_PADDING = 1;
+
         #endregion 게임 설정
 
         #region 개발자 설정

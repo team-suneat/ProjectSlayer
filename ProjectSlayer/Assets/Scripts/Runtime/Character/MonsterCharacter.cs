@@ -70,6 +70,8 @@ namespace TeamSuneat
         {
             base.OnDeath(damageResult);
 
+            CharacterManager.Instance.Unregister(this);
+            transform.SetParent(null);
             CharacterAnimator?.PlayDeathAnimation();
             AddDropItems();
 
