@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameString: MonsterStatConfig
   BaseHealth: 8
-  BaseAttack: 0
+  BaseAttack: 4
   BaseBossHealth: 42
   BaseBossAttack: 4
   BaseTreasureChestHealth: 42

@@ -19,6 +19,9 @@ namespace TeamSuneat.Stage
         private BossModeHandler _bossModeHandler;
 
         [SerializeField]
+        private StageScrollController _scrollController;
+
+        [SerializeField]
         private float _nextWaveDelay = 3f;
 
         private StageAsset _currentStageAsset;
@@ -52,6 +55,12 @@ namespace TeamSuneat.Stage
             RegisterCurrentStage();
             RegisterGlobalEvents();
 
+            if (_scrollController != null)
+            {
+                _scrollController.SetMaxPointIndex(_currentStageAsset.GetStageMonsterCount());
+                _scrollController.StopScrolling();
+            }
+
             Log.Info(LogTags.Stage, "스테이지 초기화 완료: {0}", Name);
             _stageFlowCoroutine = StartCoroutine(StartStageFlow());
         }
@@ -64,6 +73,7 @@ namespace TeamSuneat.Stage
             StopWaveResetFade();
             UnregisterGlobalEvents();
             _monsterSpawner?.CleanupAllMonsters();
+            _scrollController?.StopScrolling();
         }
 
         private void LoadStageData()
@@ -91,7 +101,8 @@ namespace TeamSuneat.Stage
                 return;
             }
 
-            _monsterSpawner.Initialize(_currentStageAsset, _currentAreaAsset);
+            Transform scrollContainer = _scrollController != null ? _scrollController.ScrollContainer : null;
+            _monsterSpawner.Initialize(_currentStageAsset, _currentAreaAsset, scrollContainer, _scrollController);
         }
 
         private void InitializeBossModeHandler(StageLoader stageLoader, PlayerCharacterSpawner playerCharacterSpawner)
@@ -188,6 +199,9 @@ namespace TeamSuneat.Stage
                 profile.Stage.ResetCurrentWave();
             }
 
+            // 첫 웨이브 시작 시 스크롤 리셋
+            _scrollController?.ResetToFirstPoint();
+
             if (_monsterSpawner != null)
             {
                 _monsterSpawner.SpawnWave(currentWave);
@@ -218,6 +232,10 @@ namespace TeamSuneat.Stage
                 return;
             }
 
+            // 개별 몬스터 사망 시 스크롤 이동
+            _scrollController?.MoveToNextPoint();
+
+            // 모든 몬스터 사망 체크 (기존 로직 유지)
             if (_monsterSpawner == null || !_monsterSpawner.IsAllMonstersDefeated)
             {
                 return;
@@ -326,6 +344,9 @@ namespace TeamSuneat.Stage
                     profile.Stage.CurrentWave = 0;
                     UIManager.Instance.HUDManager.SetStageProgress(1, _currentStageAsset.WaveCount);
 
+                    // 웨이브 리셋 시 스크롤 리셋
+                    _scrollController?.ResetToFirstPoint();
+
                     if (_monsterSpawner != null)
                     {
                         _monsterSpawner.SpawnWave(0);
@@ -344,6 +365,9 @@ namespace TeamSuneat.Stage
                 {
                     profile.Stage.CurrentWave = 0;
                     UIManager.Instance.HUDManager.SetStageProgress(1, _currentStageAsset.WaveCount);
+
+                    // 웨이브 리셋 시 스크롤 리셋
+                    _scrollController?.ResetToFirstPoint();
 
                     if (_monsterSpawner != null)
                     {

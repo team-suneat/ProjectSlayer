@@ -81,6 +81,11 @@ namespace TeamSuneat.Data
 #endif
         }
 
+        public int GetStageMonsterCount()
+        {
+            return WaveCount * MonsterCountPerWave - 1;
+        }
+
 #if UNITY_EDITOR
 
         public override void Validate()
@@ -90,7 +95,6 @@ namespace TeamSuneat.Data
             EnumEx.ConvertTo(ref AreaName, AreaNameString);
             EnumEx.ConvertTo(ref EquipmentGrade, EquipmentGradeString);
             EnumEx.ConvertTo(ref ItemType, ItemTypeString);
-
         }
 
         public override void Refresh()
