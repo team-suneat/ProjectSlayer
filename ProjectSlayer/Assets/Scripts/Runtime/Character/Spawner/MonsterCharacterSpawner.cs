@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TeamSuneat.Data;
+using TeamSuneat.Stage;
 using UnityEngine;
 
 namespace TeamSuneat
@@ -9,18 +10,18 @@ namespace TeamSuneat
         #region Private Fields
 
         [SerializeField]
-        private PositionGroup _spawnPositionGroup;
+        private Transform _spawnParentPoint;
 
         private StageAsset _currentStageAsset;
         private AreaAsset _currentAreaAsset;
+        private Transform _scrollContainer;
+        private StageScrollController _scrollController;
 
         #endregion Private Fields
 
         #region Properties
 
         public List<MonsterCharacter> SpawnedMonsters { get; private set; }
-
-        public PositionGroup SpawnPositionGroup => _spawnPositionGroup;
 
         public bool IsAllMonstersDefeated
         {
@@ -47,10 +48,12 @@ namespace TeamSuneat
 
         #region Public Methods
 
-        public void Initialize(StageAsset stageAsset, AreaAsset areaAsset)
+        public void Initialize(StageAsset stageAsset, AreaAsset areaAsset, Transform scrollContainer = null, StageScrollController scrollController = null)
         {
             _currentStageAsset = stageAsset;
             _currentAreaAsset = areaAsset;
+            _scrollContainer = scrollContainer;
+            _scrollController = scrollController;
             SpawnedMonsters = new List<MonsterCharacter>();
         }
 
@@ -73,17 +76,22 @@ namespace TeamSuneat
                 return;
             }
 
-            Vector3 originPosition = transform.position;
-            List<Vector3> spawnPositions = _spawnPositionGroup != null
-                ? _spawnPositionGroup.GetPositions(originPosition, monstersToSpawn.Count)
-                : new List<Vector3>();
-
             for (int i = 0; i < monstersToSpawn.Count; i++)
             {
-                Vector3 spawnPos = spawnPositions.IsValid(i)
-                    ? spawnPositions[i]
-                    : originPosition;
-
+                Vector3 spawnPos;
+                if (_scrollController != null)
+                {
+                    spawnPos = _scrollController.GetSpawnPosition(i);
+                }
+                else
+                {
+                    Vector3 originPosition = transform.position;
+                    spawnPos = new Vector3(
+                        originPosition.x + (i * GameDefine.MONSTER_SPAWN_POSITION_PADDING),
+                        originPosition.y,
+                        originPosition.z
+                    );
+                }
                 SpawnMonster(monstersToSpawn[i], spawnPos);
             }
 
@@ -98,7 +106,9 @@ namespace TeamSuneat
                 return null;
             }
 
-            MonsterCharacter monster = ResourcesManager.SpawnMonsterCharacter(characterName, transform);
+            Transform parentTransform = _spawnParentPoint != null ? _spawnParentPoint : transform;
+            MonsterCharacter monster = ResourcesManager.SpawnMonsterCharacter(characterName, parentTransform);
+
             if (monster == null)
             {
                 Log.Error(LogTags.CharacterSpawn, "몬스터 스폰 실패: {0}", characterName);
@@ -220,4 +230,3 @@ namespace TeamSuneat
         #endregion Private Methods
     }
 }
-

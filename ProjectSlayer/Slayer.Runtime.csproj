@@ -197,6 +197,7 @@
     <Compile Include="Assets\Scripts\Runtime\Enum\Buff\BuffTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Text\UITextLocalizer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Scene\Loader\ISceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Stage\InfiniteBackgroundLayer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Enum\Dialogue\DialogueTypes.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Manager\HUDManager.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Stat\Strategies\Combat\AttackSpeedUpdateStrategy.cs" />
@@ -377,9 +378,9 @@
     <Compile Include="Assets\Scripts\Runtime\Camera\VirtualCameras\VirtualCamera.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\LayerEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraRenderController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Sheet.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Scriptable\Model\Skill\SkillSlotUnlockAsset.cs" />
-    <Compile Include="Assets\Scripts\Runtime\Camera\Controllers\CameraRenderController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\JSON\JsonDataManager.Get.cs" />
     <Compile Include="Assets\Scripts\Runtime\Tools\Extension\AllIn1ShaderEx.cs" />
     <Compile Include="Assets\Scripts\Runtime\Framework\UI\Button\UIPurchaseButton.cs" />
@@ -588,6 +589,7 @@
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Skill\VCharacterSkill.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\Canvas\CanvasOrder.cs" />
     <Compile Include="Assets\Scripts\Runtime\Data\Game\Model\Stage\VCharacterStage.cs" />
+    <Compile Include="Assets\Scripts\Runtime\Stage\StageScrollController.cs" />
     <Compile Include="Assets\Scripts\Runtime\Character\Renderer\CharacterRenderer.cs" />
     <Compile Include="Assets\Scripts\Runtime\Setting\Model\GameLanguage.cs" />
     <Compile Include="Assets\Scripts\Runtime\UI\HUD\Stage\HUDStage.cs" />

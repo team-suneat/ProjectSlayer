@@ -416,16 +416,6 @@ namespace TeamSuneat.Stage
         private Vector3 GetBossSpawnPosition()
         {
             Vector3 spawnPosition = _spawnTransform != null ? _spawnTransform.position : transform.position;
-
-            if (_monsterSpawner != null && _monsterSpawner.SpawnPositionGroup != null)
-            {
-                List<Vector3> positions = _monsterSpawner.SpawnPositionGroup.GetPositions(spawnPosition, 1);
-                if (positions != null && positions.Count > 0)
-                {
-                    spawnPosition = positions[0];
-                }
-            }
-
             return spawnPosition;
         }
 
