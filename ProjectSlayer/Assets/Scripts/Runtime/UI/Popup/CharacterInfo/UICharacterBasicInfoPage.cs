@@ -63,15 +63,19 @@ namespace TeamSuneat.UserInterface
             }
 
             VCharacterWeapon weaponData = profile.Weapon;
-            if (weaponData == null || weaponData.SlotWeaponNames.Count == 0)
+            if (weaponData == null)
             {
                 _weaponSlot.SetEmpty();
                 return;
             }
 
-            // 첫 번째 장착 무기 표시
-            ItemNames firstWeaponName = weaponData.SlotWeaponNames[0];
-            VWeapon weapon = weaponData.FindWeapon(firstWeaponName);
+            VWeapon weapon = weaponData.FindEquippedWeapon();
+            if (weapon == null)
+            {
+                _weaponSlot.SetEmpty();
+                return;
+            }
+
             _weaponSlot.SetWeaponData(weapon);
         }
 

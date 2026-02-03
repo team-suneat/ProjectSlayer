@@ -140,4 +140,19 @@
 
         #endregion Accessory
     }
+
+    public static class ItemNameHelper
+    {
+        public static ItemNames GetWeaponName(GradeNames gradeName, int itemLevel)
+        {
+            int itemTID = 1000 + (int)gradeName * 100 + itemLevel;
+            return itemTID.ToEnum<ItemNames>();
+        }
+
+        public static ItemNames GetAccessoryName(GradeNames gradeName, int itemLevel)
+        {
+            int itemTID = 2000 + (int)gradeName * 100 + itemLevel;
+            return itemTID.ToEnum<ItemNames>();
+        }
+    }
 }

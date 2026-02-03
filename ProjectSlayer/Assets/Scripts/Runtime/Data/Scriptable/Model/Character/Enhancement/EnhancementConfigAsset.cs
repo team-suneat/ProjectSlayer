@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "EnhancementConfig", menuName = "TeamSuneat/Scriptable/EnhancementConfig")]
+    [CreateAssetMenu(fileName = "EnhancementConfig", menuName = "TeamSuneat/Config/Enhancement")]
     public class EnhancementConfigAsset : XScriptableObject
     {
         [TableList(ShowIndexLabels = true)]

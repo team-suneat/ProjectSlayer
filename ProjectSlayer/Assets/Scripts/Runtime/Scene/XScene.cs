@@ -118,6 +118,8 @@ namespace TeamSuneat.Scenes
                 Log.Progress(LogTags.Scene, "{0} 씬을 SceneLoader를 통해 불러옵니다.", TargetSceneName);
                 yield return sceneLoader.Load(PrevSceneName, TargetSceneName);
             }
+
+            _changeSceneCoroutine = null;
         }
 
         public static void ResetChangeSceneCoroutine()

@@ -1,20 +1,12 @@
-﻿using TeamSuneat.Data;
-
-namespace TeamSuneat
+﻿namespace TeamSuneat
 {
     public partial class DamageCalculator
     {
         private float CalculateDamageReduction(DamageResult damageResult)
         {
-#if UNITY_EDITOR
-            int index = _stringBuilder.Length;
-#endif
-            GameDefineAsset defineAsset = ScriptableDataManager.Instance.GetGameDefine();
-            GameDefineAssetData defineAssetData = defineAsset.Data;
-            float damageReduction = 1f;
-
             // 공통 피해 감소율 : 0.3이면 30% 감소
             float commonRate = GetDamageReductionRate(damageResult);
+            float damageReduction = 1f;
 
             // 피해 감소율
             float combinedMultiplier = 1 - commonRate; // 예: 1 - 0.3 = 0.7(70%)
@@ -33,6 +25,7 @@ namespace TeamSuneat
 #if UNITY_EDITOR
             if (!damageReduction.Compare(1))
             {
+                int index = _stringBuilder.Length;
                 AddLogTotalDamageReduction(index, damageReduction);
             }
 #endif

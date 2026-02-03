@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "MonsterDropConfig", menuName = "TeamSuneat/Scriptable/Monster/Drop")]
+    [CreateAssetMenu(fileName = "MonsterDropConfig", menuName = "TeamSuneat/Config/MonsterDrop")]
     public class MonsterDropConfigAsset : XScriptableObject
     {
         [Title("경험치")]

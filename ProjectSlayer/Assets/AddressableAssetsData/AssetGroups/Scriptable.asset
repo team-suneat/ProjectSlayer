@@ -147,6 +147,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 681e7371519bb604094fd7473704cb9d
+    m_Address: Assets/Addressables/Scriptable/Shop/WeaponSummonConfig.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 69dcdc3aa0006eb45a2600a6674f03f0
     m_Address: Assets/Addressables/Scriptable/Floaty/Floaty_Content.asset
     m_ReadOnly: 0
@@ -179,6 +185,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 721f4bb44c554c543b4c739757ef61e8
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_HeatWave.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73eb779ba2330464aa7f94799413aa5c
+    m_Address: Assets/Addressables/Scriptable/Shop/SkillCardSummonConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -387,6 +399,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3a82c14ab3f85f4a940b90f1431a1f2
+    m_Address: Assets/Addressables/Scriptable/Shop/AccessorySummonConfig.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e76dee3bfc696ab49b5e3e4d77eb3dda
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_PlayerCharacter.asset
     m_ReadOnly: 0
@@ -413,6 +431,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3b4818f1851ae2469c2755a81cfebd8
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FlowingBlade.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6301605e89594b4f9a514de53612ab3
+    m_Address: Assets/Addressables/Scriptable/Shop/SummonLevelConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable

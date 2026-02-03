@@ -23,7 +23,6 @@ namespace TeamSuneat
 
         // Option-Play
         OPTION_CAMERA_SHAKE,
-        OPTION_VIBRATION,
         OPTION_SHOW_MONSTER_LIFE_TEXT,
 
         OPTION_SHOW_ITEM_OPTION_RANGE,

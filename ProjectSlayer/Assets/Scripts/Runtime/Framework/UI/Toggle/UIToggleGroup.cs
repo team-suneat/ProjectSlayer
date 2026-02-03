@@ -8,10 +8,12 @@ namespace TeamSuneat
     public class UIToggleGroup : XBehaviour
     {
         [Title("#UIToggleGroup")]
-        [SerializeField]
+        [ShowInInspector]
+        [ReadOnly]
         private ToggleGroup _toggleGroup;
 
-        [SerializeField]
+        [ShowInInspector]
+        [ReadOnly]
         private UIToggle[] _toggles;
 
         [SerializeField]
@@ -29,21 +31,14 @@ namespace TeamSuneat
 
         private void Awake()
         {
-            Initialize();
-        }
-
-        public override void AutoGetComponents()
-        {
-            base.AutoGetComponents();
-
             _toggleGroup = GetComponentInParent<ToggleGroup>();
             _toggles = this.GetComponentsInDirectChildren<UIToggle>();
+
+            Initialize();
         }
 
         private void Initialize()
         {
-            AutoGetComponents();
-
             if (!ValidateToggleGroup())
             {
                 return;
@@ -95,8 +90,8 @@ namespace TeamSuneat
         {
             if (!_allowSwitchOff && _toggles.IsValidArray())
             {
-                _toggles[0].SetIsOn(true);                
-                _currentActiveIndex = 0;                
+                _toggles[0].SetIsOn(true);
+                _currentActiveIndex = 0;
                 Log.Info(LogTags.UI_Toggle, $"(Group) {gameObject.name} 기본 Toggle 설정: 인덱스 0");
             }
         }

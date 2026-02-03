@@ -3,14 +3,11 @@ using System.Collections;
 using TeamSuneat.Setting;
 using TeamSuneat.UserInterface;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace TeamSuneat.Scenes
 {
-    /// <summary>
-    /// 게임 타이틀 씬을 관리하는 클래스
-    /// </summary>
     public class GameTitleScene : XScene
     {
         [Title("#Settings")]
@@ -18,9 +15,8 @@ namespace TeamSuneat.Scenes
 
         [Title("#Component")]
         public Button GameStartButton;
-        public UIGauge LoadingGauge;
 
-        private bool _isChangingScene;
+        public UILocalizedText TapText;
 
         protected override void OnCreateScene()
         {
@@ -45,9 +41,22 @@ namespace TeamSuneat.Scenes
 
         private IEnumerator WaitForInitialize()
         {
-            yield return new WaitUntil(() => { return GameApp.Instance.IsInitialized; });
+            SetInteractableButtons(false);
+            SetTapTextActive(false);
+
+            yield return new WaitUntil(() => GameApp.Instance.IsInitialized && !XScene.IsChangeScene);
+
             SetInteractableButtons(true);
+            SetTapTextActive(true);
         }
+
+        private IEnumerator ProcessChangeScene(UnityAction changeSceneAction)
+        {
+            yield return new WaitForSeconds(DelayTimeForChangeScene);
+            changeSceneAction.Invoke();
+        }
+
+        //───────────────────────────────────────────────────────────────────────────
 
         private void RegisterButtonEvent()
         {
@@ -60,25 +69,31 @@ namespace TeamSuneat.Scenes
             StartChangeMainScene();
         }
 
+        //───────────────────────────────────────────────────────────────────────────
+
         private void SetInteractableButtons(bool value)
         {
-            GameStartButton.interactable = value;
+            if (GameStartButton != null)
+            {
+                GameStartButton.interactable = value;
+            }
         }
 
-        //───────────────────────────────────────────────────────────────────────────
+        private void SetTapTextActive(bool value)
+        {
+            if (TapText != null)
+            {
+                TapText.SetActive(value);
+            }
+        }
 
         public void StartChangeMainScene()
         {
             StartChangeScene(ChangeMainScene);
         }
 
-        // 씬 전환 메서드들
-
         private void StartChangeScene(UnityAction changeSceneAction)
         {
-            if (_isChangingScene) { return; }
-
-            _isChangingScene = true;
             GameSetting.Instance.Input.BlockUIInput();
             if (DelayTimeForChangeScene > 0)
             {
@@ -88,12 +103,6 @@ namespace TeamSuneat.Scenes
             {
                 changeSceneAction.Invoke();
             }
-        }
-
-        private IEnumerator ProcessChangeScene(UnityAction changeSceneAction)
-        {
-            yield return new WaitForSeconds(DelayTimeForChangeScene);
-            changeSceneAction.Invoke();
         }
 
         private void ChangeMainScene()
@@ -109,6 +118,15 @@ namespace TeamSuneat.Scenes
             {
                 ChangeScene(sceneName);
             }
+        }
+
+        private void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

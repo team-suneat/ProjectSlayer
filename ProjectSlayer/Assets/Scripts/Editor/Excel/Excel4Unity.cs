@@ -7,7 +7,6 @@ using UnityEngine;
 
 public partial class Excel4Unity : Editor
 {
-    [MenuItem("Tools/Excel/모든 엑셀 파일 불러오기")]
     public static void ConvertAllExcelToJSON()
     {
         string[] excelNames = System.Enum.GetNames(typeof(ExcelNames));

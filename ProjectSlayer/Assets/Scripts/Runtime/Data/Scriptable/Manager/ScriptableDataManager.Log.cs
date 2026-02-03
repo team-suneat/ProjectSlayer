@@ -30,6 +30,18 @@ namespace TeamSuneat.Data
             {
                 return _logSetting.Find(tag);
             }
+            
+            switch (tag)
+            {
+                case LogTags.GameData:
+                case LogTags.GameData_Accessory:
+                case LogTags.GameData_Character:
+                case LogTags.GameData_Skill:
+                case LogTags.GameData_Stage:
+                case LogTags.GameData_Statistics:
+                case LogTags.GameData_Weapon:
+                    return true;
+            }
 
             return false;
         }

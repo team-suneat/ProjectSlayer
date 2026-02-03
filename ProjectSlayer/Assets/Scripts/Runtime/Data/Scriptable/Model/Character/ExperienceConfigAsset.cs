@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "ExperienceConfig", menuName = "TeamSuneat/Scriptable/ExperienceConfig")]
+    [CreateAssetMenu(fileName = "ExperienceConfig", menuName = "TeamSuneat/Config/Experience")]
     public class ExperienceConfigAsset : XScriptableObject
     {
         [Tooltip("초기 경험치 필요량 (레벨 1에서 레벨 2로 올라가기 위해 필요한 경험치)")]

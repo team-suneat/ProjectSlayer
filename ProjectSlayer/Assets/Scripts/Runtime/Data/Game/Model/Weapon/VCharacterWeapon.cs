@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace TeamSuneat.Data.Game
@@ -8,35 +8,17 @@ namespace TeamSuneat.Data.Game
     {
         public Dictionary<string, VWeapon> Weapons = new();
         public List<string> UnlockedWeapons = new();
-        public List<string> SlotWeaponNameStrings = new();
-        public int UnlockedSlotCount;
+        public string EquippedWeaponNameString;
+        public int SummonLevel;
+        public int SummonExperience;
 
         [NonSerialized]
         private readonly Dictionary<ItemNames, VWeapon> _weaponMap = new();
 
         [NonSerialized]
-        private readonly List<ItemNames> _slotWeaponNames = new();
+        private ItemNames _equippedWeaponName = ItemNames.None;
 
-        public IReadOnlyList<ItemNames> SlotWeaponNames => _slotWeaponNames;
-
-        public List<ItemNames> GetWeaponNames()
-        {
-            return new List<ItemNames>(_slotWeaponNames);
-        }
-
-        public List<VWeapon> GetWeapons()
-        {
-            List<VWeapon> weapons = new();
-            foreach (ItemNames weaponName in _slotWeaponNames)
-            {
-                if (_weaponMap.TryGetValue(weaponName, out VWeapon weapon))
-                {
-                    weapons.Add(weapon);
-                }
-            }
-
-            return weapons;
-        }
+        public ItemNames EquippedWeaponName => _equippedWeaponName;
 
         //
 
@@ -60,27 +42,13 @@ namespace TeamSuneat.Data.Game
                 _weaponMap[itemName] = weapon;
             }
 
-            _slotWeaponNames.Clear();
-            foreach (string slotName in SlotWeaponNameStrings)
+            if (!string.IsNullOrEmpty(EquippedWeaponNameString))
             {
-                if (!EnumEx.ConvertTo(ref itemName, slotName))
-                {
-                    Log.Error(LogTags.GameData_Weapon, "무기 슬롯 이름을 ItemNames로 변환하지 못했습니다: {0}", slotName);
-                    continue;
-                }
-
-                if (_slotWeaponNames.Count >= UnlockedSlotCount)
-                {
-                    break;
-                }
-
-                if (_weaponMap.ContainsKey(itemName))
-                {
-                    _slotWeaponNames.Add(itemName);
-                }
+                EnumEx.ConvertTo(ref _equippedWeaponName, EquippedWeaponNameString);
             }
 
-            SyncSlotWeaponNameStrings();
+            Log.Info(LogTags.GameData_Weapon, "[Character] 무기 데이터를 불러옵니다. 총 {0}개, 장착: {1}",
+                Weapons.Count, _equippedWeaponName.ToLogString());
         }
 
         //
@@ -118,29 +86,32 @@ namespace TeamSuneat.Data.Game
             return null;
         }
 
-        public void AddWeapon(ItemNames weaponName)
+        public VWeapon FindEquippedWeapon()
         {
-            if (_slotWeaponNames.Count >= UnlockedSlotCount)
+            if (_equippedWeaponName == ItemNames.None)
             {
-                Log.Warning(LogTags.GameData_Weapon, "무기 슬롯이 가득 찼습니다. 현재/최대: {0}/{1}", _slotWeaponNames.Count, UnlockedSlotCount);
-                return;
+                return null;
             }
 
+            return FindWeapon(_equippedWeaponName);
+        }
+
+        public void AddWeapon(ItemNames weaponName, int experience = 1)
+        {
             string key = weaponName.ToString();
             if (!_weaponMap.ContainsKey(weaponName))
             {
                 VWeapon newWeapon = new(weaponName);
                 Weapons[key] = newWeapon;
                 _weaponMap[weaponName] = newWeapon;
-
-                Log.Info(LogTags.GameData_Weapon, "인게임 무기를 등록합니다: {0}", weaponName.ToLogString());
             }
-
-            if (!_slotWeaponNames.Contains(weaponName))
+            else
             {
-                _slotWeaponNames.Add(weaponName);
-                SlotWeaponNameStrings.Add(key);
+                _weaponMap[weaponName].Level += 1;
             }
+
+            Log.Info(LogTags.GameData_Weapon, "인게임 무기를 등록합니다: {0}(Lv.{1})", weaponName.ToLogString(), _weaponMap[weaponName].Level);
+            AddSummonExperience(experience);
         }
 
         public void AddWeapon(ItemNames weaponName, GradeNames gradeName, StatNames statName)
@@ -164,10 +135,77 @@ namespace TeamSuneat.Data.Game
             {
                 _ = Weapons.Remove(key);
                 _ = _weaponMap.Remove(weaponName);
-                _ = _slotWeaponNames.Remove(weaponName);
-                _ = SlotWeaponNameStrings.Remove(key);
+
+                if (_equippedWeaponName == weaponName)
+                {
+                    _equippedWeaponName = ItemNames.None;
+                    EquippedWeaponNameString = string.Empty;
+                }
 
                 Log.Info(LogTags.GameData_Weapon, "인게임 무기를 등록해제합니다: {0}", weaponName.ToLogString());
+            }
+        }
+
+        public void EquipWeapon(ItemNames weaponName)
+        {
+            if (weaponName == ItemNames.None)
+            {
+                _equippedWeaponName = ItemNames.None;
+                EquippedWeaponNameString = string.Empty;
+                Log.Info(LogTags.GameData_Weapon, "무기 장착을 해제합니다.");
+                return;
+            }
+
+            if (!_weaponMap.ContainsKey(weaponName))
+            {
+                Log.Warning(LogTags.GameData_Weapon, "장착할 무기가 없습니다: {0}", weaponName.ToLogString());
+                return;
+            }
+
+            _equippedWeaponName = weaponName;
+            EquippedWeaponNameString = weaponName.ToString();
+            Log.Info(LogTags.GameData_Weapon, "무기를 장착합니다: {0}", weaponName.ToLogString());
+        }
+
+        //
+
+        private void AddSummonExperience(int value)
+        {
+            if (value <= 0)
+            {
+                return;
+            }
+
+            SummonExperience += value;
+            SummonLevelConfigAsset asset = ScriptableDataManager.Instance?.GetSummonLevelConfigAsset();
+            if (asset == null)
+            {
+                return;
+            }
+
+            // 에셋 레벨은 2,3,4…(config) / 게임 SummonLevel은 0,1,2… → 누적량은 config 레벨 (SummonLevel+1) 기준
+            while (true)
+            {
+                int currentTotal = SummonLevel == 0
+                    ? 0
+                    : asset.GetRequiredSummonCountForLevel(SummonLevel + 1);
+                int nextTotal = asset.GetRequiredSummonCountForLevel(SummonLevel + 2);
+                int requiredCount = nextTotal - currentTotal;
+
+                if (requiredCount <= 0)
+                {
+                    break;
+                }
+
+                if (requiredCount <= SummonExperience)
+                {
+                    SummonLevel += 1;
+                    SummonExperience -= requiredCount;
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 
@@ -177,16 +215,11 @@ namespace TeamSuneat.Data.Game
         {
             VCharacterWeapon defaultWeapons = new();
 
-            return defaultWeapons;
-        }
+            defaultWeapons.AddWeapon(ItemNames.RustySword, 0);
+            defaultWeapons.EquipWeapon(ItemNames.RustySword);
+            defaultWeapons.SummonLevel = 1;
 
-        private void SyncSlotWeaponNameStrings()
-        {
-            SlotWeaponNameStrings.Clear();
-            for (int i = 0; i < _slotWeaponNames.Count; i++)
-            {
-                SlotWeaponNameStrings.Add(_slotWeaponNames[i].ToString());
-            }
+            return defaultWeapons;
         }
     }
 }

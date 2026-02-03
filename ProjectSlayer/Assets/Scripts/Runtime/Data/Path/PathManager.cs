@@ -231,7 +231,6 @@ namespace TeamSuneat
             }
         }
 
-        [MenuItem("Tools/Path/PathMetaData 파일 불러오기")]
         public static void LoadAllSync()
         {
             TextAsset textAsset = null;
@@ -280,16 +279,6 @@ namespace TeamSuneat
         {
             return database != null && database.Count > 0;
         }
-
-#if UNITY_EDITOR
-
-        [MenuItem("Tools/Path/파일 경로 저장")]
-        public static void UpdatePathMetaDataForMenu()
-        {
-            UpdatePathMetaData();
-        }
-
-#endif
 
         public static void UpdatePathMetaData()
         {

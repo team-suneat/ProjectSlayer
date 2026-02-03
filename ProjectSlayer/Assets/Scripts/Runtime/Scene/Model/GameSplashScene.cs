@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace TeamSuneat.Scenes
@@ -16,6 +17,7 @@ namespace TeamSuneat.Scenes
         protected override void OnEnterScene()
         {
             StartUIAnimation();
+            StartCoroutine(WaitForInitialize());
         }
 
         protected override void OnExitScene()
@@ -72,5 +74,21 @@ namespace TeamSuneat.Scenes
                 ChangeScene("GameTitle");
             }
         }
+
+        private IEnumerator WaitForInitialize()
+        {
+            yield return new WaitUntil(() => GameApp.Instance.IsInitialized);
+            ChangeMainScene();
+        }
+
+        private void ChangeMainScene()
+        {
+            string sceneName = "GameTitle";
+            if (DetermineChangeScene(sceneName))
+            {
+                ChangeScene(sceneName);
+            }
+        }
+
     }
 }

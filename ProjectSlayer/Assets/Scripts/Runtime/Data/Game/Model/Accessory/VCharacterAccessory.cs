@@ -9,6 +9,8 @@ namespace TeamSuneat.Data.Game
         public Dictionary<string, VAccessory> Accessories = new();
         public List<string> UnlockedAccessories = new();
         public string EquippedAccessoryNameString;
+        public int SummonLevel;
+        public int SummonExperience;
 
         [NonSerialized]
         private readonly Dictionary<ItemNames, VAccessory> _accessoryMap = new();
@@ -46,7 +48,7 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData_Accessory, "[Character] 악세사리 데이터를 불러옵니다. 총 {0}개, 장착: {1}",
                 Accessories.Count, _equippedAccessoryName.ToLogString());
         }
-        
+
         public bool CheckUnlocked(ItemNames accessoryName)
         {
             return UnlockedAccessories.Contains(accessoryName.ToString());
@@ -88,7 +90,7 @@ namespace TeamSuneat.Data.Game
             return FindAccessory(_equippedAccessoryName);
         }
 
-        public void AddAccessory(ItemNames accessoryName)
+        public void AddAccessory(ItemNames accessoryName, int experience = 1)
         {
             string key = accessoryName.ToString();
             if (!_accessoryMap.ContainsKey(accessoryName))
@@ -96,9 +98,14 @@ namespace TeamSuneat.Data.Game
                 VAccessory newAccessory = new(accessoryName);
                 Accessories[key] = newAccessory;
                 _accessoryMap[accessoryName] = newAccessory;
-
-                Log.Info(LogTags.GameData_Accessory, "인게임 악세사리를 등록합니다: {0}", accessoryName.ToLogString());
             }
+            else
+            {
+                _accessoryMap[accessoryName].Level += 1;
+            }
+
+            Log.Info(LogTags.GameData_Accessory, "인게임 악세사리를 등록합니다: {0}(Lv.{1})", accessoryName.ToLogString(), _accessoryMap[accessoryName].Level);
+            AddSummonExperience(experience);
         }
 
         public void AddAccessory(ItemNames accessoryName, GradeNames gradeName, StatNames statName)
@@ -154,10 +161,53 @@ namespace TeamSuneat.Data.Game
             Log.Info(LogTags.GameData_Accessory, "악세사리를 장착합니다: {0}", accessoryName.ToLogString());
         }
 
+        private void AddSummonExperience(int value)
+        {
+            if(value <= 0)
+            {
+                return;
+            }
+
+            SummonExperience += value;
+            SummonLevelConfigAsset asset = ScriptableDataManager.Instance?.GetSummonLevelConfigAsset();
+            if (asset == null)
+            {
+                return;
+            }
+
+            // 에셋 레벨은 2,3,4…(config) / 게임 SummonLevel은 0,1,2… → 누적량은 config 레벨 (SummonLevel+1) 기준
+            while (true)
+            {
+                int currentTotal = SummonLevel == 0
+                    ? 0
+                    : asset.GetRequiredSummonCountForLevel(SummonLevel + 1);
+                int nextTotal = asset.GetRequiredSummonCountForLevel(SummonLevel + 2);
+                int requiredCount = nextTotal - currentTotal;
+
+                if (requiredCount <= 0)
+                {
+                    break;
+                }
+
+                if (requiredCount <= SummonExperience)
+                {
+                    SummonLevel += 1;
+                    SummonExperience -= requiredCount;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
         public static VCharacterAccessory CreateDefault()
         {
-            return new VCharacterAccessory();
+            VCharacterAccessory defaultAccessories = new();
+            defaultAccessories.AddAccessory(ItemNames.RustyBracelet,0);
+            defaultAccessories.EquipAccessory(ItemNames.RustyBracelet);
+            defaultAccessories.SummonLevel = 1;
+            return defaultAccessories;
         }
     }
 }
-

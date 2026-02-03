@@ -194,6 +194,12 @@ namespace TeamSuneat
             {
                 Delete(types[i]);
             }
-        }       
+        }
+
+        // 게임Prefs로 관리되는 모든 설정 및 PlayerPrefs 데이터를 삭제한다. (임시 데이터 초기화용)
+        public static void DeleteAllSettings()
+        {
+            Clear();
+        }
     }
 }

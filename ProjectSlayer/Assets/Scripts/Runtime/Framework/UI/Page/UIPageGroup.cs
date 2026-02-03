@@ -6,18 +6,14 @@ namespace TeamSuneat
     public class UIPageGroup : XBehaviour
     {
         [Title("#UIPageGroup")]
-        [SerializeField] private UIPage[] _pages;
-
+        [ShowInInspector]
+        [ReadOnly]
+        private UIPage[] _pages;
         public int PageCount => _pages.Length;
-
-        public override void AutoGetComponents()
-        {
-            base.AutoGetComponents();
-            _pages = this.GetComponentsInDirectChildren<UIPage>();
-        }
 
         private void Awake()
         {
+            _pages = this.GetComponentsInDirectChildren<UIPage>();
             CloseAllPages();
         }
 
@@ -51,7 +47,7 @@ namespace TeamSuneat
 
         public void CloseAllPages()
         {
-            foreach (var page in _pages)
+            foreach (UIPage page in _pages)
             {
                 if (page != null)
                 {

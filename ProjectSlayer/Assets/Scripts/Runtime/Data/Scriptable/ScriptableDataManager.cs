@@ -16,6 +16,10 @@ namespace TeamSuneat.Data
         private GrowthConfigAsset _growthDataAsset; // 캐릭터 성장
         private SkillCardUnlockAsset _skillCardUnlockAsset; // 스킬 카드 해금
         private SkillSlotUnlockAsset _skillSlotUnlockAsset; // 스킬 슬롯 해금
+        private AccessorySummonConfigAsset _accessorySummonConfigAsset; // 악세사리 소환
+        private SkillCardSummonConfigAsset _skillCardSummonConfigAsset; // 스킬 카드 소환
+        private WeaponSummonConfigAsset _weaponSummonConfigAsset; // 무기 소환
+        private SummonLevelConfigAsset _summonLevelConfigAsset; // 소환 레벨/경험치 설정
 
         private readonly Dictionary<int, HitmarkAsset> _hitmarkAssets = new();
         private readonly Dictionary<int, BuffAsset> _buffAssets = new();
@@ -53,6 +57,10 @@ namespace TeamSuneat.Data
             _playerCharacterStatAsset = null;
             _skillCardUnlockAsset = null;
             _skillSlotUnlockAsset = null;
+            _accessorySummonConfigAsset = null;
+            _skillCardSummonConfigAsset = null;
+            _weaponSummonConfigAsset = null;
+            _summonLevelConfigAsset = null;
         }
 
         public void RefreshAll()
@@ -73,6 +81,10 @@ namespace TeamSuneat.Data
             RefreshMonsterStatConfig();
             RefreshMonsterDropConfig();
             RefreshPlayerCharacterStat();
+            RefreshAccessorySummonConfig();
+            RefreshSkillCardSummonConfig();
+            RefreshWeaponSummonConfig();
+            RefreshSummonLevelConfig();
         }
     }
 }

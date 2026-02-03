@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "MonsterStatConfig", menuName = "TeamSuneat/Scriptable/Monster/Stat")]
+    [CreateAssetMenu(fileName = "MonsterStatConfig", menuName = "TeamSuneat/Config/MonsterStat")]
     public class MonsterStatConfigAsset : XScriptableObject
     {
         #region Field

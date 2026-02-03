@@ -10,6 +10,7 @@ namespace TeamSuneat
     {
         None = 0,
         String,
+
         Stat,
     }
 
@@ -18,7 +19,7 @@ namespace TeamSuneat
     /// - 시트 탭의 gid 값을 문자열로 관리합니다.
     /// - 프로젝트 전역에서 동일한 참조를 사용하도록 고정 상수와 조회 API를 제공합니다.
     /// </summary>
-    public static class GoogleSheetDatasetGids
+    public static class GoogleSheetDatasetGIDs
     {
         // 고정 GID 상수
         public const string String = "0";
@@ -27,7 +28,7 @@ namespace TeamSuneat
         private static readonly Dictionary<GoogleSheetDatasetId, string> DatasetIdToGid = new()
         {
             { GoogleSheetDatasetId.String, String },
-            { GoogleSheetDatasetId.Stat, Stat},
+            { GoogleSheetDatasetId.Stat, Stat },
         };
 
         public static string GetGid(GoogleSheetDatasetId datasetId)

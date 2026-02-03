@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "GrowthConfig", menuName = "TeamSuneat/Scriptable/GrowthConfig")]
+    [CreateAssetMenu(fileName = "GrowthConfig", menuName = "TeamSuneat/Config/Growth")]
     public class GrowthConfigAsset : XScriptableObject
     {
         [TableList(ShowIndexLabels = true)]

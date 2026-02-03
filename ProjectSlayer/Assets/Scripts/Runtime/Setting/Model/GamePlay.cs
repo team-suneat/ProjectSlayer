@@ -1,9 +1,8 @@
-﻿namespace TeamSuneat.Setting
+namespace TeamSuneat.Setting
 {
     public class GamePlay
     {
         private bool _cameraShake;              // 카메라 흔들림
-        private bool _vibration;                // 패드 진동
         private bool _useTutorial;              // 튜토리얼 사용
         private bool _useMonsterGauge;          // 몬스터 게이지 사용
         private bool _useDamageText;            // 피해량 텍스트 사용
@@ -34,20 +33,6 @@
                 {
                     _cameraShake = value;
                     GamePrefs.SetBool(GamePrefTypes.OPTION_CAMERA_SHAKE, value);
-                }
-            }
-        }
-
-        /// <summary> 패드 진동 사용 여부 </summary>
-        public bool Vibration
-        {
-            get => _vibration;
-            set
-            {
-                if (_vibration != value)
-                {
-                    _vibration = value;
-                    GamePrefs.SetBool(GamePrefTypes.OPTION_VIBRATION, value);
                 }
             }
         }
@@ -276,15 +261,6 @@
             else
             {
                 _cameraShake = true;
-            }
-
-            if (GamePrefs.HasKey(GamePrefTypes.OPTION_VIBRATION))
-            {
-                _vibration = GamePrefs.GetBool(GamePrefTypes.OPTION_VIBRATION);
-            }
-            else
-            {
-                _vibration = true;
             }
 
             if (GamePrefs.HasKey(GamePrefTypes.OPTION_SHOW_MONSTER_LIFE_TEXT))

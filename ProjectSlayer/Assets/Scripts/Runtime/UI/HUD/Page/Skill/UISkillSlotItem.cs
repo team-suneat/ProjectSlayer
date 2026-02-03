@@ -109,7 +109,7 @@ namespace TeamSuneat.UserInterface
                 return SkillSlotState.Unknown;
             }
 
-            bool isEquipped = characterSkill.ContainsSkillSlot(_skillName);
+            bool isEquipped = characterSkill.HasSkillInSlot(_skillName);
             return isEquipped ? SkillSlotState.Equipped : SkillSlotState.Learned;
         }
 

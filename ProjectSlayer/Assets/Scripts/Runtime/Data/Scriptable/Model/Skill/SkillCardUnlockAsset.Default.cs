@@ -7,7 +7,7 @@ namespace TeamSuneat.Data
     public partial class SkillCardUnlockAsset
     {
         [FoldoutGroup("#Button")]
-        [Button("±âº»°ª ¼³Á¤", ButtonSizes.Medium)]
+        [Button("ê¸°ë³¸ê°’ ì„¤ì •", ButtonSizes.Medium)]
         public void SetDefaultValues()
         {
             if (UnlockDataList == null)
@@ -17,128 +17,128 @@ namespace TeamSuneat.Data
 
             UnlockDataList.Clear();
 
-            // ¹®¼­¿¡ ¸í½ÃµÈ ÇØ±İ ·¹º§¿¡ µû¶ó ¼³Á¤
-            // ·¹º§ 10
+            // ìŠ¤í‚¬ ì¹´ë“œ í•´ê¸ˆ ë°ì´í„° ì´ˆê¸° ì„¤ì •
+            // ë ˆë²¨ 10
             AddUnlockData(SkillNames.FlameSlash, 10);
             AddUnlockData(SkillNames.EarthBlessing, 10);
 
-            // ·¹º§ 15
+            // ë ˆë²¨ 15
             AddUnlockData(SkillNames.FlowingBlade, 15);
             AddUnlockData(SkillNames.AccelerationSword, 15);
 
-            // ·¹º§ 20
+            // ë ˆë²¨ 20
             AddUnlockData(SkillNames.FireSword, 20);
             AddUnlockData(SkillNames.StoneStrike, 20);
 
-            // ·¹º§ 25
+            // ë ˆë²¨ 25
             AddUnlockData(SkillNames.WindingBlade, 25);
             AddUnlockData(SkillNames.LightningSlash, 25);
 
-            // ·¹º§ 30
-            // Å¸¿À¸£´Â °Ë (ºÒ ¼Ó¼º) - ºÒ ¼Ó¼º¼® 10°³ ÇÊ¿ä
+            // ë ˆë²¨ 30
+            // íƒ€ì…ë³„ ë³´ë„ˆìŠ¤ (ë¶ˆ ì†ì„±) - ë¶ˆ ì†ì„±ì„ 10ê°œ í•„ìš”
             AddUnlockData(SkillNames.BurningSword, 30, requiredCurrencyName: CurrencyNames.AttributeStoneFire, requiredCurrencyCount: 10);
             AddUnlockData(SkillNames.EarthWill, 30);
 
-            // ·¹º§ 35
+            // ë ˆë²¨ 35
             AddUnlockData(SkillNames.IceStone, 35);
             AddUnlockData(SkillNames.WindSword, 35);
 
-            // ·¹º§ 40
+            // ë ˆë²¨ 40
             AddUnlockData(SkillNames.HeatWave, 40);
             AddUnlockData(SkillNames.LightningFast, 40);
 
-            // ·¹º§ 45
+            // ë ˆë²¨ 45
             AddUnlockData(SkillNames.WaveSlash, 45);
 
-            // ·¹º§ 50
+            // ë ˆë²¨ 50
             AddUnlockData(SkillNames.ThunderStrike, 50);
-            // °­Ã¶ÀÇ ÀÇÁö (¶¥ ¼Ó¼º) - ¶¥ ¼Ó¼º¼® 20°³ ÇÊ¿ä
+            // ê°•ì²  ì˜ì§€ (ë•… ì†ì„±) - ë•… ì†ì„±ì„ 20ê°œ í•„ìš”
             AddUnlockData(SkillNames.SteelWill, 50, requiredCurrencyName: CurrencyNames.AttributeStoneEarth, requiredCurrencyCount: 20);
 
-            // ·¹º§ 60
-            // ¾ÆÀÌ½º »ş¿ö (¹° ¼Ó¼º) - ¹° ¼Ó¼º¼® 20°³ ÇÊ¿ä
+            // ë ˆë²¨ 60
+            // ì›Œí„° ì‡¼ì›Œ (ë¬¼ ì†ì„±) - ë¬¼ ì†ì„±ì„ 20ê°œ í•„ìš”
             AddUnlockData(SkillNames.IceShower, 60, requiredCurrencyName: CurrencyNames.AttributeStoneWater, requiredCurrencyCount: 20);
-            // ÆÄ¿ö ½ºÆ®¶óÀÌÅ© (¶¥ ¼Ó¼º) - ¶¥ ¼Ó¼º¼® 20°³ ÇÊ¿ä
+            // íŒŒì›Œ ìŠ¤íŠ¸ë¼ì´í¬ (ë•… ì†ì„±) - ë•… ì†ì„±ì„ 20ê°œ í•„ìš”
             AddUnlockData(SkillNames.PowerStrike, 60, requiredCurrencyName: CurrencyNames.AttributeStoneEarth, requiredCurrencyCount: 20);
 
-            // ·¹º§ 70
-            // È­¿° º£±â (ºÒ ¼Ó¼º) - ºÒ ¼Ó¼º¼® 20°³ ÇÊ¿ä
+            // ë ˆë²¨ 70
+            // í™”ì—¼ ìŠ¬ë˜ì‹œ (ë¶ˆ ì†ì„±) - ë¶ˆ ì†ì„±ì„ 20ê°œ í•„ìš”
             AddUnlockData(SkillNames.FireSlash, 70, requiredCurrencyName: CurrencyNames.AttributeStoneFire, requiredCurrencyCount: 20);
-            // ÃµµÕ º£±â (¹Ù¶÷ ¼Ó¼º) - ¹Ù¶÷ ¼Ó¼º¼® 20°³ ÇÊ¿ä
+            // ë²ˆê°œ ìŠ¬ë˜ì‹œ (ë°”ëŒ ì†ì„±) - ë°”ëŒ ì†ì„±ì„ 20ê°œ í•„ìš”
             AddUnlockData(SkillNames.ThunderSlash, 70, requiredCurrencyName: CurrencyNames.AttributeStoneWind, requiredCurrencyCount: 20);
 
-            // ·¹º§ 80
+            // ë ˆë²¨ 80
             AddUnlockData(SkillNames.DancingWave, 80);
 
-            // ·¹º§ 90
+            // ë ˆë²¨ 90
             AddUnlockData(SkillNames.FireWave, 90);
             AddUnlockData(SkillNames.HighSpeedMovement, 90);
 
-            // ·¹º§ 100
-            // ¸ŞµğÅ×ÀÌ¼Ç (¹° ¼Ó¼º) - ¹° ¼Ó¼º¼® 50°³ ÇÊ¿ä
+            // ë ˆë²¨ 100
+            // ëª…ìƒ (ë¬¼ ì†ì„±) - ë¬¼ ì†ì„±ì„ 50ê°œ í•„ìš”
             AddUnlockData(SkillNames.Meditation, 100, requiredCurrencyName: CurrencyNames.AttributeStoneWater, requiredCurrencyCount: 50);
             AddUnlockData(SkillNames.PowerImpact, 100);
 
-            // ·¹º§ 120
-            // ¿¬¿Á È­¿° º£±â (ºÒ ¼Ó¼º) - ºÒ ¼Ó¼º¼® 300°³ ÇÊ¿ä
+            // ë ˆë²¨ 120
+            // ì§€ì˜¥ í™”ì—¼ ìŠ¬ë˜ì‹œ (ë¶ˆ ì†ì„±) - ë¶ˆ ì†ì„±ì„ 300ê°œ í•„ìš”
             AddUnlockData(SkillNames.HellfireSlash, 120, requiredCurrencyName: CurrencyNames.AttributeStoneFire, requiredCurrencyCount: 300);
 
-            // ·¹º§ 140
-            // ¼ö¶ó ¹ø°³ º£±â (¹Ù¶÷ ¼Ó¼º) - ¹Ù¶÷ ¼Ó¼º¼® 300°³ ÇÊ¿ä
+            // ë ˆë²¨ 140
+            // ì•„ìˆ˜ë¼ ë²ˆê°œ ìŠ¬ë˜ì‹œ (ë°”ëŒ ì†ì„±) - ë°”ëŒ ì†ì„±ì„ 300ê°œ í•„ìš”
             AddUnlockData(SkillNames.AsuraLightningSlash, 140, requiredCurrencyName: CurrencyNames.AttributeStoneWind, requiredCurrencyCount: 300);
-            // ¶óÀÌÇÁ ¸¶³ª (¶¥ ¼Ó¼º) - ¶¥ ¼Ó¼º¼® 50°³ ÇÊ¿ä
+            // ìƒëª… ë§ˆë‚˜ (ë•… ì†ì„±) - ë•… ì†ì„±ì„ 50ê°œ í•„ìš”
             AddUnlockData(SkillNames.LifeMana, 140, requiredCurrencyName: CurrencyNames.AttributeStoneEarth, requiredCurrencyCount: 50);
 
-            // ·¹º§ 160
-            // ¾ÆÀÌ½º Å¸ÀÓ (¹° ¼Ó¼º) - ¹° ¼Ó¼º¼® 300°³ ÇÊ¿ä
+            // ë ˆë²¨ 160
+            // ì•„ì´ìŠ¤ íƒ€ì„ (ë¬¼ ì†ì„±) - ë¬¼ ì†ì„±ì„ 300ê°œ í•„ìš”
             AddUnlockData(SkillNames.IceTime, 160, requiredCurrencyName: CurrencyNames.AttributeStoneWater, requiredCurrencyCount: 300);
 
-            // ·¹º§ 180
-            // ±â°¡ ½ºÆ®¶óÀÌÅ© (¶¥ ¼Ó¼º) - ¶¥ ¼Ó¼º¼® 300°³ ÇÊ¿ä
+            // ë ˆë²¨ 180
+            // ê¸°ê°€ ìŠ¤íŠ¸ë¼ì´í¬ (ë•… ì†ì„±) - ë•… ì†ì„±ì„ 300ê°œ í•„ìš”
             AddUnlockData(SkillNames.GigaStrike, 180, requiredCurrencyName: CurrencyNames.AttributeStoneEarth, requiredCurrencyCount: 300);
 
-            // ·¹º§ 200
-            // ºĞ³ë (ºÒ ¼Ó¼º) - ºÒ ¼Ó¼º¼® 100°³ ÇÊ¿ä
+            // ë ˆë²¨ 200
+            // ë¶„ë…¸ (ë¶ˆ ì†ì„±) - ë¶ˆ ì†ì„±ì„ 100ê°œ í•„ìš”
             AddUnlockData(SkillNames.Rage, 200, requiredCurrencyName: CurrencyNames.AttributeStoneFire, requiredCurrencyCount: 100);
             AddUnlockData(SkillNames.RedThunder, 200);
 
-            // ·¹º§ 250
+            // ë ˆë²¨ 250
             AddUnlockData(SkillNames.ManaBlessing, 250);
 
-            // ·¹º§ 300
+            // ë ˆë²¨ 300
             AddUnlockData(SkillNames.TrueHeatWave, 300);
             AddUnlockData(SkillNames.ThunderGod, 300);
 
-            // ·¹º§ 350
+            // ë ˆë²¨ 350
             AddUnlockData(SkillNames.Blizzard, 350);
 
-            // ·¹º§ 400
+            // ë ˆë²¨ 400
             AddUnlockData(SkillNames.FirePillar, 400);
 
-            // ·¹º§ 450
+            // ë ˆë²¨ 450
             AddUnlockData(SkillNames.Swiftness, 450);
 
-            // ·¹º§ 500
+            // ë ˆë²¨ 500
             AddUnlockData(SkillNames.BeastHunt, 500);
 
-            // ±âÅ¸ Á¶°Ç (·¹º§ 0À¸·Î ¼³Á¤ - Æ¯º° Ã³¸® ÇÊ¿ä)
-            // ±â°¡ ÀÓÆÑÆ® - Àü¼³ 1µî±Ş ¾Ç¼¼»ç¸® 4°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // íŠ¹ë³„ í•´ê¸ˆ (ë ˆë²¨ 0ìœ¼ë¡œ ì„¤ì • - íŠ¹ë³„ ì¡°ê±´ í•„ìš”)
+            // ê¸°ê°€ ì„íŒ©íŠ¸ - ì „ì‚¬ 1ë ˆë²¨ ë° ëª…ìƒì„ 4ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.GigaImpact, 0);
-            // ¿ö¸®¾î¹ø - ½ÅÈ­ 1µî±Ş ¾Ç¼¼»ç¸® 4°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // ì›Œë¦¬ì–´ ë²ˆ - ì „ì‚¬ 1ë ˆë²¨ ë° ëª…ìƒì„ 4ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.WarriorBurn, 0);
-            // °İ·ù - ½ÅÈ­ 4µî±Ş ¾Ç¼¼»ç¸® 4°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // ê¸‰ë¥˜ - ì „ì‚¬ 4ë ˆë²¨ ë° ëª…ìƒì„ 4ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.Torrent, 0);
-            // ±«·Â³­½Å - ½ÅÈ­ 3µî±Ş ¾Ç¼¼»ç¸® 4°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // ì´ˆì¸ì  í˜ - ì „ì‚¬ 3ë ˆë²¨ ë° ëª…ìƒì„ 4ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.SuperhumanStrength, 0);
 
-            // ºÒ¸ê µî±Ş (·¹º§ 0À¸·Î ¼³Á¤ - Æ¯º° Ã³¸® ÇÊ¿ä)
-            // ·¹ÀÌºê - ºÒ¸ê ¹«±â 1°³ ¶Ç´Â ½ÅÈ­ 1µî±Ş ¹«±â 1°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // ë§¤í˜¹ í•´ê¸ˆ (ë ˆë²¨ 0ìœ¼ë¡œ ì„¤ì • - íŠ¹ë³„ ì¡°ê±´ í•„ìš”)
+            // ë ˆì´ë¸Œ - ë§¤í˜¹ ìŠ¤í‚¬ 1ê°œ ë˜ëŠ” ì „ì‚¬ 1ë ˆë²¨ ë° ìŠ¤í‚¬ 1ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.Rave, 0);
-            // ¸¸Æ®¶ó - ºÒ¸ê ¾Ç¼¼»ç¸® 1°³ ¶Ç´Â ½ÅÈ­ 1µî±Ş ¾Ç¼¼»ç¸® 1°³ ÇÊ¿ä (µî±Ş/·¹º§ Á¶°ÇÀÌ¹Ç·Î ItemNames.NoneÀ¸·Î ¼³Á¤)
+            // ë§ŒíŠ¸ë¼ - ë§¤í˜¹ ëª…ìƒì„ 1ê°œ ë˜ëŠ” ì „ì‚¬ 1ë ˆë²¨ ë° ëª…ìƒì„ 1ê°œ í•„ìš” (ë¬´ê¸°/ë°©ì–´êµ¬ ì—†ìŒì´ë¯€ë¡œ ItemNames.Noneìœ¼ë¡œ ì„¤ì •)
             AddUnlockData(SkillNames.Mantra, 0);
 
             EditorUtility.SetDirty(this);
-            Log.Info(LogTags.ScriptableData, "[SkillCardUnlock] ±âº»°ªÀÌ ¼³Á¤µÇ¾ú½À´Ï´Ù. ÃÑ {0}°³ÀÇ ½ºÅ³: {1}", UnlockDataList.Count, name);
+            Log.Info(LogTags.ScriptableData, "[SkillCardUnlock] ê¸°ë³¸ê°’ì´ ì„¤ì •ë˜ì—ˆìŠµë‹ˆë‹¤. ì´ {0}ê°œì˜ ìŠ¤í‚¬: {1}", UnlockDataList.Count, name);
         }
 
         private void AddUnlockData(SkillNames skillName, int unlockLevel, ItemNames requiredItemName = ItemNames.None, int requiredItemCount = 0, CurrencyNames requiredCurrencyName = CurrencyNames.None, int requiredCurrencyCount = 0)

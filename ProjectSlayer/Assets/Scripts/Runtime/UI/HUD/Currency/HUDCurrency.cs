@@ -83,9 +83,13 @@ namespace TeamSuneat.UserInterface
             {
                 return;
             }
+
             VProfile profileInfo = GameApp.GetSelectedProfile();
-            int amount = profileInfo.Currency.GetAmount(_currencyName);
-            SetValue(amount);
+            if (profileInfo != null)
+            {
+                int amount = profileInfo.Currency.GetAmount(_currencyName);
+                SetValue(amount);
+            }
 
             _punchScaler?.PlayPunchScaleAnimation();
         }

@@ -1,8 +1,5 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using System.Linq;
-using TeamSuneat;
-using TeamSuneat.Data;
 using UnityEngine;
 using UnityEngine.UI;
 

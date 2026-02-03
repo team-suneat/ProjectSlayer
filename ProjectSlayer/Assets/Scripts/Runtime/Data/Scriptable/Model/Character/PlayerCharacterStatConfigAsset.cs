@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TeamSuneat.Data
 {
-    [CreateAssetMenu(fileName = "PlayerCharacterStatConfig", menuName = "TeamSuneat/Scriptable/PlayerCharacterStatConfig")]
+    [CreateAssetMenu(fileName = "PlayerCharacterStatConfig", menuName = "TeamSuneat/Config/PlayerStat")]
     public class PlayerCharacterStatConfigAsset : XScriptableObject
     {
         public int BaseAttack = 1; // 기본 공격력 (1)

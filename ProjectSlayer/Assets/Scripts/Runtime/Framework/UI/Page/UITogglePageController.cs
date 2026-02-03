@@ -47,6 +47,13 @@ namespace TeamSuneat
             }
 
             _toggleGroup.OnToggleChanged.AddListener(OnToggleChanged);
+
+            int currentIndex = _toggleGroup.GetActiveToggleIndex();
+            if (currentIndex >= 0)
+            {
+                _pageGroup.ShowPage(currentIndex);
+                _currentActivePageIndex = currentIndex;
+            }
         }
 
         private void OnToggleChanged(int toggleIndex)
@@ -100,6 +107,11 @@ namespace TeamSuneat
         public UIPage GetPage(int index)
         {
             return _pageGroup?.GetPage(index);
+        }
+
+        public int GetCurrentPageIndex()
+        {
+            return _currentActivePageIndex;
         }
     }
 }

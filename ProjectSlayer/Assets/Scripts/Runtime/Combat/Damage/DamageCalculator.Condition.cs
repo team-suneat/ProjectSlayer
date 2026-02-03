@@ -156,8 +156,6 @@ namespace TeamSuneat
             float targetCriticalChance = 0f;
 
             TryAddAttackerStatValue(StatNames.CriticalChance, ref criticalChance);
-
-            GameDefineAssetData defineAssetData = ScriptableDataManager.Instance.GetGameDefine().Data;
             float resultCriticalChance = criticalChance + targetCriticalChance;
 
             // 치명타 확률이 0% 이하이면 치명타 발생하지 않음

@@ -36,7 +36,7 @@ namespace TeamSuneat.Data.Game
             }
 
             SkillNames skillName = SkillNames.None;
-            var keys = new List<string>(Skills.Keys);
+            List<string> keys = new List<string>(Skills.Keys);
             for (int i = 0; i < keys.Count; i++)
             {
                 string key = keys[i];
@@ -54,9 +54,9 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        // 기술 카드 관련 메서드
+        #region 기술 카드
 
-        public bool CheckUnlockedCard(SkillNames skillName)
+        public bool IsUnlockedCard(SkillNames skillName)
         {
             return UnlockedCards.Contains(skillName.ToString());
         }
@@ -71,22 +71,62 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        public bool CheckObtainedCard(SkillNames skillName)
+        public bool IsObtainedCard(SkillNames skillName)
         {
             return ObtainedCards.Contains(skillName.ToString());
         }
 
-        public void ObtainCard(SkillNames skillName)
+        public void AddSkillCard(SkillNames skillName)
         {
             string key = skillName.ToString();
             if (!ObtainedCards.Contains(key))
             {
                 ObtainedCards.Add(key);
-                Log.Info(LogTags.GameData_Skill, "기술 카드를 획득합니다: {0}", skillName);
             }
+
+            if (Skills.TryGetValue(key, out VSkill skill))
+            {
+                skill.Level += 1;
+            }
+            else
+            {
+                VSkill newSkill = new VSkill(skillName);
+                Skills.Add(key, newSkill);
+                _skillMap.Add(skillName, newSkill);
+            }
+
+            Log.Info(LogTags.GameData_Skill, "기술 카드를 획득합니다: {0}", skillName.ToLogString());
         }
 
-        // 기술 학습 관련 메서드
+        public bool RemoveSkillCard(SkillNames skillName)
+        {
+            string key = skillName.ToString();
+            if (!ObtainedCards.Remove(key))
+            {
+                return false;
+            }
+
+            if (!Skills.TryGetValue(key, out VSkill skill))
+            {
+                Log.Warning(LogTags.GameData_Skill, "기술 카드를 제거하려 했으나 기술 데이터가 없습니다: {0}", skillName.ToLogString());
+                return true;
+            }
+
+            skill.Level -= 1;
+            if (skill.Level <= 0)
+            {
+                Skills.Remove(key);
+                _skillMap.Remove(skillName);
+                UnequipSkillFromAllSlots(skillName);
+            }
+
+            Log.Info(LogTags.GameData_Skill, "기술 카드를 제거합니다: {0}", skillName.ToLogString());
+            return true;
+        }
+
+        #endregion 기술 카드
+
+        #region 기술 학습
 
         public bool HasSkill(SkillNames skillName)
         {
@@ -117,7 +157,9 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        // 기술 슬롯 관련 메서드
+        #endregion 기술 학습
+
+        #region 기술 슬롯
 
         public void UnlockSlot(int slotIndex)
         {
@@ -128,7 +170,7 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        public bool CheckUnlockedSlot(int slotIndex)
+        public bool IsUnlockedSlot(int slotIndex)
         {
             if (Slots.IsValid(slotIndex))
             {
@@ -205,6 +247,8 @@ namespace TeamSuneat.Data.Game
             return skillName;
         }
 
+        #endregion 기술 슬롯
+
         private bool TryGetSlot(int slotIndex, out VSkillSlot slot)
         {
             slot = null;
@@ -242,7 +286,21 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        #region Skill Slots
+        private void UnequipSkillFromAllSlots(SkillNames skillName)
+        {
+            string skillNameString = skillName.ToString();
+            for (int i = 0; i < Slots.Count; i++)
+            {
+                VSkillSlot slot = Slots[i];
+                if (slot.SkillNameString == skillNameString)
+                {
+                    slot.SkillNameString = string.Empty;
+                    _slotSkillNames.Remove(skillName);
+                }
+            }
+        }
+
+        #region 슬롯 조회 및 동기화
 
         public List<SkillNames> GetSkillNames()
         {
@@ -264,7 +322,7 @@ namespace TeamSuneat.Data.Game
             return skills;
         }
 
-        public bool ContainsSkillSlot(SkillNames skillName)
+        public bool HasSkillInSlot(SkillNames skillName)
         {
             if (_slotSkillNames.IsValid())
             {
@@ -335,7 +393,7 @@ namespace TeamSuneat.Data.Game
             }
         }
 
-        #endregion Skill Slots
+        #endregion 슬롯 조회 및 동기화
 
         public static VCharacterSkill CreateDefault()
         {
@@ -347,16 +405,9 @@ namespace TeamSuneat.Data.Game
                 defaultSkill.Slots.Add(new VSkillSlot
                 {
                     SlotID = i,
-                    // IsUnlocked = i == 0,
-                    IsUnlocked = true,
+                    IsUnlocked = i == 0,
                     SkillNameString = string.Empty
                 });
-            }
-
-            SkillNames[] skills = EnumEx.GetValues<SkillNames>(true);
-            for (int i = 0; i < skills.Length; i++)
-            {
-                defaultSkill.LearnSkill(skills[i]);
             }
 
             return defaultSkill;
