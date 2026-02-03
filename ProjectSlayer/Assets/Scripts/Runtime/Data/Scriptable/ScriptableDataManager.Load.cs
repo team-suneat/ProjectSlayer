@@ -30,6 +30,7 @@ namespace TeamSuneat.Data
             else if (!_soundAssets.IsValid()) { return false; }
             else if (!_stageAssets.IsValid()) { return false; }
             else if (!_areaAssets.IsValid()) { return false; }
+            else if (!_itemAssets.IsValid()) { return false; }
             else if (_enhancementDataAsset == null) { return false; }
             else if (_growthDataAsset == null) { return false; }
             else if (_experienceConfigAsset == null) { return false; }
@@ -61,6 +62,12 @@ namespace TeamSuneat.Data
             foreach (var areaAsset in _areaAssets.Values)
             {
                 areaAsset?.OnLoadData();
+            }
+
+            // 아이템 에셋 OnLoadData() 메서드 호출
+            foreach (var itemAsset in _itemAssets.Values)
+            {
+                itemAsset?.OnLoadData();
             }
 
             // 강화 시스템 데이터 OnLoadData() 메서드 호출
@@ -816,6 +823,14 @@ namespace TeamSuneat.Data
                         if (!_areaAssets.ContainsKey(areaTid))
                         {
                             _areaAssets[areaTid] = area;
+                            count++;
+                        }
+                        break;
+
+                    case ItemAsset item:
+                        if (!_itemAssets.ContainsKey(item.TID))
+                        {
+                            _itemAssets[item.TID] = item;
                             count++;
                         }
                         break;

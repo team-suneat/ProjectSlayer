@@ -8,19 +8,14 @@ namespace TeamSuneat
     public class UIToggleGroup : XBehaviour
     {
         [Title("#UIToggleGroup")]
-        [ShowInInspector]
-        [ReadOnly]
-        private ToggleGroup _toggleGroup;
-
-        [ShowInInspector]
-        [ReadOnly]
-        private UIToggle[] _toggles;
-
         [SerializeField]
-        [Tooltip("false일 경우 항상 하나의 토글이 켜져있어야 합니다.")]
+        [InfoBox("false일 경우 항상 하나의 토글이 켜져있어야 합니다.")]
         private bool _allowSwitchOff = true;
 
-        public int ToggleCount => _toggles.Length;
+        private ToggleGroup _toggleGroup;
+        private UIToggle[] _toggles;
+
+        public int ToggleCount => _toggles != null ? _toggles.Length : 0;
         public ToggleGroup ToggleGroup => _toggleGroup;
 
         [Title("#UIToggleGroup-Events")]
@@ -137,7 +132,7 @@ namespace TeamSuneat
 
         public void SetToggle(int index, bool isOn)
         {
-            if (index < 0 || index >= _toggles.Length)
+            if (!_toggles.IsValid(index))
             {
                 Log.Warning(LogTags.UI_Toggle, $"(Group) 유효하지 않은 인덱스입니다: {index}");
                 return;
@@ -152,7 +147,7 @@ namespace TeamSuneat
 
         public Toggle GetToggle(int index)
         {
-            if (index < 0 || index >= _toggles.Length)
+            if (!_toggles.IsValid(index))
             {
                 return null;
             }

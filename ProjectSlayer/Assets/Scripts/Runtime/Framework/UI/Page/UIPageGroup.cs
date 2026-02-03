@@ -1,15 +1,11 @@
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TeamSuneat
 {
     public class UIPageGroup : XBehaviour
     {
-        [Title("#UIPageGroup")]
-        [ShowInInspector]
-        [ReadOnly]
         private UIPage[] _pages;
-        public int PageCount => _pages.Length;
+        public int PageCount => _pages != null ? _pages.Length : 0;
 
         private void Awake()
         {
@@ -19,7 +15,7 @@ namespace TeamSuneat
 
         public void ShowPage(int index)
         {
-            if (index < 0 || index >= _pages.Length)
+            if (!_pages.IsValid(index))
             {
                 Debug.LogWarning($"[UIPageGroup] 유효하지 않은 인덱스입니다: {index}");
                 return;
@@ -33,7 +29,7 @@ namespace TeamSuneat
 
         public void HidePage(int index)
         {
-            if (index < 0 || index >= _pages.Length)
+            if (!_pages.IsValid(index))
             {
                 Debug.LogWarning($"[UIPageGroup] 유효하지 않은 인덱스입니다: {index}");
                 return;
@@ -47,8 +43,9 @@ namespace TeamSuneat
 
         public void CloseAllPages()
         {
-            foreach (UIPage page in _pages)
+            for (int i = 0; i < _pages.Length; i++)
             {
+                UIPage page = _pages[i];
                 if (page != null)
                 {
                     page.Hide();
@@ -58,7 +55,7 @@ namespace TeamSuneat
 
         public UIPage GetPage(int index)
         {
-            if (index < 0 || index >= _pages.Length)
+            if (!_pages.IsValid(index))
             {
                 return null;
             }

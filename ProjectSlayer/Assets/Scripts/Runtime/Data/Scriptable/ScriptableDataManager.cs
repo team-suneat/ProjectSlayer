@@ -32,7 +32,8 @@ namespace TeamSuneat.Data
         private readonly Dictionary<int, SoundAsset> _soundAssets = new();
         private readonly Dictionary<int, StageAsset> _stageAssets = new();
         private readonly Dictionary<int, AreaAsset> _areaAssets = new();
-    
+        private readonly Dictionary<int, ItemAsset> _itemAssets = new();
+
         public void Clear()
         {
             _logSetting = null;
@@ -49,6 +50,7 @@ namespace TeamSuneat.Data
             _flickerAssets.Clear();
             _stageAssets.Clear();
             _areaAssets.Clear();
+            _itemAssets.Clear();
             _enhancementDataAsset = null;
             _growthDataAsset = null;
             _experienceConfigAsset = null;
@@ -75,6 +77,7 @@ namespace TeamSuneat.Data
             RefreshAllSounds();
             RefreshAllStage();
             RefreshAllArea();
+            RefreshAllItem();
             RefreshEnhancement();
             RefreshGrowth();
             RefreshExperienceConfig();

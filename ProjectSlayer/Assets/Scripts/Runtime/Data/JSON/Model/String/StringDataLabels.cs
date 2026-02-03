@@ -11,6 +11,7 @@ namespace TeamSuneat.Data
         public const string FORMAT_MAX_LEVEL = "Format_MaxLevel";
         public const string FORMAT_LEVEL_UP = "Format_LevelUp";
         public const string FORMAT_SUMMON_LEVEL = "Format_SummonLevel";
+        public const string FORMAT_GRADE = "Format_Grade";       
 
         public const string POPUP_TITLE_CHARACTER_INFO = "Popup_Title_CharacterInfo";
     }

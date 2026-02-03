@@ -1,7 +1,6 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {

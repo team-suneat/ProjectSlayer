@@ -8,7 +8,7 @@ namespace TeamSuneat
 
         public bool IsActive { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             IsActive = true;
 
