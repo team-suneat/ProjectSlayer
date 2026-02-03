@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEditor;
 
 namespace TeamSuneat.Data
 {
@@ -10,10 +9,7 @@ namespace TeamSuneat.Data
         [Button("기본값 설정", ButtonSizes.Medium)]
         public void SetDefaultValues()
         {
-            if (UnlockDataList == null)
-            {
-                UnlockDataList = new List<SkillCardUnlockAssetData>();
-            }
+            UnlockDataList ??= new List<SkillCardUnlockAssetData>();
 
             UnlockDataList.Clear();
 
@@ -137,7 +133,9 @@ namespace TeamSuneat.Data
             // 만트라 - 매혹 명상석 1개 또는 전사 1레벨 및 명상석 1개 필요 (무기/방어구 없음이므로 ItemNames.None으로 설정)
             AddUnlockData(SkillNames.Mantra, 0);
 
-            EditorUtility.SetDirty(this);
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
             Log.Info(LogTags.ScriptableData, "[SkillCardUnlock] 기본값이 설정되었습니다. 총 {0}개의 스킬: {1}", UnlockDataList.Count, name);
         }
 

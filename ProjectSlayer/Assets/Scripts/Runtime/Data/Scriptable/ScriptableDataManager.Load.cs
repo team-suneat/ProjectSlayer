@@ -53,19 +53,19 @@ namespace TeamSuneat.Data
             _logSetting?.OnLoadData();
 
             // 스테이지 에셋 OnLoadData() 메서드 호출
-            foreach (var stageAsset in _stageAssets.Values)
+            foreach (StageAsset stageAsset in _stageAssets.Values)
             {
                 stageAsset?.OnLoadData();
             }
 
             // 지역 에셋 OnLoadData() 메서드 호출
-            foreach (var areaAsset in _areaAssets.Values)
+            foreach (AreaAsset areaAsset in _areaAssets.Values)
             {
                 areaAsset?.OnLoadData();
             }
 
             // 아이템 에셋 OnLoadData() 메서드 호출
-            foreach (var itemAsset in _itemAssets.Values)
+            foreach (ItemAsset itemAsset in _itemAssets.Values)
             {
                 itemAsset?.OnLoadData();
             }
@@ -101,7 +101,7 @@ namespace TeamSuneat.Data
             _summonLevelConfigAsset?.OnLoadData();
 
             // 스킬 에셋 OnLoadData() 메서드 호출
-            foreach (var skillAsset in _skillAssets.Values)
+            foreach (SkillAsset skillAsset in _skillAssets.Values)
             {
                 skillAsset?.OnLoadData();
             }

@@ -88,12 +88,23 @@ namespace TeamSuneat.Data
             CustomLog();
         }
 
+        private void CustomLog()
+        {
+            if (StatName == StatNames.None)
+            {
+                Log.Error("강화 시스템 데이터의 능력치 이름이 설정되지 않았습니다: {0}", StatName);
+            }
+            if (MaxLevel == 0)
+            {
+                Log.Error("강화 시스템 데이터의 최대 레벨이 설정되지 않았습니다: {0}", StatName);
+            }
+        }
+
         public float CalculateStatValue(int level)
         {
             // 능력치 값 = 레벨 × 성장값
             return level * GrowthValue;
         }
-
 
         public bool HasRequirement => RequiredStatName != StatNames.None && RequiredStatLevel > 0;
 
@@ -123,19 +134,6 @@ namespace TeamSuneat.Data
             }
         }
 
-        private void CustomLog()
-        {
-            if (StatName == StatNames.None)
-            {
-                Log.Error("강화 시스템 데이터의 능력치 이름이 설정되지 않았습니다: {0}", StatName);
-            }
-            if (MaxLevel == 0)
-            {
-                Log.Error("강화 시스템 데이터의 최대 레벨이 설정되지 않았습니다: {0}", StatName);
-            }
-        }
-
 #endif
     }
 }
-

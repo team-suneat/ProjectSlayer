@@ -1,7 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
-using TeamSuneat;
 
 namespace TeamSuneat.Data
 {
@@ -71,7 +70,7 @@ namespace TeamSuneat.Data
                 _hasChangedWhiteRefreshAll = true;
             }
 
-            base.RefreshWithoutSave();
+            _ = base.RefreshWithoutSave();
             return _hasChangedWhiteRefreshAll;
         }
 

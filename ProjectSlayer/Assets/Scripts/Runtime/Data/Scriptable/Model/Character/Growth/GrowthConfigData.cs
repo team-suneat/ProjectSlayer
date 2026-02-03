@@ -81,12 +81,26 @@ namespace TeamSuneat.Data
             CustomLog();
         }
 
+        private void CustomLog()
+        {
+            if (GrowthType == CharacterGrowthTypes.None)
+            {
+                Log.Error("성장 시스템 데이터의 성장 타입이 설정되지 않았습니다: {0}", StatName);
+            }
+            if (StatName == StatNames.None)
+            {
+                Log.Error("성장 시스템 데이터의 능력치 이름이 설정되지 않았습니다: {0}", GrowthType);
+            }
+            if (MaxLevel == 0)
+            {
+                Log.Error("성장 시스템 데이터의 최대 레벨이 설정되지 않았습니다: {0}", StatName);
+            }
+        }
+
         public float CalculateStatValue(int level)
         {
             return level * StatIncreasePerLevel;
         }
-
-
 
 #if UNITY_EDITOR
 
@@ -111,22 +125,6 @@ namespace TeamSuneat.Data
             {
                 target = newString;
                 _hasChangedWhiteRefreshAll = true;
-            }
-        }
-
-        private void CustomLog()
-        {
-            if (GrowthType == CharacterGrowthTypes.None)
-            {
-                Log.Error("성장 시스템 데이터의 성장 타입이 설정되지 않았습니다: {0}", StatName);
-            }
-            if (StatName == StatNames.None)
-            {
-                Log.Error("성장 시스템 데이터의 능력치 이름이 설정되지 않았습니다: {0}", GrowthType);
-            }
-            if (MaxLevel == 0)
-            {
-                Log.Error("성장 시스템 데이터의 최대 레벨이 설정되지 않았습니다: {0}", StatName);
             }
         }
 
