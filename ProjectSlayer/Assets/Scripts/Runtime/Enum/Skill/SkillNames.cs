@@ -78,7 +78,7 @@ namespace TeamSuneat
 
             switch (gradeName)
             {
-                case GradeNames.Grand:
+                case GradeNames.Uncommon:
                     randomValue = RandomEx.Range(0, 4);
                     break;
 

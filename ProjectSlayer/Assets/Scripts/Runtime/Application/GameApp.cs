@@ -72,8 +72,8 @@ namespace TeamSuneat
                 await JsonDataManager.LoadJsonSheetsAsync();
             }
 
-            await ResourcesManager.LoadResourcesByLabelAsync<SpriteAtlas>(AddressableLabels.Ingame);
-            await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(AddressableLabels.Ingame);
+            await ResourcesManager.LoadResourcesByLabelAsync<SpriteAtlas>(AddressableLabels.Default);
+            await ResourcesManager.LoadResourcesByLabelAsync<GameObject>(AddressableLabels.Default);
 
             // LOAD SAVED DATA
             LoadGameData();

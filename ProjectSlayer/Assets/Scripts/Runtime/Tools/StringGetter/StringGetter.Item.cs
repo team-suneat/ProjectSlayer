@@ -195,24 +195,15 @@ namespace TeamSuneat
         }
 
         // 장비 (Equipment)
-
-        public static string GetGambleString(this EquipmentSlotTypes key)
+        public static string GetStringKey(this GradeNames key)
         {
-            return JsonDataManager.FindStringClone(key.ToString());
-        }
-
-        public static string GetLocalizedString(this GradeNames key)
-        {
-            return GetLocalizedString(key, GameSetting.Instance.Language.Name);
+            return $"Grade_Name_{key}";
         }
 
         public static string GetLocalizedString(this GradeNames key, LanguageNames languageName)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("Grade_Name_");
-            stringBuilder.Append(key.ToString());
-
-            return JsonDataManager.FindStringClone(stringBuilder.ToString(), languageName);
+            string stringKey = GetStringKey(key);
+            return JsonDataManager.FindStringClone(stringKey, languageName);
         }
 
         public static string ReplaceItemSubDesc(string content)

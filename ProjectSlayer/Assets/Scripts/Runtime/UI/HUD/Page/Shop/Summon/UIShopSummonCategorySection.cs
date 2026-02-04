@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using TeamSuneat.Data;
 using TeamSuneat.Data.Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
 {
@@ -12,6 +13,7 @@ namespace TeamSuneat.UserInterface
         [SerializeField] private UIShopSummonOptionButton _gemSingleButton;
         [SerializeField] private UIShopSummonOptionButton _gemMultiButton;
         [SerializeField] private UIShopSummonOptionButton _adMultiButton;
+        [SerializeField] private UIButton _probabilityTableButton;
         [SerializeField] private UILocalizedText _categoryTitleText;
         [SerializeField] private UILocalizedText _summonLevelText;
         [SerializeField] private UIGauge _summonLevelGauge;
@@ -32,6 +34,7 @@ namespace TeamSuneat.UserInterface
                 _adMultiButton ??= buttons[2];
             }
 
+            _probabilityTableButton ??= this.FindComponent<UIButton>("Probability Table Button");
             _categoryTitleText ??= GetComponentInChildren<UILocalizedText>(true);
             _summonLevelText ??= this.FindComponent<UILocalizedText>("Summon Level Text");
             _summonLevelGauge ??= GetComponentInChildren<UIGauge>(true);
@@ -137,6 +140,11 @@ namespace TeamSuneat.UserInterface
             {
                 _adMultiButton.OnOptionClicked.AddListener(ForwardOptionClicked);
             }
+
+            if (_probabilityTableButton != null)
+            {
+                _probabilityTableButton.RegisterClickSuccessEvent(OnClickProbabilityTableButton);
+            }
         }
 
         private void UnregisterButtonEvents()
@@ -155,6 +163,29 @@ namespace TeamSuneat.UserInterface
             {
                 _adMultiButton.OnOptionClicked.RemoveListener(ForwardOptionClicked);
             }
+
+            if (_probabilityTableButton != null)
+            {
+                _probabilityTableButton.UnregisterClickSuccessEvent(OnClickProbabilityTableButton);
+            }
+        }
+
+        private void OnClickProbabilityTableButton()
+        {
+            if (UIManager.Instance.PopupManager.BlockSpawnPopup)
+            {
+                return;
+            }
+
+            UIPopup popup = UIManager.Instance.PopupManager.SpawnCenterPopup(UIPopupNames.SummonProbability, OnDespawnSummonProbabilityPopup);
+            if (popup is UISummonProbabilityPopup summonProbPopup)
+            {
+                summonProbPopup.Setup(_category);
+            }
+        }
+
+        private void OnDespawnSummonProbabilityPopup(bool result)
+        {
         }
 
         private void ForwardOptionClicked(ShopSummonCategory category, ShopSummonOptionType optionType)

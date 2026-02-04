@@ -1,9 +1,9 @@
-using System.Collections;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TeamSuneat.UserInterface
@@ -27,6 +27,7 @@ namespace TeamSuneat.UserInterface
         public UnityEvent OnClickFailure;
 
         private Tween _alphaTween;
+        private Tween _colorTween;
         private Coroutine _holdCoroutine;
         private bool _isHolding;
 
@@ -89,11 +90,12 @@ namespace TeamSuneat.UserInterface
 
         protected virtual void OnButtonClick()
         {
+            PlayPunchScaleAnimation();
+            PlayButtonImageAlphaAnimation();
+
             if (CheckClickable())
             {
-                PlayPunchScaleAnimation();
-                PlayButtonImageAlphaAnimation();
-                OnClickSucceeded();
+                CoroutineNextTimer(DEFAULT_BUTTON_IMAGE_ALPHA_DURATION, OnClickSucceeded);
             }
             else
             {
@@ -103,10 +105,11 @@ namespace TeamSuneat.UserInterface
 
         protected virtual void OnButtonHold()
         {
+            PlayPunchScaleAnimation();
+            PlayButtonImageAlphaAnimation();
+
             if (CheckClickable())
             {
-                PlayPunchScaleAnimation();
-                PlayButtonImageAlphaAnimation();
                 OnHoldSucceeded();
             }
             else
@@ -163,12 +166,19 @@ namespace TeamSuneat.UserInterface
         {
             base.KillAllTweens();
             KillAlphaTween();
+            KillColorTween();
         }
 
         private void KillAlphaTween()
         {
             _alphaTween?.Kill();
             _alphaTween = null;
+        }
+
+        private void KillColorTween()
+        {
+            _colorTween?.Kill();
+            _colorTween = null;
         }
 
         #region Click Events

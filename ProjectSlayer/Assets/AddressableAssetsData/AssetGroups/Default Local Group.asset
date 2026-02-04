@@ -19,31 +19,31 @@ MonoBehaviour:
     m_Address: Assets/Addressables/Prefab/Monster/TreasureChest.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 517f4a79e3aa91442ac3dd635d561375
     m_Address: Assets/Addressables/Prefab/UI/Notice/UIStageTitleNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 577e02325167be74b8eb99ec2a3eae09
     m_Address: Assets/Addressables/Atlas/atlas_ui.spriteatlasv2
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5bdae017423ab2743b7fb486cbaf31bd
     m_Address: Assets/Addressables/Prefab/UI/Popup/UIPurchasePopup.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 639f34b97d47d424f92e28e911d69426
     m_Address: Assets/Addressables/Prefab/UI/Notice/UICurrencyObtainedNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 66a6e2fd0b92cc743835183fc23dc09c
     m_Address: Assets/Addressables/Scriptable/Font/Font_English.asset
@@ -55,7 +55,13 @@ MonoBehaviour:
     m_Address: Assets/Addressables/Prefab/PlayerCharacter.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ec69d0586cadd84c99e8d06d94b6179
+    m_Address: Assets/Addressables/Prefab/UI/Popup/UISummonProbabilityPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7517224cbbcd5f542a9945d3b5c1cd57
     m_Address: Assets/Addressables/Scriptable/LogSetting.asset
@@ -73,43 +79,43 @@ MonoBehaviour:
     m_Address: Assets/Addressables/Atlas/atlas_item.spriteatlasv2
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7125cbb71e3107449098bdcc3818625
     m_Address: Assets/Addressables/Prefab/UI/Follow/UIFloatyText.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7722133c32d1164b8903ce9b2ac954a
     m_Address: Assets/Addressables/Prefab/UI/Notice/UIStatPointShortageNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd2aeea7a8853a141975a77d675335f1
     m_Address: Assets/Addressables/Prefab/UI/Notice/UICurrencyShortageNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf65f72866f858649aede54d0db5eed5
     m_Address: Assets/Addressables/Prefab/UI/Popup/UICharacterInfoPopup.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d0e914d5f9f147b47abcacd3abec69b4
     m_Address: Assets/Addressables/Prefab/UI/Gauge/UIPlayerGauge.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb8d74baaf4a0ab47a9bfda9ef9fdeb0
     m_Address: Assets/Addressables/Prefab/UI/Gauge/UIEnemyGauge.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8e89ddd967dbd94386820034bee2ff4
     m_Address: Assets/Addressables/Scriptable/GameDefine.asset
@@ -121,7 +127,7 @@ MonoBehaviour:
     m_Address: Assets/Addressables/Prefab/UI/Notice/UIExperienceShortageNotice.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Ingame
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0bfdb79b140772546ac483b0ad9449ba, type: 2}

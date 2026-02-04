@@ -15,7 +15,7 @@ namespace TeamSuneat
             switch (gradeName)
             {
                 case GradeNames.Common: return GameColors.Common;
-                case GradeNames.Grand: return GameColors.Grand;
+                case GradeNames.Uncommon: return GameColors.Grand;
                 case GradeNames.Rare: return GameColors.Rare;
                 case GradeNames.Epic: return GameColors.Epic;
                 case GradeNames.Legendary: return GameColors.Legendary;
@@ -32,7 +32,7 @@ namespace TeamSuneat
             switch (gradeName)
             {
                 case GradeNames.Common: return "#2F4F4F"; // DarkSlateGray
-                case GradeNames.Grand: return "#6B8E23"; // OliveDrab
+                case GradeNames.Uncommon: return "#6B8E23"; // OliveDrab
                 case GradeNames.Rare: return "#D2691E"; // Chocolate
                 case GradeNames.Epic: return "#4B0082"; // Indigo
                 case GradeNames.Legendary: return "#8B0000"; // DarkRed

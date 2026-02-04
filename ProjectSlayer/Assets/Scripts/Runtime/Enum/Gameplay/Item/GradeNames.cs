@@ -8,7 +8,7 @@ namespace TeamSuneat
         Common,
 
         /// <summary> 고급 </summary>
-        Grand,
+        Uncommon,
 
         /// <summary> 레어 </summary>
         Rare,

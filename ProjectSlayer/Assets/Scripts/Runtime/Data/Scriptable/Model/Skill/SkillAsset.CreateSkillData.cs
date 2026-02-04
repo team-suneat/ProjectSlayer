@@ -144,7 +144,7 @@ namespace TeamSuneat.Data
                 case SkillNames.HeatWave: // 열풍 - 고급 등급
                     data.Attribute = SkillAttributeTypes.Fire;
                     data.Type = SkillTypes.Active;
-                    data.Grade = GradeNames.Grand;
+                    data.Grade = GradeNames.Uncommon;
                     data.CooldownType = CooldownTypes.TimeBased;
                     data.BaseCooldownTime = 12f;
                     data.CooldownTimeByLevel = 0f;
@@ -340,7 +340,7 @@ namespace TeamSuneat.Data
                 case SkillNames.IceShower: // 아이스 샤워 - 고급 등급
                     data.Attribute = SkillAttributeTypes.Water;
                     data.Type = SkillTypes.Active;
-                    data.Grade = GradeNames.Grand;
+                    data.Grade = GradeNames.Uncommon;
                     data.CooldownType = CooldownTypes.TimeBased;
                     data.BaseCooldownTime = 7f;
                     data.CooldownTimeByLevel = 0f;
@@ -532,7 +532,7 @@ namespace TeamSuneat.Data
                 case SkillNames.HighSpeedMovement: // 고속이동 - 고급 등급
                     data.Attribute = SkillAttributeTypes.Wind;
                     data.Type = SkillTypes.Passive;
-                    data.Grade = GradeNames.Grand;
+                    data.Grade = GradeNames.Uncommon;
                     data.CooldownType = CooldownTypes.TimeBased;
                     data.BaseCooldownTime = 20f;
                     data.CooldownTimeByLevel = 0f;
@@ -720,7 +720,7 @@ namespace TeamSuneat.Data
                 case SkillNames.PowerStrike: // 파워 스트라이크 - 고급 등급
                     data.Attribute = SkillAttributeTypes.Earth;
                     data.Type = SkillTypes.Active;
-                    data.Grade = GradeNames.Grand;
+                    data.Grade = GradeNames.Uncommon;
                     data.CooldownType = CooldownTypes.AttackCountBased;
                     data.BaseCooldownAttackCount = 12;
                     data.CooldownAttackCountByLevel = 0;
@@ -739,7 +739,7 @@ namespace TeamSuneat.Data
                 case SkillNames.PowerImpact: // 파워 임팩트 - 고급 등급
                     data.Attribute = SkillAttributeTypes.Earth;
                     data.Type = SkillTypes.Active;
-                    data.Grade = GradeNames.Grand;
+                    data.Grade = GradeNames.Uncommon;
                     data.CooldownType = CooldownTypes.TimeBased;
                     data.BaseCooldownTime = 10f;
                     data.CooldownTimeByLevel = 0f;

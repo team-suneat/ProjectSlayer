@@ -87,7 +87,7 @@ namespace TeamSuneat.Data
             int index = grade switch
             {
                 GradeNames.Common => 0,
-                GradeNames.Grand => 1,
+                GradeNames.Uncommon => 1,
                 GradeNames.Rare => 2,
                 GradeNames.Epic => 3,
                 GradeNames.Legendary => 4,
@@ -114,6 +114,34 @@ namespace TeamSuneat.Data
         {
             int index = LevelGacha.Pick();
             return (int)LevelGacha.ResultValues[index];
+        }
+
+        public float[] GetLevelGachaProbabilities()
+        {
+            if (LevelGacha?.Probabilities == null || LevelGacha.Probabilities.Count == 0)
+            {
+                return System.Array.Empty<float>();
+            }
+            float[] result = new float[LevelGacha.Probabilities.Count];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = LevelGacha.Probabilities[i];
+            }
+            return result;
+        }
+
+        public float[] GetLevelGachaResultValues()
+        {
+            if (LevelGacha?.ResultValues == null || LevelGacha.ResultValues.Count == 0)
+            {
+                return System.Array.Empty<float>();
+            }
+            float[] result = new float[LevelGacha.ResultValues.Count];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = LevelGacha.ResultValues[i];
+            }
+            return result;
         }
 
         private readonly float[][] ExpectedByLevel =
@@ -160,7 +188,7 @@ namespace TeamSuneat.Data
                 GradeGrowths = new SummonGradeGrowthData[]
                 {
                     new() { Grade = GradeNames.Common },
-                    new() { Grade = GradeNames.Grand },
+                    new() { Grade = GradeNames.Uncommon },
                     new() { Grade = GradeNames.Rare },
                     new() { Grade = GradeNames.Epic },
                     new() { Grade = GradeNames.Legendary },

@@ -30,6 +30,21 @@ namespace TeamSuneat.Data
             return (GradeNames)GradeGacha.ResultValues[index];
         }
 
+        public float[] GetGradeProbabilities()
+        {
+            if (GradeGacha?.Probabilities == null || GradeGacha.Probabilities.Count == 0)
+            {
+                return new float[6];
+            }
+            float[] result = new float[6];
+            int count = Mathf.Min(6, GradeGacha.Probabilities.Count);
+            for (int i = 0; i < count; i++)
+            {
+                result[i] = GradeGacha.Probabilities[i];
+            }
+            return result;
+        }
+
 #if UNITY_EDITOR
 
         public override void Validate()

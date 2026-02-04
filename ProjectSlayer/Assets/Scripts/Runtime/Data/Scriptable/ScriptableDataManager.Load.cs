@@ -591,7 +591,11 @@ namespace TeamSuneat.Data
 
             if (count > 0)
             {
-                Log.Info(LogTags.ScriptableData, "Addressable ScriptableSync 라벨로 {0}개 파일을 동기적으로 읽어왔습니다.", count.ToString());
+                Log.Info(LogTags.ScriptableData, "{0} 라벨로 Addressable의 {1}개 파일을 동기적으로 읽어왔습니다.", label, count.ToString());
+            }
+            else
+            {
+                Log.Warning("{0} 라벨로 Addressable의 파일을 동기적으로 읽어오지 못했습니다.", label);
             }
         }
 
@@ -602,7 +606,7 @@ namespace TeamSuneat.Data
             Clear();
 
             // 동기 로드: GameDefineAsset, LogSettingAsset, FontAsset
-            LoadScriptableAssetsSyncByLabel(AddressableLabels.ScriptableSync);
+            LoadScriptableAssetsSyncByLabel(AddressableLabels.Default);
 
             await LoadScriptableAssetsAsyncByLabel(AddressableLabels.Scriptable);
         }
