@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TeamSuneat.Data;
 using TeamSuneat.Setting;
 using UnityEngine;
 

@@ -15,8 +15,8 @@ MonoBehaviour:
   NameString: HighSpeedMovement
   Data:
     IsChangingAsset: 0
-    Name: 25
-    Attribute: 4
+    Name: 1203
+    Attribute: 5
     Type: 2
     Grade: 2
     MaxLevel: 10
@@ -43,15 +43,8 @@ MonoBehaviour:
     StunChance: 0
     HasTimeStop: 0
     IsPiercing: 0
-    RequiresSkillCard: 0
-    RequiredWeapon: 0
-    RequiredAccessory: 0
-    MinRequiredGrade: 0
     LevelUpCosts: 
     AttributeAsString: Wind
     TypeAsString: Passive
-    GradeAsString: Grand
+    GradeAsString: Uncommon
     CooldownTypeAsString: TimeBased
-    RequiredWeaponAsString: None
-    RequiredAccessoryAsString: None
-    MinRequiredGradeAsString: None

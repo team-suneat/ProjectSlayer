@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace TeamSuneat.UserInterface
 {
-    // HUD 재화 버튼 컴포넌트 - 버튼 클릭 시 해당 재화를 획득
-    public class HUDCurrencyButton : UIButton
+    // 재화 버튼 컴포넌트 - 버튼 클릭 시 해당 재화를 획득
+    public class UICurrencyButton : UIButton
     {
-        [Title("#HUDCurrencyButton")]
+        [Title("#UICurrencyButton")]
         [SerializeField] private CurrencyNames _currencyName;
         [SerializeField] private string _currencyNameString;
         [SerializeField] private int _earnAmount = 1000;
@@ -25,18 +25,6 @@ namespace TeamSuneat.UserInterface
         private void OnValidate()
         {
             EnumEx.ConvertTo(ref _currencyName, _currencyNameString);
-        }
-
-        public override void AutoNaming()
-        {
-            if (_currencyName != CurrencyNames.None)
-            {
-                SetGameObjectName($"HUDCurrencyButton({_currencyName})");
-            }
-            else
-            {
-                SetGameObjectName($"HUDCurrencyButton");
-            }
         }
 
         protected override void OnButtonClick()

@@ -15,8 +15,8 @@ MonoBehaviour:
   NameString: IceShower
   Data:
     IsChangingAsset: 0
-    Name: 14
-    Attribute: 2
+    Name: 1202
+    Attribute: 3
     Type: 1
     Grade: 2
     MaxLevel: 10
@@ -46,15 +46,8 @@ MonoBehaviour:
     StunChance: 0
     HasTimeStop: 0
     IsPiercing: 0
-    RequiresSkillCard: 0
-    RequiredWeapon: 0
-    RequiredAccessory: 0
-    MinRequiredGrade: 0
     LevelUpCosts: 
     AttributeAsString: Water
     TypeAsString: Active
-    GradeAsString: Grand
+    GradeAsString: Uncommon
     CooldownTypeAsString: TimeBased
-    RequiredWeaponAsString: None
-    RequiredAccessoryAsString: None
-    MinRequiredGradeAsString: None

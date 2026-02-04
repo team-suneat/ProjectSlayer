@@ -15,14 +15,50 @@ MonoBehaviour:
   m_GroupName: Scriptable
   m_GUID: 9c8a3fb1d489a2043a3b1d63467b7d70
   m_SerializeEntries:
+  - m_GUID: 05c8f4824b3981d4499c73ad2c3818ee
+    m_Address: Assets/Addressables/Scriptable/Item/Item_RustySword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 060075f2e2c9ff7489613e5785322b29
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Saber.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 084627b72dd28e64399d810679800a06
+    m_Address: Assets/Addressables/Scriptable/Item/Item_TrainingBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 08d2a91b262cd164f9295756576efb9a
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_WindingBlade.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bb60a95fdacfff468c24f3fcb2240f0
+    m_Address: Assets/Addressables/Scriptable/Item/Item_SlothEarring.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bc28ec3efe3cef46ba75de907e32414
+    m_Address: Assets/Addressables/Scriptable/Item/Item_ExpectationPendant.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0d48137926bcd45478fdd57bf815e0aa
     m_Address: Assets/Addressables/Scriptable/Skill/Config/SkillSlotUnlock.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e79ea8ad40ce3a4d99308ca1758ac10
+    m_Address: Assets/Addressables/Scriptable/Item/Item_SerenityEarring.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -75,6 +111,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28ee4db10ef2bcb469b376e112817734
+    m_Address: Assets/Addressables/Scriptable/Item/Item_DemonKingRing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29649520ea6c4fb439d9b9842ceb67c9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_MadnessBlade.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b7ad402fbfae294e84580c1b56f5174
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FireSlash.asset
     m_ReadOnly: 0
@@ -87,6 +135,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e6605385b6254a45983b74d537c7034
+    m_Address: Assets/Addressables/Scriptable/Item/Item_WishBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2f550f54a9b9be94288c9413c5a7cb36
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_Area01_Boss_SlimeKing.asset
     m_ReadOnly: 0
@@ -95,6 +149,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3005de02f394c444e97ed0f33b8b8cd3
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_PowerStrike.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31af3b4dced485c44a6b9e1339da9670
+    m_Address: Assets/Addressables/Scriptable/Item/Item_VineRapier.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31b0bd580e604cb428d1f4f3b509dedd
+    m_Address: Assets/Addressables/Scriptable/Item/Item_WisdomPendant.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -123,14 +189,50 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 443bed868f9cd104f8cc3285464f0f87
+    m_Address: Assets/Addressables/Scriptable/Item/Item_PatienceBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44e12fbded1650948a7c41f6165122e9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_HopeOrb.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c60be1f478b58439d760b644be17a6
+    m_Address: Assets/Addressables/Scriptable/Item/Item_MaturityEarring.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 492fdb9a0918e794b9894bc008e355bd
     m_Address: Assets/Addressables/Scriptable/Character/MonsterStatConfig.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 566f821748005fb4793de2b7fa204cd2
+    m_Address: Assets/Addressables/Scriptable/Item/Item_AnxietyRing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 56bad3e5f711b0746bbbe278a7b05c32
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_TrueHeatWave.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 580ff2b5fb3368347a13572e25662fbd
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Ruin.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5870b7377f755fe4f90066c906a2cdd9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_SteelSword.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -143,6 +245,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ce62921ee649b740a79d267065c5be7
     m_Address: Assets/Addressables/Scriptable/Flicker/Flicker_Dash.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61146f1d0447a56469887d0a434ad5c1
+    m_Address: Assets/Addressables/Scriptable/Item/Item_RustyBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64b097d5c95e2054db67fd311bc7f325
+    m_Address: Assets/Addressables/Scriptable/Item/Item_OldPendant.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -165,6 +279,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c15ff52d5007064a9e972314800802f
+    m_Address: Assets/Addressables/Scriptable/Item/Item_SilverSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71b209307f5cefa49842eb7c7b06aecc
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_HellfireSlash.asset
     m_ReadOnly: 0
@@ -177,6 +297,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71dd06c9265690647aea79573e67d5de
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Excalibur.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71f384ea2e014f44e87d470490e206d3
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_ThunderGod.asset
     m_ReadOnly: 0
@@ -185,6 +311,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 721f4bb44c554c543b4c739757ef61e8
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_HeatWave.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72c43fbdb0b2b6243b48285f259b9800
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Prinsher.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73b739e1f91642648a0ee22d8669f5a2
+    m_Address: Assets/Addressables/Scriptable/Item/Item_LongSword.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -209,6 +347,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75daeb547f12df342a6016cb2a7aae06
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_FirePillar.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76b65aeb3b50d264a98bd3ee16d8287f
+    m_Address: Assets/Addressables/Scriptable/Item/Item_DesirePendant.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -249,8 +393,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88d70005d730e024c840330e689302e0
+    m_Address: Assets/Addressables/Scriptable/Item/Item_AmbitionBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a57c314aed04a646bae375433472fed
+    m_Address: Assets/Addressables/Scriptable/Item/Item_PurityBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e170c3809f60be438d423ca8e276453
+    m_Address: Assets/Addressables/Scriptable/Item/Item_DarkKnightSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 90bef338bc87e494bb498a45ccab18ac
     m_Address: Assets/Addressables/Scriptable/Character/ExperienceConfig.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99eb89dc59e3b9d4ca3715ae4ec7a777
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Doom.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -267,6 +435,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a691718c197cc334993b91ae0828d34a
+    m_Address: Assets/Addressables/Scriptable/Item/Item_ElvenLongSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a869449aa4eb7414fb589d91d0d1ab8c
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_SuperhumanStrength.asset
     m_ReadOnly: 0
@@ -275,6 +449,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: abb14edae447d1741ab776444eefa2bf
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_ManaBlessing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acc332c345fa9fb46b74415bd781acb6
+    m_Address: Assets/Addressables/Scriptable/Item/Item_IllusionRing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acfcb1ffc0edb284c8467d848d5177d8
+    m_Address: Assets/Addressables/Scriptable/Item/Item_BurningFaith.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -291,8 +477,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae8e229620d9fd04fbe39ca6bd50c9c7
+    m_Address: Assets/Addressables/Scriptable/Item/Item_WarGodBracelet.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae8f3ff0034d0a04a97ffa972479f9bb
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_PowerImpact.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aea01b342c00d434e9534d8a8c5e05ad
+    m_Address: Assets/Addressables/Scriptable/Item/Item_VoyageEarring.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -315,8 +513,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2d9170808e5ff1479be6f196566321b
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Zeros.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b4e151c35838f4e43b453646f61cdc3f
     m_Address: Assets/Addressables/Scriptable/Skill/Config/SkillCardUnlock.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b62024c0355415e45b6b3160d5930b7a
+    m_Address: Assets/Addressables/Scriptable/Item/Item_CouragePendant.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb04500f058b9614f83cd4ad2cdfddae
+    m_Address: Assets/Addressables/Scriptable/Item/Item_PirateFalchion.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -345,6 +561,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6d6daa6e4cfbb84396b46698956fc69
+    m_Address: Assets/Addressables/Scriptable/Item/Item_DemonSlayer.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca5c85ac711287846b192d66aaa6941c
+    m_Address: Assets/Addressables/Scriptable/Item/Item_CrossEarring.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: caf72331fe8c180489a7f21ebf131f2b
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_LightningSlash.asset
     m_ReadOnly: 0
@@ -353,6 +581,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cc8e045c91d41df4f8d598300f116475
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_Swiftness.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdfdd67ee221535419f2bea55e5eaeed
+    m_Address: Assets/Addressables/Scriptable/Item/Item_AlchemyRing.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf314b2eeba22e941ba683f0950ce5af
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Orr.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -369,6 +609,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d60a12d6d229a3f4497bdf85f47c8daf
+    m_Address: Assets/Addressables/Scriptable/Item/Item_ChaosPendant.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9a68cc971c0c6c4b89e403dfe13dac6
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_LifeMana.asset
     m_ReadOnly: 0
@@ -381,8 +627,38 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da4ce25531a75fa4b913cd24a629409c
+    m_Address: Assets/Addressables/Scriptable/Item/Item_BoneBlade.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da4cf3bff11002949997b1e763243c49
+    m_Address: Assets/Addressables/Scriptable/Item/Item_OrnamentalSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dac98902c1ba9b043b5379a3a05950c9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_FairyKingSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc2c2d83729d231438ab89f97faf24e1
     m_Address: Assets/Addressables/Scriptable/Skill/Skill_BurningSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfe8f8a76b2ad2a4391763ab7c2509c9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_AmberEarring.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0ea8738b7846ef45864657cd114c07e
+    m_Address: Assets/Addressables/Scriptable/Item/Item_BroadSword.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -405,8 +681,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6d1dec0561dd8e46902f9b1f052b314
+    m_Address: Assets/Addressables/Scriptable/Item/Item_CursedSawSword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e76dee3bfc696ab49b5e3e4d77eb3dda
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_PlayerCharacter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea821469be9cc074b91199ce419d966d
+    m_Address: Assets/Addressables/Scriptable/Item/Item_Styx.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable
@@ -417,8 +705,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Scriptable
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebdc2f63afab9c44db90d143cd3d1f16
+    m_Address: Assets/Addressables/Scriptable/Item/Item_FrostBlade.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef05a843586c67049a01f2555910cd1b
     m_Address: Assets/Addressables/Scriptable/Hitmark/Hitmark_Area01_Boss_GoblinChief.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f14a7b1ddbd9f9243b8ae564a2b8bbe9
+    m_Address: Assets/Addressables/Scriptable/Item/Item_SacrificeRing.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Scriptable

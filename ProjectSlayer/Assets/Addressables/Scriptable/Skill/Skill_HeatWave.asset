@@ -15,8 +15,8 @@ MonoBehaviour:
   NameString: HeatWave
   Data:
     IsChangingAsset: 0
-    Name: 3
-    Attribute: 1
+    Name: 1201
+    Attribute: 2
     Type: 1
     Grade: 2
     MaxLevel: 10
@@ -45,15 +45,8 @@ MonoBehaviour:
     StunChance: 0
     HasTimeStop: 1
     IsPiercing: 0
-    RequiresSkillCard: 0
-    RequiredWeapon: 0
-    RequiredAccessory: 0
-    MinRequiredGrade: 0
     LevelUpCosts: 
     AttributeAsString: Fire
     TypeAsString: Active
-    GradeAsString: Grand
+    GradeAsString: Uncommon
     CooldownTypeAsString: TimeBased
-    RequiredWeaponAsString: None
-    RequiredAccessoryAsString: None
-    MinRequiredGradeAsString: None

@@ -4,6 +4,8 @@ namespace TeamSuneat
 {
     public static class GameColors
     {
+        #region Colors
+
         public static readonly Color White = new Color32(255, 255, 255, 255); // #FFFFFF
         public static readonly Color FloralWhite = new Color32(255, 250, 240, 255); // #FFFAF0
         public static readonly Color GhostWhite = new Color32(248, 248, 255, 255); // #F8F8FF
@@ -161,9 +163,9 @@ namespace TeamSuneat
 
         public static readonly Color Yellow = new Color32(255, 255, 0, 255); // #FFFF00
 
-        //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        #endregion Colors
 
-        public static Color EnterButtonText => new Color32(153, 160, 255, 255);
+        //──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
         public static Color ActivateYellow => new Color32(255, 219, 24, 255);
 
@@ -196,9 +198,9 @@ namespace TeamSuneat
         public static Color Paralysis => new Color32(237, 0, 252, 255); //ED00FC
 
         // Grade Colors
-        public static Color Common => DarkSlateGray;
 
-        public static Color Grand => OliveDrab;
+        public static Color Common => DarkSlateGray;
+        public static Color Uncommon => OliveDrab;
         public static Color Rare => Chocolate;
         public static Color Epic => Indigo;
         public static Color Legendary => DarkRed;

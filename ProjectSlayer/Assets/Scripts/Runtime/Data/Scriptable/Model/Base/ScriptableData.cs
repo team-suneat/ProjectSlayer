@@ -79,6 +79,16 @@ namespace TeamSuneat.Data
             return GetFieldColor(key);
         }
 
+        protected Color GetGradeNameColor(GradeNames key)
+        {
+            return GetFieldColor(key);
+        }
+
+        protected Color GetItemTypeColor(ItemTypes key)
+        {
+            return GetFieldColor(key);
+        }
+
         protected Color GetSkillNameColor(SkillNames key)
         {
             return GetFieldColor(key);

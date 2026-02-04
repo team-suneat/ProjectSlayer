@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7999815501938075031}
   - component: {fileID: 4564213902244078592}
   m_Layer: 5
-  m_Name: HUDCurrency
+  m_Name: UICurrency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

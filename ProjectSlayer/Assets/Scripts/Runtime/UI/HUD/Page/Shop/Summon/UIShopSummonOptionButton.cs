@@ -122,7 +122,7 @@ namespace TeamSuneat.UserInterface
             {
                 GradeNames grade = ShopSummonHandler.PickWeaponGrade(profile.Weapon.SummonLevel);
                 int level = ShopSummonHandler.PickWeaponLevel();
-                ItemNames itemName = ItemNameHelper.GetWeaponName(grade, level);
+                ItemNames itemName = ItemNameHelper.ConvertToWeaponName(grade, level);
 
                 profile?.Weapon.AddWeapon(itemName);
             }
@@ -130,7 +130,7 @@ namespace TeamSuneat.UserInterface
             {
                 GradeNames grade = ShopSummonHandler.PickAccessoryGrade(profile.Accessory.SummonLevel);
                 int level = ShopSummonHandler.PickAccessoryLevel();
-                ItemNames itemName = ItemNameHelper.GetAccessoryName(grade, level);
+                ItemNames itemName = ItemNameHelper.ConvertToAccessoryName(grade, level);
 
                 profile?.Accessory.AddAccessory(itemName);
             }
@@ -152,7 +152,7 @@ namespace TeamSuneat.UserInterface
                 {
                     GradeNames grade = ShopSummonHandler.PickWeaponGrade(profile.Weapon.SummonLevel);
                     int level = ShopSummonHandler.PickWeaponLevel();
-                    ItemNames itemName = ItemNameHelper.GetWeaponName(grade, level);
+                    ItemNames itemName = ItemNameHelper.ConvertToWeaponName(grade, level);
 
                     profile?.Weapon.AddWeapon(itemName);
                 }
@@ -163,7 +163,7 @@ namespace TeamSuneat.UserInterface
                 {
                     GradeNames grade = ShopSummonHandler.PickAccessoryGrade(profile.Accessory.SummonLevel);
                     int level = ShopSummonHandler.PickAccessoryLevel();
-                    ItemNames itemName = ItemNameHelper.GetAccessoryName(grade, level);
+                    ItemNames itemName = ItemNameHelper.ConvertToAccessoryName(grade, level);
 
                     profile?.Accessory.AddAccessory(itemName);
                 }
@@ -189,7 +189,7 @@ namespace TeamSuneat.UserInterface
                 {
                     GradeNames grade = ShopSummonHandler.PickWeaponGrade(profile.Weapon.SummonLevel);
                     int level = ShopSummonHandler.PickWeaponLevel();
-                    ItemNames itemName = ItemNameHelper.GetWeaponName(grade, level);
+                    ItemNames itemName = ItemNameHelper.ConvertToWeaponName(grade, level);
 
                     profile?.Weapon.AddWeapon(itemName);
                 }
@@ -200,7 +200,7 @@ namespace TeamSuneat.UserInterface
                 {
                     GradeNames grade = ShopSummonHandler.PickAccessoryGrade(profile.Accessory.SummonLevel);
                     int level = ShopSummonHandler.PickAccessoryLevel();
-                    ItemNames itemName = ItemNameHelper.GetAccessoryName(grade, level);
+                    ItemNames itemName = ItemNameHelper.ConvertToAccessoryName(grade, level);
 
                     profile?.Accessory.AddAccessory(itemName);
                 }

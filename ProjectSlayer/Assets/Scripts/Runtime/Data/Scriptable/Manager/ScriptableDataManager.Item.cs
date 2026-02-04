@@ -8,7 +8,12 @@ namespace TeamSuneat.Data
 
         public ItemAsset FindItem(ItemNames key)
         {
-            return FindItem(BitConvert.Enum32ToInt(key));
+            ItemAsset asset = FindItem(BitConvert.Enum32ToInt(key));
+            if (asset == null)
+            {
+                Log.Warning("아이템 에셋 데이터를 찾을 수 없습니다: {0}", key.ToLogString());
+            }
+            return asset;
         }
 
         private ItemAsset FindItem(int tid)

@@ -12,9 +12,6 @@ namespace TeamSuneat.UserInterface
         [FoldoutGroup("#UIEquipmentWeaponSlotItem-Text")]
         [SerializeField] private UILocalizedText _weaponNameText;
 
-        [FoldoutGroup("#UIEquipmentWeaponSlotItem-Text")]
-        [SerializeField] private UILocalizedText _weaponLevelText;
-
         [FoldoutGroup("#UIEquipmentWeaponSlotItem-Gauge")]
         [SerializeField] private UIGauge _levelGauge;
 
@@ -23,7 +20,6 @@ namespace TeamSuneat.UserInterface
 
         [FoldoutGroup("#UIEquipmentWeaponSlotItem-Image")]
         [SerializeField] private Image _gradeBackgroundImage;
-
         private ItemNames _weaponName = ItemNames.None;
 
         public ItemNames WeaponName => _weaponName;
@@ -33,7 +29,6 @@ namespace TeamSuneat.UserInterface
             base.AutoGetComponents();
 
             _weaponNameText ??= this.FindComponent<UILocalizedText>("Weapon Name Text");
-            _weaponLevelText ??= this.FindComponent<UILocalizedText>("Weapon Level Text");
             _levelGauge ??= this.FindComponent<UIGauge>("Level Gauge");
             _weaponIconImage ??= this.FindComponent<Image>("Weapon Icon Image");
             _gradeBackgroundImage ??= this.FindComponent<Image>("Grade Background Image");
@@ -44,7 +39,6 @@ namespace TeamSuneat.UserInterface
             _weaponName = weaponName;
 
             SetWeaponNameText(weaponName);
-            SetWeaponLevelText(weaponName);
             SetLevelGauge(weaponName);
             SetWeaponIconImage(weaponName.LoadSprite());
             SetGradeBackgroundImage(weaponName.LoadSprite());
@@ -58,18 +52,6 @@ namespace TeamSuneat.UserInterface
             {
                 string content = weaponName.GetLocalizedString();
                 _weaponNameText.SetText(content);
-            }
-        }
-
-        public void SetWeaponLevelText(ItemNames weaponName)
-        {
-            if (_weaponLevelText != null)
-            {
-                VProfile profile = GameApp.GetSelectedProfile();
-                if (profile != null)
-                {
-                    _weaponLevelText.SetText(profile.Weapon.SummonLevel.GetGradeString());
-                }
             }
         }
 

@@ -8,13 +8,13 @@ namespace TeamSuneat.UserInterface
         private const int ACCESSORY_ITEM_ID_MIN = 2101;
         private const int ACCESSORY_ITEM_ID_MAX = 2999;
 
-        private UIEquipmentAccessorySlotItem[] _items;
-        private readonly Dictionary<ItemNames, UIEquipmentAccessorySlotItem> _accessoryItemMap = new();
+        private UIEquipmentSlotItem[] _items;
+        private readonly Dictionary<ItemNames, UIEquipmentSlotItem> _accessoryItemMap = new();
 
         protected override void Awake()
         {
             base.Awake();
-            _items = GetComponentsInChildren<UIEquipmentAccessorySlotItem>(true);
+            _items = GetComponentsInChildren<UIEquipmentSlotItem>(true);
         }
 
         public override void Initialize()
@@ -23,7 +23,7 @@ namespace TeamSuneat.UserInterface
 
             if (!_items.IsValid())
             {
-                Log.Warning(LogTags.UI_Page, "UIEquipmentAccessorySlotItem을 찾을 수 없습니다.");
+                Log.Warning(LogTags.UI_Page, "UIEquipmentSlotItem을 찾을 수 없습니다.");
                 return;
             }
 
@@ -102,9 +102,9 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        public UIEquipmentAccessorySlotItem FindItem(ItemNames accessoryName)
+        public UIEquipmentSlotItem FindItem(ItemNames accessoryName)
         {
-            return _accessoryItemMap.TryGetValue(accessoryName, out UIEquipmentAccessorySlotItem item) ? item : null;
+            return _accessoryItemMap.TryGetValue(accessoryName, out UIEquipmentSlotItem item) ? item : null;
         }
     }
 }

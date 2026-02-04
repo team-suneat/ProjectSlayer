@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
 
 namespace TeamSuneat.UserInterface
@@ -9,17 +8,13 @@ namespace TeamSuneat.UserInterface
         private const int WEAPON_ITEM_ID_MIN = 1101;
         private const int WEAPON_ITEM_ID_MAX = 1999;
 
-        [Title("#UIEquipmentWeaponPage")]
-        [ShowInInspector]
-        [ReadOnly]
-        private UIEquipmentWeaponSlotItem[] _items;
-
-        private readonly Dictionary<ItemNames, UIEquipmentWeaponSlotItem> _weaponItemMap = new();
+        private UIEquipmentSlotItem[] _items;
+        private readonly Dictionary<ItemNames, UIEquipmentSlotItem> _weaponItemMap = new();
 
         protected override void Awake()
         {
             base.Awake();
-            _items = GetComponentsInChildren<UIEquipmentWeaponSlotItem>(true);
+            _items = GetComponentsInChildren<UIEquipmentSlotItem>(true);
         }
 
         public override void Initialize()
@@ -28,7 +23,7 @@ namespace TeamSuneat.UserInterface
 
             if (_items == null || _items.Length == 0)
             {
-                Log.Warning(LogTags.UI_Page, "UIEquipmentWeaponSlotItem을 찾을 수 없습니다.");
+                Log.Warning(LogTags.UI_Page, "UIEquipmentSlotItem을 찾을 수 없습니다.");
                 return;
             }
 
@@ -107,9 +102,9 @@ namespace TeamSuneat.UserInterface
             }
         }
 
-        public UIEquipmentWeaponSlotItem FindItem(ItemNames weaponName)
+        public UIEquipmentSlotItem FindItem(ItemNames weaponName)
         {
-            return _weaponItemMap.TryGetValue(weaponName, out UIEquipmentWeaponSlotItem item) ? item : null;
+            return _weaponItemMap.TryGetValue(weaponName, out UIEquipmentSlotItem item) ? item : null;
         }
     }
 }

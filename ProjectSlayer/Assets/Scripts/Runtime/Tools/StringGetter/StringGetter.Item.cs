@@ -200,6 +200,11 @@ namespace TeamSuneat
             return $"Grade_Name_{key}";
         }
 
+        public static string GetLocalizedString(this GradeNames key)
+        {
+            return GetLocalizedString(key, GameSetting.Instance.Language.Name);
+        }
+
         public static string GetLocalizedString(this GradeNames key, LanguageNames languageName)
         {
             string stringKey = GetStringKey(key);

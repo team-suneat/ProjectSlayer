@@ -7,9 +7,9 @@ using UnityEngine.UI;
 namespace TeamSuneat.UserInterface
 {
     // HUD 재화 표시 컴포넌트 - 재화 아이콘 및 소지량 표시
-    public class HUDCurrency : XBehaviour
+    public class UICurrency : XBehaviour
     {
-        [Title("#HUDCurrency")]
+        [Title("#UICurrency")]
         [SerializeField] private CurrencyNames _currencyName;
         [SerializeField] private string _currencyNameString;
         [SerializeField] private Image _iconImage;

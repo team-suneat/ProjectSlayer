@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using TeamSuneat;
 
 namespace TeamSuneat.Data
 {
@@ -15,12 +14,22 @@ namespace TeamSuneat.Data
         [GUIColor("GetItemNameColor")]
         public ItemNames Name;
 
+        [EnableIf("IsChangingAsset")]
+        [SuffixLabel("아이템 타입")]
+        [GUIColor("GetItemTypeColor")]
+        public ItemTypes Type;
+
+        [EnableIf("IsChangingAsset")]
         [SuffixLabel("등급 이름")]
-        [GUIColor("GetGradeColor")]
+        [GUIColor("GetGradeNameColor")]
         public GradeNames Grade;
 
-        [FoldoutGroup("#String")]
-        public string GradeNameString;
+        [EnableIf("IsChangingAsset")]
+        [SuffixLabel("티어")]
+        public int Tier;
+
+        [FoldoutGroup("#String")] public string TypeNameString;
+        [FoldoutGroup("#String")] public string GradeNameString;
 
         public override int GetKey()
         {
@@ -31,6 +40,10 @@ namespace TeamSuneat.Data
         {
             if (!IsChangingAsset)
             {
+                if (!EnumEx.ConvertTo(ref Type, TypeNameString))
+                {
+                    Log.Error("Item 에셋 데이터의 TypeNameString 변수를 변환할 수 없습니다. {0} ({1}), {2}", Name, Name.ToLogString(), TypeNameString);
+                }
                 if (!EnumEx.ConvertTo(ref Grade, GradeNameString))
                 {
                     Log.Error("Item 에셋 데이터의 GradeNameString 변수를 변환할 수 없습니다. {0} ({1}), {2}", Name, Name.ToLogString(), GradeNameString);
@@ -43,6 +56,7 @@ namespace TeamSuneat.Data
             base.Refresh();
 
             GradeNameString = Grade.ToString();
+            TypeNameString = Type.ToString();
             IsChangingAsset = false;
         }
 
@@ -57,8 +71,10 @@ namespace TeamSuneat.Data
             {
                 Name = Name,
                 Grade = Grade,
+                Type = Type,
                 GradeNameString = GradeNameString,
-                IsChangingAsset = IsChangingAsset
+                TypeNameString = TypeNameString,
+                Tier = Tier,
             };
         }
 
@@ -67,6 +83,7 @@ namespace TeamSuneat.Data
         public bool RefreshWithoutSave()
         {
             _hasChangedWhiteRefreshAll = false;
+            UpdateIfChanged(ref TypeNameString, Type);
             UpdateIfChanged(ref GradeNameString, Grade);
             return _hasChangedWhiteRefreshAll;
         }

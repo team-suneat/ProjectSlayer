@@ -103,10 +103,8 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - Ingame
     - JSON
     - Scriptable
-    - ScriptableSync
     - Area01
   m_SchemaTemplates: []
   m_GroupTemplateObjects:

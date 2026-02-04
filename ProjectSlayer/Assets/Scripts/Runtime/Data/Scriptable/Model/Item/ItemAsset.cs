@@ -133,11 +133,21 @@ namespace TeamSuneat.Data
                     asset = CreateAsset<ItemAsset>("Item", itemNames[i].ToString(), true);
                     if (asset != null)
                     {
-                        asset.Data = new ItemAssetData
-                        {
-                            Name = itemNames[i]
-                        };
-                        asset.NameString = itemNames[i].ToString();
+                        asset.Data = new ItemAssetData();
+
+                        ItemNames itemName = itemNames[i];
+                        asset.Data.Name = itemName;
+                        asset.NameString = itemName.ToString();
+
+                        GradeNames gradeName = itemName.ConvertGradeName();
+                        asset.Data.Grade = gradeName;
+                        asset.Data.GradeNameString = gradeName.ToString();
+
+                        ItemTypes itemType = itemName.ConvertToItemType();
+                        asset.Data.Type = itemType;
+                        asset.Data.TypeNameString = itemType.ToString();
+
+                        asset.Data.Tier = itemName.ConvertToItemTier();
                     }
                 }
             }
